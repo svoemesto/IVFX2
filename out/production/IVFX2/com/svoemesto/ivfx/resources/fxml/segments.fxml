@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="2880.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.svoemesto.ivfx.controllers.SegmentsController">
+   <children>
+      <VBox layoutX="366.0" layoutY="392.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="5000.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="5000.0" prefWidth="100.0">
+                     <children>
+                        <TableView fx:id="tblSegments" maxHeight="1.7976931348623157E308" maxWidth="290.0" minWidth="290.0" prefHeight="5000.0" prefWidth="290.0" style="-fx-selection-bar: red; -fx-selection-bar-non-focused: red;">
+                          <columns>
+                            <TableColumn fx:id="colSegmentFrom" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="FROM" />
+                            <TableColumn fx:id="colSegmentTo" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="TO" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="5000.0" prefWidth="5000.0">
+                     <children>
+                        <HBox maxHeight="450.0" minHeight="450.0" prefHeight="450.0" prefWidth="200.0" style="-fx-background-color: black;" />
+                        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="5000.0" prefWidth="5000.0">
+                           <children>
+                              <VBox maxHeight="1.7976931348623157E308" prefHeight="5000.0" prefWidth="100.0">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Все персонажи" />
+                                    <TextField fx:id="ctlFindPersonsAll" />
+                                    <TableView fx:id="tblPersonsAll" maxHeight="1.7976931348623157E308" maxWidth="155.0" minWidth="155.0" prefHeight="5000.0" prefWidth="155.0">
+                                      <columns>
+                                        <TableColumn fx:id="colPersonsAllPreview" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Персонажи" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="5000.0" prefWidth="100.0">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Персонажи сегмента" />
+                                    <TextField fx:id="ctlFindSegmentPersons" />
+                                    <TableView fx:id="tblSegmentPersons" maxHeight="1.7976931348623157E308" maxWidth="155.0" minWidth="155.0" prefHeight="5000.0" prefWidth="155.0">
+                                       <columns>
+                                          <TableColumn fx:id="colSegmentPersonsPreview" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Персонажи" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="165.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="5000.0" prefWidth="100.0">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" minHeight="42.0" text="Персонажи предыдущих сегментов" textAlignment="CENTER" wrapText="true" />
+                                    <Button fx:id="btnSegmentPersonsStep1" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doSegmentPersonsStep1" text="сегмент -1" />
+                                    <TableView fx:id="tblSegmentPersonsStep1" maxHeight="1.7976931348623157E308" maxWidth="155.0" minWidth="155.0" prefHeight="5000.0" prefWidth="155.0">
+                                       <columns>
+                                          <TableColumn fx:id="colSegmentPersonsStep1Preview" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Персонажи -1" />
+                                       </columns>
+                                    </TableView>
+                                    <Button fx:id="btnSegmentPersonsStep2" layoutX="10.0" layoutY="52.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doSegmentPersonsStep2" text="сегмент -2" />
+                                    <TableView fx:id="tblSegmentPersonsStep2" layoutX="10.0" layoutY="77.0" maxHeight="1.7976931348623157E308" maxWidth="155.0" minWidth="155.0" prefHeight="5000.0" prefWidth="155.0">
+                                       <columns>
+                                          <TableColumn fx:id="colSegmentPersonsStep2Preview" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Персонажи -2" />
+                                       </columns>
+                                    </TableView>
+                                    <Button fx:id="btnSegmentPersonsStep3" layoutX="10.0" layoutY="334.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doSegmentPersonsStep3" text="сегмент -3" />
+                                    <TableView fx:id="tblSegmentPersonsStep3" layoutX="10.0" layoutY="346.0" maxHeight="1.7976931348623157E308" maxWidth="155.0" minWidth="155.0" prefHeight="5000.0" prefWidth="155.0">
+                                       <columns>
+                                          <TableColumn fx:id="colSegmentPersonsStep3Preview" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Персонажи -3" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="320.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="5000.0" prefWidth="100.0">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" minHeight="42.0" text="Персонажи сцены" textAlignment="CENTER" wrapText="true" />
+                                    <Button fx:id="btnScenePersonsToSegment" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doScenePersonsToSegment" text="&lt;&lt;&lt;===" />
+                                    <TableView fx:id="tblScenePersons" maxHeight="1.7976931348623157E308" maxWidth="185.0" minWidth="185.0" prefHeight="5000.0" prefWidth="185.0">
+                                       <columns>
+                                          <TableColumn fx:id="colScenePersonsPreview" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Персонажи" />
+                                          <TableColumn fx:id="colScenePersonsIsMain" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" text="M" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Button fx:id="btnAddNewScene" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doAddNewScene" text="Добавить новую сцену для теущего сегмента" />
+                                    <TableView fx:id="tblScenes" maxWidth="340.0" minWidth="340.0" prefHeight="5000.0" prefWidth="340.0">
+                                      <columns>
+                                        <TableColumn fx:id="colSceneStart" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" text="Начало" />
+                                        <TableColumn fx:id="colSceneName" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" text="Сцена" />
+                                      </columns>
+                                    </TableView>
+                                    <Button fx:id="btnDeleteScene" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doDeleteScene" text="Удалить сцену" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" minHeight="25.0" text="Сегменты сцены" />
+                                    <TableView fx:id="tblSceneSegments" maxHeight="1.7976931348623157E308" maxWidth="290.0" minWidth="290.0" prefHeight="5000.0" prefWidth="290.0" style="-fx-selection-bar: red; -fx-selection-bar-non-focused: red;">
+                                       <columns>
+                                          <TableColumn fx:id="colSceneSegmentFrom" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="FROM" />
+                                          <TableColumn fx:id="colSceneSegmentTo" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="TO" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="660.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Button fx:id="btnAddNewEvent" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doAddNewEvent" text="Добавить новое событие" />
+                                    <TableView fx:id="tblEvents" maxWidth="480.0" minWidth="480.0" prefHeight="5000.0" prefWidth="480.0">
+                                       <columns>
+                                          <TableColumn fx:id="colEventStart" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" text="Начало" />
+                                          <TableColumn fx:id="colEventEnd" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" text="Конец" />
+                                          <TableColumn fx:id="colEventType" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" text="Тип" />
+                                          <TableColumn fx:id="colEventName" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" text="Событие" />
+                                       </columns>
+                                    </TableView>
+                                    <Button fx:id="btnDeleteEvent" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doDeleteEvent" text="Удалить событие" />
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="1000.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" minHeight="25.0" text="Сегменты события" />
+                                    <TableView fx:id="tblEventSegments" maxHeight="1.7976931348623157E308" maxWidth="290.0" minWidth="290.0" prefHeight="5000.0" prefWidth="290.0" style="-fx-selection-bar: red; -fx-selection-bar-non-focused: red;">
+                                       <columns>
+                                          <TableColumn fx:id="colEventSegmentFrom" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="FROM" />
+                                          <TableColumn fx:id="colEventSegmentTo" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="TO" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="475.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="5000.0" prefWidth="100.0">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" minHeight="25.0" text="Персонажи события" textAlignment="CENTER" wrapText="true" />
+                                    <TableView fx:id="tblEventPersons" maxHeight="1.7976931348623157E308" maxWidth="185.0" minWidth="185.0" prefHeight="5000.0" prefWidth="185.0">
+                                       <columns>
+                                          <TableColumn fx:id="colEventPersonsPreview" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Персонажи" />
+                                          <TableColumn fx:id="colEventPersonsIsMain" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" text="M" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="475.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="5000.0" prefWidth="100.0">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" minHeight="25.0" text="Персонажи сцены" textAlignment="CENTER" wrapText="true" />
+                                    <TableView fx:id="tblScenePersonsToEvents" maxHeight="1.7976931348623157E308" maxWidth="185.0" minWidth="185.0" prefHeight="5000.0" prefWidth="185.0">
+                                       <columns>
+                                          <TableColumn fx:id="colScenePersonsToEventsPreview" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Персонажи" />
+                                          <TableColumn fx:id="colScenePersonsToEventsIsMain" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" text="M" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Button fx:id="btnOK" mnemonicParsing="false" text="OK" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

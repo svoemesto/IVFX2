@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="1320.0" prefHeight="800.0" prefWidth="1320.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.svoemesto.ivfx.controllers.PersonController">
+   <children>
+      <HBox layoutX="71.0" layoutY="245.0" maxWidth="1.7976931348623157E308" minWidth="1320.0" prefHeight="100.0" prefWidth="5000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox maxWidth="1.7976931348623157E308" minWidth="564.0" prefHeight="200.0" prefWidth="5000.0">
+               <children>
+                  <TextField fx:id="ctlSearch" style="-fx-background-color: lightyellow; -fx-border-color: black;" />
+                  <TableView fx:id="tblPersons" maxHeight="1.7976931348623157E308" minHeight="700.0" prefHeight="5000.0" prefWidth="564.0">
+                    <columns>
+                      <TableColumn fx:id="colPreview" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" resizable="false" sortable="false" text="Персонаж" />
+                      <TableColumn fx:id="colName" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" resizable="false" sortable="false" text="Имя" />
+                        <TableColumn fx:id="colDescription" maxWidth="290.0" minWidth="290.0" prefWidth="290.0" resizable="false" sortable="false" text="Описание" />
+                    </columns>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </TableView>
+                  <Button fx:id="btnOK" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doOK" text="ОК">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="btnCancel" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doCancel" text="Отмена">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </VBox>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <VBox maxHeight="1.7976931348623157E308" minWidth="730.0" prefHeight="5000.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="ctlPicture" maxHeight="400.0" maxWidth="720.0" minHeight="400.0" minWidth="720.0" prefHeight="400.0" prefWidth="720.0" style="-fx-border-color: black; -fx-background-color: black;">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Separator prefWidth="200.0" />
+                  <HBox maxHeight="1.7976931348623157E308" minHeight="350.0" minWidth="720.0" prefHeight="5000.0" prefWidth="720.0">
+                     <children>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" minWidth="260.0" prefHeight="5000.0" prefWidth="100.0">
+                           <children>
+                              <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Имя персонажа">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="ctlName" prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Описание персонажа">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="ctlDescription" minHeight="50.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Separator prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" />
+                                 </VBox.margin>
+                              </Separator>
+                              <Button fx:id="btnChangePersonPicture" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doChangePersonPicture" text="Изменить картинку персонажа">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button fx:id="btnCreateNewPerson" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doCreateNewPerson" text="Создать нового персонажа">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Separator prefWidth="200.0" />
+                              <Button fx:id="btnDeletePerson" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onDeletePerson" text="Удалить персонажа">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                        </VBox>
+                        <HBox maxHeight="1.7976931348623157E308" prefHeight="5000.0" prefWidth="675.0">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <TableView fx:id="tblGroupsForPerson" maxHeight="1.7976931348623157E308" minHeight="370.0" minWidth="200.0" onDragDetected="#doGroupPersonOnDragDetected" onDragDropped="#doGroupPersonOnDragDropped" onDragOver="#doGroupPersonOnDragOver" prefHeight="5000.0" prefWidth="100.0">
+                                      <columns>
+                                        <TableColumn fx:id="colGrpNameForPerson" maxWidth="185.0" minWidth="185.0" prefWidth="185.0" resizable="false" text="Группы персонажа" />
+                                      </columns>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="50.0">
+                                 <children>
+                                    <Label alignment="CENTER" text="&lt; d`n`d&gt;" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="100.0" prefWidth="166.0">
+                                 <children>
+                                    <TableView fx:id="tblGroupsForAll" maxHeight="1.7976931348623157E308" minHeight="370.0" minWidth="200.0" onDragDetected="#doGroupsOnDragDetected" onDragDropped="#doGroupsOnDragDropped" onDragOver="#doGroupsOnDragOver" prefHeight="5000.0" prefWidth="166.0">
+                                      <columns>
+                                        <TableColumn fx:id="colGrpNameForAll" maxWidth="185.0" minWidth="185.0" prefWidth="185.0" resizable="false" text="Все группы" />
+                                      </columns>
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </VBox.margin>
+                                       <contextMenu>
+                                          <ContextMenu fx:id="contMenuAllGroups">
+                                            <items>
+                                              <MenuItem fx:id="contMenuAllGroupsDoAddNewGroup" mnemonicParsing="false" onAction="#doOnActionContMenuAllGroupsDoAddNewGroup" text="Создать новую группу" />
+                                                <MenuItem fx:id="contMenuAllGroupsDoRenameGroup" mnemonicParsing="false" onAction="#doOnActionContMenuAllGroupsDoRenameGroup" text="Переименовать группу" />
+                                                <MenuItem fx:id="contMenuAllGroupsDoDeleteGroup" mnemonicParsing="false" onAction="#doOnActionContMenuAllGroupsDoDeleteGroup" text="Удалить группу" />
+                                            </items>
+                                          </ContextMenu>
+                                       </contextMenu>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
