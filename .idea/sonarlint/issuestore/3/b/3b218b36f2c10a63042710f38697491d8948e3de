@@ -1,0 +1,40 @@
+
+]	java:S1253"<This block of commented-out lines of code should be removed.(—¥ı³ûÿÿÿÿ8‰Áç„ó.
+H
+java:S1075["&Remove this hard-coded path-delimiter.(¼”©Ìüÿÿÿÿ8ïÆÚüò.
+l
+java:S1192-"JDefine a constant instead of duplicating this literal "\\Video\\" 3 times.(Ğ â¦üÿÿÿÿ8ºÁÕİò.
+]	java:S125"<This block of commented-out lines of code should be removed.(çš¸õúÿÿÿÿ8åø“øó.
+j
+java:S2095 "LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(ÔúÁ‹8–›É³ó.
+>
+java:S1643Q"Use a StringBuilder instead.(à‹Àµşÿÿÿÿ8ïÆÚüò.
+Y	java:S125"<This block of commented-out lines of code should be removed.(èõäÄ8–›É³ó.
+o
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(‡¿‚Æ8ôçĞİò.
+o
+java:S2095®"LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(éİóşÿÿÿÿ8–›É³ó.
+H
+java:S1075$"&Remove this hard-coded path-delimiter.(³ğÌùÿÿÿÿ8ºÁÕİò.
+?
+java:S1643˜"Use a StringBuilder instead.(è“Ü¾ÿÿÿÿÿ8–›É³ó.
+:
+java:S1643«"Use a StringBuilder instead.(ôöÍé8–›É³ó.
+X	java:S125`"<This block of commented-out lines of code should be removed.(´¯Ø‘8ŸÔ•÷ó.
+X	java:S125%"<This block of commented-out lines of code should be removed.(íßİµ8¡³üüò.
+\
+java:S1118":Add a private constructor to hide the implicit public one.(àà¦¤ùÿÿÿÿ8ó–¼Úò.
+?
+java:S1643†"Use a StringBuilder instead.(à‹Àµşÿÿÿÿ8–›É³ó.
+?
+java:S1643œ"Use a StringBuilder instead.(×ñŸÕùÿÿÿÿ8–›É³ó.
+:
+java:S1643›"Use a StringBuilder instead.(Ñ™÷8–›É³ó.
+o
+java:S2095¸"LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(æÍåËşÿÿÿÿ8–›É³ó.
+v
+java:S2293d"YReplace the type specification in this constructor call with the diamond operator ("<>").(ı§î8ïÆÚüò.
+j
+java:S2095Ä"LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(€“‚º8–›É³ó.
+{
+java:S2293="YReplace the type specification in this constructor call with the diamond operator ("<>").(‚¶‹Ùúÿÿÿÿ8ïÆÚüò.

@@ -1,0 +1,38 @@
+
+y
+java:S3008"^Rename this field "WORK_WHITH_DATABASE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(šš¨™úÿÿÿÿ
+U
+java:S1135®"2Complete the task associated to this TODO comment.(Ì°¸ãşÿÿÿÿ8İ¼Åô.
+z
+java:S1104"_Make WORK_WHITH_DATABASE a static final constant or non-public and provide accessors if needed.(šš¨™úÿÿÿÿ
+f
+java:S2583N"DChange this condition so that it does not always evaluate to "false"( ¯ÊÔÿÿÿÿÿ8‘•¸ùÕ.
+H
+java:S1135#"2Complete the task associated to this TODO comment.(¤ŒäÁ
+—
+java:S1186&"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ĞÑÜí
+Z	java:S106F"9Replace this use of System.out or System.err by a logger.(âñ‚òşÿÿÿÿ8‘•¸ùÕ.
+d
+java:S2095d"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8Ï…»ôÖ.
+M
+java:S1135"2Complete the task associated to this TODO comment.(ÖŞ³µúÿÿÿÿ
+m
+java:S2095•"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8˜âëõÖ.
+m
+java:S2095¤"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8İ¼Åô.
+[
+java:S2589õ"8Remove this expression which always evaluates to "false"(†îì¦ÿÿÿÿÿ8İ¼Åô.
+M
+java:S1128"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿ8¦Ö¼Åô.
+T
+java:S1444"9Make this "public static WORK_WHITH_DATABASE" field final(šš¨™úÿÿÿÿ
+M
+java:S5411ñ"*Use the primitive boolean expression here.(¸£Ä–üÿÿÿÿ8İ¼Åô.
+T
+java:S4973 "9Use the "equals" method if value comparison was intended.(şå¨úÿÿÿÿ
+K
+java:S2065"0Remove the "transient" modifier from this field.(šš¨™úÿÿÿÿ
+l
+java:S2095A"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8˜âëõÖ.
+G
+java:S5411?"*Use the primitive boolean expression here.(Ø½½8ÑÒ¸ùÕ.

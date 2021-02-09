@@ -1,0 +1,41 @@
+
+d
+java:S20952"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8Ú’Èôö.
+m	java:S117o"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜˜ã“8Ú’Èôö.
+e
+java:S2095Ü"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8Ú’Èôö.
+h
+java:S1192:"KDefine a constant instead of duplicating this literal "name_short" 4 times.(®Ë¦8Ú’Èôö.
+e
+java:S2095¢"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8Ú’Èôö.
+W
+java:S1141F"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8ù¹öôö.
+X
+java:S1141¶"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8Úèøôö.
+n	java:S117ã"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜˜ã“8Ú’Èôö.
+F	java:S108‡")Either remove or fill this block of code.(ï­£Ä8òÁøôö.
+I
+java:S1075œ"&Remove this hard-coded path-delimiter.(Ñê½³ùÿÿÿÿ8°¡òôö.
+E	java:S108O")Either remove or fill this block of code.(ï­£Ä8ù¹öôö.
+^	java:S125ó"<This block of commented-out lines of code should be removed.(Ã«šüøÿÿÿÿ8²‡÷.
+]	java:S125H"<This block of commented-out lines of code should be removed.(´Š–ÿÿÿÿÿ8ˆÜˆ÷.
+F	java:S108û")Either remove or fill this block of code.(ï­£Ä8 –ùôö.
+m	java:S1177"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜˜ã“8Ú’Èôö.
+X
+java:S1141ò"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8 –ùôö.
+d
+java:S2095j"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8Ú’Èôö.
+ƒ
+java:S1488œ"`Immediately return this expression instead of assigning it to the temporary variable "fileName".(Ñê½³ùÿÿÿÿ8°¡òôö.
+F	java:S108¿")Either remove or fill this block of code.(ï­£Ä8Úèøôö.
+U
+java:S1135"2Complete the task associated to this TODO comment.(ç ƒĞÿÿÿÿÿ8Ú’Èôö.
+n
+java:S1192;"LDefine a constant instead of duplicating this literal "description" 4 times.(Í…ÎÀûÿÿÿÿ8Ú’Èôö.
+]	java:S125"<This block of commented-out lines of code should be removed.(Ã«šüøÿÿÿÿ8¶©ˆ÷.
+m
+java:S2095™"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8éÒÅôö.
+^	java:S125·"<This block of commented-out lines of code should be removed.(Ã«šüøÿÿÿÿ8„ó‡÷.
+n	java:S117§"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜˜ã“8Ú’Èôö.
+W
+java:S1141~"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8òÁøôö.

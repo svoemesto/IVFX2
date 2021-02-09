@@ -1,0 +1,216 @@
+
+?
+java:S1643¹"Use a StringBuilder instead.(ÈğÍ–úÿÿÿÿ8ñŞİÅô.
+:
+java:S1643
+"Use a StringBuilder instead.(´‹ˆ8…×ÜÅô.
+Z
+java:S3972"7Move this "if" to a new line or add the missing "else".(Âî²ÿÿÿÿÿ8ë¿˜¯ó.
+\
+java:S1068¯"9Remove this unused "listScenesInTabScenes" private field.(•ø´şùÿÿÿÿ8ë¿˜¯ó.
+?
+java:S1643Š
+"Use a StringBuilder instead.(¸Ò³ßøÿÿÿÿ8ñŞİÅô.
+b
+java:S1854¯"?Remove this useless assignment to local variable "listTextCmd".(Î Áãıÿÿÿÿ8‰Öˆ‘õ.
+r
+java:S1854¤"ORemove this useless assignment to local variable "fileVideoNameTmpWithoutPath".(¨†³€ùÿÿÿÿ8ñŞİÅô.
+O
+java:S1602Ù",Remove useless curly braces around statement(Ö·¦«üÿÿÿÿ8ë¿˜¯ó.
+N
+java:S1905¼"0Remove this unnecessary cast to "IVFXIncluding".(èáÅ8ë¿˜¯ó.
+S
+java:S1481¯"0Remove this unused "listTextCmd" local variable.(Î Áãıÿÿÿÿ8‰Öˆ‘õ.
+Y	java:S125ê"<This block of commented-out lines of code should be removed.(‰çĞ8ñŞİÅô.
+c
+java:S1481¤"@Remove this unused "fileVideoNameTmpWithoutPath" local variable.(¨†³€ùÿÿÿÿ8Á‰‘õ.
+O
+java:S1602†",Remove useless curly braces around statement(«¬ä€üÿÿÿÿ8ë¿˜¯ó.
+:
+java:S1643õ	"Use a StringBuilder instead.(äÉÒë8ñŞİÅô.
+F
+java:S1604í"(Make this anonymous inner class a lambda(„¿¸²8ë¿˜¯ó.
+F
+java:S1604Û"(Make this anonymous inner class a lambda(”ºØù8ë¿˜¯ó.
+
+java:S1450ª"bRemove the "listFilesInTabFiles" field and declare it as a local variable in the relevant methods.(ÃµõQ8 ÍÄ…ó.
+o
+java:S3776ä	"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(ûâ™8ñŞİÅô.
+O
+java:S1905†",Remove this unnecessary cast to "IVFXAndOr".(ÈâŸûÿÿÿÿ8ë¿˜¯ó.
+F
+java:S1125«"(Remove the literal "true" boolean value.(¡šù®8ñŞİÅô.
+v
+java:S3776î"SRefactor this method to reduce its Cognitive Complexity from 110 to the 15 allowed.(÷‹¾†ÿÿÿÿÿ8ë¿˜¯ó.
+M
+java:S1066ß"/Merge this if statement with the enclosing one.(ï£Æê8ë¿˜¯ó.
+\
+java:S1155˜">Use isEmpty() to check whether the collection is empty or not.(öéÆÓ8ë¿˜¯ó.
+o
+java:S3776•"RRefactor this method to reduce its Cognitive Complexity from 78 to the 15 allowed.(Á‹¡|8ñŞİÅô.
+G
+java:S1940Ï")Use the opposite operator ("!=") instead.(ÂøõÀ8Ø•äÅô.
+Y
+java:S2696È"6Make the enclosing method "static" or remove this set.(õşñÚşÿÿÿÿ8ë¿˜¯ó.
+F
+java:S1604í"(Make this anonymous inner class a lambda(–£ë8ë¿˜¯ó.
+:
+java:S1643‘
+"Use a StringBuilder instead.(Øü…8ñŞİÅô.
+M
+java:S1066Ö"/Merge this if statement with the enclosing one.(ï£Æê8ë¿˜¯ó.
+M
+java:S1066¯"/Merge this if statement with the enclosing one.(ï£Æê8ë¿˜¯ó.
+O
+java:S1481¶"1Remove this unused "numTempFiles" local variable.(­‹‚Ò8Á‰‘õ.
+M
+java:S1066ñ"/Merge this if statement with the enclosing one.(ï£Æê8ë¿˜¯ó.
+d
+java:S1192ı"FDefine a constant instead of duplicating this literal "order" 5 times.(Ìó–Ş8ë¿˜¯ó.
+?
+java:S1643º"Use a StringBuilder instead.(âŞı¨úÿÿÿÿ8Á‰‘õ.
+i
+java:S1192ş"FDefine a constant instead of duplicating this literal "title" 5 times.(Çª–Øıÿÿÿÿ8Ñ–¬­ó.
+?
+java:S1643ö	"Use a StringBuilder instead.(Ì¯Æêúÿÿÿÿ8ñŞİÅô.
+–
+java:S4144ñ"xUpdate this method so that its implementation is not identical to "deleteSelectedRecordsFromTblFiltersFrom" on line 783.(‘ÉÅ8ñŞİÅô.
+Q
+java:S1481®".Remove this unused "listParam" local variable.(ñâèÓÿÿÿÿÿ8Á‰‘õ.
+o
+java:S2095Ê"LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(¼Çòßıÿÿÿÿ8Á‰‘õ.
+}
+java:S1450¨"ZRemove the "listPersons" field and declare it as a local variable in the relevant methods.(òæ–±ıÿÿÿÿ8ë¿˜¯ó.
+Y	java:S125–"<This block of commented-out lines of code should be removed.(ŞÛ“Ë8Á‰‘õ.
+M
+java:S1066É"/Merge this if statement with the enclosing one.(ï£Æê8ë¿˜¯ó.
+K
+java:S1604Å"(Make this anonymous inner class a lambda(¤Í¤ûÿÿÿÿ8ë¿˜¯ó.
+d
+java:S1126"AReplace this if-then-else statement by a single return statement.(Âî²ÿÿÿÿÿ8ë¿˜¯ó.
+Y
+java:S1905ç"6Remove this unnecessary cast to "IVFXFilterFromTypes".(£ô†”üÿÿÿÿ8ë¿˜¯ó.
+`
+java:S1854®"=Remove this useless assignment to local variable "listParam".(ñâèÓÿÿÿÿÿ8Á‰‘õ.
+R
+java:S1066£"/Merge this if statement with the enclosing one.(÷ø«Ïşÿÿÿÿ8…×ÜÅô.
+o
+java:S2095Ö"LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(Ê¹‰©øÿÿÿÿ8Á‰‘õ.
+Y
+java:S2696Î"6Make the enclosing method "static" or remove this set.(ò•ÙÓûÿÿÿÿ8ë¿˜¯ó.
+Y
+java:S2696Ê"6Make the enclosing method "static" or remove this set.(æŞƒúÿÿÿÿÿ8ë¿˜¯ó.
+M
+java:S1066ú"/Merge this if statement with the enclosing one.(ÚÄˆ8É‘ÜÅô.
+M
+java:S1066ˆ"/Merge this if statement with the enclosing one.(ï£Æê8ë¿˜¯ó.
+
+java:S1450¬"cRemove the "listFilesInTabScenes" field and declare it as a local variable in the relevant methods.(ëáğ¸8çˆÉ…ó.
+G
+java:S1940©")Use the opposite operator ("!=") instead.(ß·ö¯8‘ÿßÅô.
+a
+java:S1155Ñ">Use isEmpty() to check whether the collection is empty or not.(¬â×ûÿÿÿÿ8Á‰‘õ.
+:
+java:S1643»"Use a StringBuilder instead.(Ã¹òĞ8‰Öˆ‘õ.
+^	java:S125¾"<This block of commented-out lines of code should be removed.(Š˜•©øÿÿÿÿ8ñŞİÅô.
+P
+java:S1905½"-Remove this unnecessary cast to "IVFXGroups".(âÜıÿÿÿÿ8ë¿˜¯ó.
+…
+java:S1450½"bRemove the "listPersonsFiltered" field and declare it as a local variable in the relevant methods.(íÉ×úÿÿÿÿ8ë¿˜¯ó.
+`
+java:S1481¥"=Remove this unused "fileVideoNameWithoutPath" local variable.(ºÂ¥Òşÿÿÿÿ8‰Öˆ‘õ.
+J
+java:S1905‡",Remove this unnecessary cast to "Predicate".(¶”Ğ8ë¿˜¯ó.
+:
+java:S1643ú	"Use a StringBuilder instead.(™…¸ï8¥µÜÅô.
+w
+java:S2293­"YReplace the type specification in this constructor call with the diamond operator ("<>").(¢°ùõ8Á‰‘õ.
+:
+java:S1643€
+"Use a StringBuilder instead.(‰°ç8ñŞİÅô.
+r
+java:S2095Õ
+"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Õ§±ûÿÿÿÿ8ñŞİÅô.
+?
+java:S1643é	"Use a StringBuilder instead.(ùâ£ııÿÿÿÿ8ñŞİÅô.
+E
+java:S1905ı"'Remove this unnecessary cast to "List".(ä¤Ï8ë¿˜¯ó.
+¤
+java:S1186é"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(µ‚µõıÿÿÿÿ8ë¿˜¯ó.
+a
+java:S1155ò
+">Use isEmpty() to check whether the collection is empty or not.(¸ƒ‡úÿÿÿÿ8ñŞİÅô.
+M
+java:S1066Â"/Merge this if statement with the enclosing one.(ï£Æê8ë¿˜¯ó.
+o
+java:S2095ã"LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(Ê¹‰©øÿÿÿÿ8Á‰‘õ.
+Y	java:S125É"<This block of commented-out lines of code should be removed.(ÜË¤­8ë¿˜¯ó.
+L
+java:S1905å".Remove this unnecessary cast to "IVFXPersons".( €ñö8ë¿˜¯ó.
+o
+java:S2095ğ"LUse try-with-resources or close this "BufferedWriter" in a "finally" clause.(Ê¹‰©øÿÿÿÿ8Á‰‘õ.
+r
+java:S2095©
+"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Õ§±ûÿÿÿÿ8ñŞİÅô.
+E
+java:S1905™"'Remove this unnecessary cast to "List".(ìüö•8ë¿˜¯ó.
+n	java:S128ô"LEnd this switch case with an unconditional break, return or throw statement.(£¹¤ÿüÿÿÿÿ8Ã†‰‘õ.
+f
+java:S5361"HReplace this call to "replaceAll()" by a call to the "replace()" method.(™×­®8Á‰‘õ.
+K
+java:S1604¾"(Make this anonymous inner class a lambda(¹äƒ»øÿÿÿÿ8ë¿˜¯ó.
+M
+java:S1066ñ"/Merge this if statement with the enclosing one.(ï£Æê8ë¿˜¯ó.
+K
+java:S1604Ò"(Make this anonymous inner class a lambda(Îæöœşÿÿÿÿ8ë¿˜¯ó.
+^
+java:S1854µ";Remove this useless assignment to local variable "textCmd".(‡‘ôéÿÿÿÿÿ8Á‰‘õ.
+S
+java:S1481£"5Remove this unused "fileVideoNameTmp" local variable.(×Š£8ñŞİÅô.
+‡
+java:S1192³
+"iDefine a constant instead of duplicating this literal "INSERT INTO tbl_filters_shots (shot_id) " 4 times.(ÆêÒÖ8ñŞİÅô.
+:
+java:S1643ƒ
+"Use a StringBuilder instead.(ö§ş8ñŞİÅô.
+Y
+java:S1854ş";Remove this useless assignment to local variable "process".(˜Ë­£8Á‰‘õ.
+F
+java:S1604«"(Make this anonymous inner class a lambda(²„È¤8ë¿˜¯ó.
+a
+java:S1155 ">Use isEmpty() to check whether the collection is empty or not.(¬â×ûÿÿÿÿ8Á‰‘õ.
+o
+java:S1854¥"LRemove this useless assignment to local variable "fileVideoNameWithoutPath".(ºÂ¥Òşÿÿÿÿ8‰Öˆ‘õ.
+b
+java:S1854£"DRemove this useless assignment to local variable "fileVideoNameTmp".(×Š£8Á‰‘õ.
+…
+java:S1450«"bRemove the "listFilesInTabShots" field and declare it as a local variable in the relevant methods.(…°»âúÿÿÿÿ8çˆÉ…ó.
+\
+java:S1068°"9Remove this unused "listEventsInTabEvents" private field.(ŞÆ™–üÿÿÿÿ8ë¿˜¯ó.
+[	java:S106â"9Replace this use of System.out or System.err by a logger.(±ªñÅùÿÿÿÿ8ë¿˜¯ó.
+J
+java:S1905–"'Remove this unnecessary cast to "List".(ë¨²ùÿÿÿÿ8ñŞİÅô.
+q
+java:S3776Ÿ
+"SRefactor this method to reduce its Cognitive Complexity from 404 to the 15 allowed.(â–õ8ñŞİÅô.
+[	java:S106Ú"9Replace this use of System.out or System.err by a logger.(¶£²²ıÿÿÿÿ8ë¿˜¯ó.
+?
+java:S1643‹
+"Use a StringBuilder instead.(Ì¯Æêúÿÿÿÿ8ñŞİÅô.
+U
+java:S1068®"7Remove this unused "listShotsInTabShots" private field.(ÌãŸÄ8ë¿˜¯ó.
+E
+java:S1905‹"'Remove this unnecessary cast to "List".(áÊÛª8ë¿˜¯ó.
+:
+java:S1643ı	"Use a StringBuilder instead.(¤ìŒÈ8ñŞİÅô.
+J
+java:S1481ş",Remove this unused "process" local variable.(˜Ë­£8Á‰‘õ.
+K
+java:S1604„"(Make this anonymous inner class a lambda(³ò¿¬ıÿÿÿÿ8ë¿˜¯ó.
+F	java:S108Š")Either remove or fill this block of code.(å¥‡8Á‰‘õ.
+w
+java:S1450©"YRemove the "listGroups" field and declare it as a local variable in the relevant methods.(œÄÜ§8Ã…²…ó.
+†
+java:S1450­"cRemove the "listFilesInTabEvents" field and declare it as a local variable in the relevant methods.(ÚÛÎ×ùÿÿÿÿ8Ñ–¬­ó.
+O
+java:S1481ª",Remove this unused "textCmd" local variable.(éüã…ùÿÿÿÿ8‰Öˆ‘õ.

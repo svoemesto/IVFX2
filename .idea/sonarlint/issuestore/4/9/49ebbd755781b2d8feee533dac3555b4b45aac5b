@@ -1,0 +1,49 @@
+
+
+java:S1186("€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÁÖ‹Ñ8Êº¤Åô.
+m
+java:S2095—"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8ø«±Åô.
+O
+java:S1135%"2Complete the task associated to this TODO comment.(¤ŒäÁ8Êº¤Åô.
+M
+java:S1135"2Complete the task associated to this TODO comment.(ÖŞ³µúÿÿÿÿ
+m
+java:S2095Ğ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8Ûµ«Åô.
+\
+java:S1117İ"9Rename "order" which hides the field declared at line 18.(Öš·íüÿÿÿÿ8ø«±Åô.
+e
+java:S2095ú"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8ø«±Åô.
+m
+java:S2095ø"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8ÊÒ«Åô.
+`
+java:S1155/">Use isEmpty() to check whether the collection is empty or not.(É€°Îøÿÿÿÿ8È‚ëô.
+\
+java:S1117Œ"9Rename "order" which hides the field declared at line 18.(¶±§ğÿÿÿÿÿ8ø«±Åô.
+D
+java:S1659;"'Declare "tempScene" on a separate line.(Æîàı8Êº¤Åô.
+U	java:S106q"9Replace this use of System.out or System.err by a logger.(ì÷ßè8¯Ô¤Åô.
+e
+java:S2095£"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8ÿô¦Åô.
+[	java:S106¼"9Replace this use of System.out or System.err by a logger.(¼‹Ñ¥úÿÿÿÿ8½ò§Åô.
+`
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(öíñüÿÿÿÿ
+O
+java:S1135ë"2Complete the task associated to this TODO comment.(¶å 8ø«±Åô.
+m
+java:S2095·"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8½ò§Åô.
+e
+java:S2095ó"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8½ò§Åô.
+K
+java:S2065"0Remove the "transient" modifier from this field.(öíñüÿÿÿÿ
+U
+java:S1135Ó"2Complete the task associated to this TODO comment.(Ì°¸ãşÿÿÿÿ8ø«±Åô.
+o
+java:S37767"RRefactor this method to reduce its Cognitive Complexity from 39 to the 15 allowed.(ôÓê‹8Êº¤Åô.
+u
+java:S3776Ş"RRefactor this method to reduce its Cognitive Complexity from 97 to the 15 allowed.(ÒÑøïşÿÿÿÿ8ÊÒ«Åô.
+e
+java:S2095Ÿ"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8ÍªÅô.
+e
+java:S2095˜"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8ø«±Åô.
+‚
+java:S1192ö"dDefine a constant instead of duplicating this literal "DELETE FROM tbl_scenes WHERE id = ?" 3 times.(ş¾›„8ÊÒ«Åô.

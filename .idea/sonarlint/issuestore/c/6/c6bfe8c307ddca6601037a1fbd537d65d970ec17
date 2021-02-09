@@ -1,0 +1,30 @@
+
+u
+java:S1104"ZMake mainConnection a static final constant or non-public and provide accessors if needed.(¥ƒ‹æøÿÿÿÿ
+|
+java:S1104"ZMake mainTasgFolder a static final constant or non-public and provide accessors if needed.(¬ÌÆšùÿÿÿÿ8ºÌœãõ.
+O
+java:S1444"4Make this "public static mainConnection" field final(¥ƒ‹æøÿÿÿÿ
+}
+java:S1104"[Make mainTypesFolder a static final constant or non-public and provide accessors if needed.(ÓñÈ¿ûÿÿÿÿ8Òäàôö.
+V
+java:S1444"4Make this "public static mainTasgFolder" field final(¬ÌÆšùÿÿÿÿ8ºÌœãõ.
+q
+java:S1104"VMake mainWindow a static final constant or non-public and provide accessors if needed.(íèåÛşÿÿÿÿ
+R
+java:S1444"0Make this "public static mainFolder" field final(Æô¤ßûÿÿÿÿ8ı—˜ãõ.
+K
+java:S1444"0Make this "public static mainWindow" field final(íèåÛşÿÿÿÿ
+B
+java:S1612(",Replace this lambda with a method reference.(çöÔˆ
+I
+java:S1602(",Remove useless curly braces around statement(çöÔˆ8Òäàôö.
+X
+java:S2696"6Make the enclosing method "static" or remove this set.(ß‘Şµûÿÿÿÿ8Òäàôö.
+]	java:S125*"<This block of commented-out lines of code should be removed.(ë“´õşÿÿÿÿ8Òäàôö.
+W
+java:S1444"5Make this "public static mainTypesFolder" field final(ÓñÈ¿ûÿÿÿÿ8Òäàôö.
+x
+java:S1104"VMake mainFolder a static final constant or non-public and provide accessors if needed.(Æô¤ßûÿÿÿÿ8ı—˜ãõ.
+X
+java:S2696 "6Make the enclosing method "static" or remove this set.(ÿêşÿÿÿÿ8Òäàôö.

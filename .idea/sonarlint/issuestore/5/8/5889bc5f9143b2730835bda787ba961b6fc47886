@@ -1,0 +1,34 @@
+
+m
+java:S2095¯"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8Ø¼‘Åô.
+l
+java:S1192a"JDefine a constant instead of duplicating this literal "person_id" 4 times.(â€ò¯úÿÿÿÿ8»’‰Åô.
+M
+java:S1135"2Complete the task associated to this TODO comment.(ÖŞ³µúÿÿÿÿ
+e
+java:S2095"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8Â°‰Åô.
+S	java:S106B"9Replace this use of System.out or System.err by a logger.(õÊÎ‡ÿÿÿÿÿ
+e
+java:S2095="OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë
+k
+java:S1192`"IDefine a constant instead of duplicating this literal "group_id" 4 times.(Éç¸ûùÿÿÿÿ8»’‰Åô.
+_
+java:S2583I"DChange this condition so that it does not always evaluate to "false"( ¯ÊÔÿÿÿÿÿ
+U
+java:S1135©"2Complete the task associated to this TODO comment.(ÕïÓÂÿÿÿÿÿ8Ø¼‘Åô.
+m
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8Â°‰Åô.
+]
+java:S2095Y"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ
+U
+java:S1135—"2Complete the task associated to this TODO comment.(ç ƒĞÿÿÿÿÿ8Â°‰Åô.
+e
+java:S2095¯"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8Â°‰Åô.
+e
+java:S2095è"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8Â°‰Åô.
+H
+java:S1135"2Complete the task associated to this TODO comment.(¤ŒäÁ
+U
+java:S1135¹"2Complete the task associated to this TODO comment.(Ì°¸ãşÿÿÿÿ8Ø¼‘Åô.
+œ
+java:S1186!"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ùØÒÉøÿÿÿÿ

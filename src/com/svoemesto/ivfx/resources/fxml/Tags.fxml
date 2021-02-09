@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="apTags" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1620.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.svoemesto.ivfx.controllers.TagsController">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="5000.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="5000.0" prefWidth="700.0">
+                     <children>
+                        <HBox prefHeight="25.0" prefWidth="200.0">
+                           <children>
+                              <CheckBox fx:id="chUseTagType" mnemonicParsing="false" onAction="#doChUseTagType" prefWidth="70.0" text="Тип" />
+                              <ComboBox fx:id="cbTagType" disable="true" prefWidth="630.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="25.0" prefWidth="200.0">
+                           <children>
+                              <CheckBox fx:id="chUseProject" mnemonicParsing="false" onAction="#doChUseProject" prefWidth="70.0" text="Проект" />
+                              <ComboBox fx:id="cbProject" disable="true" prefWidth="630.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="25.0" prefWidth="200.0">
+                           <children>
+                              <CheckBox fx:id="chUseFile" mnemonicParsing="false" onAction="#doChUseFile" prefWidth="70.0" text="Файл" />
+                              <ComboBox fx:id="cbFile" disable="true" prefWidth="630.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="25.0" prefWidth="200.0">
+                           <children>
+                              <CheckBox fx:id="chFindInProperties" mnemonicParsing="false" onAction="#doChFindInProperties" prefWidth="325.0" text="Фильтр по свойствам" />
+                              <TextField fx:id="fldFindTag" prefWidth="550.0" />
+                           </children>
+                        </HBox>
+                        <TableView fx:id="tblTags" prefHeight="5000.0" prefWidth="700.0">
+                          <columns>
+                              <TableColumn fx:id="colTagTypeTblTags" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Type" />
+                            <TableColumn fx:id="colPreviewTblTags" maxWidth="138.0" minWidth="138.0" prefWidth="138.0" text="Picture" />
+                              <TableColumn fx:id="colPropertiesTblTags" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" text="Properties" />
+                          </columns>
+                        </TableView>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="btnAddNewTag" mnemonicParsing="false" onAction="#doBtnAddNewTag" prefWidth="350.0" text="Создать новый тэг" />
+                              <Button fx:id="btnDeleteTag" mnemonicParsing="false" onAction="#doBtnDeleteTag" prefWidth="350.0" text="Удалить тэг" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox prefHeight="5000.0" prefWidth="920.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label fx:id="lblFullPreview" maxHeight="400.0" maxWidth="720.0" minHeight="400.0" minWidth="720.0" prefHeight="400.0" prefWidth="720.0" style="-fx-background-color: BLACK;" />
+                              <Separator orientation="VERTICAL" prefHeight="200.0" />
+                              <VBox prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Button fx:id="btnSetTagPicture" mnemonicParsing="false" onAction="#doBtnSetTagPicture" prefWidth="5000.0" text="Загрузить картинку" />
+                                    <Button fx:id="btnClearTagPicture" mnemonicParsing="false" onAction="#doBtnClearTagPicture" prefWidth="5000.0" text="Очистить картинку" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <Separator prefWidth="200.0" />
+                        <HBox prefHeight="5000.0" prefWidth="200.0">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="300.0">
+                                 <children>
+                                    <ComboBox fx:id="cbCurrentTagType" onAction="#doCbCurrentTagType" prefWidth="400.0" />
+                                    <Label alignment="CENTER" prefWidth="400.0" text="Свойства тэга" textAlignment="CENTER" />
+                                    <TableView fx:id="tblTagsProperties" prefHeight="5000.0" prefWidth="400.0">
+                                      <columns>
+                                        <TableColumn fx:id="colNameTblTagsProperties" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Name" />
+                                        <TableColumn fx:id="colValueTblTagsProperties" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Value" />
+                                      </columns>
+                                    </TableView>
+                                    <TextField fx:id="fldTagPropertyName" onAction="#doFldTagPropertyName" />
+                                    <TextArea fx:id="fldTagPropertyValue" minHeight="75.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Button fx:id="btnAddNewTagsProperties" mnemonicParsing="false" onAction="#doBtnAddNewTagsProperties" prefWidth="200.0" text="Добавить" />
+                                          <Button fx:id="btnDeleteTagsProperties" mnemonicParsing="false" onAction="#doBtnDeleteTagsProperties" prefWidth="200.0" text="Удалить" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <Separator orientation="VERTICAL" prefHeight="200.0" />
+                              <VBox prefHeight="200.0" prefWidth="610.0">
+                                 <children>
+                                    <HBox prefHeight="5000.0" prefWidth="600.0">
+                                       <children>
+                                          <VBox prefHeight="300.0" prefWidth="300.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefWidth="5000.0" text="«Родительские» тэги" />
+                                                <TableView fx:id="tblTagsTagsParent" prefHeight="300.0" prefWidth="200.0">
+                                                  <columns>
+                                                    <TableColumn fx:id="colTypeTblTagsTagsParent" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Type" />
+                                                    <TableColumn fx:id="colNameTblTagsTagsParent" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" text="Name" />
+                                                  </columns>
+                                                </TableView>
+                                                <HBox prefHeight="25.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Button fx:id="btnAddNewTagsTagsParent" minWidth="25.0" mnemonicParsing="false" onAction="#doBtnAddNewTagsTagsParent" text="+" />
+                                                      <Button fx:id="btnDeleteTagsTagsParent" minWidth="25.0" mnemonicParsing="false" onAction="#doBtnDeleteTagsTagsParent" text="-" />
+                                                      <Button fx:id="btnGoToTagsTagsParent" mnemonicParsing="false" onAction="#doBtnGoToTagsTagsParent" prefWidth="5000.0" text="Перейти на «родительский» тэг" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                          <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                          <VBox prefHeight="200.0" prefWidth="300.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefWidth="5000.0" text="Свойства связки с родительским тэгом" />
+                                                <TableView fx:id="tblPropertiesTagsTagsParent" prefHeight="5000.0" prefWidth="400.0">
+                                                  <columns>
+                                                    <TableColumn fx:id="colNameTblPropertiesTagsTagsParent" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Name" />
+                                                    <TableColumn fx:id="colValueTblPropertiesTagsTagsParent" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Value" />
+                                                  </columns>
+                                                </TableView>
+                                                <TextField fx:id="fldPropertyNameTagsTagsParent" onAction="#doFldPropertyNameTagsTagsParent" />
+                                                <TextArea fx:id="fldPropertyValueTagsTagsParent" minHeight="75.0" prefHeight="75.0" prefWidth="200.0" />
+                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Button fx:id="btnAddNewPropertyTagsTagsParent" mnemonicParsing="false" onAction="#doBtnAddNewPropertyTagsTagsParent" prefWidth="5000.0" text="Добавить" />
+                                                      <Button fx:id="btnDeletePropertyTagsTagsParent" mnemonicParsing="false" onAction="#doBtnDeletePropertyTagsTagsParent" prefWidth="5000.0" text="Удалить" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <Separator prefWidth="300.0" />
+                                    <HBox prefHeight="5000.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox prefHeight="300.0" prefWidth="300.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefWidth="5000.0" text="«Дочерние» тэги" />
+                                                <TableView fx:id="tblTagsTagsChildren" prefHeight="300.0" prefWidth="200.0">
+                                                   <columns>
+                                                      <TableColumn fx:id="colTypeTblTagsTagsChildren" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Type" />
+                                                      <TableColumn fx:id="colNameTblTagsTagsChildren" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" text="Name" />
+                                                   </columns>
+                                                </TableView>
+                                                <HBox prefHeight="25.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Button fx:id="btnAddNewTagsTagsChildren" minWidth="25.0" mnemonicParsing="false" onAction="#doBtnAddNewTagsTagsChildren" text="+" />
+                                                      <Button fx:id="btnDeleteTagsTagsChildren" minWidth="25.0" mnemonicParsing="false" onAction="#doBtnDeleteTagsTagsChildren" text="-" />
+                                                      <Button fx:id="btnGoToTagsTagsChildren" mnemonicParsing="false" onAction="#doBtnGoToTagsTagsChildren" prefWidth="5000.0" text="Перейти на «дочерний» тэг" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                          <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                          <VBox prefHeight="200.0" prefWidth="300.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefWidth="5000.0" text="Свойства связки с дочерним тэгом" />
+                                                <TableView fx:id="tblPropertiesTagsTagsChildren" prefHeight="5000.0" prefWidth="400.0">
+                                                   <columns>
+                                                      <TableColumn fx:id="colNameTblPropertiesTagsTagsChildren" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Name" />
+                                                      <TableColumn fx:id="colValueTblPropertiesTagsTagsChildren" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Value" />
+                                                   </columns>
+                                                </TableView>
+                                                <TextField fx:id="fldPropertyNameTagsTagsChildren" onAction="#doFldPropertyNameTagsTagsChildren" />
+                                                <TextArea fx:id="fldPropertyValueTagsTagsChildren" minHeight="75.0" prefHeight="75.0" prefWidth="200.0" />
+                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Button fx:id="btnAddNewPropertyTagsTagsChildren" mnemonicParsing="false" onAction="#doBtnAddNewPropertyTagsTagsChildren" prefWidth="5000.0" text="Добавить" />
+                                                      <Button fx:id="btnDeletePropertyTagsTagsChildren" mnemonicParsing="false" onAction="#doBtnDeletePropertyTagsTagsChildren" prefWidth="5000.0" text="Удалить" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Button fx:id="btnOK" mnemonicParsing="false" onAction="#doBtnOK" prefWidth="5000.0" text="OK" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

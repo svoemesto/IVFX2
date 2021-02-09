@@ -1,0 +1,32 @@
+
+t
+java:S1192h"RDefine a constant instead of duplicating this literal "tag_property_name" 3 times.(¡•ü úÿÿÿÿ8à¾áÔô.
+p
+java:S1192i"SDefine a constant instead of duplicating this literal "tag_property_value" 3 times.(ªÔÿ‘8à¾áÔô.
+u
+java:S1192g"SDefine a constant instead of duplicating this literal "tag_property_order" 3 times.(„ã¨ºúÿÿÿÿ8àºŒ¿ö.
+d
+java:S1192f"GDefine a constant instead of duplicating this literal "tag_id" 3 times.(‰ÿ¬Õ8à¾áÔô.
+d
+java:S2095."GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8”Æö.
+Z
+java:S1128"=Remove this unused import 'javafx.scene.control.ProgressBar'.(Ò¤™ï8´‹äÓô.
+m
+java:S2095Í"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8’ïÓô.
+Z	java:S106I"9Replace this use of System.out or System.err by a logger.(ïñôâúÿÿÿÿ8¼¨¸Óô.
+d
+java:S2095_"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8İ›ĞÓô.
+e
+java:S2095§"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8ïŞâÓô.
+U
+java:S1135Ş"2Complete the task associated to this TODO comment.(ÕïÓÂÿÿÿÿÿ8’ïÓô.
+e
+java:S2095‚"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8ÌôáÔô.
+U
+java:S1135Æ"2Complete the task associated to this TODO comment.(ç ƒĞÿÿÿÿÿ8’ïÓô.
+m
+java:S2095ì"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(›Å¨©8Ãã–Ãö.
+m
+java:S2095å"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8’ïÓô.
+l
+java:S2095="OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8¼¨¸Óô.

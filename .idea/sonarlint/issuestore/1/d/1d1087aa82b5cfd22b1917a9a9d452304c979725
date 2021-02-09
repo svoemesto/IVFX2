@@ -1,0 +1,162 @@
+
+[	java:S106ä"9Replace this use of System.out or System.err by a logger.(ƒöÂüÿÿÿÿ8ÿ®®Îõ.
+I
+java:S1075¼"&Remove this hard-coded path-delimiter.(ï“œÅøÿÿÿÿ8‚´½Ëõ.
+N
+java:S1481«"+Remove this unused "finalI" local variable.(»üÇıÿÿÿÿ8†€ÔËõ.
+T
+java:S2696ß"6Make the enclosing method "static" or remove this set.(°¡­«8°ŒÀ—õ.
+L
+java:S1905Æ"/Remove this unnecessary cast to "IVFXProjects".(Å²äK8æÁÄ–õ.
+S
+java:S2209¤"5Change this instance-reference to a static reference.(àœİ8†€ÔËõ.
+S
+java:S2209ñ"5Change this instance-reference to a static reference.(ö®¾½8Ü Ïõ.
+I
+java:S1075ò"&Remove this hard-coded path-delimiter.(ï“œÅøÿÿÿÿ8Ü Ïõ.
+t
+java:S1104{"WMake currentFile a static final constant or non-public and provide accessors if needed.(ûòªô8Ò˜ı”õ.
+T
+java:S2696É"6Make the enclosing method "static" or remove this set.(İÍÁ‚8èÖÌ–õ.
+c
+java:S1124”"EReorder the modifiers to comply with the Java Language Specification.(‹İÜ‘8¢ñ²Ëõ.
+J
+java:S1602ƒ",Remove useless curly braces around statement(ÃÉş©8äªïÑõ.
+D
+java:S1075»"&Remove this hard-coded path-delimiter.(ö®¾½8‚´½Ëõ.
+Y
+java:S2696Ø"6Make the enclosing method "static" or remove this set.(ÀÑÂıÿÿÿÿ8ÔíÔËõ.
+Y
+java:S2696›"6Make the enclosing method "static" or remove this set.(¹¨…øÿÿÿÿ8†€ÔËõ.
+|
+java:S1104z"ZMake currentProject a static final constant or non-public and provide accessors if needed.(¡«ËÄıÿÿÿÿ8©ş”õ.
+V
+java:S1068œ"9Remove this unused "mainFrameFullSizeFile" private field.(–ó,8…¢ÇËõ.
+X
+java:S2209¼"5Change this instance-reference to a static reference.(ï“œÅøÿÿÿÿ8ê·¾Ëõ.
+D
+java:S1075ñ"&Remove this hard-coded path-delimiter.(ö®¾½8Ü Ïõ.
+T
+java:S2696Ò"6Make the enclosing method "static" or remove this set.(ÆÅ«Ï8†€ÔËõ.
+p
+java:S3776Í"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(“–ış8Ö¿ŞÑõ.
+Q
+java:S1481".Remove this unused "ivfxFiles" local variable.(¿ò”¬úÿÿÿÿ8ê·¾Ëõ.
+I
+java:S1075¶"&Remove this hard-coded path-delimiter.(¡Ãäøÿÿÿÿ8ÏÌÑËõ.
+Y
+java:S2696€"6Make the enclosing method "static" or remove this set.(õşñÚşÿÿÿÿ8†€ÔËõ.
+h
+java:S1124“"EReorder the modifiers to comply with the Java Language Specification.(€Ï¼ƒıÿÿÿÿ8¢ñ²Ëõ.
+[	java:S106"9Replace this use of System.out or System.err by a logger.(øÕ³ûÿÿÿÿ8†€ÔËõ.
+~
+java:S1104ƒ"[Make mainMediaPlayer a static final constant or non-public and provide accessors if needed.(Ÿ¿Íüÿÿÿÿ8‘ê°Îõ.
+L
+java:S3740"/Provide the parametrized type for this generic.(ÓÔ¸H8Ú¨ŞÌõ.
+Ÿ
+java:S1186ˆ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(üœŠ8â÷ÚÍõ.
+{
+java:S1450†"XRemove the "listFiles" field and declare it as a local variable in the relevant methods.(Ë…Şùÿÿÿÿ8ó»š•õ.
+[	java:S106­"9Replace this use of System.out or System.err by a logger.(øÕ³ûÿÿÿÿ8†€ÔËõ.
+
+java:S1450œ"dRemove the "mainFrameFullSizeFile" field and declare it as a local variable in the relevant methods.(–ó,8…¢ÇËõ.
+X
+java:S2209™"5Change this instance-reference to a static reference.(©ÅÓöşÿÿÿÿ8ÿƒËËõ.
+c
+java:S1124–"EReorder the modifiers to comply with the Java Language Specification.(³ß š8¢ñ²Ëõ.
+[	java:S106Ê"9Replace this use of System.out or System.err by a logger.(ãîî¯ÿÿÿÿÿ8æÁÄ–õ.
+S
+java:S2696ù"6Make the enclosing method "static" or remove this set.(Á’È[8î»ÌÌõ.
+Y
+java:S2696é"6Make the enclosing method "static" or remove this set.(ÀÑÂıÿÿÿÿ8ëß×Ëõ.
+S
+java:S2209µ"5Change this instance-reference to a static reference.(Ú¸Îó8†€ÔËõ.
+Ÿ
+java:S1186ƒ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ãâş«8â÷ÚÍõ.
+T
+java:S2696È"6Make the enclosing method "static" or remove this set.(—İšË8æÁÄ–õ.
+^	java:S125õ"<This block of commented-out lines of code should be removed.(ÓÖ†Çÿÿÿÿÿ8†€ÔËõ.
+J
+java:S1602Ç",Remove useless curly braces around statement(¯ğò8†€ÔËõ.
+y
+java:S1104|"WMake currentShot a static final constant or non-public and provide accessors if needed.(ª±äêúÿÿÿÿ8æÁÄ–õ.
+N
+java:S1444{"1Make this "public static currentFile" field final(ûòªô8Ò˜ı”õ.
+I
+java:S1075˜"&Remove this hard-coded path-delimiter.(¼§ÛÆüÿÿÿÿ8ÿƒËËõ.
+[
+java:S1068‘"8Remove this unused "timerPlayFullPreview" private field.(»©†úşÿÿÿÿ8Êş³Ñõ.
+^	java:S125Œ"<This block of commented-out lines of code should be removed.(ùœ©ùÿÿÿÿ8†€ÔËõ.
+N
+java:S1481¢"0Remove this unused "countLabels" local variable.(Œ¢®–8ê·¾Ëõ.
+S
+java:S1481Ô"0Remove this unused "countFrames" local variable.(œÆ ›øÿÿÿÿ8Ü Ïõ.
+F	java:S108‡")Either remove or fill this block of code.(ï­£Ä8á ÅËõ.
+u
+java:S3776›"RRefactor this method to reduce its Cognitive Complexity from 45 to the 15 allowed.(ô•£šıÿÿÿÿ8ÏÌÑËõ.
+U	java:S106á"9Replace this use of System.out or System.err by a logger.(›±¦8°ŒÀ—õ.
+]
+java:S1854Ó"?Remove this useless assignment to local variable "countLabels".(Œ¢®–8Ü Ïõ.
+u
+java:S3776Ê"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(’˜ïÎıÿÿÿÿ8ÿ®®Îõ.
+F	java:S108À")Either remove or fill this block of code.(ï­£Ä8†€ÔËõ.
+M
+java:S1128"0Remove this unused import 'javafx.scene.Parent'.(²ä¡È8‹‘·Ìõ.
+S
+java:S2209»"5Change this instance-reference to a static reference.(ö®¾½8ê·¾Ëõ.
+I
+java:S1905İ",Remove this unnecessary cast to "IVFXFiles".(æ	8°ŒÀ—õ.
+S
+java:S1444|"1Make this "public static currentShot" field final(ª±äêúÿÿÿÿ8æÁÄ–õ.
+X
+java:S2209˜"5Change this instance-reference to a static reference.(¼§ÛÆüÿÿÿÿ8ÿƒËËõ.
+]
+java:S1854«":Remove this useless assignment to local variable "finalI".(»üÇıÿÿÿÿ8†€ÔËõ.
+y
+java:S1450…"[Remove the "listProjects" field and declare it as a local variable in the relevant methods.(¼‡–È8Šş˜•õ.
+R
+java:S3740’"/Provide the parametrized type for this generic.(µÓ“³üÿÿÿÿ8Ú¨ŞÌõ.
+Y
+java:S2696"6Make the enclosing method "static" or remove this set.(§„½Ôüÿÿÿÿ8æÁÄ–õ.
+X
+java:S2209¶"5Change this instance-reference to a static reference.(¡Ãäøÿÿÿÿ8ÏÌÑËõ.
+^	java:S125œ"<This block of commented-out lines of code should be removed.(Õì¬ßùÿÿÿÿ8†€ÔËõ.
+X
+java:S2209ò"5Change this instance-reference to a static reference.(ï“œÅøÿÿÿÿ8Ü Ïõ.
+N
+java:S1481Ó"0Remove this unused "countLabels" local variable.(Œ¢®–8Ü Ïõ.
+
+java:S1450›"cRemove the "mainFramePreviewFile" field and declare it as a local variable in the relevant methods.(†÷Æ8…¢ÇËõ.
+S
+java:S1481£"0Remove this unused "countFrames" local variable.(œÆ ›øÿÿÿÿ8ê·¾Ëõ.
+s
+java:S1104‚"UMake mainMedia a static final constant or non-public and provide accessors if needed.(†Ú¯©8‘ê°Îõ.
+I
+java:S1075™"&Remove this hard-coded path-delimiter.(©ÅÓöşÿÿÿÿ8ÿƒËËõ.
+[	java:S106”"9Replace this use of System.out or System.err by a logger.(Æ Õ•üÿÿÿÿ8†€ÔËõ.
+p
+java:S3776™"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(âÍ“°8‚´½Ëõ.
+V
+java:S1444z"4Make this "public static currentProject" field final(¡«ËÄıÿÿÿÿ8©ş”õ.
+[	java:S106³"9Replace this use of System.out or System.err by a logger.(Æ Õ•üÿÿÿÿ8†€ÔËõ.
+Y
+java:S2696à"6Make the enclosing method "static" or remove this set.(×²ëÈøÿÿÿÿ8°ŒÀ—õ.
+^	java:S125©"<This block of commented-out lines of code should be removed.(ùœ©ùÿÿÿÿ8†€ÔËõ.
+Q
+java:S1172™"3Remove this unused method parameter "initFrameNum".(®ÒÔ²8†€ÔËõ.
+Y
+java:S2696Ş"6Make the enclosing method "static" or remove this set.(Š™•§ÿÿÿÿÿ8†€ÔËõ.
+c
+java:S1124•"EReorder the modifiers to comply with the Java Language Specification.(ÙÔ¯8¢ñ²Ëõ.
+O
+java:S1602Ä",Remove useless curly braces around statement(Ñãåàÿÿÿÿÿ8†€ÔËõ.
+D
+java:S1075µ"&Remove this hard-coded path-delimiter.(Ú¸Îó8†€ÔËõ.
+M
+java:S3740"/Provide the parametrized type for this generic.(‘ŸŒ—8ª‚ş–õ.
+b
+java:S1854Ô"?Remove this useless assignment to local variable "countFrames".(œÆ ›øÿÿÿÿ8Ü Ïõ.
+V
+java:S1068›"8Remove this unused "mainFramePreviewFile" private field.(†÷Æ8…¢ÇËõ.
+R
+java:S1191"5Use classes from the Java API instead of Sun classes.(íé¾Û8‚å€—õ.

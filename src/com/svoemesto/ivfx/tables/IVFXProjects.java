@@ -1,6 +1,7 @@
 package com.svoemesto.ivfx.tables;
 
 import com.svoemesto.ivfx.Main;
+import javafx.scene.control.ProgressBar;
 
 import java.io.File;
 import java.io.Serializable;
@@ -11,7 +12,6 @@ import java.util.UUID;
 
 public class IVFXProjects implements Serializable, Comparable<IVFXProjects> {
     private int id;
-    private UUID uuid = UUID.randomUUID();   // UUID
     private int order = 0;
     private String name = "Название нового проекта"; // название проекта, например "Интерактивная Игра Престолов"
     private String shortName = "Короткое имя нового проекта"; // имя файла без расширения, например iGOT
@@ -19,6 +19,11 @@ public class IVFXProjects implements Serializable, Comparable<IVFXProjects> {
 
     // пустой конструктор
     public IVFXProjects() {
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 
     public static IVFXProjects getNewDbInstance() {
@@ -44,14 +49,12 @@ public class IVFXProjects implements Serializable, Comparable<IVFXProjects> {
                     "order_project, " +
                     "name, " +
                     "short_name, " +
-                    "folder, " +
-                    "uuid) " +
+                    "folder) " +
                     "VALUES(" +
                     ivfxProject.order + "," +
                     "'" + ivfxProject.name + "'" + "," +
                     "'" + ivfxProject.shortName + "'" + "," +
-                    "'" + ivfxProject.folder + "'" + "," +
-                    "'" + ivfxProject.uuid.toString() + "'" +
+                    "'" + ivfxProject.folder + "'" +
                     ")";
 
             ps = Main.mainConnection.prepareStatement(sql);
@@ -59,7 +62,7 @@ public class IVFXProjects implements Serializable, Comparable<IVFXProjects> {
             rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 ivfxProject.id = rs.getInt(1);
-                System.out.println("Создана запись для проекта «" + ivfxProject.name + "» " + ivfxProject.uuid + " с идентификатором " + rs.getInt(1));
+                System.out.println("Создана запись для проекта «" + ivfxProject.name + "» с идентификатором " + rs.getInt(1));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -76,43 +79,8 @@ public class IVFXProjects implements Serializable, Comparable<IVFXProjects> {
         return ivfxProject;
     }
 
-    public static IVFXProjects loadByUuid(UUID uuid) {
 
-        Statement statement = null;
-        ResultSet rs = null;
-        String sql;
-
-        try {
-            statement = Main.mainConnection.createStatement();
-
-            sql = "SELECT * FROM tbl_projects WHERE uuid = '" + uuid.toString() + "'";
-            rs = statement.executeQuery(sql);
-            if (rs.next()) {
-                IVFXProjects project = new IVFXProjects();
-                project.id = rs.getInt("id");
-                project.order = rs.getInt("order_project");
-                project.uuid = UUID.fromString(rs.getString("uuid"));
-                project.name = rs.getString("name");
-                project.shortName = rs.getString("short_name");
-                project.folder = rs.getString("folder");
-                return project;
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) rs.close(); // close result set
-                if (statement != null) statement.close(); // close statement
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return null;
-    }
-
-    public static IVFXProjects loadById(int id) {
+    public static IVFXProjects load(int id) {
 
         Statement statement = null;
         ResultSet rs = null;
@@ -127,7 +95,6 @@ public class IVFXProjects implements Serializable, Comparable<IVFXProjects> {
                 IVFXProjects project = new IVFXProjects();
                 project.id = rs.getInt("id");
                 project.order = rs.getInt("order_project");
-                project.uuid = UUID.fromString(rs.getString("uuid"));
                 project.name = rs.getString("name");
                 project.shortName = rs.getString("short_name");
                 project.folder = rs.getString("folder");
@@ -149,9 +116,13 @@ public class IVFXProjects implements Serializable, Comparable<IVFXProjects> {
     }
 
     public static List<IVFXProjects> loadList() {
+        return loadList(null);
+    }
+    public static List<IVFXProjects> loadList(ProgressBar progressBar) {
 
         List<IVFXProjects> listProjects = new ArrayList<>();
 
+        int iProgress = 0;
         Statement statement = null;
         ResultSet rs = null;
         String sql;
@@ -160,12 +131,22 @@ public class IVFXProjects implements Serializable, Comparable<IVFXProjects> {
             statement = Main.mainConnection.createStatement();
 
             sql = "SELECT * FROM tbl_projects ORDER BY order_project";
+
+            String sqlCnt = "SELECT COUNT(*) AS CNT FROM (" + sql + ") AS tmp";
+            ResultSet rsCnt = null;
+            rsCnt = statement.executeQuery(sqlCnt);
+            rsCnt.next();
+            int countRows = rsCnt.getInt("CNT");
+            rsCnt.close();
+
             rs = statement.executeQuery(sql);
             while (rs.next()) {
+
+                if (progressBar != null) progressBar.setProgress((double)++iProgress / countRows);
+
                 IVFXProjects project = new IVFXProjects();
                 project.id = rs.getInt("id");
                 project.order = rs.getInt("order_project");
-                project.uuid = UUID.fromString(rs.getString("uuid"));
                 project.name = rs.getString("name");
                 project.shortName = rs.getString("short_name");
                 project.folder = rs.getString("folder");
@@ -258,21 +239,15 @@ public class IVFXProjects implements Serializable, Comparable<IVFXProjects> {
         return folder;
     }
 
-    public String getSegmentsFolder() {
-        String folder = this.folder + "\\Segments";
+    public String getShotsFolder() {
+        String folder = this.folder + "\\Shots";
         File file = new File(folder + "\\");
         if(!file.exists()) file.mkdir();
         return folder;
     }
 
 
-    public UUID getUuid() {
-        return uuid;
-    }
 
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
 
     public String getName() {
         return name;

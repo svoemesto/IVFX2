@@ -1,0 +1,45 @@
+
+U
+java:S1135â"2Complete the task associated to this TODO comment.(ÕïÓÂÿÿÿÿÿ8İÑé÷.
+e
+java:S2095Ã"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8°ê·÷.
+u
+java:S1192r"SDefine a constant instead of duplicating this literal "parent_tag_shot_id" 4 times.(âÉ¼üÿÿÿÿ8Ô¥ Àö.
+e
+java:S1192o"HDefine a constant instead of duplicating this literal "shot_id" 4 times.(‘„Â8Ô¥ Àö.
+Z	java:S106R"9Replace this use of System.out or System.err by a logger.(Ìúûÿÿÿÿ8â­‡Õô.
+:
+java:S1643Ë"Use a StringBuilder instead.(“İå¿8ŠéÂ·÷.
+l
+java:S2095M"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8º¾›Õô.
+d
+java:S2095="GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8Ù¿¾ö.
+v
+java:S4144„"XUpdate this method so that its implementation is not identical to "setMain" on line 509.(—ÍŒÆ8İÑé÷.
+:
+java:S1643‚"Use a StringBuilder instead.(­°¹­8™ŞÅé÷.
+m
+java:S2095Ô"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8İÑé÷.
+Y	java:S125ı"<This block of commented-out lines of code should be removed.(ÃëßÀ8œ¢¸é÷.
+e
+java:S2095û"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8œ¢¸é÷.
+n
+java:S1192q"LDefine a constant instead of duplicating this literal "tag_is_main" 4 times.(Ïİ˜òüÿÿÿÿ8ÎÓÂñö.
+d
+java:S2095h"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8ğ…Õô.
+?
+java:S1643"Use a StringBuilder instead.(¡ŠïÓøÿÿÿÿ8Š§Âé÷.
+m
+java:S2095ğ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(›Å¨©8İÑé÷.
+i
+java:S1192p"GDefine a constant instead of duplicating this literal "tag_id" 4 times.(¿Ñ“ÿÿÿÿÿ8Ô¥ Àö.
+e
+java:S2095“"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8°ÄÍ¼÷.
+q
+java:S1192s"ODefine a constant instead of duplicating this literal "tag_shot_order" 4 times.(ä›Ïíúÿÿÿÿ8Ô¥ Àö.
+U
+java:S1135Í"2Complete the task associated to this TODO comment.(ç ƒĞÿÿÿÿÿ8İÑé÷.
+?
+java:S1643Ê"Use a StringBuilder instead.(¼óìøÿÿÿÿ8âÁ·÷.
+m
+java:S2095é"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8İÑé÷.

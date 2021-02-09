@@ -1,0 +1,52 @@
+
+f
+java:S2095‚"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë
+H
+java:S1135~"2Complete the task associated to this TODO comment.(‘ÔªÃ
+^
+java:S2095"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ
+B
+java:S1075ª"&Remove this hard-coded path-delimiter.(Í×°çøÿÿÿÿ
+H
+java:S1135¦"2Complete the task associated to this TODO comment.(¶å 
+`
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(•˜‰›üÿÿÿÿ
+`
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(ÃÄÑåûÿÿÿÿ
+\
+java:S1155Ç">Use isEmpty() to check whether the collection is empty or not.(ñìõ‹8óÖãÑô.
+N
+java:S1135–"2Complete the task associated to this TODO comment.(ÕïÓÂÿÿÿÿÿ
+`
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(å¾ªÆúÿÿÿÿ
+M
+java:S1135#"2Complete the task associated to this TODO comment.(ÖŞ³µúÿÿÿÿ
+\
+java:S1155Æ">Use isEmpty() to check whether the collection is empty or not.(ÃêôÈ8óÖãÑô.
+e
+java:S2095Â"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8¨¤ŠôÖ.
+B
+java:S1075±"&Remove this hard-coded path-delimiter.(Í×°çøÿÿÿÿ
+I
+java:S1135‡"2Complete the task associated to this TODO comment.(Ÿ£…Ì
+S	java:S106n"9Replace this use of System.out or System.err by a logger.(Ã¦ø™şÿÿÿÿ
+]
+java:S2095H"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ
+U
+java:S1135ì"2Complete the task associated to this TODO comment.(Ì°¸ãşÿÿÿÿ8È°¥«Ö.
+`
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(Âê°ııÿÿÿÿ
+N
+java:S1135ñ"2Complete the task associated to this TODO comment.(ç ƒĞÿÿÿÿÿ
+M
+java:S1128"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿ8øŞ²Äô.
+f
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë
+p
+java:S3776À"RRefactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.(¹úÖ8 ¶‘«Ö.
+œ
+java:S1186="€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‘ùöœÿÿÿÿÿ
+e
+java:S2095i"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë
+u
+java:S1210"YOverride "equals(Object obj)" to comply with the contract of the "compareTo(T o)" method.(«©ììøÿÿÿÿ

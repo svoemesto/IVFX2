@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
+
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="2710.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.svoemesto.ivfx.controllers.ShotsController">
+   <children>
+      <VBox layoutX="366.0" layoutY="392.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="5000.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="5000.0" prefWidth="100.0">
+                     <children>
+                        <TableView fx:id="tblShots" maxHeight="1.7976931348623157E308" maxWidth="290.0" minWidth="290.0" prefHeight="5000.0" prefWidth="290.0" style="-fx-selection-bar: red; -fx-selection-bar-non-focused: red;">
+                          <columns>
+                            <TableColumn fx:id="colShotFrom" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="FROM" />
+                            <TableColumn fx:id="colShotTo" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="TO" />
+                          </columns>
+                        </TableView>
+                        <ProgressBar fx:id="ctlProgressShots" maxWidth="290.0" minWidth="290.0" prefWidth="290.0" progress="0.0" visible="false" />
+                     </children>
+                  </VBox>
+                  <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="5000.0" prefWidth="5000.0">
+                     <children>
+                        <HBox maxHeight="450.0" minHeight="450.0" prefHeight="450.0" prefWidth="200.0" style="-fx-background-color: black;">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <GridPane fx:id="gridpanePreviwe" prefHeight="400.0" prefWidth="945.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </GridPane>
+                                    <ProgressBar fx:id="ctlProgressPreview" maxWidth="945.0" minWidth="945.0" prefWidth="945.0" progress="0.0" visible="false" />
+                                 </children>
+                              </VBox>
+                              <Label fx:id="mainLabelFullSizePicture" maxHeight="400.0" maxWidth="720.0" minHeight="400.0" minWidth="720.0" prefHeight="400.0" prefWidth="720.0" style="-fx-border-color: #0f0f0f;">
+                                 <contextMenu>
+                                    <ContextMenu fx:id="contxtMenuFrame" />
+                                 </contextMenu>
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </Label>
+                              <VBox prefHeight="200.0" prefWidth="1000.0">
+                                 <children>
+                                    <Pane fx:id="panePlayer" prefHeight="400.0" prefWidth="720.0">
+                                       <children>
+                                          <MediaView fx:id="mainMediaView" fitHeight="400.0" fitWidth="720.0" />
+                                          <Label fx:id="mainLabelPlayer" prefWidth="720.0" style="-fx-font-size: 24; -fx-text-fill: YELLOW;" text="Label" translateY="365.0" />
+                                          <Slider fx:id="mainSlider" prefWidth="720.0" translateY="350.0" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </padding>
+                                    </Pane>
+                                    <HBox prefHeight="40.0" prefWidth="1000.0">
+                                       <children>
+                                          <ToggleButton fx:id="tbPlayerLoop" mnemonicParsing="false" onAction="#doTgPlayerLoopNextStop" text="LOOP">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="tgPlayerLoopNextStop" />
+                                             </toggleGroup>
+                                          </ToggleButton>
+                                          <ToggleButton fx:id="tbPlayerNext" mnemonicParsing="false" onAction="#doTgPlayerLoopNextStop" text="NEXT" toggleGroup="$tgPlayerLoopNextStop" />
+                                          <ToggleButton fx:id="tbPlayerStop" mnemonicParsing="false" onAction="#doTgPlayerLoopNextStop" text="STOP" toggleGroup="$tgPlayerLoopNextStop" />
+                                          <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                          <ToggleButton fx:id="tbPlayerSpeed1" mnemonicParsing="false" onAction="#doTgPlayerSpeed" text="x1.0">
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="tgPlayerSpeed" />
+                                             </toggleGroup>
+                                          </ToggleButton>
+                                          <ToggleButton fx:id="tbPlayerSpeed2" mnemonicParsing="false" onAction="#doTgPlayerSpeed" text="x1.5" toggleGroup="$tgPlayerSpeed" />
+                                          <ToggleButton fx:id="tbPlayerSpeed3" mnemonicParsing="false" onAction="#doTgPlayerSpeed" text="x2.0" toggleGroup="$tgPlayerSpeed" />
+                                          <ToggleButton fx:id="tbPlayerSpeed4" mnemonicParsing="false" onAction="#doTgPlayerSpeed" text="x2.5" toggleGroup="$tgPlayerSpeed" />
+                                          <ToggleButton fx:id="tbPlayerSpeed5" mnemonicParsing="false" onAction="#doTgPlayerSpeed" text="x3.0" toggleGroup="$tgPlayerSpeed" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children></HBox>
+                        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="5000.0" prefWidth="5000.0">
+                           <children>
+                              <VBox maxHeight="1.7976931348623157E308" prefHeight="5000.0" prefWidth="100.0">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Все персонажи" />
+                                    <TextField fx:id="ctlFindPersonsAll" />
+                                    <TableView fx:id="tblPersonsAll" maxHeight="1.7976931348623157E308" maxWidth="155.0" minWidth="155.0" prefHeight="5000.0" prefWidth="155.0">
+                                      <columns>
+                                        <TableColumn fx:id="colPersonsAllPreview" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Персонажи" />
+                                      </columns>
+                                    </TableView>
+                                    <ProgressBar fx:id="ctlProgressPersonsAll" maxWidth="155.0" minWidth="155.0" prefWidth="155.0" progress="0.0" visible="false" />
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="5000.0" prefWidth="100.0">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Персонажи плана" />
+                                    <TextField fx:id="ctlFindShotPersons" />
+                                    <TableView fx:id="tblShotPersons" maxHeight="1.7976931348623157E308" maxWidth="155.0" minWidth="155.0" prefHeight="5000.0" prefWidth="155.0">
+                                       <columns>
+                                          <TableColumn fx:id="colShotPersonsPreview" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Персонажи" />
+                                       </columns>
+                                    </TableView>
+                                    <ProgressBar fx:id="ctlProgressShotPersons" maxWidth="155.0" minWidth="155.0" prefWidth="155.0" progress="0.0" visible="false" />
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="165.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="5000.0" prefWidth="100.0">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" minHeight="42.0" text="Персонажи предыдущих планов" textAlignment="CENTER" wrapText="true" />
+                                    <Button fx:id="btnShotPersonsStep1" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doShotPersonsStep1" text="&lt;&lt;== план «-1» [F1]" />
+                                    <TableView fx:id="tblShotPersonsStep1" maxHeight="1.7976931348623157E308" maxWidth="155.0" minWidth="155.0" prefHeight="5000.0" prefWidth="155.0">
+                                       <columns>
+                                          <TableColumn fx:id="colShotPersonsStep1Preview" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Персонажи -1" />
+                                       </columns>
+                                    </TableView>
+                                    <ProgressBar fx:id="ctlProgressShotPersonsStep1" maxWidth="155.0" minWidth="155.0" prefWidth="155.0" progress="0.0" visible="false" />
+                                    <Button fx:id="btnShotPersonsStep2" layoutX="10.0" layoutY="52.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doShotPersonsStep2" text="&lt;&lt;== план «-2» [F2]" />
+                                    <TableView fx:id="tblShotPersonsStep2" layoutX="10.0" layoutY="77.0" maxHeight="1.7976931348623157E308" maxWidth="155.0" minWidth="155.0" prefHeight="5000.0" prefWidth="155.0">
+                                       <columns>
+                                          <TableColumn fx:id="colShotPersonsStep2Preview" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Персонажи -2" />
+                                       </columns>
+                                    </TableView>
+                                    <ProgressBar fx:id="ctlProgressShotPersonsStep2" maxWidth="155.0" minWidth="155.0" prefWidth="155.0" progress="0.0" visible="false" />
+                                    <Button fx:id="btnShotPersonsStep3" layoutX="10.0" layoutY="334.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doShotPersonsStep3" text="&lt;&lt;== план «-3» [F3]" />
+                                    <TableView fx:id="tblShotPersonsStep3" layoutX="10.0" layoutY="346.0" maxHeight="1.7976931348623157E308" maxWidth="155.0" minWidth="155.0" prefHeight="5000.0" prefWidth="155.0">
+                                       <columns>
+                                          <TableColumn fx:id="colShotPersonsStep3Preview" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Персонажи -3" />
+                                       </columns>
+                                    </TableView>
+                                    <ProgressBar fx:id="ctlProgressShotPersonsStep3" prefWidth="200.0" progress="0.0" visible="false" />
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="320.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="5000.0" prefWidth="100.0">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" minHeight="42.0" text="Персонажи сцены" textAlignment="CENTER" wrapText="true" />
+                                    <Button fx:id="btnScenePersonsToShot" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doScenePersonsToShot" text="&lt;&lt;&lt;=== [F4]" />
+                                    <TableView fx:id="tblScenePersons" maxHeight="1.7976931348623157E308" maxWidth="185.0" minWidth="185.0" prefHeight="5000.0" prefWidth="185.0">
+                                       <columns>
+                                          <TableColumn fx:id="colScenePersonsPreview" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Персонажи" />
+                                          <TableColumn fx:id="colScenePersonsIsMain" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" text="M" />
+                                       </columns>
+                                    </TableView>
+                                    <ProgressBar fx:id="ctlProgressScenePersons" maxWidth="185.0" minWidth="185.0" prefWidth="185.0" progress="0.0" visible="false" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Button fx:id="btnAddNewScene" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doAddNewScene" text="Добавить новую сцену для теущего плана [F5]" />
+                                    <TableView fx:id="tblScenes" maxWidth="340.0" minWidth="340.0" prefHeight="5000.0" prefWidth="340.0">
+                                      <columns>
+                                        <TableColumn fx:id="colSceneStart" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" text="Начало" />
+                                        <TableColumn fx:id="colSceneName" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" text="Сцена" />
+                                      </columns>
+                                    </TableView>
+                                    <ProgressBar fx:id="ctlProgressScenes" maxWidth="340.0" minWidth="340.0" prefWidth="340.0" progress="0.0" visible="false" />
+                                    <Button fx:id="btnDeleteScene" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doDeleteScene" text="Удалить сцену" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" minHeight="25.0" text="Планы сцены" />
+                                    <TableView fx:id="tblSceneShots" maxHeight="1.7976931348623157E308" maxWidth="290.0" minWidth="290.0" prefHeight="5000.0" prefWidth="290.0" style="-fx-selection-bar: red; -fx-selection-bar-non-focused: red;">
+                                       <columns>
+                                          <TableColumn fx:id="colSceneShotFrom" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="FROM" />
+                                          <TableColumn fx:id="colSceneShotTo" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="TO" />
+                                       </columns>
+                                    </TableView>
+                                    <ProgressBar fx:id="ctlProgressSceneShots" maxWidth="290.0" minWidth="290.0" prefWidth="290.0" progress="0.0" visible="false" />
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="660.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Button fx:id="btnAddNewEvent" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doAddNewEvent" text="Добавить новое событие [F6]" />
+                                          <ComboBox fx:id="comboEventType" prefWidth="190.0" />
+                                          <Button fx:id="btnStartEvent" mnemonicParsing="false" onAction="#doSetStartEvent" text="Начало" />
+                                          <Button fx:id="btnEndEvent" mnemonicParsing="false" onAction="#doSetEndEvent" text="Конец" />
+                                       </children>
+                                    </HBox>
+                                    <TableView fx:id="tblEvents" maxWidth="480.0" minWidth="480.0" prefHeight="5000.0" prefWidth="480.0">
+                                       <columns>
+                                          <TableColumn fx:id="colEventStart" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" text="Начало" />
+                                          <TableColumn fx:id="colEventEnd" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" text="Конец" />
+                                          <TableColumn fx:id="colEventType" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" text="Тип" />
+                                          <TableColumn fx:id="colEventName" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" text="Событие" />
+                                       </columns>
+                                    </TableView>
+                                    <ProgressBar fx:id="ctlProgressEvents" maxWidth="480.0" minWidth="480.0" prefWidth="480.0" progress="0.0" visible="false" />
+                                    <Button fx:id="btnDeleteEvent" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doDeleteEvent" text="Удалить событие" />
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="1000.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" minHeight="25.0" text="Планы события" />
+                                    <TableView fx:id="tblEventShots" maxHeight="1.7976931348623157E308" maxWidth="290.0" minWidth="290.0" prefHeight="5000.0" prefWidth="290.0" style="-fx-selection-bar: red; -fx-selection-bar-non-focused: red;">
+                                       <columns>
+                                          <TableColumn fx:id="colEventShotFrom" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="FROM" />
+                                          <TableColumn fx:id="colEventShotTo" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="TO" />
+                                       </columns>
+                                    </TableView>
+                                    <ProgressBar fx:id="ctlProgressEventShots" maxWidth="290.0" minWidth="290.0" prefWidth="290.0" progress="0.0" visible="false" />
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="475.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="5000.0" prefWidth="100.0">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" minHeight="25.0" text="Персонажи события" textAlignment="CENTER" wrapText="true" />
+                                    <TableView fx:id="tblEventPersons" maxHeight="1.7976931348623157E308" maxWidth="185.0" minWidth="185.0" prefHeight="5000.0" prefWidth="185.0">
+                                       <columns>
+                                          <TableColumn fx:id="colEventPersonsPreview" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Персонажи" />
+                                          <TableColumn fx:id="colEventPersonsIsMain" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" text="M" />
+                                       </columns>
+                                    </TableView>
+                                    <ProgressBar fx:id="ctlProgressEventPersons" maxWidth="185.0" minWidth="185.0" prefWidth="185.0" progress="0.0" visible="false" />
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="475.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefHeight="5000.0" prefWidth="100.0">
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" minHeight="25.0" text="Персонажи сцены" textAlignment="CENTER" wrapText="true" />
+                                    <TableView fx:id="tblScenePersonsToEvents" maxHeight="1.7976931348623157E308" maxWidth="185.0" minWidth="185.0" prefHeight="5000.0" prefWidth="185.0">
+                                       <columns>
+                                          <TableColumn fx:id="colScenePersonsToEventsPreview" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Персонажи" />
+                                          <TableColumn fx:id="colScenePersonsToEventsIsMain" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" text="M" />
+                                       </columns>
+                                    </TableView>
+                                    <ProgressBar fx:id="ctlProgressScenePersonsToEvents" maxWidth="185.0" minWidth="185.0" prefWidth="185.0" progress="0.0" visible="false" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="btnOK" minWidth="50.0" mnemonicParsing="false" onAction="#doOK" text="OK" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

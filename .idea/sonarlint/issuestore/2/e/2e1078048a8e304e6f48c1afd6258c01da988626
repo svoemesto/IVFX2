@@ -1,0 +1,40 @@
+
+m
+java:S2095‚"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8¾‡½²ø.
+:
+java:S1643¾"Use a StringBuilder instead.(„‚­ª8¾‡½²ø.
+o
+java:S1192b"MDefine a constant instead of duplicating this literal "tag_child_id" 3 times.(©ôâ›øÿÿÿÿ8©ô®êô.
+m
+java:S2095ï"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8¾‡½²ø.
+?
+java:S1643­"Use a StringBuilder instead.(šıì¤ùÿÿÿÿ8ê¯·²ø.
+?
+java:S1643¿"Use a StringBuilder instead.(šıì¤ùÿÿÿÿ8¾‡½²ø.
+Z	java:S106D"9Replace this use of System.out or System.err by a logger.(¼±”ôûÿÿÿÿ8Äúéô.
+l
+java:S2095?"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8¥’êô.
+m
+java:S2095‰"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(›Å¨©8¾‡½²ø.
+k
+java:S1192a"NDefine a constant instead of duplicating this literal "tag_parent_id" 3 times.(Ğğêƒ8É®êô.
+d
+java:S20951"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8«Á•¿ö.
+e
+java:S2095¤"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8¯Öúâõ.
+z
+java:S1192~"XDefine a constant instead of duplicating this literal " ORDER BY tag_tag_order" 3 times.(á™’Õøÿÿÿÿ8òã´¿ö.
+p
+java:S1192c"NDefine a constant instead of duplicating this literal "tag_tag_order" 3 times.(Å¯‘£ÿÿÿÿÿ8÷³¿ö.
+p
+java:S3776œ"RRefactor this method to reduce its Cognitive Complexity from 29 to the 15 allowed.(¾èÛª8ªĞ²²ø.
+d
+java:S2095Z"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8¿Ù€êô.
+d
+java:S2095|"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8‹ì†êô.
+U
+java:S1135û"2Complete the task associated to this TODO comment.(ÕïÓÂÿÿÿÿÿ8¾‡½²ø.
+U
+java:S1135è"2Complete the task associated to this TODO comment.(ç ƒĞÿÿÿÿÿ8¾‡½²ø.
+:
+java:S1643¬"Use a StringBuilder instead.(„‚­ª8ê¯·²ø.

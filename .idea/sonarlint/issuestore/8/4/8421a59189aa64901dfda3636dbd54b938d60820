@@ -1,0 +1,23 @@
+
+>
+java:S1643x"Use a StringBuilder instead.(óè«¢ùÿÿÿÿ8¢äÑê÷.
+E	java:S108S")Either remove or fill this block of code.(ï­£Ä8üµ‚å÷.
+t
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 30 to the 15 allowed.(Í×ç¦ıÿÿÿÿ8üµ‚å÷.
+>
+java:S1643u"Use a StringBuilder instead.(ÁÀí¹øÿÿÿÿ8‡¯àê÷.
+d
+java:S2095%"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8üµ‚å÷.
+9
+java:S1643y"Use a StringBuilder instead.(»ˆİÉ8´›ˆë÷.
+r
+java:S2095„"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ºôëçıÿÿÿÿ8¾ãªë÷.
+]	java:S125N"<This block of commented-out lines of code should be removed.(É¬±èıÿÿÿÿ8üµ‚å÷.
+>
+java:S1643v"Use a StringBuilder instead.(ôöƒéÿÿÿÿÿ8’Æ‡ë÷.
+W
+java:S1141J"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8üµ‚å÷.
+m
+java:S2095‰"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(›Å¨©8¾ãªë÷.
+J
+java:S1481".Remove this unused "iProgress" local variable.(¹›{8üµ‚å÷.

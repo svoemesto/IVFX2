@@ -4,6 +4,7 @@ import com.svoemesto.ivfx.Main;
 import com.svoemesto.ivfx.utils.ConvertToFxImage;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import org.apache.commons.io.FileUtils;
 
@@ -23,8 +24,6 @@ public class IVFXFrames {
 
     private int id;
     private int fileId;
-    private UUID uuid  = UUID.randomUUID();
-    private UUID fileUuid;
     private IVFXFiles ivfxFile;
     private int frameNumber;
     private boolean isIFrame=false;
@@ -51,8 +50,6 @@ public class IVFXFrames {
     public boolean isEqual(IVFXFrames o) {
         return (this.id == o.id &&
                 this.fileId == o.fileId &&
-                this.uuid.equals(o.uuid) &&
-                this.fileUuid.equals(o.fileUuid) &&
                 this.frameNumber == o.frameNumber &&
                 this.isIFrame == o.isIFrame &&
                 this.isFind == o.isFind &&
@@ -83,7 +80,6 @@ public class IVFXFrames {
         frame.frameNumber = frameNumber;
         frame.ivfxFile = file;
         frame.fileId = file.getId();
-        frame.fileUuid = file.getUuid();
 
         Statement statement = null;
         ResultSet rs = null;
@@ -108,9 +104,7 @@ public class IVFXFrames {
                     "diffNext1, " +
                     "diffNext2, " +
                     "diffPrev1, " +
-                    "diffPrev2, " +
-                    "uuid, " +
-                    "file_uuid) " +
+                    "diffPrev2) " +
                     "VALUES(" +
                     frame.fileId + "," +
                     frame.frameNumber + "," +
@@ -128,16 +122,14 @@ public class IVFXFrames {
                     frame.diffNext1 + "," +
                     frame.diffNext2 + "," +
                     frame.diffPrev1 + "," +
-                    frame.diffPrev2 + "," +
-                    "'" + frame.uuid.toString() + "'" + "," +
-                    "'" + frame.fileUuid.toString() + "'" + ")";
+                    frame.diffPrev2 + ")";
 
             PreparedStatement ps = Main.mainConnection.prepareStatement(sql);
             ps.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
             rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 frame.id = rs.getInt(1);
-                System.out.println("Создана запись для фрейма № " + frame.frameNumber + ", файл «" + frame.ivfxFile.getTitle() + "» " + frame.uuid + " с идентификатором " + rs.getInt(1));
+                System.out.println("Создана запись для фрейма № " + frame.frameNumber + ", файл «" + frame.ivfxFile.getTitle() + "» с идентификатором " + rs.getInt(1));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -154,83 +146,13 @@ public class IVFXFrames {
     }
 // TODO LOAD
 
-    public static IVFXFrames loadByUuid(UUID frameUuid) {
-        return loadByUuid(frameUuid, false);
+
+
+    public static IVFXFrames load(int id) {
+        return load(id, false);
     }
 
-    public static IVFXFrames loadByUuid(UUID frameUuid, boolean withPreview) {
-        Statement statement = null;
-        ResultSet rs = null;
-        String sql;
-
-        try {
-            statement = Main.mainConnection.createStatement();
-
-            sql = "SELECT * FROM tbl_frames WHERE uuid = '" + frameUuid.toString() + "'";
-            rs = statement.executeQuery(sql);
-            if (rs.next()) {
-                IVFXFrames frame = new IVFXFrames();
-                frame.id = rs.getInt("id");
-                frame.fileId = rs.getInt("file_id");
-                frame.frameNumber = rs.getInt("frameNumber");
-                frame.isIFrame = rs.getBoolean("isIFrame");
-                frame.isFind = rs.getBoolean("isFind");
-                frame.isManualAdd = rs.getBoolean("isManualAdd");
-                frame.isManualCancel = rs.getBoolean("isManualCancel");
-                frame.isFinalFind = rs.getBoolean("isFinalFind");
-                frame.simScoreNext1 = rs.getDouble("simScoreNext1");
-                frame.simScoreNext2 = rs.getDouble("simScoreNext2");
-                frame.simScoreNext3 = rs.getDouble("simScoreNext3");
-                frame.simScorePrev1 = rs.getDouble("simScorePrev1");
-                frame.simScorePrev2 = rs.getDouble("simScorePrev2");
-                frame.simScorePrev3 = rs.getDouble("simScorePrev3");
-                frame.diffNext1 = rs.getDouble("diffNext1");
-                frame.diffNext2 = rs.getDouble("diffNext2");
-                frame.diffPrev1 = rs.getDouble("diffPrev1");
-                frame.diffPrev2 = rs.getDouble("diffPrev2");
-                frame.uuid = UUID.fromString(rs.getString("uuid"));
-                frame.fileUuid = UUID.fromString(rs.getString("file_uuid"));
-                frame.ivfxFile = IVFXFiles.loadById(frame.fileId);
-
-                if (withPreview) {
-                    String fileName = frame.getFileNamePreview();
-                    File file = new File(fileName);
-                    frame.label = new Label(String.valueOf(frame.frameNumber));
-                    frame.label.setPrefWidth(135);
-                    if (!file.exists()) {
-                        fileName = frame.getFileNamePreviewStub();
-                        file = new File(fileName);
-                    }
-                    try {
-                        BufferedImage bufferedImage = ImageIO.read(file);
-                        frame.preview = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
-                        frame.label.setGraphic(frame.preview);
-                        frame.label.setContentDisplay(ContentDisplay.TOP);
-                    } catch (IOException e) {}
-                }
-
-                return frame;
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) rs.close(); // close result set
-                if (statement != null) statement.close(); // close statement
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return null;
-    }
-
-    public static IVFXFrames loadById(int id) {
-        return loadById(id, false);
-    }
-
-    public static IVFXFrames loadById(int id, boolean withPreview) {
+    public static IVFXFrames load(int id, boolean withPreview) {
         Statement statement = null;
         ResultSet rs = null;
         String sql;
@@ -260,9 +182,7 @@ public class IVFXFrames {
                 frame.diffNext2 = rs.getDouble("diffNext2");
                 frame.diffPrev1 = rs.getDouble("diffPrev1");
                 frame.diffPrev2 = rs.getDouble("diffPrev2");
-                frame.uuid = UUID.fromString(rs.getString("uuid"));
-                frame.fileUuid = UUID.fromString(rs.getString("file_uuid"));
-                frame.ivfxFile = IVFXFiles.loadById(frame.fileId);
+                frame.ivfxFile = IVFXFiles.load(frame.fileId);
 
                 if (withPreview) {
                     String fileName = frame.getFileNamePreview();
@@ -303,8 +223,12 @@ public class IVFXFrames {
     }
 
     public static List<IVFXFrames> loadList(IVFXFiles ivfxFile, boolean withPreview) {
+        return loadList(ivfxFile, withPreview, null);
+    }
+    public static List<IVFXFrames> loadList(IVFXFiles ivfxFile, boolean withPreview, ProgressBar progressBar) {
         List<IVFXFrames> listFrames = new ArrayList<>();
 
+        int iProgress = 0;
         Statement statement = null;
         ResultSet rs = null;
         String sql;
@@ -313,8 +237,18 @@ public class IVFXFrames {
             statement = Main.mainConnection.createStatement();
 
             sql = "SELECT * FROM tbl_frames WHERE file_id = " + ivfxFile.getId() + " ORDER BY frameNumber";
+
+            String sqlCnt = "SELECT COUNT(*) AS CNT FROM (" + sql + ") AS tmp";
+            ResultSet rsCnt = null;
+            rsCnt = statement.executeQuery(sqlCnt);
+            rsCnt.next();
+            int countRows = rsCnt.getInt("CNT");
+            rsCnt.close();
+
             rs = statement.executeQuery(sql);
             while (rs.next()) {
+
+                if (progressBar != null) progressBar.setProgress((double)++iProgress / countRows);
 
                 IVFXFrames frame = new IVFXFrames();
                 frame.id = rs.getInt("id");
@@ -335,8 +269,6 @@ public class IVFXFrames {
                 frame.diffNext2 = rs.getDouble("diffNext2");
                 frame.diffPrev1 = rs.getDouble("diffPrev1");
                 frame.diffPrev2 = rs.getDouble("diffPrev2");
-                frame.uuid = UUID.fromString(rs.getString("uuid"));
-                frame.fileUuid = UUID.fromString(rs.getString("file_uuid"));
                 frame.ivfxFile = ivfxFile;
 
                 if (withPreview) {
@@ -393,9 +325,7 @@ public class IVFXFrames {
                 "diffNext1 = ?, " +
                 "diffNext2 = ?, " +
                 "diffPrev1 = ?, " +
-                "diffPrev2 = ?, " +
-                "uuid = ?, " +
-                "file_uuid = ? " +
+                "diffPrev2 = ? " +
                 "WHERE id = ?";
         try {
             PreparedStatement ps = Main.mainConnection.prepareStatement(sql);
@@ -416,9 +346,7 @@ public class IVFXFrames {
             ps.setDouble(15, this.diffNext2);
             ps.setDouble(16, this.diffPrev1);
             ps.setDouble(17, this.diffPrev2);
-            ps.setString(18, this.uuid.toString());
-            ps.setString(19, this.fileUuid.toString());
-            ps.setInt   (20, this.id);
+            ps.setInt   (18, this.id);
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
@@ -454,21 +382,6 @@ public class IVFXFrames {
 
 // TODO GETTERS SETTERS
 
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    public UUID getFileUuid() {
-        return fileUuid;
-    }
-
-    public void setFileUuid(UUID fileUuid) {
-        this.fileUuid = fileUuid;
-    }
 
     public IVFXFiles getIvfxFile() {
         return ivfxFile;

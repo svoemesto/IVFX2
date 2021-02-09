@@ -1,0 +1,19 @@
+
+m	java:S117("QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğéÆ«8‚İøÑô.
+T
+java:S1135~"2Complete the task associated to this TODO comment.(ÕïÓÂÿÿÿÿÿ8Ï›„Òô.
+l
+java:S2095t"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8Ï›„Òô.
+d
+java:S2095#"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8¡ÑöÑô.
+m
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8Ï›„Òô.
+‡
+java:S1845¨"dRename method "getId" to prevent any misunderstanding/clash with method "getID" defined on line 141.(»ˆ»¶ùÿÿÿÿ8…¶È‘õ.
+d
+java:S2095I"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8­ŠüÑô.
+T
+java:S1135m"2Complete the task associated to this TODO comment.(ç ƒĞÿÿÿÿÿ8Ï›„Òô.
+m	java:S117Y"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğéÆ«8Æ…‚Òô.
+F
+java:S1068")Remove this unused "order" private field.(ã¦Íñ8ì“²¾ö.

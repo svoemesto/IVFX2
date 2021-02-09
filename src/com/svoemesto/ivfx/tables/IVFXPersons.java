@@ -6,6 +6,7 @@ import com.svoemesto.ivfx.utils.ConvertToFxImage;
 import com.svoemesto.ivfx.utils.OverlayImage;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 
 import javax.imageio.ImageIO;
@@ -30,13 +31,11 @@ public class IVFXPersons {
     private int id;
     private int projectId;
     private int order = 0;
-    private UUID uuid  = UUID.randomUUID(); // UUID
-    private UUID projectUuid;
     private IVFXProjects ivfxProject;
     private String name = "New Person";
     private String description = "";
-    private transient ImageView preview;
-    private transient Label label;
+    private ImageView[] preview = new ImageView[8];
+    private Label[] label = new Label[8];
 
     //TODO ISEQUAL
 
@@ -44,8 +43,6 @@ public class IVFXPersons {
         return (this.id == o.id &&
                 this.projectId == o.projectId &&
                 this.order == o.order &&
-                this.uuid.equals(o.uuid) &&
-                this.projectUuid.equals(o.projectUuid) &&
                 this.name.equals(o.name) &&
                 this.description.equals(o.description));
     }
@@ -76,24 +73,19 @@ public class IVFXPersons {
                     "project_id, " +
                     "order_person, " +
                     "name, " +
-                    "description, " +
-                    "uuid, " +
-                    "project_uuid) " +
+                    "description) " +
                     "VALUES(" +
                     ivfxProject.getId() + "," +
                     ivfxPerson.order + "," +
                     "'" + ivfxPerson.name + "'" + "," +
-                    "'" + ivfxPerson.description + "'" + "," +
-                    "'" + ivfxPerson.uuid.toString() + "'" + "," +
-                    "'" + ivfxProject.getUuid().toString() + "'" +
-                    ")";
+                    "'" + ivfxPerson.description + "'" + ")";
 
             PreparedStatement ps = Main.mainConnection.prepareStatement(sql);
             ps.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
             rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 ivfxPerson.id = rs.getInt(1);
-                System.out.println("Создана запись для персонажа «" + ivfxPerson.name + "» " + ivfxPerson.uuid + " с идентификатором " + rs.getInt(1));
+                System.out.println("Создана запись для персонажа «" + ivfxPerson.name + "» с идентификатором " + rs.getInt(1));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -109,61 +101,6 @@ public class IVFXPersons {
         return ivfxPerson;
     }
 
-    public static IVFXPersons loadByUuid(UUID personUUID, boolean withPreview) {
-        Statement statement = null;
-        ResultSet rs = null;
-        String sql;
-
-        try {
-            statement = Main.mainConnection.createStatement();
-
-            sql = "SELECT * FROM tbl_persons WHERE uuid = '" + personUUID.toString() + "'";
-            rs = statement.executeQuery(sql);
-            if (rs.next()) {
-                IVFXPersons person = new IVFXPersons();
-                person.id = rs.getInt("id");
-                person.projectId = rs.getInt("project_id");
-                person.order = rs.getInt("order_person");
-                person.name = rs.getString("name");
-                person.description = rs.getString("description");
-                person.uuid = UUID.fromString(rs.getString("uuid"));
-                person.projectUuid = UUID.fromString(rs.getString("project_uuid"));
-                person.ivfxProject = IVFXProjects.loadByUuid(person.projectUuid);
-
-                if (withPreview) {
-                    String fileName = person.getPersonPicturePreview();
-                    File file = new File(fileName);
-                    person.label = new Label(person.name);
-                    person.label.setPrefWidth(135);
-                    if (!file.exists()) {
-                        fileName = person.getPersonPicturePreviewStub();
-                        file = new File(fileName);
-                    }
-                    try {
-                        BufferedImage bufferedImage = ImageIO.read(file);
-                        person.preview = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
-                        person.label.setGraphic(person.preview);
-                        person.label.setContentDisplay(ContentDisplay.TOP);
-                    } catch (IOException e) {}
-
-                }
-
-                return person;
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) rs.close(); // close result set
-                if (statement != null) statement.close(); // close statement
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return null;
-    }
 
     public static IVFXPersons loadByName(String personName, IVFXProjects project, boolean withPreview) {
         Statement statement = null;
@@ -182,24 +119,28 @@ public class IVFXPersons {
                 person.order = rs.getInt("order_person");
                 person.name = rs.getString("name");
                 person.description = rs.getString("description");
-                person.uuid = UUID.fromString(rs.getString("uuid"));
-                person.projectUuid = UUID.fromString(rs.getString("project_uuid"));
-                person.ivfxProject = IVFXProjects.loadByUuid(person.projectUuid);
+                person.ivfxProject = IVFXProjects.load(person.projectId);
 
                 if (withPreview) {
                     String fileName = person.getPersonPicturePreview();
                     File file = new File(fileName);
-                    person.label = new Label(person.name);
-                    person.label.setPrefWidth(135);
+                    for (int i = 0; i < 8; i++) {
+                        person.label[i] = new Label(person.name);
+                        person.label[i].setPrefWidth(135);
+                    }
+
                     if (!file.exists()) {
                         fileName = person.getPersonPicturePreviewStub();
                         file = new File(fileName);
                     }
                     try {
                         BufferedImage bufferedImage = ImageIO.read(file);
-                        person.preview = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
-                        person.label.setGraphic(person.preview);
-                        person.label.setContentDisplay(ContentDisplay.TOP);
+                        for (int i = 0; i < 8; i++) {
+                            person.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
+                            person.label[i].setGraphic(person.preview[i]);
+                            person.label[i].setContentDisplay(ContentDisplay.TOP);
+                        }
+
                     } catch (IOException e) {}
 
                 }
@@ -221,7 +162,7 @@ public class IVFXPersons {
         return null;
     }
 
-    public static IVFXPersons loadById(int id, boolean withPreview) {
+    public static IVFXPersons load(int id, boolean withPreview) {
         Statement statement = null;
         ResultSet rs = null;
         String sql;
@@ -238,25 +179,28 @@ public class IVFXPersons {
                 person.order = rs.getInt("order_person");
                 person.name = rs.getString("name");
                 person.description = rs.getString("description");
-                person.uuid = UUID.fromString(rs.getString("uuid"));
-                person.projectUuid = UUID.fromString(rs.getString("project_uuid"));
-                person.ivfxProject = IVFXProjects.loadByUuid(person.projectUuid);
+                person.ivfxProject = IVFXProjects.load(person.projectId);
 
                 if (withPreview) {
                     String fileName = person.getPersonPicturePreview();
                     File file = new File(fileName);
-                    person.label = new Label(person.name);
-                    person.label.setPrefWidth(135);
+                    for (int i = 0; i < 8; i++) {
+                        person.label[i] = new Label(person.name);
+                        person.label[i].setPrefWidth(135);
+                    }
+
                     if (!file.exists()) {
                         fileName = person.getPersonPicturePreviewStub();
                         file = new File(fileName);
                     }
                     try {
                         BufferedImage bufferedImage = ImageIO.read(file);
-//                        person.preview = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
-                        person.preview = new ImageView(ConvertToFxImage.convertToFxImage(OverlayImage.setOverlayUnderlineText(bufferedImage, person.name)));
-                        person.label.setGraphic(person.preview);
-                        person.label.setContentDisplay(ContentDisplay.TOP);
+                        for (int i = 0; i < 8; i++) {
+                            person.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(OverlayImage.setOverlayUnderlineText(bufferedImage, person.name)));
+                            person.label[i].setGraphic(person.preview[i]);
+                            person.label[i].setContentDisplay(ContentDisplay.TOP);
+                        }
+
                     } catch (IOException e) {}
 
                 }
@@ -280,8 +224,12 @@ public class IVFXPersons {
     }
 
     public static List<IVFXPersons> loadListPersonsWithoutGroups(IVFXProjects ivfxProject, boolean withPreview) {
+        return loadListPersonsWithoutGroups(ivfxProject, withPreview, null);
+    }
+    public static List<IVFXPersons> loadListPersonsWithoutGroups(IVFXProjects ivfxProject, boolean withPreview, ProgressBar progressBar) {
         List<IVFXPersons> listPersons = new ArrayList<>();
 
+        int iProgress = 0;
         Statement statement = null;
         ResultSet rs = null;
         String sql;
@@ -289,19 +237,28 @@ public class IVFXPersons {
         try {
             statement = Main.mainConnection.createStatement();
 
-            sql = "select * from tbl_persons left join tbl_groups_persons on tbl_persons.id = tbl_groups_persons.person_id " +
-                    "where tbl_groups_persons.group_id IS NULL AND tbl_persons.project_id = " + ivfxProject.getId();
+            sql = "select tbl_persons.* from tbl_persons left join tbl_groups_persons on tbl_persons.id = tbl_groups_persons.person_id " +
+                    "where tbl_groups_persons.group_id IS NULL AND tbl_persons.project_id = " + ivfxProject.getId() + " ORDER BY name";
+
+            String sqlCnt = "SELECT COUNT(*) AS CNT FROM (" + sql + ") AS tmp";
+            ResultSet rsCnt = null;
+            rsCnt = statement.executeQuery(sqlCnt);
+            rsCnt.next();
+            int countRows = rsCnt.getInt("CNT");
+            rsCnt.close();
+
             rs = statement.executeQuery(sql);
             while (rs.next()) {
+
+                if (progressBar != null) progressBar.setProgress((double)++iProgress / countRows);
+
                 IVFXPersons person = new IVFXPersons();
                 person.id = rs.getInt("id");
                 person.order = rs.getInt("order_person");
                 person.projectId = rs.getInt("project_id");
-                person.uuid = UUID.fromString(rs.getString("uuid"));
-                person.projectUuid = UUID.fromString(rs.getString("project_uuid"));
                 person.name = rs.getString("name");
                 person.description = rs.getString("description");
-                person.ivfxProject = IVFXProjects.loadById(person.projectId);
+                person.ivfxProject = IVFXProjects.load(person.projectId);
                 listPersons.add(person);
             }
 
@@ -317,21 +274,30 @@ public class IVFXPersons {
         }
 
         if (withPreview) {
+            iProgress = 0;
             for (IVFXPersons ivfxPersons : listPersons) {
+
+                if (progressBar != null) progressBar.setProgress((double)++iProgress / listPersons.size());
+
                 String fileName = ivfxPersons.getPersonPicturePreview();
                 File file = new File(fileName);
-                ivfxPersons.label = new Label(ivfxPersons.name);
-                ivfxPersons.label.setPrefWidth(135);
+                for (int i = 0; i < 8; i++) {
+                    ivfxPersons.label[i] = new Label(ivfxPersons.name);
+                    ivfxPersons.label[i].setPrefWidth(135);
+                }
+
                 if (!file.exists()) {
                     fileName = ivfxPersons.getPersonPicturePreviewStub();
                     file = new File(fileName);
                 }
                 try {
                     BufferedImage bufferedImage = ImageIO.read(file);
-//                        ivfxPersons.preview = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
-                    ivfxPersons.preview = new ImageView(ConvertToFxImage.convertToFxImage(OverlayImage.setOverlayUnderlineText(bufferedImage, ivfxPersons.name)));
-                    ivfxPersons.label.setGraphic(ivfxPersons.preview);
-                    ivfxPersons.label.setContentDisplay(ContentDisplay.TOP);
+                    for (int i = 0; i < 8; i++) {
+                        ivfxPersons.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(OverlayImage.setOverlayUnderlineText(bufferedImage, ivfxPersons.name)));
+                        ivfxPersons.label[i].setGraphic(ivfxPersons.preview[i]);
+                        ivfxPersons.label[i].setContentDisplay(ContentDisplay.TOP);
+                    }
+
                 } catch (IOException e) {}
 
             }
@@ -339,9 +305,14 @@ public class IVFXPersons {
 
         return listPersons;
     }
+
     public static List<IVFXPersons> loadList(IVFXProjects ivfxProject, boolean withPreview) {
+        return loadList(ivfxProject, withPreview, null);
+    }
+    public static List<IVFXPersons> loadList(IVFXProjects ivfxProject, boolean withPreview, ProgressBar progressBar) {
         List<IVFXPersons> listPersons = new ArrayList<>();
 
+        int iProgress = 0;
         Statement statement = null;
         ResultSet rs = null;
         String sql;
@@ -349,18 +320,27 @@ public class IVFXPersons {
         try {
             statement = Main.mainConnection.createStatement();
 
-            sql = "SELECT * FROM tbl_persons WHERE project_id = " + ivfxProject.getId() + " ORDER BY order_person";
+            sql = "SELECT * FROM tbl_persons WHERE project_id = " + ivfxProject.getId() + " ORDER BY name";
+
+            String sqlCnt = "SELECT COUNT(*) AS CNT FROM (" + sql + ") AS tmp";
+            ResultSet rsCnt = null;
+            rsCnt = statement.executeQuery(sqlCnt);
+            rsCnt.next();
+            int countRows = rsCnt.getInt("CNT");
+            rsCnt.close();
+
             rs = statement.executeQuery(sql);
             while (rs.next()) {
+
+                if (progressBar != null) progressBar.setProgress((double)++iProgress / countRows);
+
                 IVFXPersons person = new IVFXPersons();
                 person.id = rs.getInt("id");
                 person.order = rs.getInt("order_person");
                 person.projectId = rs.getInt("project_id");
-                person.uuid = UUID.fromString(rs.getString("uuid"));
-                person.projectUuid = UUID.fromString(rs.getString("project_uuid"));
                 person.name = rs.getString("name");
                 person.description = rs.getString("description");
-                person.ivfxProject = IVFXProjects.loadById(person.projectId);
+                person.ivfxProject = IVFXProjects.load(person.projectId);
                 listPersons.add(person);
             }
 
@@ -376,21 +356,30 @@ public class IVFXPersons {
         }
 
         if (withPreview) {
+            iProgress = 0;
             for (IVFXPersons ivfxPersons : listPersons) {
+
+                if (progressBar != null) progressBar.setProgress((double)++iProgress / listPersons.size());
+
                 String fileName = ivfxPersons.getPersonPicturePreview();
                 File file = new File(fileName);
-                ivfxPersons.label = new Label(ivfxPersons.name);
-                ivfxPersons.label.setPrefWidth(135);
+                for (int i = 0; i < 8; i++) {
+                    ivfxPersons.label[i] = new Label(ivfxPersons.name);
+                    ivfxPersons.label[i].setPrefWidth(135);
+                }
+
                 if (!file.exists()) {
                     fileName = ivfxPersons.getPersonPicturePreviewStub();
                     file = new File(fileName);
                 }
                 try {
                     BufferedImage bufferedImage = ImageIO.read(file);
-//                    ivfxPersons.preview = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
-                    ivfxPersons.preview = new ImageView(ConvertToFxImage.convertToFxImage(OverlayImage.setOverlayUnderlineText(bufferedImage, ivfxPersons.name)));
-                    ivfxPersons.label.setGraphic(ivfxPersons.preview);
-                    ivfxPersons.label.setContentDisplay(ContentDisplay.TOP);
+                    for (int i = 0; i < 8; i++) {
+                        ivfxPersons.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(OverlayImage.setOverlayUnderlineText(bufferedImage, ivfxPersons.name)));
+                        ivfxPersons.label[i].setGraphic(ivfxPersons.preview[i]);
+                        ivfxPersons.label[i].setContentDisplay(ContentDisplay.TOP);
+                    }
+
                 } catch (IOException e) {}
 
             }
@@ -432,23 +421,74 @@ public class IVFXPersons {
         }
     }
 
+
+
+    public static boolean isPersonPresentInList(IVFXPersons ivfxPersons, List<IVFXPersons> list) {
+        for (IVFXPersons person : list) {
+            if (person.getId() == ivfxPersons.getId()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // TODO GETTERS SETTERS
 
-    public ImageView getPreview() {
+    public ImageView[] getPreview() {
         return preview;
     }
 
-    public void setPreview(ImageView preview) {
+    public ImageView getPreview(int i) {
+        return preview[i];
+    }
+
+    public ImageView getPreview1() {
+        return preview[0];
+    }
+
+    public ImageView getPreview2() {
+        return preview[1];
+    }
+
+    public ImageView getPreview3() {
+        return preview[2];
+    }
+
+    public ImageView getPreview4() {
+        return preview[3];
+    }
+
+    public ImageView getPreview5() {
+        return preview[4];
+    }
+
+    public ImageView getPreview6() {
+        return preview[5];
+    }
+
+    public ImageView getPreview7() {
+        return preview[6];
+    }
+
+    public ImageView getPreview8() {
+        return preview[7];
+    }
+
+    public void setPreview(ImageView[] preview) {
         this.preview = preview;
     }
 
+    public void setPreview(ImageView preview, int i) {
+        this.preview[i] = preview;
+    }
+
     public String getPersonPicturePreview() {
-        String fileName = this.getIvfxProject().getPersonsFolder() + "\\" + PERSON_PREFIX + this.getUuid().toString() + PERSON_SUFFIX_PREVIEW + ".jpg";
+        String fileName = this.getIvfxProject().getPersonsFolder() + "\\" + PERSON_PREFIX + this.getId() + PERSON_SUFFIX_PREVIEW + ".jpg";
         return fileName;
     }
 
     public String getPersonPictureFullSize() {
-        String fileName = this.getIvfxProject().getPersonsFolder() + "\\" + PERSON_PREFIX + this.getUuid().toString()+ PERSON_SUFFIX_FULLSIZE + ".jpg";
+        String fileName = this.getIvfxProject().getPersonsFolder() + "\\" + PERSON_PREFIX + this.getId() + PERSON_SUFFIX_FULLSIZE + ".jpg";
         return fileName;
     }
 
@@ -460,22 +500,6 @@ public class IVFXPersons {
     public String getPersonPictureFullSizeStub() {
         String fileName = this.getIvfxProject().getPersonsFolder() + "\\" + PERSON_FULLSIZE_STUB;
         return fileName;
-    }
-
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    public UUID getProjectUuid() {
-        return projectUuid;
-    }
-
-    public void setProjectUuid(UUID projectUuid) {
-        this.projectUuid = projectUuid;
     }
 
     public IVFXProjects getIvfxProject() {
@@ -502,12 +526,52 @@ public class IVFXPersons {
         this.description = description;
     }
 
-    public Label getLabel() {
+    public Label[] getLabel() {
         return label;
     }
 
-    public void setLabel(Label label) {
+    public Label getLabel(int i) {
+        return label[i];
+    }
+
+    public Label getLabel1() {
+        return label[0];
+    }
+
+    public Label getLabel2() {
+        return label[1];
+    }
+
+    public Label getLabel3() {
+        return label[2];
+    }
+
+    public Label getLabel4() {
+        return label[3];
+    }
+
+    public Label getLabel5() {
+        return label[4];
+    }
+
+    public Label getLabel6() {
+        return label[5];
+    }
+
+    public Label getLabel7() {
+        return label[6];
+    }
+
+    public Label getLabel8() {
+        return label[7];
+    }
+
+    public void setLabel(Label[] label) {
         this.label = label;
+    }
+
+    public void setLabel(Label label, int i) {
+        this.label[i] = label;
     }
 
     public int getId() {

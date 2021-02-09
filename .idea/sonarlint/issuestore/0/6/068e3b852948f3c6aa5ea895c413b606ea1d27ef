@@ -1,0 +1,160 @@
+
+X
+java:S1141§"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8¿ú®ø.
+u
+java:S3776ˆ"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(ÖüÖ¢ùÿÿÿÿ8Ü¼»š÷.
+X
+java:S1141ğ"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8×ïĞãö.
+e
+java:S2095×"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8×ïĞãö.
+:
+java:S1643ı"Use a StringBuilder instead.(“İå¿8åùìº÷.
+o
+java:S37767"RRefactor this method to reduce its Cognitive Complexity from 51 to the 15 allowed.(–é“›8œÏÉâö.
+o
+java:S1192Ş"LDefine a constant instead of duplicating this literal "tag_type_id" 7 times.(¤Ş¨Šùÿÿÿÿ8×ïĞãö.
+:
+java:S1643ÿ"Use a StringBuilder instead.(ûÛÈ8û€è¸ø.
+^	java:S125™	"<This block of commented-out lines of code should be removed.(ş°ñ±ÿÿÿÿÿ8û€è¸ø.
+F	java:S108¢")Either remove or fill this block of code.(ï­£Ä8¿ú®ø.
+V
+java:S1117‹"8Rename "name" which hides the field declared at line 33.(„ÆÕÁ8û€è¸ø.
+‚
+java:S1192ö"_Define a constant instead of duplicating this literal " ORDER BY tbl_tags.tag_type_id" 3 times.(ü­©Şøÿÿÿÿ8åùìº÷.
+l
+java:S4042¼"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(™¡Ñ•8û€è¸ø.
+m
+java:S2095Â"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8¿ú®ø.
+g
+java:S1192C"JDefine a constant instead of duplicating this literal "person_id" 4 times.(ØåŒ8œÏÉâö.
+X
+java:S1141ê"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8Ü¼»š÷.
+X
+java:S1141­"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8×ïĞãö.
+a
+java:S1155‡">Use isEmpty() to check whether the collection is empty or not.(Ïôÿ¢ıÿÿÿÿ8œÏÉâö.
+D
+java:S1075Ÿ	"&Remove this hard-coded path-delimiter.(€éã8û€è¸ø.
+E	java:S108µ")Either remove or fill this block of code.(Éò§+8æÚ»š÷.
+^	java:S125±"<This block of commented-out lines of code should be removed.(É¬±èıÿÿÿÿ8×ïĞãö.
+e
+java:S2095”"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8×ïĞãö.
+ƒ
+java:S1488”	"`Immediately return this expression instead of assigning it to the temporary variable "fileName".(„ğÆÀşÿÿÿÿ8û€è¸ø.
+U
+java:S1135»"2Complete the task associated to this TODO comment.(ç ƒĞÿÿÿÿÿ8¿ú®ø.
+U
+java:S1135Í"2Complete the task associated to this TODO comment.(ÕïÓÂÿÿÿÿÿ8¿ú®ø.
+e
+java:S2095Ø"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8¼ğ‡¯ø.
+X
+java:S1141œ"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8åùìº÷.
+u
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(ü °şúÿÿÿÿ8×ïĞãö.
+{
+java:S1192ğ"XDefine a constant instead of duplicating this literal "tbl_tags.tag_type_id = " 3 times.(¼óìøÿÿÿÿ8ÊÁìº÷.
+o
+java:S3776Í"RRefactor this method to reduce its Cognitive Complexity from 47 to the 15 allowed.(Šáù98ïıÑ®ø.
+^	java:S125«"<This block of commented-out lines of code should be removed.(É¬±èıÿÿÿÿ8¿ú®ø.
+u
+java:S3776à"RRefactor this method to reduce its Cognitive Complexity from 43 to the 15 allowed.(İÓøÿÿÿÿÿ8ÊÁìº÷.
+^	java:S125î"<This block of commented-out lines of code should be removed.(É¬±èıÿÿÿÿ8Ü¼»š÷.
+X
+java:S1141™"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8¿ú®ø.
+E	java:S108¶")Either remove or fill this block of code.(Éò§+8×ïĞãö.
+^	java:S125 "<This block of commented-out lines of code should be removed.(É¬±èıÿÿÿÿ8åùìº÷.
+u
+java:S3776Ñ"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(ˆ¬É şÿÿÿÿ8×ïĞãö.
+e
+java:S2095Ò"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8¿ú®ø.
+]	java:S125."<This block of commented-out lines of code should be removed.(¾ú…‡ûÿÿÿÿ8‡ı³ø.
+:
+java:S1643Ù"Use a StringBuilder instead.(–’«Æ8¿ú®ø.
+^	java:S125ô"<This block of commented-out lines of code should be removed.(É¬±èıÿÿÿÿ8·Îä˜÷.
+I
+java:S1075	"&Remove this hard-coded path-delimiter.(¢°‰¢şÿÿÿÿ8û€è¸ø.
+X	java:S899¼";Do something with the "boolean" value returned by "delete".(™¡Ñ•8û€è¸ø.
+V
+java:S1117á"8Rename "name" which hides the field declared at line 33.(„ÆÕÁ8¿ú®ø.
+p
+java:S3776ß"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(ïÍê8¿ú®ø.
+o
+java:S3776È"RRefactor this method to reduce its Cognitive Complexity from 41 to the 15 allowed.(¦À»8¿ú®ø.
+E	java:S108¥")Either remove or fill this block of code.(Éò§+8åùìº÷.
+?
+java:S1643Ü"Use a StringBuilder instead.(ï«ÕÕşÿÿÿÿ8Áşè®ø.
+e
+java:S2095"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8Ü¼»š÷.
+E	java:S108ó")Either remove or fill this block of code.(Éò§+8Ü¼»š÷.
+:
+java:S1643å"Use a StringBuilder instead.(’Ó˜Í8ïıÑ®ø.
+?
+java:S1643Ú"Use a StringBuilder instead.(£ãË¡ûÿÿÿÿ8”êö®ø.
+X
+java:S1141¬"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8æÚ»š÷.
+?
+java:S1643İ"Use a StringBuilder instead.(ë¤ì¾ùÿÿÿÿ8Áşè®ø.
+?
+java:S1643æ"Use a StringBuilder instead.(šıì¤ùÿÿÿÿ8ïıÑ®ø.
+^	java:S125°"<This block of commented-out lines of code should be removed.(É¬±èıÿÿÿÿ8æÚ»š÷.
+K
+java:S1481Ì".Remove this unused "iProgress" local variable.(¹›{8¿ú®ø.
+m
+java:S2095³"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8†ÕÈãö.
+K
+java:S1481ã".Remove this unused "iProgress" local variable.(¹›{8åùìº÷.
+[
+java:S1155j">Use isEmpty() to check whether the collection is empty or not.(†Ò‘„8œÏÉâö.
+h
+java:S1192ö"JDefine a constant instead of duplicating this literal "    AND (" 3 times.(óßÕ¬8›ú®ø.
+l
+java:S4042¾"NUse "java.nio.file.Files#delete" here for better messages on error conditions.(Œöåœ8û€è¸ø.
+Z
+java:S1155">Use isEmpty() to check whether the collection is empty or not.(èõ§`8œÏÉâö.
+ƒ
+java:S1488	"`Immediately return this expression instead of assigning it to the temporary variable "fileName".(¢°‰¢şÿÿÿÿ8û€è¸ø.
+?
+java:S1643ù"Use a StringBuilder instead.(ô¦úğùÿÿÿÿ8û€è¸ø.
+p
+java:S3776Ë"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(ŞËæ»8×ïĞãö.
+v
+java:S3252è"SUse static access with "com.svoemesto.ivfx.tables.IVFXTags" for "getNewDbInstance".(Û¤ãûÿÿÿÿ8¿ú®ø.
+v
+java:S3252’"SUse static access with "com.svoemesto.ivfx.tables.IVFXTags" for "getNewDbInstance".(…ÇÛàûÿÿÿÿ8û€è¸ø.
+X	java:S899¾";Do something with the "boolean" value returned by "delete".(Œöåœ8û€è¸ø.
+?
+java:S1643ğ"Use a StringBuilder instead.(¼óìøÿÿÿÿ8åùìº÷.
+^	java:S125"<This block of commented-out lines of code should be removed.(É¬±èıÿÿÿÿ8¿ú®ø.
+F	java:S108°")Either remove or fill this block of code.(ï­£Ä8¿ú®ø.
+I
+java:S1075”	"&Remove this hard-coded path-delimiter.(„ğÆÀşÿÿÿÿ8û€è¸ø.
+P
+java:S1481,"3Remove this unused "currentProject" local variable.(äª‡Ï8‡ı³ø.
+K
+java:S1481Ò".Remove this unused "iProgress" local variable.(¹›{8ïıÑ®ø.
+E	java:S108ù")Either remove or fill this block of code.(Éò§+8×ïĞãö.
+[	java:S106Â"9Replace this use of System.out or System.err by a logger.(µßõúÿÿÿÿ8×ïĞãö.
+~
+java:S1488š	"`Immediately return this expression instead of assigning it to the temporary variable "fileName".(´¥àš8û€è¸ø.
+`
+java:S1155`">Use isEmpty() to check whether the collection is empty or not.(Ïôÿ¢ıÿÿÿÿ8œÏÉâö.
+e
+java:S2095é"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8åùìº÷.
+:
+java:S1643ñ"Use a StringBuilder instead.(“İå¿8åùìº÷.
+~
+java:S1488Ÿ	"`Immediately return this expression instead of assigning it to the temporary variable "fileName".(€éã8û€è¸ø.
+m
+java:S2095Ô"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8¿ú®ø.
+`
+java:S1155r">Use isEmpty() to check whether the collection is empty or not.(Ïôÿ¢ıÿÿÿÿ8œÏÉâö.
+?
+java:S1643ü"Use a StringBuilder instead.(¼óìøÿÿÿÿ8åùìº÷.
+Z
+java:S2589ü"7Remove this expression which always evaluates to "true"(òöŠèşÿÿÿÿ8û€è¸ø.
+p
+java:S3776‰"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(‰Ÿ‘Ù8û€è¸ø.
+e
+java:S2095Ñ"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8×ïĞãö.
+_
+java:S1854,"BRemove this useless assignment to local variable "currentProject".(äª‡Ï8‡ı³ø.

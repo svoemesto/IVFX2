@@ -1,6 +1,7 @@
 package com.svoemesto.ivfx.tables;
 
 import com.svoemesto.ivfx.Main;
+import javafx.scene.control.ProgressBar;
 
 import java.io.File;
 import java.io.Serializable;
@@ -18,8 +19,6 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
 
     private int id;
     private int projectId;
-    private UUID uuid = UUID.randomUUID();  // UUID
-    private UUID projectUuid; // parent project UUID
     private IVFXProjects ivfxProject; // родительский проект
     private int order=0; // порядковый номер файла в проекте
     private String sourceName;    // путь и имя файла, например "D:\\iGOT\\GOT_S1E1.mkv"
@@ -39,8 +38,8 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
         return (this.id == o.id &&
                 this.projectId == o.projectId &&
                 this.order == o.order &&
-                this.uuid.equals(o.uuid) &&
-                this.projectUuid.equals(o.projectUuid) &&
+//                this.uuid.equals(o.uuid) &&
+//                this.projectUuid.equals(o.projectUuid) &&
                 this.sourceName.equals(o.sourceName) &&
                 this.shortName.equals(o.shortName) &&
                 this.title.equals(o.title) &&
@@ -51,6 +50,11 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
                 this.seasonNumber == o.seasonNumber &&
                 this.episodeNumber == o.episodeNumber &&
                 this.description.equals(o.description));
+    }
+
+    @Override
+    public String toString() {
+        return title;
     }
 
     // пустой конструктор
@@ -84,9 +88,7 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
                     "frames_count, " +
                     "season_number, " +
                     "episode_number, " +
-                    "description, " +
-                    "uuid, " +
-                    "project_uuid) " +
+                    "description) " +
                     "VALUES(" +
                     ivfxProject.getId() + "," +
                     ivfxFile.order + "," +
@@ -98,16 +100,14 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
                     ivfxFile.framesCount + "," +
                     ivfxFile.seasonNumber + "," +
                     ivfxFile.episodeNumber + "," +
-                    "'" + ivfxFile.description + "'" + "," +
-                    "'" + ivfxFile.uuid.toString() + "'" + "," +
-                    "'" + ivfxProject.getUuid().toString() + "'" + ")";
+                    "'" + ivfxFile.description + "'" + ")";
 
             PreparedStatement ps = Main.mainConnection.prepareStatement(sql);
             ps.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
             rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 ivfxFile.id = rs.getInt(1);
-                System.out.println("Создана запись для файла «" + ivfxFile.title + "» " + ivfxFile.uuid + " с идентификатором " + rs.getInt(1));
+                System.out.println("Создана запись для файла «" + ivfxFile.title + "» с идентификатором " + rs.getInt(1));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -135,51 +135,7 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
 // TODO LOAD
 
 
-    public static IVFXFiles loadByUuid(UUID fileUuid) {
-        Statement statement = null;
-        ResultSet rs = null;
-        String sql;
-
-        try {
-            statement = Main.mainConnection.createStatement();
-
-            sql = "SELECT * FROM tbl_files WHERE uuid = '" + fileUuid.toString() + "'";
-            rs = statement.executeQuery(sql);
-            if (rs.next()) {
-                IVFXFiles videoFile = new IVFXFiles();
-                videoFile.id = rs.getInt("id");
-                videoFile.projectId = rs.getInt("project_id");
-                videoFile.order = rs.getInt("order_file");
-                videoFile.sourceName = rs.getString("source_name");
-                videoFile.shortName = rs.getString("short_name");
-                videoFile.title = rs.getString("title");
-                videoFile.frameRate = rs.getDouble("frame_rate");
-                videoFile.duration = rs.getInt("duration");
-                videoFile.framesCount = rs.getInt("frames_count");
-                videoFile.seasonNumber = rs.getInt("season_number");
-                videoFile.episodeNumber = rs.getInt("episode_number");
-                videoFile.description = rs.getString("description");
-                videoFile.uuid = UUID.fromString(rs.getString("uuid"));
-                videoFile.projectUuid = UUID.fromString(rs.getString("project_uuid"));
-                videoFile.ivfxProject = IVFXProjects.loadById(videoFile.projectId);
-                return videoFile;
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) rs.close(); // close result set
-                if (statement != null) statement.close(); // close statement
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return null;
-    }
-
-    public static IVFXFiles loadById(int id) {
+    public static IVFXFiles load(int id) {
         Statement statement = null;
         ResultSet rs = null;
         String sql;
@@ -203,9 +159,7 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
                 videoFile.seasonNumber = rs.getInt("season_number");
                 videoFile.episodeNumber = rs.getInt("episode_number");
                 videoFile.description = rs.getString("description");
-                videoFile.uuid = UUID.fromString(rs.getString("uuid"));
-                videoFile.projectUuid = UUID.fromString(rs.getString("project_uuid"));
-                videoFile.ivfxProject = IVFXProjects.loadById(videoFile.projectId);
+                videoFile.ivfxProject = IVFXProjects.load(videoFile.projectId);
                 return videoFile;
             }
 
@@ -224,11 +178,14 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
     }
 
 
-
-
     public static List<IVFXFiles> loadList(IVFXProjects ivfxProject) {
+        return loadList(ivfxProject, null);
+    }
+
+    public static List<IVFXFiles> loadList(IVFXProjects ivfxProject, ProgressBar progressBar) {
         List<IVFXFiles> listVideoFiles = new ArrayList<>();
 
+        int iProgress = 0;
         Statement statement = null;
         ResultSet rs = null;
         String sql;
@@ -237,8 +194,19 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
             statement = Main.mainConnection.createStatement();
 
             sql = "SELECT * FROM tbl_files WHERE project_id = " + ivfxProject.getId() + " ORDER BY order_file";
+
+            String sqlCnt = "SELECT COUNT(*) AS CNT FROM (" + sql + ") AS tmp";
+            ResultSet rsCnt = null;
+            rsCnt = statement.executeQuery(sqlCnt);
+            rsCnt.next();
+            int countRows = rsCnt.getInt("CNT");
+            rsCnt.close();
+
             rs = statement.executeQuery(sql);
             while (rs.next()) {
+
+                if (progressBar != null) progressBar.setProgress((double)++iProgress / countRows);
+
                 IVFXFiles file = new IVFXFiles();
                 file.id = rs.getInt("id");
                 file.projectId = rs.getInt("project_id");
@@ -252,10 +220,7 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
                 file.seasonNumber = rs.getInt("season_number");
                 file.episodeNumber = rs.getInt("episode_number");
                 file.description = rs.getString("description");
-                file.uuid = UUID.fromString(rs.getString("uuid"));
-                file.projectUuid = UUID.fromString(rs.getString("project_uuid"));
                 file.ivfxProject = ivfxProject;
-//                file.ivfxProject = IVFXProjects.loadByIdFromDatabase(file.projectId,connection);
                 listVideoFiles.add(file);
             }
 
@@ -287,9 +252,7 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
                 "frames_count = ?, " +
                 "season_number = ?, " +
                 "episode_number = ?, " +
-                "description = ?, " +
-                "uuid = ?, " +
-                "project_uuid = ? " +
+                "description = ? " +
                 "WHERE id = ?";
         try {
             PreparedStatement ps = Main.mainConnection.prepareStatement(sql);
@@ -304,9 +267,7 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
             ps.setInt(9, this.seasonNumber);
             ps.setInt(10, this.episodeNumber);
             ps.setString(11, this.description);
-            ps.setString(12, this.uuid.toString());
-            ps.setString(13, this.projectUuid.toString());
-            ps.setInt   (14, this.id);
+            ps.setInt   (12, this.id);
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
@@ -355,23 +316,52 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
         return folderPreview + "\\" + fileNameWithoutExtention + ".mp4";
     }
 
+
+    public void checkIntegrity() {
+
+        IVFXFiles ivfxFile = this;
+        List<IVFXShots> listShots = IVFXShots.loadList(ivfxFile, false);
+        List<IVFXScenes> listScenes = IVFXScenes.loadList(ivfxFile);
+
+        if (listShots.size() > 0) {
+            if (listScenes.size() == 0) {
+                // Если сцен нет - создаем одну и добавляем в нее все планы
+                IVFXScenes.getNewDbInstance(listShots.get(0));
+            } else {
+                int iShot = 0;
+                int lastShotIndex = listShots.size()-1;
+                // Проходимся по сценам
+                for (IVFXScenes scene: listScenes) {
+                    List<IVFXScenesShots> listSceneShots = IVFXScenesShots.loadList(scene);
+                    int iSceneShot = 0;
+                    int lastSceneShotIndex = listSceneShots.size()-1;
+                    while (iSceneShot <= lastSceneShotIndex && iShot <= lastShotIndex) {
+                        IVFXScenesShots sceneShot = listSceneShots.get(iSceneShot);
+                        IVFXShots shotGlobal = listShots.get(iShot);
+                        if (sceneShot.getIvfxShot().getId() == shotGlobal.getId()) {
+                            if (sceneShot.getOrder() != iSceneShot + 1) {
+                                sceneShot.setOrder(iSceneShot + 1);
+                                sceneShot.save();
+                            }
+                            iShot++;
+                            iSceneShot++;
+                        } else {
+                            IVFXScenesShots sceneShotNew = IVFXScenesShots.getNewDbInstance(scene, shotGlobal);
+                            sceneShotNew.setOrder(iSceneShot+1);
+                            sceneShotNew.save();
+                            listSceneShots.add(iSceneShot, sceneShotNew);
+                            lastSceneShotIndex++;
+                            iShot++;
+                            iSceneShot++;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
 // TODO GETTERS SETTERS
-
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    public UUID getProjectUuid() {
-        return projectUuid;
-    }
-
-    public void setProjectUuid(UUID projectUuid) {
-        this.projectUuid = projectUuid;
-    }
 
     public IVFXProjects getIvfxProject() {
         return ivfxProject;

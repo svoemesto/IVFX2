@@ -1,0 +1,295 @@
+
+I
+java:S1075î"&Remove this hard-coded path-delimiter.(©ÅÓöşÿÿÿÿ8¡ªŠÉñ.
+d
+java:S2142ê"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8¹ÛšÆô.
+J
+java:S1602¸",Remove useless curly braces around statement(ÃÉş©8Â×¦Éñ.
+K
+java:S1481«
+".Remove this unused "iProgress" local variable.(¹›{8¡ªŠÉñ.
+d
+java:S2142Œ"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8•Æ›Æô.
+d
+java:S1126ö"AReplace this if-then-else statement by a single return statement.(Âî²ÿÿÿÿÿ8Â×¦Éñ.
+K
+java:S1481õ	".Remove this unused "iProgress" local variable.(¹›{8¡ªŠÉñ.
+u
+java:S3776ª"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(’˜ïÎıÿÿÿÿ8¡ªŠÉñ.
+N
+java:S1481š"0Remove this unused "countLabels" local variable.(Œ¢®–8¡ªŠÉñ.
+^	java:S125"<This block of commented-out lines of code should be removed.(ú€÷Âıÿÿÿÿ8Â×¦Éñ.
+J
+java:S1602î",Remove useless curly braces around statement(ô‰í¶8Â×¦Éñ.
+c
+java:S1124Ô"EReorder the modifiers to comply with the Java Language Specification.(ÙÔ¯8¡ªŠÉñ.
+X
+java:S2209´"5Change this instance-reference to a static reference.(ï“œÅøÿÿÿÿ8ƒ©ç”õ.
+Q
+java:S1068¯"3Remove this unused "initFrameNumber" private field.(öæ››8¡ªŠÉñ.
+R
+java:S3740¹"/Provide the parametrized type for this generic.(µÓ“³üÿÿÿÿ8Â×¦Éñ.
+M
+java:S3740Ğ"/Provide the parametrized type for this generic.(¨á¦¸8„Ü¢×.
+~
+java:S1104Ù"[Make mainMediaPlayer a static final constant or non-public and provide accessors if needed.(Ÿ¿Íüÿÿÿÿ8„Ü¢×.
+R
+java:S3740Î"/Provide the parametrized type for this generic.(—ÿ‡°ùÿÿÿÿ8Û®ÅáÕ.
+R
+java:S3740ú"/Provide the parametrized type for this generic.(¹şâ¨ÿÿÿÿÿ8Â×¦Éñ.
+v	java:S135Û"YReduce the total number of break and continue statements in this loop to use at most one.(½íğø8â§¨Æô.
+S
+java:S2209³"5Change this instance-reference to a static reference.(ö®¾½8ƒ©ç”õ.
+^	java:S125â"<This block of commented-out lines of code should be removed.(÷‡¡ûÿÿÿÿÿ8¤Ÿ¡Æô.
+d
+java:S2142Â"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8ƒ©ç”õ.
+P
+java:S1068¬"-Remove this unused "isWorking" private field.(‚œæıÿÿÿÿ8¡ªŠÉñ.
+€
+java:S1450Ç"bRemove the "listEventTypesNames" field and declare it as a local variable in the relevant methods.(ÄƒÚÛ8„Ü¢×.
+M
+java:S3740ñ"/Provide the parametrized type for this generic.(è¤õá8Â×¦Éñ.
+o
+java:S3776‹	"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(áõB8ÌÒ­Æô.
+Q
+java:S1481•".Remove this unused "ivfxFiles" local variable.(¿ò”¬úÿÿÿÿ8¡ªŠÉñ.
+Y	java:S125¸
+"<This block of commented-out lines of code should be removed.(ı±â…8ÀŠ±Æô.
+^	java:S125ä
+"<This block of commented-out lines of code should be removed.(×§ŠÕüÿÿÿÿ8¡ªŠÉñ.
+{
+java:S1450¬"XRemove the "isWorking" field and declare it as a local variable in the relevant methods.(‚œæıÿÿÿÿ8„Ü¢×.
+Q
+java:S1905¼".Remove this unnecessary cast to "IVFXPersons".(Ì¬§àÿÿÿÿÿ8Â×¦Éñ.
+Q
+java:S1905‡".Remove this unnecessary cast to "IVFXPersons".(Ì¬§àÿÿÿÿÿ8Â×¦Éñ.
+K
+java:S1481ë	".Remove this unused "iProgress" local variable.(¹›{8¡ªŠÉñ.
+J
+java:S1602®",Remove useless curly braces around statement(¯ğò8¡ªŠÉñ.
+D
+java:S1075œ"&Remove this hard-coded path-delimiter.(Ú¸Îó8¡ªŠÉñ.
+Q
+java:S1905–".Remove this unnecessary cast to "IVFXPersons".(Ì¬§àÿÿÿÿÿ8Â×¦Éñ.
+R
+java:S3740¦"/Provide the parametrized type for this generic.(µÓ“³üÿÿÿÿ8Â×¦Éñ.
+u
+java:S3776·"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(Şª­ıÿÿÿÿ8¤Ÿ¡Æô.
+y
+java:S1104¶"\Make currentEventType a static final constant or non-public and provide accessors if needed.(»…Ö8„Ü¢×.
+L
+java:S3740·"/Provide the parametrized type for this generic.(ÓÔ¸H8Â×¦Éñ.
+X
+java:S2209í"5Change this instance-reference to a static reference.(¼§ÛÆüÿÿÿÿ8ƒ©ç”õ.
+^	java:S125Â"<This block of commented-out lines of code should be removed.(÷‡¡ûÿÿÿÿÿ8«ô¢Æô.
+V	java:S106Ã"9Replace this use of System.out or System.err by a logger.(úò¬8ó“«Æô.
+u
+java:S3776¶	"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.(¸¼¿Ìûÿÿÿÿ8–ô¯Æô.
+d
+java:S2142ñ"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8Â×¦Éñ.
+d
+java:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8ƒ©ç”õ.
+d
+java:S2142Ñ"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8Â×¦Éñ.
+_
+java:S1126Î"AReplace this if-then-else statement by a single return statement.(õ ğÏ8Â×¦Éñ.
+Q
+java:S1905¬".Remove this unnecessary cast to "IVFXPersons".(Ì¬§àÿÿÿÿÿ8Â×¦Éñ.
+K
+java:S1191"5Use classes from the Java API instead of Sun classes.(íé¾Û
+V	java:S106Î"9Replace this use of System.out or System.err by a logger.(‘şÁó8«Ô¤Æô.
+o
+java:S3776â"RRefactor this method to reduce its Cognitive Complexity from 73 to the 15 allowed.(¶¸ät8Â×¦Éñ.
+L
+java:S1905ä".Remove this unnecessary cast to "IVFXPersons".( €ñö8Â×¦Éñ.
+[	java:S106¡"9Replace this use of System.out or System.err by a logger.(‡»ó„ıÿÿÿÿ8¡ªŠÉñ.
+Z
+java:S3972ö"7Move this "if" to a new line or add the missing "else".(Âî²ÿÿÿÿÿ8Â×¦Éñ.
+S
+java:S2209œ"5Change this instance-reference to a static reference.(Ú¸Îó8ƒ©ç”õ.
+s
+java:S1104Ø"UMake mainMedia a static final constant or non-public and provide accessors if needed.(†Ú¯©8½™ÁšÖ.
+u
+java:S3776¥"RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.(—¡Ò„ÿÿÿÿÿ8Â×¦Éñ.
+p
+java:S3776Í"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(„Èø“8Â×¦Éñ.
+Y
+java:S2696"6Make the enclosing method "static" or remove this set.(Èóı¬ùÿÿÿÿ8¡ªŠÉñ.
+d
+java:S2142œ"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8¡ªŠÉñ.
+O
+java:S1602Æ
+",Remove useless curly braces around statement(ÃÔ¶§øÿÿÿÿ8ÀŠ±Æô.
+d
+java:S2142ó"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8¤Ÿ¡Æô.
+D
+java:S1075³"&Remove this hard-coded path-delimiter.(ö®¾½8¥ùÉñ.
+[	java:S106Ä"9Replace this use of System.out or System.err by a logger.(ƒöÂüÿÿÿÿ8¡ªŠÉñ.
+J
+java:S1905Ç",Remove this unnecessary cast to "Predicate".(öıôÒ8ƒ©ç”õ.
+{	java:S135Ù"YReduce the total number of break and continue statements in this loop to use at most one.(ÍÚÌ•ÿÿÿÿÿ8Â×¦Éñ.
+h
+java:S1124Ó"EReorder the modifiers to comply with the Java Language Specification.(¥Ìô¹øÿÿÿÿ8¡ªŠÉñ.
+p
+java:S3776Ô"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(´Ä£¢8Â×¦Éñ.
+O
+java:S1602€",Remove useless curly braces around statement(İ›‹æşÿÿÿÿ8Â×¦Éñ.
+¤
+java:S1186©"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(µ‚µõıÿÿÿÿ8Şÿ³¾×.
+c
+java:S1124Ò"EReorder the modifiers to comply with the Java Language Specification.(ßµå8¡ªŠÉñ.
+R
+java:S3740Í"/Provide the parametrized type for this generic.(Å¦Ô’úÿÿÿÿ8½™ÁšÖ.
+V	java:S106©"9Replace this use of System.out or System.err by a logger.(êÇ„8¡ªŠÉñ.
+\
+java:S1155Ø">Use isEmpty() to check whether the collection is empty or not.(àË®8ƒ©ç”õ.
+|
+java:S1450¯"^Remove the "initFrameNumber" field and declare it as a local variable in the relevant methods.(öæ››8„Ü¢×.
+]
+java:S1854û
+"?Remove this useless assignment to local variable "groupPerson".(Öš¢ò8¡ªŠÉñ.
+R
+java:S3740ó"/Provide the parametrized type for this generic.(µÓ“³üÿÿÿÿ8Â×¦Éñ.
+d
+java:S2142Š"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8¡ªŠÉñ.
+p
+java:S3776„"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(äÎ ¥8Â×¦Éñ.
+J
+java:S1602Ò
+",Remove useless curly braces around statement(‹àÇÌ8ÀŠ±Æô.
+M
+java:S3740Ì"/Provide the parametrized type for this generic.(‘ŸŒ—8Şû€¤×.
+J
+java:S1602â
+",Remove useless curly braces around statement(¤°œï8ÀŠ±Æô.
+Q
+java:S1905¼".Remove this unnecessary cast to "IVFXPersons".(Ì¬§àÿÿÿÿÿ8Â×¦Éñ.
+U
+java:S3972Î"7Move this "if" to a new line or add the missing "else".(õ ğÏ8Â×¦Éñ.
+u
+java:S3776ş"RRefactor this method to reduce its Cognitive Complexity from 45 to the 15 allowed.(ô•£šıÿÿÿÿ8¡ªŠÉñ.
+u
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 31 to the 15 allowed.(ÄğÉ°şÿÿÿÿ8ó“«Æô.
+J
+java:S1602Æ",Remove useless curly braces around statement(Œä½8Â×¦Éñ.
+M
+java:S3740í"/Provide the parametrized type for this generic.(ıÀ»œ8Â×¦Éñ.
+d
+java:S2142İ"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8ƒ©ç”õ.
+p
+java:S3776®"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(Ò•©à8«Ô¤Æô.
+p
+java:S3776‘"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(âÍ“°8§œ¥Éñ.
+O
+java:S1602«",Remove useless curly braces around statement(Ñãåàÿÿÿÿÿ8¡ªŠÉñ.
+Y	java:S125¿
+"<This block of commented-out lines of code should be removed.(ÏØ‚ë8ÀŠ±Æô.
+_
+java:S1144ù"<Remove this unused private "onMouseDoubleClickLabel" method.(Á©êøÿÿÿÿ8¡ªŠÉñ.
+g
+java:S1117¾"DRename "listShotPersons" which hides the field declared at line 315.(ßÌÌüùÿÿÿÿ8¤Ÿ¡Æô.
+N
+java:S1481û
+"0Remove this unused "groupPerson" local variable.(Öš¢ò8¡ªŠÉñ.
+K
+java:S3740Ï"/Provide the parametrized type for this generic.(´˜ÜŠûÿÿÿÿ
+\
+java:S1155ç">Use isEmpty() to check whether the collection is empty or not.(¯¯×ö8ƒ©ç”õ.
+s
+java:S1192Ø"PDefine a constant instead of duplicating this literal "TableHeaderRow" 12 times.(àãåçûÿÿÿÿ8Â×¦Éñ.
+I
+java:S1075"&Remove this hard-coded path-delimiter.(¡Ãäøÿÿÿÿ8¡ªŠÉñ.
+F	java:S108†")Either remove or fill this block of code.(ï­£Ä8¡ªŠÉñ.
+O
+java:S1602À
+",Remove useless curly braces around statement(–Ãûøÿÿÿÿ8ÀŠ±Æô.
+K
+java:S1481‰
+".Remove this unused "iProgress" local variable.(¹›{8¡ªŠÉñ.
+p
+java:S3776Á"RRefactor this method to reduce its Cognitive Complexity from 37 to the 15 allowed.(¤ó¢8Â×¦Éñ.
+v	java:S135€"YReduce the total number of break and continue statements in this loop to use at most one.(Úšá†8Â×¦Éñ.
+X
+java:S2209î"5Change this instance-reference to a static reference.(©ÅÓöşÿÿÿÿ8ƒ©ç”õ.
+X
+java:S2209"5Change this instance-reference to a static reference.(”¨à™øÿÿÿÿ8¡ªŠÉñ.
+d
+java:S2142¬"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8—éŸÆô.
+n
+java:S1192…"PDefine a constant instead of duplicating this literal "personIsMainStr" 3 times.(§î¢8Â×¦Éñ.
+I
+java:S1075´"&Remove this hard-coded path-delimiter.(ï“œÅøÿÿÿÿ8Â×¦Éñ.
+d
+java:S2142½"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8«ô¢Æô.
+V
+java:S1172ù"3Remove this unused method parameter "matrixLabels".(Á©êøÿÿÿÿ8¡ªŠÉñ.
+¤
+java:S1186ù"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Á©êøÿÿÿÿ8®¦¬­×.
+S
+java:S1481›"0Remove this unused "countFrames" local variable.(œÆ ›øÿÿÿÿ8¡ªŠÉñ.
+O
+java:S1905ï",Remove this unnecessary cast to "Predicate".(ÛÜ¡ şÿÿÿÿ8ƒ©ç”õ.
+d
+java:S2142‰"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8ƒ©ç”õ.
+d
+java:S2142¯"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8ƒ©ç”õ.
+v	java:S135”"YReduce the total number of break and continue statements in this loop to use at most one.(½íğø8ó“«Æô.
+p
+java:S3776É"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.(ñÈ‘8±ä¬Æô.
+q
+java:S3776¿"SRefactor this method to reduce its Cognitive Complexity from 191 to the 15 allowed.(§øˆ˜8Â×¦Éñ.
+[	java:S106‡"9Replace this use of System.out or System.err by a logger.(Ñ·È§ıÿÿÿÿ8â§¨Æô.
+d
+java:S2142–"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8Û‘¢Æô.
+Q
+java:S1905Ñ".Remove this unnecessary cast to "IVFXPersons".(Ì¬§àÿÿÿÿÿ8Â×¦Éñ.
+u
+java:S3776Ô"RRefactor this method to reduce its Cognitive Complexity from 31 to the 15 allowed.(ıÚ—şÿÿÿÿ8â§¨Æô.
+F	java:S108§")Either remove or fill this block of code.(ï­£Ä8¡ªŠÉñ.
+p
+java:S3776è
+"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(²Õ û8¡ªŠÉñ.
+X
+java:S2209"5Change this instance-reference to a static reference.(¡Ãäøÿÿÿÿ8ƒ©ç”õ.
+X
+java:S2209˜"5Change this instance-reference to a static reference.(¯ûã¾şÿÿÿÿ8¡ªŠÉñ.
+\
+java:S1155€">Use isEmpty() to check whether the collection is empty or not.(öéÆÓ8ƒ©ç”õ.
+Y
+java:S2696"6Make the enclosing method "static" or remove this set.(¹¨…øÿÿÿÿ8¡ªŠÉñ.
+F	java:S108")Either remove or fill this block of code.(×¬œÓ8¡ªŠÉñ.
+F	java:S108¦")Either remove or fill this block of code.(×¬œÓ8¡ªŠÉñ.
+J
+java:S1602‘",Remove useless curly braces around statement(¸áÒ‘8¡ªŠÉñ.
+O
+java:S1602Ô
+",Remove useless curly braces around statement(ãçÁûÿÿÿÿ8ÀŠ±Æô.
+d
+java:S2142«"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8Â×¦Éñ.
+Q
+java:S1905Ã".Remove this unnecessary cast to "IVFXPersons".(Ì¬§àÿÿÿÿÿ8Â×¦Éñ.
+c
+java:S1124Õ"EReorder the modifiers to comply with the Java Language Specification.(³ß š8¡ªŠÉñ.
+R
+java:S3740ï"/Provide the parametrized type for this generic.(µÓ“³üÿÿÿÿ8Â×¦Éñ.
+I
+java:S1075í"&Remove this hard-coded path-delimiter.(¼§ÛÆüÿÿÿÿ8¡ªŠÉñ.
+K
+java:S1481ÿ	".Remove this unused "iProgress" local variable.(¹›{8¡ªŠÉñ.
+J
+java:S1602Ş",Remove useless curly braces around statement(Ñå˜ß8¡ªŠÉñ.
+b
+java:S11240"EReorder the modifiers to comply with the Java Language Specification.(øâöÍ8¡ªŠÉñ.
+R
+java:S3740ü"/Provide the parametrized type for this generic.(µÓ“³üÿÿÿÿ8Â×¦Éñ.
+p
+java:S3776†"RRefactor this method to reduce its Cognitive Complexity from 69 to the 15 allowed.(¨ôõÔ8Â×¦Éñ.
+J
+java:S1602Œ",Remove useless curly braces around statement(†æŸß8¡ªŠÉñ.
+R
+java:S3740¤"/Provide the parametrized type for this generic.(Ù±§Üøÿÿÿÿ8Â×¦Éñ.
+Y
+java:S2696"6Make the enclosing method "static" or remove this set.(”¨à™øÿÿÿÿ8¡ªŠÉñ.
+J
+java:S1602Û
+",Remove useless curly braces around statement(¨¼àï8ÀŠ±Æô.

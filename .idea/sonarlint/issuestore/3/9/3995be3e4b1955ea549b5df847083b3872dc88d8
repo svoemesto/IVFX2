@@ -1,0 +1,32 @@
+
+d
+java:S20950"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8œ®ÎÄô.
+d
+java:S2095^"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8œ®ÎÄô.
+O
+java:S1135"2Complete the task associated to this TODO comment.(¤ŒäÁ8œ®ÎÄô.
+
+java:S1186!"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¡ùı“8œ®ÎÄô.
+U
+java:S1135û"2Complete the task associated to this TODO comment.(Ì°¸ãşÿÿÿÿ8İÄÑÄô.
+l
+java:S2095A"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8œ®ÎÄô.
+e
+java:S2095¨"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8İÄÑÄô.
+U	java:S106F"9Replace this use of System.out or System.err by a logger.(“Õ“¨8œ®ÎÄô.
+m
+java:S2095æ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8İÄÑÄô.
+n
+java:S1858‚"P"eventTypeName" is already a string, there's no need to call "toString()" on it.(»ìğ‹8İÄÑÄô.
+e
+java:S2095€"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8İÄÑÄô.
+M
+java:S1135"2Complete the task associated to this TODO comment.(ÖŞ³µúÿÿÿÿ
+M
+java:S1128	"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿ8äêÓÄô.
+n
+java:S1192f"QDefine a constant instead of duplicating this literal "order_event_type" 3 times.(´’¸Â8üõĞÄô.
+m
+java:S1192e"KDefine a constant instead of duplicating this literal "project_id" 3 times.(¬á»Âøÿÿÿÿ8üõĞÄô.
+m
+java:S2095Ö"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8İÄÑÄô.

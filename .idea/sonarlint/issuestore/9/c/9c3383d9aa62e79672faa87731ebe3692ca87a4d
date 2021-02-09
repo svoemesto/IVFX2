@@ -1,0 +1,100 @@
+
+V	java:S125o"<This block of commented-out lines of code should be removed.(œˆ¥²ÿÿÿÿÿ
+P	java:S125T"<This block of commented-out lines of code should be removed.(½÷Â
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ÄÜÜñúÿÿÿÿ
+S
+java:S1854¸"7Remove this useless assignment to local variable "end".(şû˜ıÿÿÿÿ
+u
+java:S2293õ"YReplace the type specification in this constructor call with the diamond operator ("<>").(‚¶‹Ùúÿÿÿÿ
+a
+java:S1192{"KDefine a constant instead of duplicating this literal "FrameCount" 3 times.(åª•ã
+Z
+java:S1155«">Use isEmpty() to check whether the collection is empty or not.(Å”•–ùÿÿÿÿ
+W	java:S125İ"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ
+Q	java:S125g"<This block of commented-out lines of code should be removed.(ì‘òŠ
+{
+java:S1488;"`Immediately return this expression instead of assigning it to the temporary variable "duration".(Ì¥ÆÉùÿÿÿÿ
+R	java:S125·"<This block of commented-out lines of code should be removed.(£“£¿
+B
+java:S1481"+Remove this unused "status" local variable.(œ˜¼•
+V
+java:S1075"ARefactor your code to get this URI from a customizable parameter.(•ÿŸF
+W	java:S125¡"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ
+u
+java:S2293ƒ"YReplace the type specification in this constructor call with the diamond operator ("<>").(‚¶‹Ùúÿÿÿÿ
+R	java:S125ï"<This block of commented-out lines of code should be removed.(µÎß
+u
+java:S2293’"YReplace the type specification in this constructor call with the diamond operator ("<>").(‚¶‹Ùúÿÿÿÿ
+V	java:S125b"<This block of commented-out lines of code should be removed.(¡³éËüÿÿÿÿ
+Z
+java:S1155">Use isEmpty() to check whether the collection is empty or not.(Å”•–ùÿÿÿÿ
+}
+java:S14881"`Immediately return this expression instead of assigning it to the temporary variable "duration".(¶ØôÙ8ÑàÙõô.
+R	java:S125¼"<This block of commented-out lines of code should be removed.(á“©­
+W	java:S125ç"<This block of commented-out lines of code should be removed.(£û‘øüÿÿÿÿ
+W
+java:S1075 "ARefactor your code to get this URI from a customizable parameter.(òœû¹
+Q	java:S125ß"<This block of commented-out lines of code should be removed.(¹ÄÖE
+H
+java:S1481î"2Remove this unused "executeResult" local variable.(Ï“İ.
+]	java:S1250"<This block of commented-out lines of code should be removed.(Âš•ƒşÿÿÿÿ8ôÂÊöó.
+\
+java:S1192{"FDefine a constant instead of duplicating this literal "Video" 5 times.(åª•ã
+u
+java:S2293‹"YReplace the type specification in this constructor call with the diamond operator ("<>").(‚¶‹Ùúÿÿÿÿ
+V	java:S125s"<This block of commented-out lines of code should be removed.(íØÉ¿ÿÿÿÿÿ
+\
+java:S1075!"ARefactor your code to get this URI from a customizable parameter.( òĞëúÿÿÿÿ
+W	java:S125ä"<This block of commented-out lines of code should be removed.(Òİªéûÿÿÿÿ
+R	java:S125"<This block of commented-out lines of code should be removed.(á“©­
+R	java:S125Ú"<This block of commented-out lines of code should be removed.(á“©­
+u
+java:S2293©"YReplace the type specification in this constructor call with the diamond operator ("<>").(‚¶‹Ùúÿÿÿÿ
+u
+java:S2293Ç"YReplace the type specification in this constructor call with the diamond operator ("<>").(‚¶‹Ùúÿÿÿÿ
+u
+java:S2293­"YReplace the type specification in this constructor call with the diamond operator ("<>").(‚¶‹Ùúÿÿÿÿ
+R	java:S125ß"<This block of commented-out lines of code should be removed.(Ö‹î°
+W	java:S125ë"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ
+Q	java:S125£"<This block of commented-out lines of code should be removed.(¹ÄÖE
+`
+java:S1192ƒ"IDefine a constant instead of duplicating this literal "-vframes" 3 times.(æ³üÈ
+Q	java:S125Á"<This block of commented-out lines of code should be removed.(¹ÄÖE
+U	java:S106"9Replace this use of System.out or System.err by a logger.(¥áËê8ÁÄ€öó.
+H
+java:S1481"2Remove this unused "executeResult" local variable.(Ï“İ.
+W	java:S107£"<Method has 9 parameters, which is greater than 7 authorized.(ùê¶ãÿÿÿÿÿ
+W
+java:S1854"ARemove this useless assignment to local variable "executeResult".(Ï“İ.
+q
+java:S1488D"[Immediately return this expression instead of assigning it to the temporary variable "out".(®„á¥
+W
+java:S1854î"ARemove this useless assignment to local variable "executeResult".(Ï“İ.
+W	java:S125¿"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ
+H
+java:S1481‡"2Remove this unused "executeResult" local variable.(Ï“İ.
+]	java:S1252"<This block of commented-out lines of code should be removed.(Ÿ¸É²øÿÿÿÿ8ÑàÙõô.
+B
+java:S1481»"+Remove this unused "status" local variable.(œ˜¼•
+B
+java:S1481Ù"+Remove this unused "status" local variable.(œ˜¼•
+E
+java:S1066a"/Merge this if statement with the enclosing one.(ÁÅ´Ú
+W
+java:S1854‡"ARemove this useless assignment to local variable "executeResult".(Ï“İ.
+t
+java:S2293~"YReplace the type specification in this constructor call with the diamond operator ("<>").(‚¶‹Ùúÿÿÿÿ
+Z
+java:S1155É">Use isEmpty() to check whether the collection is empty or not.(Å”•–ùÿÿÿÿ
+‡
+java:S1130"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(àÒşüøÿÿÿÿ
+D
+java:S1481¸"(Remove this unused "end" local variable.(şû˜ıÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(±êıŞ
+t
+java:S2293L"YReplace the type specification in this constructor call with the diamond operator ("<>").(‚¶‹Ùúÿÿÿÿ
+’
+java:S1130"wRemove the declaration of thrown exception 'java.lang.InterruptedException', as it cannot be thrown from method's body.(àÒşüøÿÿÿÿ
+…
+java:S1488&"cImmediately return this expression instead of assigning it to the temporary variable "frameNumber".(âï±İşÿÿÿÿ8Ô‘Úõô.
+]	java:S125'"<This block of commented-out lines of code should be removed.(‹Æûùşÿÿÿÿ8Ô‘Úõô.

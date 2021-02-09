@@ -1,0 +1,89 @@
+
+^	java:S125Å"<This block of commented-out lines of code should be removed.(ÃÎ‹’ÿÿÿÿÿ8Ñ¡•¬ó.
+i
+java:S2142é"FEither re-interrupt this method or rethrow the "InterruptedException".(îíüòşÿÿÿÿ8Ñ¡•¬ó.
+R
+java:S1191"5Use classes from the Java API instead of Sun classes.(íé¾Û8Ñ¡•¬ó.
+Y
+java:S2696Â"6Make the enclosing method "static" or remove this set.(õşñÚşÿÿÿÿ8å„Úò.
+[	java:S106‡"9Replace this use of System.out or System.err by a logger.(‚¦¢Šùÿÿÿÿ8Ñ¡•¬ó.
+G
+java:S1940ä")Use the opposite operator ("!=") instead.(ßàï…8Ñ¡•¬ó.
+g
+java:S2259ô"IA "NullPointerException" could be thrown; "mainProject" is nullable here.(ö³¥8Ñ¡•¬ó.
+l
+java:S1192¥"IDefine a constant instead of duplicating this literal "Duration" 4 times.(ú®ß£øÿÿÿÿ8å„Úò.
+Y	java:S125Ù"<This block of commented-out lines of code should be removed.(áœÃ8Ñ¡•¬ó.
+T
+java:S2696˜"6Make the enclosing method "static" or remove this set.(İÍÁ‚8Ñ¡•¬ó.
+J
+java:S1481„"-Remove this unused "ivfxFile" local variable.(ÿ·ÚW8Ñ¡•¬ó.
+[	java:S106İ"9Replace this use of System.out or System.err by a logger.(‚¦¢Šùÿÿÿÿ8Ñ¡•¬ó.
+T
+java:S2696Ç"6Make the enclosing method "static" or remove this set.(âÁÙ8å„Úò.
+T
+java:S2696Ü"6Make the enclosing method "static" or remove this set.(İÍÁ‚8Ñ¡•¬ó.
+X
+java:S3655"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ8Ñ¡•¬ó.
+i
+java:S1192¦"KDefine a constant instead of duplicating this literal "FrameCount" 4 times.(×Ğûğ8Ñ¡•¬ó.
+O
+java:S1444³"1Make this "public static mainProject" field final(ßşÖ¬8å„Úò.
+T
+java:S1444´"1Make this "public static currentFile" field final(ÎÏËÀøÿÿÿÿ8Ñ¡•¬ó.
+S
+java:S2696Û"6Make the enclosing method "static" or remove this set.(İÖŞr8¼¿£Úò.
+a
+java:S1155ƒ">Use isEmpty() to check whether the collection is empty or not.(öÙ‡şÿÿÿÿ8Ñ¡•¬ó.
+u
+java:S3776×"RRefactor this method to reduce its Cognitive Complexity from 33 to the 15 allowed.(÷‹¾†ÿÿÿÿÿ8Ñ¡•¬ó.
+R
+java:S1066ƒ"/Merge this if statement with the enclosing one.(öÙ‡şÿÿÿÿ8Ñ¡•¬ó.
+Y
+java:S2696§"6Make the enclosing method "static" or remove this set.(òŸà¶şÿÿÿÿ8Ñ¡•¬ó.
+u
+java:S1104³"WMake mainProject a static final constant or non-public and provide accessors if needed.(ßşÖ¬8å„Úò.
+i
+java:S2142§"FEither re-interrupt this method or rethrow the "InterruptedException".(îíüòşÿÿÿÿ8Ñ¡•¬ó.
+u
+java:S3776Ï"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(²÷•çÿÿÿÿÿ8Ñ¡•¬ó.
+T
+java:S2696 "6Make the enclosing method "static" or remove this set.(öˆ 8Ñ¡•¬ó.
+g
+java:S2259Ò"IA "NullPointerException" could be thrown; "currentFile" is nullable here.(„ìãí8Ñ¡•¬ó.
+X
+java:S3655˜"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ8Ñ¡•¬ó.
+«
+java:S1192¨"‡Define a constant instead of duplicating this literal "ĞĞµ ÑƒĞ´Ğ°Ğ»Ğ¾ÑÑŒ Ğ¿Ğ¾Ğ»ÑƒÑ‡Ğ¸Ñ‚ÑŒ Ğ´Ğ°Ğ½Ğ½Ñ‹Ğµ Ñ‡ĞµÑ€ĞµĞ· MediaInfo" 4 times.(‚¦¢Šùÿÿÿÿ8Ñ¡•¬ó.
+[	java:S106¨"9Replace this use of System.out or System.err by a logger.(‚¦¢Šùÿÿÿÿ8Ñ¡•¬ó.
+i
+java:S2142Ü"FEither re-interrupt this method or rethrow the "InterruptedException".(îíüòşÿÿÿÿ8Ñ¡•¬ó.
+[	java:S106ê"9Replace this use of System.out or System.err by a logger.(‚¦¢Šùÿÿÿÿ8Ñ¡•¬ó.
+R
+java:S3740Ä"/Provide the parametrized type for this generic.(µÓ“³üÿÿÿÿ8Ñ¡•¬ó.
+R
+java:S3740¿"/Provide the parametrized type for this generic.(Š×”éøÿÿÿÿ8Ñ¡•¬ó.
+z
+java:S1104´"WMake currentFile a static final constant or non-public and provide accessors if needed.(ÎÏËÀøÿÿÿÿ8Ñ¡•¬ó.
+m
+java:S1192¤"JDefine a constant instead of duplicating this literal "FrameRate" 4 times.(ø¥°Úøÿÿÿÿ8Ñ¡•¬ó.
+p
+java:S3776¶"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(èä®é8Ñ¡•¬ó.
+V	java:S106£"9Replace this use of System.out or System.err by a logger.(š´è8Ñ¡•¬ó.
+i
+java:S2142†"FEither re-interrupt this method or rethrow the "InterruptedException".(îíüòşÿÿÿÿ8Ñ¡•¬ó.
+j
+java:S1192¤"GDefine a constant instead of duplicating this literal "Video" 12 times.(ø¥°Úøÿÿÿÿ8å„Úò.
+Y
+java:S2696Ã"6Make the enclosing method "static" or remove this set.(§„½Ôüÿÿÿÿ8Ñ¡•¬ó.
+G
+java:S1940â")Use the opposite operator ("!=") instead.(ÙÙÙ8Ñ¡•¬ó.
+Y
+java:S2696²"6Make the enclosing method "static" or remove this set.(ü¡Ü¾ıÿÿÿÿ8Ñ¡•¬ó.
+u
+java:S3776ÿ"RRefactor this method to reduce its Cognitive Complexity from 29 to the 15 allowed.(±èøÃıÿÿÿÿ8Ñ¡•¬ó.
+X
+java:S3655•"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ8Ñ¡•¬ó.
+Y	java:S125…"<This block of commented-out lines of code should be removed.(¤×éÌ8Ñ¡•¬ó.
+M
+java:S3740·"/Provide the parametrized type for this generic.(ƒù¾™8Ñ¡•¬ó.

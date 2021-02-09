@@ -1,0 +1,20 @@
+
+U	java:S106I"9Replace this use of System.out or System.err by a logger.(°ñëò8³·ğëô.
+m
+java:S2095¿"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8ˆŠíëô.
+d
+java:S2095_"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8³·ğëô.
+U
+java:S1135¸"2Complete the task associated to this TODO comment.(ÕïÓÂÿÿÿÿÿ8³·ğëô.
+e
+java:S2095„"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8³·ğëô.
+m
+java:S2095Æ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(›Å¨©8ØœÃö.
+d
+java:S2095."GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8ß˜Æö.
+l
+java:S2095="OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8³·ğëô.
+U
+java:S1135¤"2Complete the task associated to this TODO comment.(ç ƒĞÿÿÿÿÿ8³·ğëô.
+m
+java:S2095«"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8³·ğëô.

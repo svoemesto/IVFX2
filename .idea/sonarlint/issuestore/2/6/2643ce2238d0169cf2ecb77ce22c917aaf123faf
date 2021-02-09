@@ -1,0 +1,45 @@
+
+k
+java:S1192r"IDefine a constant instead of duplicating this literal " WHERE (" 3 times.(Õ¡§¦ıÿÿÿÿ8ÆÌ¦¸ø.
+W
+java:S1141J"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8æ»¶°ø.
+>
+java:S1643x"Use a StringBuilder instead.(ÁÀí¹øÿÿÿÿ8æ»¶°ø.
+?
+java:S1643¦"Use a StringBuilder instead.(ÃÖì‹ıÿÿÿÿ8Ë§¸ø.
+t
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 30 to the 15 allowed.(‡À“şÿÿÿÿ8æ»¶°ø.
+?
+java:S1643¨"Use a StringBuilder instead.(£Æ±Åûÿÿÿÿ8Ë§¸ø.
+t
+java:S3776j"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.( ¼“Íÿÿÿÿÿ8¥Ïÿ·ø.
+r
+java:S2095³"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ºôëçıÿÿÿÿ8Ë§¸ø.
+e
+java:S2095š"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8Ë§¸ø.
+>
+java:S1643z"Use a StringBuilder instead.(«Æ«ÿÿÿÿÿ8ß°§¸ø.
+E	java:S108S")Either remove or fill this block of code.(ï­£Ä8æ»¶°ø.
+r
+java:S2095»"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ú–‡­ıÿÿÿÿ8Ë§¸ø.
+r
+java:S2095·"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÁÍÌ—úÿÿÿÿ8Ä¿¬¸ø.
+9
+java:S1643~"Use a StringBuilder instead.(»ˆİÉ8áÔï·ø.
+>
+java:S1643"Use a StringBuilder instead.(ä÷Æãúÿÿÿÿ8ïóï·ø.
+?
+java:S1643€"Use a StringBuilder instead.(ä÷Æãúÿÿÿÿ8Ë§¸ø.
+]	java:S125N"<This block of commented-out lines of code should be removed.(É¬±èıÿÿÿÿ8æ»¶°ø.
+J
+java:S1481".Remove this unused "iProgress" local variable.(¹›{8æ»¶°ø.
+>
+java:S1643}"Use a StringBuilder instead.(óè«¢ùÿÿÿÿ8æ»¶°ø.
+9
+java:S1643{"Use a StringBuilder instead.(²Å‘å8Ë§¸ø.
+d
+java:S2095%"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8æ»¶°ø.
+m
+java:S2095®"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(±°é8Ë§¸ø.
+9
+java:S1643y"Use a StringBuilder instead.(âÆßÇ8áÔï·ø.

@@ -1,0 +1,21 @@
+
+Q
+java:S1905®".Remove this unnecessary cast to "IVFXFilters".(Êâ»œşÿÿÿÿ8Ûš«ó.
+F
+java:S1604·"(Make this anonymous inner class a lambda(›Ğ‘à8Ûš«ó.
+Ÿ
+java:S1186“"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ïã‚¤8Ûš«ó.
+M
+java:S1066»"/Merge this if statement with the enclosing one.(ï£Æê8Ûš«ó.
+X
+java:S2696y"6Make the enclosing method "static" or remove this set.(®ÒƒÌÿÿÿÿÿ8™ˆ«ó.
+X
+java:S2696E"6Make the enclosing method "static" or remove this set.(®ÒƒÌÿÿÿÿÿ8ÜÿÆªó.
+W
+java:S3655Q"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ8À‡¯ªó.
+S
+java:S2696:"6Make the enclosing method "static" or remove this set.(Í¤¢Ó8œå­ªó.
+Y
+java:S2696°"6Make the enclosing method "static" or remove this set.(¿µ’Şşÿÿÿÿ8Ûš«ó.
+S
+java:S2696S"6Make the enclosing method "static" or remove this set.(Í¤¢Ó8À‡¯ªó.

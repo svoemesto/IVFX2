@@ -13,7 +13,17 @@ public class Main extends Application {
 
     public static Stage mainWindow;
     public static Connection mainConnection;
+    public static String mainFolder = "D:\\iGot";
+    public static String mainTasgFolder = "D:\\iGot\\Tags";
+    public static String mainTypesFolder = "D:\\iGot\\Types";
 
+    public static String getMainTasgFolder() {
+        return mainTasgFolder;
+    }
+
+    public static String getMainTypesFolder() {
+        return mainTypesFolder;
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception{

@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
+
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1200.0" prefWidth="2710.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.svoemesto.ivfx.controllers.TagsShotsController">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="5000.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="5000.0" prefWidth="100.0">
+                     <children>
+                        <ComboBox fx:id="cbProject" prefWidth="290.0" />
+                        <ComboBox fx:id="cbFiles" prefWidth="290.0" visibleRowCount="30" />
+                        <Separator prefWidth="200.0" />
+                        <TableView fx:id="tblShots" maxHeight="1.7976931348623157E308" maxWidth="290.0" minWidth="290.0" prefHeight="5000.0" prefWidth="290.0" style="-fx-selection-bar: red; -fx-selection-bar-non-focused: red;">
+                          <columns>
+                            <TableColumn fx:id="colShotFrom" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" resizable="false" text="FROM" />
+                            <TableColumn fx:id="colShotTo" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" resizable="false" text="TO" />
+                          </columns>
+                        </TableView>
+                        <ComboBox fx:id="cbFiles1" layoutX="10.0" layoutY="35.0" prefWidth="290.0" visibleRowCount="30" />
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox prefHeight="5000.0" prefWidth="720.0" style="-fx-background-color: BLACK;">
+                     <children>
+                        <GridPane fx:id="gpPreview">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="75.0" minHeight="75.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                        <Separator prefWidth="200.0" />
+                        <Label fx:id="lblFullSizePicture" maxHeight="400.0" maxWidth="720.0" minHeight="400.0" minWidth="720.0" prefHeight="400.0" prefWidth="720.0" />
+                        <Separator prefWidth="200.0" />
+                        <VBox prefHeight="5000.0" prefWidth="100.0" style="-fx-background-color: BLACK;">
+                           <children>
+                              <AnchorPane fx:id="apPlayer" prefHeight="400.0" prefWidth="720.0">
+                                 <children>
+                                    <MediaView fx:id="mainMediaView" fitHeight="400.0" fitWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <Label fx:id="mainLabelPlayer" prefWidth="720.0" style="-fx-font-size: 24; -fx-text-fill: YELLOW;" translateY="365.0" />
+                                    <Slider fx:id="mainSlider" prefWidth="720.0" translateY="350.0" />
+                                 </children>
+                              </AnchorPane>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <ToggleButton fx:id="tbPlayerLoop" mnemonicParsing="false" onAction="#doTgPlayerLoopNextStop" text="LOOP">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="tgPlayerLoopNextStop" />
+                                       </toggleGroup>
+                                    </ToggleButton>
+                                    <ToggleButton fx:id="tbPlayerNext" mnemonicParsing="false" onAction="#doTgPlayerLoopNextStop" text="NEXT" toggleGroup="$tgPlayerLoopNextStop" />
+                                    <ToggleButton fx:id="tbPlayerStop" mnemonicParsing="false" onAction="#doTgPlayerLoopNextStop" text="STOP" toggleGroup="$tgPlayerLoopNextStop" />
+                                    <Separator maxHeight="25.0" orientation="VERTICAL" prefHeight="25.0" />
+                                    <ToggleButton fx:id="tbPlayerSpeed1" mnemonicParsing="false" onAction="#doTgPlayerSpeed" text="x1.0">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="tgPlayerSpeed" />
+                                       </toggleGroup>
+                                    </ToggleButton>
+                                    <ToggleButton fx:id="tbPlayerSpeed2" mnemonicParsing="false" onAction="#doTgPlayerSpeed" text="x1.5" toggleGroup="$tgPlayerSpeed" />
+                                    <ToggleButton fx:id="tbPlayerSpeed3" mnemonicParsing="false" onAction="#doTgPlayerSpeed" text="x2.0" toggleGroup="$tgPlayerSpeed" />
+                                    <ToggleButton fx:id="tbPlayerSpeed4" mnemonicParsing="false" onAction="#doTgPlayerSpeed" text="x2.5" toggleGroup="$tgPlayerSpeed" />
+                                    <ToggleButton fx:id="tbPlayerSpeed5" mnemonicParsing="false" onAction="#doTgPlayerSpeed" text="x3.0" toggleGroup="$tgPlayerSpeed" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" lineSpacing="1.0" prefWidth="5000.0" text="Тип кол-ва" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true" />
+                        <TableView fx:id="tblShotsTypesPersons" prefHeight="340.0" prefWidth="200.0" style="-fx-selection-bar: red; -fx-selection-bar-non-focused: red;">
+                           <columns>
+                              <TableColumn fx:id="colNameTblShotsTypesPersons" maxWidth="95.0" minWidth="95.0" prefWidth="95.0" />
+                           </columns>
+                        </TableView>
+                        <Separator prefWidth="200.0" />
+                        <Label alignment="CENTER" prefWidth="5000.0" text="Тип размера" />
+                        <TableView fx:id="tblShotsTypesSize" prefHeight="565.0" prefWidth="200.0" style="-fx-selection-bar: RED; -fx-selection-bar-non-focused: red;">
+                          <columns>
+                            <TableColumn fx:id="colNameTblShotsTypesSize" maxWidth="95.0" minWidth="95.0" prefWidth="95.0" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <TabPane prefHeight="200.0" prefWidth="1500.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="Персонажи и объекты плана">
+                           <content>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="170.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefWidth="5000.0" text="Все персонажи и объекты" />
+                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TextField fx:id="fldFindTagsAll" />
+                                                      <CheckBox fx:id="chFindTagsAllInProperties" mnemonicParsing="false" onAction="#doChFindTagsAllInProperties" />
+                                                   </children>
+                                                </HBox>
+                                                <TableView fx:id="tblTagsAll" prefHeight="5000.0" prefWidth="175.0">
+                                                   <columns>
+                                                      <TableColumn fx:id="colTypeTblTagsAll" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" text="T" />
+                                                      <TableColumn fx:id="colNameTblTagsAll" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Name" />
+                                                   </columns>
+                                                </TableView>
+                                             </children>
+                                          </VBox>
+                                          <VBox prefHeight="200.0" prefWidth="195.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefWidth="5000.0" text="Персонажи и объекты плана" />
+                                                <TableView fx:id="tblTagsShots" prefHeight="5000.0" prefWidth="200.0">
+                                                   <columns>
+                                                      <TableColumn fx:id="colTypeTblTagsShots" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" text="T" />
+                                                      <TableColumn fx:id="colNameTblTagsShots" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Name" />
+                                                      <TableColumn fx:id="colIsMainTblTagsShots" maxWidth="25.0" minWidth="25.0" prefWidth="25.0" text="M" />
+                                                   </columns>
+                                                </TableView>
+                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Button fx:id="btnAddNewTagShot" mnemonicParsing="false" prefWidth="5000.0" text="Добавить тэг" />
+                                                      <Button fx:id="btnDeleteTagShot" mnemonicParsing="false" prefWidth="5000.0" text="Удалить тэг" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                          <TabPane prefHeight="200.0" prefWidth="780.0" tabClosingPolicy="UNAVAILABLE">
+                                            <tabs>
+                                              <Tab text="Персонажи и объекты предыдущих планов">
+                                                <content>
+                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <VBox prefHeight="200.0" prefWidth="195.0">
+                                                                     <children>
+                                                                        <Label alignment="CENTER" prefWidth="5000.0" text="Персонажи и объекты плана-1" />
+                                                                        <HBox prefHeight="100.0" prefWidth="200.0">
+                                                                           <children>
+                                                                              <Button fx:id="btnCopyFromStep1" mnemonicParsing="false" onAction="#doBtnCopyFromStep1" prefWidth="5000.0" text="&lt;===" />
+                                                                              <CheckBox fx:id="cbToNextStep1" mnemonicParsing="false" />
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <TableView fx:id="tblTagsShotsStep1" prefHeight="5000.0" prefWidth="200.0">
+                                                                           <columns>
+                                                                              <TableColumn fx:id="colTypeTblTagsShotsStep1" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" text="T" />
+                                                                              <TableColumn fx:id="colNameTblTagsShotsStep1" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Name" />
+                                                                              <TableColumn fx:id="colIsMainTblTagsShotsStep1" maxWidth="25.0" minWidth="25.0" prefWidth="25.0" text="M" />
+                                                                           </columns>
+                                                                        </TableView>
+                                                                     </children>
+                                                                  </VBox>
+                                                                  <VBox prefHeight="200.0" prefWidth="195.0">
+                                                                     <children>
+                                                                        <Label alignment="CENTER" prefWidth="5000.0" text="Персонажи и объекты плана-2" />
+                                                                        <HBox prefHeight="100.0" prefWidth="200.0">
+                                                                           <children>
+                                                                              <Button fx:id="btnCopyFromStep2" mnemonicParsing="false" onAction="#doBtnCopyFromStep2" prefWidth="5000.0" text="&lt;===" />
+                                                                              <CheckBox fx:id="cbToNextStep2" mnemonicParsing="false" />
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <TableView fx:id="tblTagsShotsStep2" prefHeight="5000.0" prefWidth="200.0">
+                                                                           <columns>
+                                                                              <TableColumn fx:id="colTypeTblTagsShotsStep2" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" text="T" />
+                                                                              <TableColumn fx:id="colNameTblTagsShotsStep2" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Name" />
+                                                                              <TableColumn fx:id="colIsMainTblTagsShotsStep2" maxWidth="25.0" minWidth="25.0" prefWidth="25.0" text="M" />
+                                                                           </columns>
+                                                                        </TableView>
+                                                                     </children>
+                                                                  </VBox>
+                                                                  <VBox prefHeight="200.0" prefWidth="195.0">
+                                                                     <children>
+                                                                        <Label alignment="CENTER" prefWidth="5000.0" text="Персонажи и объекты плана-3" />
+                                                                        <HBox prefHeight="100.0" prefWidth="200.0">
+                                                                           <children>
+                                                                              <Button fx:id="btnCopyFromStep3" mnemonicParsing="false" onAction="#doBtnCopyFromStep3" prefWidth="5000.0" text="&lt;===" />
+                                                                              <CheckBox fx:id="cbToNextStep3" mnemonicParsing="false" />
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <TableView fx:id="tblTagsShotsStep3" prefHeight="5000.0" prefWidth="200.0">
+                                                                           <columns>
+                                                                              <TableColumn fx:id="colTypeTblTagsShotsStep3" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" text="T" />
+                                                                              <TableColumn fx:id="colNameTblTagsShotsStep3" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Name" />
+                                                                              <TableColumn fx:id="colIsMainTblTagsShotsStep3" maxWidth="25.0" minWidth="25.0" prefWidth="25.0" text="M" />
+                                                                           </columns>
+                                                                        </TableView>
+                                                                     </children>
+                                                                  </VBox>
+                                                                  <VBox prefHeight="200.0" prefWidth="195.0">
+                                                                     <children>
+                                                                        <Label alignment="CENTER" prefWidth="5000.0" text="Персонажи и объекты плана-4" />
+                                                                        <HBox prefHeight="100.0" prefWidth="200.0">
+                                                                           <children>
+                                                                              <Button fx:id="btnCopyFromStep4" mnemonicParsing="false" onAction="#doBtnCopyFromStep4" prefWidth="5000.0" text="&lt;===" />
+                                                                              <CheckBox fx:id="cbToNextStep4" mnemonicParsing="false" />
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <TableView fx:id="tblTagsShotsStep4" prefHeight="5000.0" prefWidth="200.0">
+                                                                           <columns>
+                                                                              <TableColumn fx:id="colTypeTblTagsShotsStep4" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" text="T" />
+                                                                              <TableColumn fx:id="colNameTblTagsShotsStep4" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Name" />
+                                                                              <TableColumn fx:id="colIsMainTblTagsShotsStep4" maxWidth="25.0" minWidth="25.0" prefWidth="25.0" text="M" />
+                                                                           </columns>
+                                                                        </TableView>
+                                                                     </children>
+                                                                  </VBox>
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </AnchorPane>
+                                                </content>
+                                              </Tab>
+                                              <Tab text="Свойства связки план-тэг">
+                                                <content>
+                                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                         <children>
+                                                            <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                               <children>
+                                                                  <Label alignment="CENTER" prefWidth="400.0" text="Свойства связки план-тэг" textAlignment="CENTER" />
+                                                                  <TableView fx:id="tblTagsShotsProperties" prefHeight="5000.0" prefWidth="400.0">
+                                                                     <columns>
+                                                                        <TableColumn fx:id="colNameTblTagsShotsProperties" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Name" />
+                                                                        <TableColumn fx:id="colValueTblTagsShotsProperties" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Value" />
+                                                                     </columns>
+                                                                  </TableView>
+                                                                  <TextField fx:id="fldTagShotPropertyName" onAction="#doFldTagShotPropertyName" />
+                                                                  <TextArea fx:id="fldTagShotPropertyValue" minHeight="75.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                                                  <HBox prefHeight="100.0" prefWidth="200.0">
+                                                                     <children>
+                                                                        <Button fx:id="btnAddNewTagsShotsProperties" mnemonicParsing="false" onAction="#doBtnAddNewTagsShotsProperties" prefWidth="200.0" text="Добавить" />
+                                                                        <Button fx:id="btnDeleteTagsProperties" mnemonicParsing="false" onAction="#doBtnDeleteTagsShotsProperties" prefWidth="200.0" text="Удалить" />
+                                                                     </children>
+                                                                  </HBox>
+                                                               </children>
+                                                            </VBox>
+                                                         </children>
+                                                      </AnchorPane>
+                                                </content>
+                                              </Tab>
+                                            </tabs>
+                                          </TabPane>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                      <Tab text="Сцены">
+                           <content>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="400.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefWidth="5000.0" text="Сцены файла" />
+                                                <TableView fx:id="tblScenes" prefHeight="5000.0" prefWidth="200.0">
+                                                   <columns>
+                                                      <TableColumn fx:id="colStartTblScenes" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" text="Start" />
+                                                      <TableColumn fx:id="colNameTblScenes" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" text="Name" />
+                                                   </columns>
+                                                </TableView>
+                                                <Button fx:id="btnUnionScenes" mnemonicParsing="false" onAction="#doBtnUnionScenes" prefWidth="5000.0" text="Объединить сцены" />
+                                                <Separator prefWidth="200.0" />
+                                                <Label alignment="CENTER" prefWidth="400.0" text="Свойства сцены" textAlignment="CENTER" />
+                                                <TableView fx:id="tblSceneProperties" minHeight="150.0" prefHeight="500.0" prefWidth="400.0">
+                                                   <columns>
+                                                      <TableColumn fx:id="colNameTblSceneProperties" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Name" />
+                                                      <TableColumn fx:id="colValueTblSceneProperties" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" text="Value" />
+                                                   </columns>
+                                                </TableView>
+                                                <TextField fx:id="fldScenePropertyName" onAction="#doFldScenePropertyName" />
+                                                <TextArea fx:id="fldScenePropertyValue" minHeight="75.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Button fx:id="btnAddNewSceneProperty" mnemonicParsing="false" onAction="#doBtnAddNewSceneProperty" prefWidth="200.0" text="Добавить" />
+                                                      <Button fx:id="btnDeleteSceneProperty" mnemonicParsing="false" onAction="#doBtnDeleteSceneProperty" prefWidth="200.0" text="Удалить" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                          <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                          <VBox prefHeight="5000.0" prefWidth="100.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefWidth="5000.0" text="Планы сцены" />
+                                                <TableView fx:id="tblSceneShots" maxHeight="1.7976931348623157E308" maxWidth="290.0" minWidth="290.0" prefHeight="5000.0" prefWidth="290.0" style="-fx-selection-bar: red; -fx-selection-bar-non-focused: red;">
+                                                   <columns>
+                                                      <TableColumn fx:id="colShotFromTblSceneShots" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" resizable="false" text="FROM" />
+                                                      <TableColumn fx:id="colShotToTblSceneShots" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" resizable="false" text="TO" />
+                                                   </columns>
+                                                </TableView>
+                                                <Button fx:id="btnSceneCutUp" mnemonicParsing="false" onAction="#doBtnSceneCutUp" prefWidth="5000.0" text="Разрезать сверху" />
+                                                <Button fx:id="btnSceneCutDown" mnemonicParsing="false" onAction="#doBtnSceneCutDown" prefWidth="5000.0" text="Разрезать снизу" />
+                                             </children>
+                                          </VBox>
+                                          <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                          <VBox prefHeight="200.0" prefWidth="170.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefWidth="5000.0" text="Персонажи и объекты сцены" />
+                                                <TableView fx:id="tblTagsScene" prefHeight="5000.0" prefWidth="175.0">
+                                                   <columns>
+                                                      <TableColumn fx:id="colTypeTblTagsScene" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" text="T" />
+                                                      <TableColumn fx:id="colNameTblTagsScene" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Name" />
+                                                   </columns>
+                                                </TableView>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children></AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab text="События">
+                           <content>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="400.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefWidth="5000.0" text="События файла" />
+                                                <TableView fx:id="tblEvents" prefHeight="5000.0" prefWidth="200.0">
+                                                   <columns>
+                                                      <TableColumn fx:id="colStartTblEvents" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" text="Start" />
+                                                      <TableColumn fx:id="colNameTblEvents" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" text="Name" />
+                                                   </columns>
+                                                </TableView>
+                                                <Button fx:id="btnUnionEvents" mnemonicParsing="false" onAction="#doBtnUnionEvents" prefWidth="5000.0" text="Объединить события" />
+                                                <Separator prefWidth="200.0" />
+                                                <Label alignment="CENTER" prefWidth="400.0" text="Свойства события" textAlignment="CENTER" />
+                                                <TableView fx:id="tblEventProperties" minHeight="150.0" prefHeight="500.0" prefWidth="400.0">
+                                                   <columns>
+                                                      <TableColumn fx:id="colNameTblEventProperties" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Name" />
+                                                      <TableColumn fx:id="colValueTblEventProperties" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" text="Value" />
+                                                   </columns>
+                                                </TableView>
+                                                <TextField fx:id="fldEventPropertyName" onAction="#doFldScenePropertyName" />
+                                                <TextArea fx:id="fldEventPropertyValue" minHeight="75.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Button fx:id="btnAddNewEventProperty" mnemonicParsing="false" onAction="#doBtnAddNewEventProperty" prefWidth="200.0" text="Добавить" />
+                                                      <Button fx:id="btnDeleteEventProperty" mnemonicParsing="false" onAction="#doBtnDeleteEventProperty" prefWidth="200.0" text="Удалить" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                          <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                          <VBox prefHeight="5000.0" prefWidth="100.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefWidth="5000.0" text="Планы события" />
+                                                <TableView fx:id="tblEventShots" maxHeight="1.7976931348623157E308" maxWidth="290.0" minWidth="290.0" prefHeight="5000.0" prefWidth="290.0" style="-fx-selection-bar: red; -fx-selection-bar-non-focused: red;">
+                                                   <columns>
+                                                      <TableColumn fx:id="colShotFromTblEventShots" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" resizable="false" text="FROM" />
+                                                      <TableColumn fx:id="colShotToTblEventShots" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" resizable="false" text="TO" />
+                                                   </columns>
+                                                </TableView>
+                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <VBox prefHeight="200.0" prefWidth="5000.0">
+                                                         <children>
+                                                            <Button fx:id="btnEventExtendUp" mnemonicParsing="false" onAction="#doBtnEventExtendUp" prefWidth="200.0" text="Расширить вверх" />
+                                                            <Button fx:id="btnEventCollapseDown" mnemonicParsing="false" onAction="#doBtnEventCollapseDown" prefWidth="200.0" text="Сузить вниз" />
+                                                         </children>
+                                                      </VBox>
+                                                      <VBox prefHeight="200.0" prefWidth="5000.0">
+                                                         <children>
+                                                            <Button fx:id="btnEventCollapseUp" mnemonicParsing="false" onAction="#doBtnEventCollapseUp" prefWidth="200.0" text="Сузить вверх" />
+                                                            <Button fx:id="btnEventExtendDown" mnemonicParsing="false" onAction="#doBtnEventExtendDown" prefWidth="200.0" text="Расширить вниз" />
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                                <VBox prefHeight="200.0" prefWidth="5000.0">
+                                                   <children>
+                                                      <Button fx:id="btnEventCutUp" mnemonicParsing="false" onAction="#doBtnEventCutUp" prefWidth="5000.0" text="Разрезать сверху" />
+                                                      <Button fx:id="btnEventCutDown" mnemonicParsing="false" onAction="#doBtnEventCutDown" prefWidth="5000.0" text="Разрезать снизу" />
+                                                   </children>
+                                                </VBox>
+                                             </children>
+                                          </VBox>
+                                          <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                          <VBox prefHeight="200.0" prefWidth="170.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefWidth="5000.0" text="Персонажи-объекты события" />
+                                                <TableView fx:id="tblTagsEvent" prefHeight="5000.0" prefWidth="175.0">
+                                                   <columns>
+                                                      <TableColumn fx:id="colTypeTblTagsEvent" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" text="T" />
+                                                      <TableColumn fx:id="colNameTblTagsEvent" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Name" />
+                                                   </columns>
+                                                </TableView>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="btnOK" mnemonicParsing="false" onAction="#doBtnOK" prefWidth="5000.0" text="OK" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

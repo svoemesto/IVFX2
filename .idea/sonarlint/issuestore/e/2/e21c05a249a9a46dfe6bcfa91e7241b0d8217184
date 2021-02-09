@@ -1,0 +1,32 @@
+
+V
+java:S1128"9Remove this unused import 'java.util.function.Predicate'.(ïÍ–¶8ı‹ˆæö.
+U
+java:S1128"3Remove this unused import 'javafx.scene.text.Text'.(˜ÿ‡Üşÿÿÿÿ8»ıåö.
+K
+java:S1128".Remove this unused import 'javafx.scene.Node'.(ÑÖ¬ï8ùæ‹æö.
+~
+java:S14509"\Remove the "listTagsTypes" field and declare it as a local variable in the relevant methods.(ª÷Åƒúÿÿÿÿ8ù®åö.
+g
+java:S1128"JRemove this unused import 'com.sun.javafx.scene.control.skin.VirtualFlow'.(¿ËÍ‹8ùæ‹æö.
+S
+java:S2696v"6Make the enclosing method "static" or remove this set.(¸ï‚·8¢‚æö.
+f
+java:S1128	"IRemove this unused import 'javafx.collections.transformation.SortedList'.( ‡ä¢8ı‹ˆæö.
+R
+java:S2696}"6Make the enclosing method "static" or remove this set.(í”Ğ38ìÙæö.
+[	java:S106œ"9Replace this use of System.out or System.err by a logger.(¥ÃØíıÿÿÿÿ8·Íƒæö.
+R
+java:S1191"5Use classes from the Java API instead of Sun classes.(íé¾Û8½»«åö.
+W
+java:S1128"5Remove this unused import 'javafx.scene.layout.Pane'.(êÄƒÄşÿÿÿÿ8„ëüåö.
+h
+java:S1128"KRemove this unused import 'javafx.scene.control.cell.PropertyValueFactory'.(àÎ¬õ8„ëüåö.
+[
+java:S1128">Remove this unused import 'javafx.beans.value.ChangeListener'.(¸÷Í8ùæ‹æö.
+i
+java:S1128"LRemove this unused import 'com.sun.javafx.scene.control.skin.TableViewSkin'.(íé¾Û8ùæ‹æö.
+O
+java:S1602›",Remove useless curly braces around statement(ÑøÉŞøÿÿÿÿ8·Íƒæö.
+]
+java:S1128";Remove this unused import 'javafx.scene.input.MouseButton'.(®Ñ÷“ıÿÿÿÿ8ùæ‹æö.

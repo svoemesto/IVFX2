@@ -1,0 +1,42 @@
+
+f
+java:S2095‰"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë
+^
+java:S2095€"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ
+N	java:S106E"9Replace this use of System.out or System.err by a logger.(»Ê…–
+]
+java:S2095-"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ
+œ
+java:S1186""€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ßƒØ‘üÿÿÿÿ
+H
+java:S1135 "2Complete the task associated to this TODO comment.(¤ŒäÁ
+f
+java:S2095ú"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë
+e
+java:S2095@"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë
+^
+java:S2095Ù"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ
+M
+java:S1135"2Complete the task associated to this TODO comment.(ÖŞ³µúÿÿÿÿ
+`
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(˜Ï­Ÿÿÿÿÿÿ
+m
+java:S1192c"KDefine a constant instead of duplicating this literal "project_id" 4 times.(ŸöÂÿÿÿÿÿ8Œ®€Åô.
+e
+java:S2095ª"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8²–ôÖ.
+i
+java:S1192f"LDefine a constant instead of duplicating this literal "description" 4 times.(Ø’Ãì8Œ®€Åô.
+n
+java:S1192d"LDefine a constant instead of duplicating this literal "order_group" 4 times.(¢°âüÿÿÿÿ8Œ®€Åô.
+]
+java:S2095\"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ
+K
+java:S2065"0Remove the "transient" modifier from this field.(˜Ï­Ÿÿÿÿÿÿ
+N
+java:S1135’"2Complete the task associated to this TODO comment.(Ì°¸ãşÿÿÿÿ
+E
+java:S2065"0Remove the "transient" modifier from this field.(¬£ïk
+Z
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(¬£ïk
+M
+java:S1128	"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿ8Üõ„Åô.

@@ -1,0 +1,46 @@
+
+\
+java:S1117Ë"9Rename "order" which hides the field declared at line 18.(¶±§ğÿÿÿÿÿ8³ºÄô.
+^	java:S125"<This block of commented-out lines of code should be removed.(¼¬îşÿÿÿÿ8è»Äô.
+p
+java:S3776­"RRefactor this method to reduce its Cognitive Complexity from 45 to the 15 allowed.(É‹·—8è»Äô.
+\
+java:S1117¬"9Rename "order" which hides the field declared at line 18.(¶±§ğÿÿÿÿÿ8³ºÄô.
+m
+java:S2095–"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8³ºÄô.
+m
+java:S2095ª"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8è»Äô.
+T
+java:S1135"2Complete the task associated to this TODO comment.(ÖŞ³µúÿÿÿÿ8°“†ÑÕ.
+u
+java:S3776Ü"RRefactor this method to reduce its Cognitive Complexity from 45 to the 15 allowed.(§ëü¾øÿÿÿÿ8è»Äô.
+u
+java:S3776“"RRefactor this method to reduce its Cognitive Complexity from 45 to the 15 allowed.(Ş­´¨ÿÿÿÿÿ8è»Äô.
+?
+java:S1643¿"Use a StringBuilder instead.(Ò®ã½ûÿÿÿÿ8è»Äô.
+U
+java:S1135ğ"2Complete the task associated to this TODO comment.(Ì°¸ãşÿÿÿÿ8è»Äô.
+Z	java:S106["9Replace this use of System.out or System.err by a logger.(×èñÇşÿÿÿÿ8Œ®¸Äô.
+\
+java:S1117ò"9Rename "order" which hides the field declared at line 18.(¶±§ğÿÿÿÿÿ8³ºÄô.
+e
+java:S2095Û"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8³ºÄô.
+O
+java:S1135'"2Complete the task associated to this TODO comment.(¤ŒäÁ8°“†ÑÕ.
+p
+java:S3776¹"RRefactor this method to reduce its Cognitive Complexity from 45 to the 15 allowed.(õùÔ8è»Äô.
+^	java:S125•"<This block of commented-out lines of code should be removed.(Ñ€¡Çıÿÿÿÿ8è»Äô.
+e
+java:S2095ª"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8Œ®¸Äô.
+^	java:S125Œ"<This block of commented-out lines of code should be removed.(Ñ€¡Çıÿÿÿÿ8è»Äô.
+^	java:S125œ"<This block of commented-out lines of code should be removed.(¼¬îşÿÿÿÿ8è»Äô.
+
+java:S1186*"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(©Ÿ¨ 8ˆ¶Äô.
+d
+java:S2095;"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8ãÑ¶Äô.
+l
+java:S2095V"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8Œ®¸Äô.
+t
+java:S3776m"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(ä•êûÿÿÿÿ8Œ®¸Äô.
+\
+java:S1117Ò"9Rename "order" which hides the field declared at line 18.(¶±§ğÿÿÿÿÿ8³ºÄô.

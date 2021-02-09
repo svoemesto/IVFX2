@@ -1,0 +1,36 @@
+
+M
+java:S1128"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿ8éÅÚÄô.
+m
+java:S2095¬"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8ÃØÄô.
+£
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(–“şÿÿÿÿ8Ø§ÖÄô.
+U
+java:S1135·"2Complete the task associated to this TODO comment.(ÕïÓÂÿÿÿÿÿ8¼ÏÙÄô.
+U
+java:S1135ı"2Complete the task associated to this TODO comment.(Ì°¸ãşÿÿÿÿ8¼ÏÙÄô.
+h
+java:S1192`"KDefine a constant instead of duplicating this literal "project_id" 3 times.(“áÙ—8×€ØÄô.
+e
+java:S2095‰"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8ÃØÄô.
+U
+java:S1135¤"2Complete the task associated to this TODO comment.(ç ƒĞÿÿÿÿÿ8ÃØÄô.
+d
+java:S2095Y"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8”ÀÖÄô.
+e
+java:S2095Ò"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8¼ÏÙÄô.
+a
+java:S1155ß">Use isEmpty() to check whether the collection is empty or not.(¯ÿêŠıÿÿÿÿ8¼ÏÙÄô.
+l
+java:S2095:"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8”ÀÖÄô.
+m
+java:S2095¼"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8¼ÏÙÄô.
+U	java:S106?"9Replace this use of System.out or System.err by a logger.(ÀõàÛ8”ÀÖÄô.
+T
+java:S1135"2Complete the task associated to this TODO comment.(ÖŞ³µúÿÿÿÿ8¸ÈÈğò.
+O
+java:S1135P"2Complete the task associated to this TODO comment.(Ÿ£…Ì8”ÀÖÄô.
+O
+java:S1135t"2Complete the task associated to this TODO comment.(»Ê¬‘8ÃØÄô.
+d
+java:S2095,"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8”ÀÖÄô.

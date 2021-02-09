@@ -372,12 +372,12 @@
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </Separator>
-                              <Button fx:id="btnTransitions" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doTransitions" text="Редактор переходов">
+                              <Button fx:id="btnTransitions" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doTransitions" text="Редактор планов">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button fx:id="btnSegments" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doSegments" text="Редактор сегментов">
+                              <Button fx:id="btnShots" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doShots" text="Редактор сцен">
                                  <VBox.margin>
                                     <Insets top="5.0" />
                                  </VBox.margin>

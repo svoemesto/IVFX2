@@ -17,7 +17,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -103,7 +102,7 @@ public class FramesController {
     public static SimpleBooleanProperty isPressedPlayBackward = new SimpleBooleanProperty();
     private volatile int countLoadedPages;
     private volatile List<IVFXFrames> listFrames = new ArrayList<>();
-    private volatile  List<IVFXSegments> listSegments = new ArrayList<>();
+    private volatile  List<IVFXShots> listShots = new ArrayList<>();
 
     private ObservableList<MatrixPages> listPages = FXCollections.observableArrayList();
     private VirtualFlow flowTblPages;
@@ -160,9 +159,9 @@ public class FramesController {
         // запускается при инициализации (load) контроллера
 
         listFrames = IVFXFrames.loadList(currentFile, false);
-        listSegments = IVFXSegments.loadList(currentFile, false);
-        if (listSegments.size() == 0 ) {
-            listSegments = createSegments(currentFile);
+        listShots = IVFXShots.loadList(currentFile, false);
+        if (listShots.size() == 0 ) {
+            listShots = createShots(currentFile);
         }
 
 
@@ -210,9 +209,9 @@ public class FramesController {
 
             if (isPressedControl) {
                 if (delta > 0) {
-                    goToNextSegment();
+                    goToNextShot();
                 } else {
-                    goToPreviousSegment();
+                    goToPreviousShot();
                 }
             } else {
                 if (!(((currentPage.equals(listPages.get(0)) && delta < 0)) || ((currentPage.equals(listPages.get(listPages.size()-1)) && delta > 0)))) {
@@ -241,9 +240,9 @@ public class FramesController {
             if (isPressedControl) {
                 if (currentFrame != null) {
                     if (delta > 0) {
-                        goToNextSegment();
+                        goToNextShot();
                     } else {
-                        goToPreviousSegment();
+                        goToPreviousShot();
                     }
                 }
             } else {
@@ -286,7 +285,7 @@ public class FramesController {
 
         isPressedPlayForward.addListener((v, oldValue, newValue) -> {
             if (isPressedPlayForward.getValue()) {
-//                goToNextSegment();
+//                goToNextShot();
                 new PlayForward().start();
             }
         });
@@ -405,7 +404,7 @@ public class FramesController {
 
 
 
-    private void goToNextSegment() {
+    private void goToNextShot() {
 
         MatrixFrames frame = currentFrame.nextMatrixFrame;
         if (frame == null) return;
@@ -417,7 +416,7 @@ public class FramesController {
 
     }
 
-    private void goToPreviousSegment() {
+    private void goToPreviousShot() {
 
         MatrixFrames frame = currentFrame.prevMatrixFrame;
         if (frame == null) return;
@@ -506,9 +505,9 @@ public class FramesController {
     }
 
 
-    private List<IVFXSegments> createSegments(IVFXFiles file) {
+    private List<IVFXShots> createShots(IVFXFiles file) {
 
-        List<IVFXSegments> list = new ArrayList<>();
+        List<IVFXShots> list = new ArrayList<>();
         if (listFrames.size() != 0) {
             int firstFrameNumber = 1;
             int lastFrameNumber = 0;
@@ -524,59 +523,56 @@ public class FramesController {
                 if (ivfxFrame.getIsFinalFind()) {
                     lastFrameNumber = currentFrameNumber-1;
 
-                    IVFXSegments tempSegment = IVFXSegments.getNewDbInstance(file);
+                    IVFXShots tempShot = IVFXShots.getNewDbInstance(file);
 
-                    tempSegment.setFileId(file.getId());
-                    tempSegment.setFileUuid(file.getUuid());
-                    tempSegment.setFirstFrameNumber(firstFrameNumber);
-                    tempSegment.setLastFrameNumber(lastFrameNumber);
-                    tempSegment.setNearestIFrame(previousIFrame);
-                    tempSegment.setIvfxFile(file);
-                    tempSegment.save();
+                    tempShot.setFileId(file.getId());
+                    tempShot.setFirstFrameNumber(firstFrameNumber);
+                    tempShot.setLastFrameNumber(lastFrameNumber);
+                    tempShot.setNearestIFrame(previousIFrame);
+                    tempShot.setIvfxFile(file);
+                    tempShot.save();
 
-                    list.add(tempSegment);
+                    list.add(tempShot);
 
                     firstFrameNumber = currentFrameNumber;
                     previousIFrame = currentIFrame;
                 }
             }
 
-            IVFXSegments tempSegment = IVFXSegments.getNewDbInstance(file);
+            IVFXShots tempShot = IVFXShots.getNewDbInstance(file);
 
-            tempSegment.setFileId(file.getId());
-            tempSegment.setFileUuid(file.getUuid());
-            tempSegment.setFirstFrameNumber(firstFrameNumber);
-            tempSegment.setLastFrameNumber(lastFrameNumber);
-            tempSegment.setNearestIFrame(previousIFrame);
-            tempSegment.setIvfxFile(file);
-            tempSegment.save();
+            tempShot.setFileId(file.getId());
+            tempShot.setFirstFrameNumber(firstFrameNumber);
+            tempShot.setLastFrameNumber(lastFrameNumber);
+            tempShot.setNearestIFrame(previousIFrame);
+            tempShot.setIvfxFile(file);
+            tempShot.save();
 
-            list.add(tempSegment);
+            list.add(tempShot);
         }
 
         return list;
     }
 
-    private void actualizeSegments(IVFXFrames frame) {
+    private void actualizeShots(IVFXFrames frame) {
 
         if (frame != null) {
-            for (int i = 0; i < listSegments.size(); i++) {
-                IVFXSegments segment = listSegments.get(i);
+            for (int i = 0; i < listShots.size(); i++) {
+                IVFXShots shot = listShots.get(i);
 
-                // находим сегмент, в котором сидит фрейм
-                if (frame.getFrameNumber() >= segment.getFirstFrameNumber() && frame.getFrameNumber() <= segment.getLastFrameNumber()) {
-                    // если фрейм переходной, а в сегменте он не на первом месте - надо разрезать сегмент на 2 части
-                    if (frame.getIsFinalFind() && segment.getFirstFrameNumber() != frame.getFrameNumber()) {
-                        int lastFrameNumber = segment.getLastFrameNumber(); // запоминаем последний фрейм сегмента
-                        segment.setLastFrameNumber(frame.getFrameNumber() - 1); // устанавливаем конец текущего семента предыдущий кадр от переданного
-                        segment.save();
+                // находим план, в котором сидит фрейм
+                if (frame.getFrameNumber() >= shot.getFirstFrameNumber() && frame.getFrameNumber() <= shot.getLastFrameNumber()) {
+                    // если фрейм переходной, а в плане он не на первом месте - надо разрезать план на 2 части
+                    if (frame.getIsFinalFind() && shot.getFirstFrameNumber() != frame.getFrameNumber()) {
+                        int lastFrameNumber = shot.getLastFrameNumber(); // запоминаем последний фрейм плана
+                        shot.setLastFrameNumber(frame.getFrameNumber() - 1); // устанавливаем конец текущего семента предыдущий кадр от переданного
+                        shot.save();
 
-                        IVFXSegments newSegment = IVFXSegments.getNewDbInstance(frame.getIvfxFile());
-                        newSegment.setIvfxFile(frame.getIvfxFile());
-                        newSegment.setFileId(newSegment.getIvfxFile().getId());
-                        newSegment.setFileUuid(newSegment.getIvfxFile().getUuid());
-                        newSegment.setFirstFrameNumber(frame.getFrameNumber());
-                        newSegment.setLastFrameNumber(lastFrameNumber);
+                        IVFXShots newShot = IVFXShots.getNewDbInstance(frame.getIvfxFile());
+                        newShot.setIvfxFile(frame.getIvfxFile());
+                        newShot.setFileId(newShot.getIvfxFile().getId());
+                        newShot.setFirstFrameNumber(frame.getFrameNumber());
+                        newShot.setLastFrameNumber(lastFrameNumber);
                         int nearestIFrame = 1;
                         for (int j = frame.getFrameNumber()-1; j >= 0 ; j--) {
                             if (listFrames.get(j).getIsIFrame()) {
@@ -584,25 +580,25 @@ public class FramesController {
                                 break;
                             }
                         }
-                        newSegment.setNearestIFrame(nearestIFrame);
-                        newSegment.save();
-                        listSegments.add(newSegment);
+                        newShot.setNearestIFrame(nearestIFrame);
+                        newShot.save();
+                        listShots.add(newShot);
 
-                    // если фрейм не переходной, но с него начинается сегмент - надо сегмент склеить с предыдущим
-                    } else if (!frame.getIsFinalFind() && segment.getFirstFrameNumber() == frame.getFrameNumber()) {
-                        IVFXSegments segmentToUnion = null;
-                        for (int j = 0; j < listSegments.size(); j++) {
-                            IVFXSegments tmp = listSegments.get(j);
+                    // если фрейм не переходной, но с него начинается план - надо план склеить с предыдущим
+                    } else if (!frame.getIsFinalFind() && shot.getFirstFrameNumber() == frame.getFrameNumber()) {
+                        IVFXShots shotToUnion = null;
+                        for (int j = 0; j < listShots.size(); j++) {
+                            IVFXShots tmp = listShots.get(j);
                             if (tmp.getLastFrameNumber() == frame.getFrameNumber() - 1) {
-                                segmentToUnion = tmp;
+                                shotToUnion = tmp;
                                 break;
                             }
                         }
-                        segmentToUnion.setLastFrameNumber(segment.getLastFrameNumber());
-                        segmentToUnion.save();
+                        shotToUnion.setLastFrameNumber(shot.getLastFrameNumber());
+                        shotToUnion.save();
 
-                        listSegments.remove(segment);
-                        segment.delete();
+                        listShots.remove(shot);
+                        shot.delete();
 
                     }
 
@@ -773,7 +769,7 @@ public class FramesController {
                                 }
                             }
 
-                            actualizeSegments(matrix.frame);
+                            actualizeShots(matrix.frame);
 
                             initFrameNumber = currentPage.firstFrameNumber;
                             createPages();

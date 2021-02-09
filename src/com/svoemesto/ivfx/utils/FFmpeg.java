@@ -13,17 +13,19 @@ import java.util.regex.Pattern;
 public class FFmpeg {
 
     public static void main(String[]args) throws IOException, InterruptedException {
-//        final String mediaPath = "E:\\TestFrames\\GOT\\TestGOT.mkv";
-//        final String losslessPath = "E:\\TestFrames\\GOT\\TestGOT_lossless.mkv";
-//        final String splitPath = "E:\\TestFrames\\GOT\\TestGOT_split.mp4";
-//        final String imagePath = "E:\\TestFrames\\GOT\\TestGOT_frame.png";
-//        FFmpeg.CreateLosslessVideo(mediaPath,losslessPath);
-//        FFmpeg.CreateVideo(losslessPath, splitPath,95,158,"libx264",9000000,"ac3", 196608, 48000);
-//        System.out.println(Integer.parseInt(MediaInfo.getInfoBySectionAndParameter(splitPath,"Video","FrameCount")));
-        System.out.println(getFrameNumberByDuration(354271,23.976));
-        System.out.println(getDurationByFrameNumber(8494,23.976));
-        System.out.println(convertDurationToString(354271));
-//        GetListIFrames("D:\\iGOT\\TestGOT.mkv", 23.976);
+
+        int frameNumber = 15322;
+        double frameRate = 23.976;
+
+        int duration = getDurationByFrameNumber(frameNumber,frameRate);
+        System.out.println(duration);
+
+        frameNumber = getFrameNumberByDuration(duration,frameRate);
+        System.out.println(frameNumber);
+
+        System.out.println(convertDurationToString(duration));
+
+
     }
 
     public static final String PATH_TO_FFMPEG = "D:\\ffmpeg-shared\\bin\\ffmpeg.exe";
@@ -34,14 +36,18 @@ public class FFmpeg {
         double dur1fr = 1000 / fps;
         double doubleFrames = (duration / dur1fr) + 1;
         int frameNumber = (int)Math.round(doubleFrames);
+//        System.out.println(doubleFrames);
         return frameNumber;
     }
 
     public static Integer getDurationByFrameNumber(int frameNumber, double fps) {
         double dur1fr = 1000 / fps;
-        double doubleDur = (frameNumber-1)*dur1fr;
-        if (doubleDur <0 ) doubleDur = 0;
-        int duration = (int)Math.round(doubleDur);
+        int countFramesBefore = frameNumber - 1;
+        double durDouble = countFramesBefore * dur1fr;
+        if (durDouble <0 ) durDouble = 0;
+//        int duration = (int)Math.round(durDouble);
+        int duration = (int)Math.ceil(durDouble);
+//        System.out.println(durDouble);
         return duration;
     }
 

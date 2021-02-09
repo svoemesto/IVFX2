@@ -1,0 +1,41 @@
+
+s	java:S117ã"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒ§ÔÃüÿÿÿÿ8»Åí‹÷.
+ƒ
+java:S1488"`Immediately return this expression instead of assigning it to the temporary variable "fileName".(Ñê½³ùÿÿÿÿ8»Åí‹÷.
+W
+java:S1141~"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8»Åí‹÷.
+X
+java:S1141¶"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8»Åí‹÷.
+n
+java:S1192;"LDefine a constant instead of duplicating this literal "description" 4 times.(¥Ë÷—şÿÿÿÿ8Öç®ôö.
+E	java:S108O")Either remove or fill this block of code.(ï­£Ä8»Åí‹÷.
+m
+java:S2095™"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8»Åí‹÷.
+s	java:S117§"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒ§ÔÃüÿÿÿÿ8»Åí‹÷.
+X
+java:S1141ò"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8»Åí‹÷.
+m
+java:S1192:"KDefine a constant instead of duplicating this literal "name_short" 4 times.(²¸¥Æûÿÿÿÿ8Öç®ôö.
+r	java:S1177"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒ§ÔÃüÿÿÿÿ8ç»ôö.
+W
+java:S1141F"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8ÂïÙôö.
+r	java:S117o"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ƒ§ÔÃüÿÿÿÿ8»Åí‹÷.
+F	java:S108‡")Either remove or fill this block of code.(ï­£Ä8»Åí‹÷.
+d
+java:S20952"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8ç»ôö.
+^	java:S125ó"<This block of commented-out lines of code should be removed.(Ã«šüøÿÿÿÿ8±âõ‹÷.
+]	java:S125G"<This block of commented-out lines of code should be removed.(Ã«šüøÿÿÿÿ8œÒó‹÷.
+e
+java:S2095Ü"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8»Åí‹÷.
+I
+java:S1075"&Remove this hard-coded path-delimiter.(Ñê½³ùÿÿÿÿ8»Åí‹÷.
+d
+java:S2095j"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8»Åí‹÷.
+U
+java:S1135"2Complete the task associated to this TODO comment.(ç ƒĞÿÿÿÿÿ8»Åí‹÷.
+F	java:S108û")Either remove or fill this block of code.(ï­£Ä8»Åí‹÷.
+e
+java:S2095¢"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8»Åí‹÷.
+^	java:S125·"<This block of commented-out lines of code should be removed.(Ã«šüøÿÿÿÿ8ı¯õ‹÷.
+]	java:S125"<This block of commented-out lines of code should be removed.(Ã«šüøÿÿÿÿ8—†õ‹÷.
+F	java:S108¿")Either remove or fill this block of code.(ï­£Ä8»Åí‹÷.

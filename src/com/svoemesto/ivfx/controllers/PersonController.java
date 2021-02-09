@@ -126,7 +126,7 @@ public class PersonController extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Main.mainConnection = Database.getConnection();
-        IVFXProjects project = IVFXProjects.loadById(1);
+        IVFXProjects project = IVFXProjects.load(1);
         IVFXPersons person = PersonController.getPerson(project);
         if (person != null) {
             System.out.println(person.getName());
@@ -171,7 +171,7 @@ public class PersonController extends Application {
         btnDeletePerson.setDisable(currentPerson == null);
         btnChangePersonPicture.setDisable(currentPerson == null);
 
-        colPreview.setCellValueFactory(new PropertyValueFactory<>("preview"));
+        colPreview.setCellValueFactory(new PropertyValueFactory<>("preview1"));
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         tblPersons.setItems(listPersons);
@@ -218,22 +218,27 @@ public class PersonController extends Application {
             if (currentPerson != null) {
                 currentPerson.setName(ctlName.getText());
                 for (IVFXPersons person: listPersons) {
-                    if (person.getUuid().toString().equals(currentPerson.getUuid().toString())) {
+                    if (person.getId() == currentPerson.getId()) {
                         person.setName(ctlName.getText());
 
                         String fileName = person.getPersonPicturePreview();
                         File file = new File(fileName);
-                        person.setLabel(new Label(person.getName()));
-                        person.getLabel().setPrefWidth(135);
+                        for (int i = 0; i < 8; i++) {
+                            person.setLabel(new Label(person.getName()), i);
+                            person.getLabel()[i].setPrefWidth(135);
+                        }
                         if (!file.exists()) {
                             fileName = person.getPersonPicturePreviewStub();
                             file = new File(fileName);
                         }
                         try {
                             BufferedImage bufferedImage = ImageIO.read(file);
-                            person.setPreview(new ImageView(ConvertToFxImage.convertToFxImage(OverlayImage.setOverlayUnderlineText(bufferedImage, person.getName()))));
-                            person.getLabel().setGraphic(person.getPreview());
-                            person.getLabel().setContentDisplay(ContentDisplay.TOP);
+                            for (int i = 0; i < 8; i++) {
+                                person.setPreview(new ImageView(ConvertToFxImage.convertToFxImage(OverlayImage.setOverlayUnderlineText(bufferedImage, person.getName()))), i);
+                                person.getLabel()[i].setGraphic(person.getPreview()[i]);
+                                person.getLabel()[i].setContentDisplay(ContentDisplay.TOP);
+                            }
+
                         } catch (IOException e) {}
 
 
@@ -251,7 +256,7 @@ public class PersonController extends Application {
             if (currentPerson != null) {
                 currentPerson.setDescription(ctlDescription.getText());
                 for (IVFXPersons person: listPersons) {
-                    if (person.getUuid().toString().equals(currentPerson.getUuid().toString())) {
+                    if (person.getId() == currentPerson.getId()) {
                         person.setDescription(ctlDescription.getText());
                         break;
                     }
@@ -432,7 +437,7 @@ public class PersonController extends Application {
     void doCreateNewPerson(ActionEvent event) {
         ClearFilter();
         IVFXPersons newPerson = IVFXPersons.getNewDbInstance(currentProject);
-        currentPerson = IVFXPersons.loadById(newPerson.getId(),true);
+        currentPerson = IVFXPersons.load(newPerson.getId(),true);
         initialize();
     }
 

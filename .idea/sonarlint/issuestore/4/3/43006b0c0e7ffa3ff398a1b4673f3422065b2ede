@@ -1,0 +1,32 @@
+
+
+java:S1186("€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¿¶¤¡8¾šìÄô.
+m
+java:S2095 "OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8™ŞïÄô.
+U	java:S106T"9Replace this use of System.out or System.err by a logger.(ìÜ‘8ÖÅìÄô.
+F
+java:S1125³"(Remove the literal "true" boolean value.(Øµ·8™ŞïÄô.
+M
+java:S1128"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿ8ŞÚòÄô.
+O
+java:S1135ª"2Complete the task associated to this TODO comment.(¶å 8™ŞïÄô.
+K
+java:S1125Ê"(Remove the literal "true" boolean value.(Òı¨Êüÿÿÿÿ8™ŞïÄô.
+d
+java:S2095k"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8ÖÅìÄô.
+d
+java:S20954"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8¾šìÄô.
+l
+java:S2095O"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8ÖÅìÄô.
+e
+java:S2095º"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8ÖÅìÄô.
+K
+java:S1125Ê"(Remove the literal "true" boolean value.(Òı¨Êüÿÿÿÿ8™ŞïÄô.
+T
+java:S1135"2Complete the task associated to this TODO comment.(ÖŞ³µúÿÿÿÿ8¸öëÄô.
+U
+java:S1135ç"2Complete the task associated to this TODO comment.(Ì°¸ãşÿÿÿÿ8™ŞïÄô.
+F
+java:S1125³"(Remove the literal "true" boolean value.(Øµ·8™ŞïÄô.
+m
+java:S2095Œ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8ÖÅìÄô.

@@ -3,7 +3,9 @@ package com.svoemesto.ivfx.utils;
 
 import javafx.geometry.Pos;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
 public class OverlayImage {
@@ -80,11 +82,76 @@ public class OverlayImage {
         return setTextOverlay(sourceImage, textToOverlay, textColor, textFont, textPosition, opaque);
     }
 
+    public static BufferedImage setOverlayIsBodyScene(BufferedImage sourceImage) {
+        int imageW = sourceImage.getWidth();
+        int imageH = sourceImage.getHeight();
+        float opaque = 1.0f;
+        Color color = Color.ORANGE;
+        return setOverlayRectangle(sourceImage, 0,0,10,imageH, color, opaque);
+    }
+
+    public static BufferedImage setOverlayIsStartScene(BufferedImage sourceImage) {
+        int imageW = sourceImage.getWidth();
+        int imageH = sourceImage.getHeight();
+        float opaque = 1.0f;
+        Color color = Color.ORANGE;
+        return setOverlayRectangle(sourceImage, 10,0,20,10, color, opaque);
+    }
+
+    public static BufferedImage setOverlayIsEndScene(BufferedImage sourceImage) {
+        int imageW = sourceImage.getWidth();
+        int imageH = sourceImage.getHeight();
+        float opaque = 1.0f;
+        Color color = Color.ORANGE;
+        return setOverlayRectangle(sourceImage, 10,imageH-10,20,10, color, opaque);
+    }
+
+    public static BufferedImage setOverlayIsBodyEvent(BufferedImage sourceImage) {
+        int imageW = sourceImage.getWidth();
+        int imageH = sourceImage.getHeight();
+        float opaque = 1.0f;
+        Color color = Color.GREEN;
+        return setOverlayRectangle(sourceImage, imageW-11,0,10,imageH, color, opaque);
+    }
+
+    public static BufferedImage setOverlayIsStartEvent(BufferedImage sourceImage) {
+        int imageW = sourceImage.getWidth();
+        int imageH = sourceImage.getHeight();
+        float opaque = 1.0f;
+        Color color = Color.GREEN;
+        return setOverlayRectangle(sourceImage, imageW-31,0,20,10, color, opaque);
+    }
+
+    public static BufferedImage setOverlayIsEndEvent(BufferedImage sourceImage) {
+        int imageW = sourceImage.getWidth();
+        int imageH = sourceImage.getHeight();
+        float opaque = 1.0f;
+        Color color = Color.GREEN;
+        return setOverlayRectangle(sourceImage, imageW-31,imageH-10,20,10, color, opaque);
+    }
+
+
+    public static BufferedImage setOverlayRectangle(BufferedImage sourceImage, int x, int y, int width, int height, Color color, float opaque) {
+        int imageW = sourceImage.getWidth();
+        int imageH = sourceImage.getHeight();
+        int imageType = BufferedImage.TYPE_INT_ARGB;
+        BufferedImage resultImage = new BufferedImage(imageW, imageH, imageType);
+        Graphics2D graphics2D = (Graphics2D) resultImage.getGraphics();
+        graphics2D.drawImage(sourceImage,0,0,null);
+        AlphaComposite alphaChannel = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opaque);
+        graphics2D.setComposite(alphaChannel);
+        graphics2D.setColor(color);
+        graphics2D.fillRect ( x, y, width, height);
+        graphics2D.dispose();
+        return resultImage;
+    }
+
+
     public static BufferedImage setOverlayUnderlineText(BufferedImage sourceImage, String text) {
 
         String textToOverlay = text;
         Color textColor = Color.YELLOW;
-        Font textFont = new Font(Font.SANS_SERIF,Font.PLAIN, 14);
+        Font textFont = new Font(Font.SANS_SERIF,Font.PLAIN, 12);
         Pos textPosition = Pos.BOTTOM_CENTER;
         float opaque = 1.0f;
         return setTextOverlay(setOverlayUnderlinePlate(sourceImage), textToOverlay, textColor, textFont, textPosition, opaque);
@@ -125,12 +192,45 @@ public class OverlayImage {
                 break;
             case BOTTOM_CENTER:
                 centerX = (imageW - rectW) / 2;
-                centerY = imageH - rectH/8;
+                centerY = imageH - rectH/8 - 2;
                 break;
         }
 
 
         graphics2D.drawString(textToOverlay, centerX, centerY);
+        graphics2D.dispose();
+
+        return resultImage;
+    }
+
+    public static BufferedImage resizeImage(BufferedImage sourceImage, int resizedW, int resizedH, Color bgColor) {
+
+        int imageW = sourceImage.getWidth();
+        int imageH = sourceImage.getHeight();
+        int imageType = BufferedImage.TYPE_INT_ARGB;
+
+        double scaleCoeff = Math.min((double)resizedW / imageW, (double)resizedH / imageH);
+
+        BufferedImage resultImage = new BufferedImage(resizedW, resizedH, imageType);
+        BufferedImage afterResize = new BufferedImage(resizedW, resizedH, imageType);
+
+        Graphics2D graphics2D = (Graphics2D) resultImage.getGraphics();
+
+//        graphics2D.setColor (bgColor);
+//        graphics2D.fillRect ( 0, 0, resizedW, resizedH);
+
+        AffineTransform at = new AffineTransform();
+        at.scale(scaleCoeff, scaleCoeff);
+        AffineTransformOp scaleOp = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
+        afterResize = scaleOp.filter(sourceImage, afterResize);
+
+        int x = (int)(resizedW - imageW * scaleCoeff) / 2;
+        int y = (int)(resizedH - imageH * scaleCoeff) / 2;
+
+//        AlphaComposite alphaChannel = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1);
+//        graphics2D.setComposite(alphaChannel);
+
+        graphics2D.drawImage(afterResize,x,y,  null);
         graphics2D.dispose();
 
         return resultImage;

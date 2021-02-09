@@ -1,0 +1,38 @@
+
+l
+java:S2095O"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8ªªÇÄô.
+d
+java:S2095>"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8ªªÇÄô.
+m
+java:S2095ç"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8¸ÚÊÄô.
+
+java:S1186,"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ßÊ–é8ªªÇÄô.
+e
+java:S2095»"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8¸ÚÊÄô.
+U
+java:S1135ª"2Complete the task associated to this TODO comment.(Ì°¸ãşÿÿÿÿ8ÁøËÄô.
+X
+java:S1141“"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8¸ÚÊÄô.
+T
+java:S1135 "2Complete the task associated to this TODO comment.(ÖŞ³µúÿÿÿÿ8šŠıÑÕ.
+R
+java:S2209¶"5Change this instance-reference to a static reference.(“±ñ
+8ÁøËÄô.
+Z	java:S106T"9Replace this use of System.out or System.err by a logger.(âùˆëùÿÿÿÿ8ªªÇÄô.
+S
+java:S2209º"5Change this instance-reference to a static reference.(ı¶Æ±8ÁøËÄô.
+m
+java:S2095ö"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8ÁøËÄô.
+t
+java:S3776f"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(ØÅå¢ıÿÿÿÿ8ªªÇÄô.
+E	java:S108˜")Either remove or fill this block of code.(Éò§+8¸ÚÊÄô.
+V	java:S106š"9Replace this use of System.out or System.err by a logger.(¬×á†8ÁøËÄô.
+m
+java:S2095ı"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(›Å¨©8©ÊŒÃö.
+X
+java:S1141„"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8¸ÚÊÄô.
+d
+java:S2095m"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8ªªÇÄô.
+O
+java:S1135)"2Complete the task associated to this TODO comment.(¤ŒäÁ8ªªÇÄô.
+E	java:S108Š")Either remove or fill this block of code.(Éò§+8¸ÚÊÄô.

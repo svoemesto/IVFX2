@@ -1,42 +1,30 @@
 package com.svoemesto.ivfx.tables;
 
 import com.svoemesto.ivfx.Main;
-import com.svoemesto.ivfx.utils.ConvertToFxImage;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class IVFXGroupsPersons {
 
     private int id;
     private int groupId;
     private int personId;
-    private UUID uuid = UUID.randomUUID();
-    private UUID groupUuid;
-    private UUID personUuid;
     private IVFXGroups ivfxGroup;
     private IVFXPersons ivfxPerson;
-    private transient ImageView preview;
-    private transient Label label;
+    private ImageView[] preview = new ImageView[8];
+    private Label[] label = new Label[8];
 
 //TODO ISEQUAL
 
     public boolean isEqual(IVFXGroupsPersons o) {
         return (this.id == o.id &&
                 this.groupId == o.groupId &&
-                this.personId == o.personId &&
-                this.uuid.equals(o.uuid) &&
-                this.groupUuid.equals(o.groupUuid) &&
-                this.personUuid.equals(o.personUuid));
+                this.personId == o.personId);
     }
 
 // TODO КОНСТРУКТОРЫ
@@ -65,24 +53,17 @@ public class IVFXGroupsPersons {
 
                 sql = "INSERT INTO tbl_groups_persons (" +
                         "group_id, " +
-                        "person_id, " +
-                        "uuid, " +
-                        "group_uuid, " +
-                        "person_uuid) " +
+                        "person_id) " +
                         "VALUES(" +
                         ivfxGroup.getId() + "," +
-                        ivfxPerson.getId() + "," +
-                        "'" + ivfxGroupPerson.uuid.toString() + "'" + "," +
-                        "'" + ivfxGroup.getUuid().toString() + "'" + "," +
-                        "'" + ivfxPerson.getUuid().toString() + "'" +
-                        ")";
+                        ivfxPerson.getId() + ")";
 
                 PreparedStatement ps = Main.mainConnection.prepareStatement(sql);
                 ps.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
                 rs = ps.getGeneratedKeys();
                 if (rs.next()) {
                     ivfxGroupPerson.id = rs.getInt(1);
-                    System.out.println("Создана запись для персонажа «" + ivfxGroupPerson.ivfxPerson.getName() + "» группы «" + ivfxGroupPerson.ivfxGroup.getName() + "» " + ivfxGroupPerson.uuid + " с идентификатором " + rs.getInt(1));
+                    System.out.println("Создана запись для персонажа «" + ivfxGroupPerson.ivfxPerson.getName() + "» группы «" + ivfxGroupPerson.ivfxGroup.getName() + "» с идентификатором " + rs.getInt(1));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -98,49 +79,8 @@ public class IVFXGroupsPersons {
         return  ivfxGroupPerson;
     }
 
-    public static IVFXGroupsPersons loadByUuid(UUID groupPersonUuid, boolean withPreview) {
-        Statement statement = null;
-        ResultSet rs = null;
-        String sql;
 
-        try {
-            statement = Main.mainConnection.createStatement();
-
-            sql = "SELECT * FROM tbl_groups_persons WHERE uuid = '" + groupPersonUuid.toString() + "'";
-            rs = statement.executeQuery(sql);
-            if (rs.next()) {
-                IVFXGroupsPersons groupPerson = new IVFXGroupsPersons();
-                groupPerson.id = rs.getInt("id");
-                groupPerson.groupId = rs.getInt("group_id");
-                groupPerson.personId = rs.getInt("person_id");
-                groupPerson.uuid = UUID.fromString(rs.getString("uuid"));
-                groupPerson.groupUuid = UUID.fromString(rs.getString("group_uuid"));
-                groupPerson.personUuid = UUID.fromString(rs.getString("person_uuid"));
-                groupPerson.ivfxGroup = IVFXGroups.loadById(groupPerson.groupId);
-                groupPerson.ivfxPerson = IVFXPersons.loadById(groupPerson.personId, withPreview);
-
-                if (withPreview) {
-                    groupPerson.label = groupPerson.ivfxPerson.getLabel();
-                    groupPerson.preview = groupPerson.ivfxPerson.getPreview();
-                }
-                return groupPerson;
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) rs.close(); // close result set
-                if (statement != null) statement.close(); // close statement
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return null;
-    }
-
-    public static IVFXGroupsPersons loadById(int id, boolean withPreview) {
+    public static IVFXGroupsPersons load(int id, boolean withPreview) {
         Statement statement = null;
         ResultSet rs = null;
         String sql;
@@ -155,11 +95,8 @@ public class IVFXGroupsPersons {
                 groupPerson.id = rs.getInt("id");
                 groupPerson.groupId = rs.getInt("group_id");
                 groupPerson.personId = rs.getInt("person_id");
-                groupPerson.uuid = UUID.fromString(rs.getString("uuid"));
-                groupPerson.groupUuid = UUID.fromString(rs.getString("group_uuid"));
-                groupPerson.personUuid = UUID.fromString(rs.getString("person_uuid"));
-                groupPerson.ivfxGroup = IVFXGroups.loadByUuid(groupPerson.groupUuid);
-                groupPerson.ivfxPerson = IVFXPersons.loadByUuid(groupPerson.personUuid, withPreview);
+                groupPerson.ivfxGroup = IVFXGroups.load(groupPerson.groupId);
+                groupPerson.ivfxPerson = IVFXPersons.load(groupPerson.personId, withPreview);
 
                 if (withPreview) {
                     groupPerson.label = groupPerson.ivfxPerson.getLabel();
@@ -198,11 +135,8 @@ public class IVFXGroupsPersons {
                 groupPerson.id = rs.getInt("id");
                 groupPerson.groupId = rs.getInt("group_id");
                 groupPerson.personId = rs.getInt("person_id");
-                groupPerson.uuid = UUID.fromString(rs.getString("uuid"));
-                groupPerson.groupUuid = UUID.fromString(rs.getString("group_uuid"));
-                groupPerson.personUuid = UUID.fromString(rs.getString("person_uuid"));
-                groupPerson.ivfxGroup = IVFXGroups.loadByUuid(groupPerson.groupUuid);
-                groupPerson.ivfxPerson = IVFXPersons.loadByUuid(groupPerson.personUuid, withPreview);
+                groupPerson.ivfxGroup = IVFXGroups.load(groupPerson.groupId);
+                groupPerson.ivfxPerson = IVFXPersons.load(groupPerson.personId, withPreview);
 
                 if (withPreview) {
                     groupPerson.label = groupPerson.ivfxPerson.getLabel();
@@ -227,8 +161,12 @@ public class IVFXGroupsPersons {
     }
 
     public static List<IVFXGroupsPersons> loadList(IVFXGroups ivfxGroup, boolean withPreview) {
+        return loadList(ivfxGroup, withPreview, null);
+    }
+    public static List<IVFXGroupsPersons> loadList(IVFXGroups ivfxGroup, boolean withPreview, ProgressBar progressBar) {
         List<IVFXGroupsPersons> listGroupsPersons = new ArrayList<>();
 
+        int iProgress = 0;
         Statement statement = null;
         ResultSet rs = null;
         String sql;
@@ -236,18 +174,26 @@ public class IVFXGroupsPersons {
         try {
             statement = Main.mainConnection.createStatement();
 
-            sql = "SELECT * FROM tbl_groups_persons WHERE group_id = " + ivfxGroup.getId();
+            sql = "select tbl_groups_persons.* from tbl_groups_persons join tbl_persons on tbl_groups_persons.person_id = tbl_persons.id WHERE group_id = " + ivfxGroup.getId() + " order by tbl_persons.name";
+
+            String sqlCnt = "SELECT COUNT(*) AS CNT FROM (" + sql + ") AS tmp";
+            ResultSet rsCnt = null;
+            rsCnt = statement.executeQuery(sqlCnt);
+            rsCnt.next();
+            int countRows = rsCnt.getInt("CNT");
+            rsCnt.close();
+
             rs = statement.executeQuery(sql);
             while (rs.next()) {
+
+                if (progressBar != null) progressBar.setProgress((double)++iProgress / countRows);
+
                 IVFXGroupsPersons groupPerson = new IVFXGroupsPersons();
                 groupPerson.id = rs.getInt("id");
                 groupPerson.groupId = rs.getInt("group_id");
                 groupPerson.personId = rs.getInt("person_id");
-                groupPerson.uuid = UUID.fromString(rs.getString("uuid"));
-                groupPerson.groupUuid = UUID.fromString(rs.getString("group_uuid"));
-                groupPerson.personUuid = UUID.fromString(rs.getString("person_uuid"));
-                groupPerson.ivfxGroup = IVFXGroups.loadById(groupPerson.groupId);
-                groupPerson.ivfxPerson = IVFXPersons.loadById(groupPerson.personId,withPreview);
+                groupPerson.ivfxGroup = IVFXGroups.load(groupPerson.groupId);
+                groupPerson.ivfxPerson = IVFXPersons.load(groupPerson.personId,withPreview);
 
                 if (withPreview) {
                     groupPerson.label = groupPerson.ivfxPerson.getLabel();
@@ -272,8 +218,12 @@ public class IVFXGroupsPersons {
     }
 
     public static List<IVFXGroupsPersons> loadList(IVFXPersons ivfxPerson, boolean withPreview) {
+        return loadList(ivfxPerson, withPreview, null);
+    }
+    public static List<IVFXGroupsPersons> loadList(IVFXPersons ivfxPerson, boolean withPreview, ProgressBar progressBar) {
         List<IVFXGroupsPersons> listGroupsPersons = new ArrayList<>();
 
+        int iProgress = 0;
         Statement statement = null;
         ResultSet rs = null;
         String sql;
@@ -282,17 +232,25 @@ public class IVFXGroupsPersons {
             statement = Main.mainConnection.createStatement();
 
             sql = "SELECT * FROM tbl_groups_persons WHERE person_id = " + ivfxPerson.getId();
+
+            String sqlCnt = "SELECT COUNT(*) AS CNT FROM (" + sql + ") AS tmp";
+            ResultSet rsCnt = null;
+            rsCnt = statement.executeQuery(sqlCnt);
+            rsCnt.next();
+            int countRows = rsCnt.getInt("CNT");
+            rsCnt.close();
+
             rs = statement.executeQuery(sql);
             while (rs.next()) {
+
+                if (progressBar != null) progressBar.setProgress((double)++iProgress / countRows);
+
                 IVFXGroupsPersons groupPerson = new IVFXGroupsPersons();
                 groupPerson.id = rs.getInt("id");
                 groupPerson.groupId = rs.getInt("group_id");
                 groupPerson.personId = rs.getInt("person_id");
-                groupPerson.uuid = UUID.fromString(rs.getString("uuid"));
-                groupPerson.groupUuid = UUID.fromString(rs.getString("group_uuid"));
-                groupPerson.personUuid = UUID.fromString(rs.getString("person_uuid"));
-                groupPerson.ivfxGroup = IVFXGroups.loadById(groupPerson.groupId);
-                groupPerson.ivfxPerson = IVFXPersons.loadById(groupPerson.personId,withPreview);
+                groupPerson.ivfxGroup = IVFXGroups.load(groupPerson.groupId);
+                groupPerson.ivfxPerson = IVFXPersons.load(groupPerson.personId,withPreview);
 
                 if (withPreview) {
                     groupPerson.label = groupPerson.ivfxPerson.getLabel();
@@ -322,14 +280,12 @@ public class IVFXGroupsPersons {
 
 
     public void save() {
-        String sql = "UPDATE tbl_groups_persons SET group_id = ?, person_id = ?, group_uuid = ?, person_uuid = ? WHERE id = ?";
+        String sql = "UPDATE tbl_groups_persons SET group_id = ?, person_id = ? WHERE id = ?";
         try {
             PreparedStatement ps = Main.mainConnection.prepareStatement(sql);
             ps.setInt   (1, this.groupId);
             ps.setInt   (2, this.personId);
-            ps.setString(3, this.groupUuid.toString());
-            ps.setString(4, this.personUuid.toString());
-            ps.setInt(5, this.id);
+            ps.setInt(3, this.id);
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
@@ -356,30 +312,6 @@ public class IVFXGroupsPersons {
 
 // TODO GETTERS SETTERS
 
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    public UUID getGroupUuid() {
-        return groupUuid;
-    }
-
-    public void setGroupUuid(UUID groupUuid) {
-        this.groupUuid = groupUuid;
-    }
-
-    public UUID getPersonUuid() {
-        return personUuid;
-    }
-
-    public void setPersonUuid(UUID personUuid) {
-        this.personUuid = personUuid;
-    }
-
     public IVFXGroups getIvfxGroup() {
         return ivfxGroup;
     }
@@ -396,11 +328,43 @@ public class IVFXGroupsPersons {
         this.ivfxPerson = ivfxPerson;
     }
 
-    public Label getLabel() {
+    public Label[] getLabel() {
         return label;
     }
 
-    public void setLabel(Label label) {
+    public Label getLabel1() {
+        return label[0];
+    }
+
+    public Label getLabel2() {
+        return label[1];
+    }
+
+    public Label getLabel3() {
+        return label[2];
+    }
+
+    public Label getLabel4() {
+        return label[3];
+    }
+
+    public Label getLabel5() {
+        return label[4];
+    }
+
+    public Label getLabel6() {
+        return label[5];
+    }
+
+    public Label getLabel7() {
+        return label[6];
+    }
+
+    public Label getLabel8() {
+        return label[7];
+    }
+
+    public void setLabel(Label[] label) {
         this.label = label;
     }
 
@@ -436,11 +400,43 @@ public class IVFXGroupsPersons {
         this.personId = personId;
     }
 
-    public ImageView getPreview() {
+    public ImageView[] getPreview() {
         return preview;
     }
 
-    public void setPreview(ImageView preview) {
+    public ImageView getPreview1() {
+        return preview[0];
+    }
+
+    public ImageView getPreview2() {
+        return preview[1];
+    }
+
+    public ImageView getPreview3() {
+        return preview[2];
+    }
+
+    public ImageView getPreview4() {
+        return preview[3];
+    }
+
+    public ImageView getPreview5() {
+        return preview[4];
+    }
+
+    public ImageView getPreview6() {
+        return preview[5];
+    }
+
+    public ImageView getPreview7() {
+        return preview[6];
+    }
+
+    public ImageView getPreview8() {
+        return preview[7];
+    }
+
+    public void setPreview(ImageView[] preview) {
         this.preview = preview;
     }
 

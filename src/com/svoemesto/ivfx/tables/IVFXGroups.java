@@ -1,6 +1,7 @@
 package com.svoemesto.ivfx.tables;
 
 import com.svoemesto.ivfx.Main;
+import javafx.scene.control.ProgressBar;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,8 +15,6 @@ public class IVFXGroups {
     private int id;
     private int projectId;
     private int order;
-    private UUID uuid = UUID.randomUUID();;
-    private UUID projectUuid;
     private IVFXProjects ivfxProject;
     private String name;
     private String description = "";
@@ -26,8 +25,6 @@ public class IVFXGroups {
         return (this.id == o.id &&
                 this.projectId == o.projectId &&
                 this.order == o.order &&
-                this.uuid.equals(o.uuid) &&
-                this.projectUuid.equals(o.projectUuid) &&
                 this.name.equals(o.name) &&
                 this.description.equals(o.description));
     }
@@ -57,24 +54,19 @@ public class IVFXGroups {
                     "project_id, " +
                     "order_group, " +
                     "name, " +
-                    "description, " +
-                    "uuid, " +
-                    "project_uuid) " +
+                    "description) " +
                     "VALUES(" +
                     ivfxProject.getId() + "," +
                     ivfxGroup.order + "," +
                     "'" + ivfxGroup.name + "'" + "," +
-                    "'" + ivfxGroup.description + "'" + "," +
-                    "'" + ivfxGroup.uuid.toString() + "'" + "," +
-                    "'" + ivfxProject.getUuid().toString() + "'" +
-                    ")";
+                    "'" + ivfxGroup.description + "'" + ")";
 
             PreparedStatement ps = Main.mainConnection.prepareStatement(sql);
             ps.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
             rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 ivfxGroup.id = rs.getInt(1);
-                System.out.println("Создана запись для группы «" + ivfxGroup.name + "» " + ivfxGroup.uuid + " с идентификатором " + rs.getInt(1));
+                System.out.println("Создана запись для группы «" + ivfxGroup.name + "» с идентификатором " + rs.getInt(1));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -90,45 +82,8 @@ public class IVFXGroups {
         return ivfxGroup;
     }
 
-    public static IVFXGroups loadByUuid(UUID groupUUID) {
-        Statement statement = null;
-        ResultSet rs = null;
-        String sql;
 
-        try {
-            statement = Main.mainConnection.createStatement();
-
-            sql = "SELECT * FROM tbl_groups WHERE uuid = '" + groupUUID.toString() + "'";
-            rs = statement.executeQuery(sql);
-            if (rs.next()) {
-                IVFXGroups group = new IVFXGroups();
-                group.id = rs.getInt("id");
-                group.projectId = rs.getInt("project_id");
-                group.order = rs.getInt("order_group");
-                group.name = rs.getString("name");
-                group.description = rs.getString("description");
-                group.uuid = UUID.fromString(rs.getString("uuid"));
-                group.projectUuid = UUID.fromString(rs.getString("project_uuid"));
-                group.ivfxProject = IVFXProjects.loadById(group.projectId);
-
-                return group;
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) rs.close(); // close result set
-                if (statement != null) statement.close(); // close statement
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return null;
-    }
-
-    public static IVFXGroups loadById(int id) {
+    public static IVFXGroups load(int id) {
         Statement statement = null;
         ResultSet rs = null;
         String sql;
@@ -145,9 +100,7 @@ public class IVFXGroups {
                 group.order = rs.getInt("order_group");
                 group.name = rs.getString("name");
                 group.description = rs.getString("description");
-                group.uuid = UUID.fromString(rs.getString("uuid"));
-                group.projectUuid = UUID.fromString(rs.getString("project_uuid"));
-                group.ivfxProject = IVFXProjects.loadByUuid(group.projectUuid);
+                group.ivfxProject = IVFXProjects.load(group.projectId);
 
                 return group;
             }
@@ -183,9 +136,7 @@ public class IVFXGroups {
                 group.order = rs.getInt("order_group");
                 group.name = rs.getString("name");
                 group.description = rs.getString("description");
-                group.uuid = UUID.fromString(rs.getString("uuid"));
-                group.projectUuid = UUID.fromString(rs.getString("project_uuid"));
-                group.ivfxProject = IVFXProjects.loadById(group.projectId);
+                group.ivfxProject = IVFXProjects.load(group.projectId);
 
                 return group;
             }
@@ -205,8 +156,12 @@ public class IVFXGroups {
     }
 
     public static List<IVFXGroups> loadList(IVFXProjects ivfxProjects) {
+        return loadList(ivfxProjects, null);
+    }
+    public static List<IVFXGroups> loadList(IVFXProjects ivfxProjects, ProgressBar progressBar) {
         List<IVFXGroups> listGroups = new ArrayList<>();
 
+        int iProgress = 0;
         Statement statement = null;
         ResultSet rs = null;
         String sql;
@@ -215,14 +170,23 @@ public class IVFXGroups {
             statement = Main.mainConnection.createStatement();
 
             sql = "SELECT * FROM tbl_groups WHERE project_id = " + ivfxProjects.getId() + " ORDER BY order_group";
+
+            String sqlCnt = "SELECT COUNT(*) AS CNT FROM (" + sql + ") AS tmp";
+            ResultSet rsCnt = null;
+            rsCnt = statement.executeQuery(sqlCnt);
+            rsCnt.next();
+            int countRows = rsCnt.getInt("CNT");
+            rsCnt.close();
+
             rs = statement.executeQuery(sql);
             while (rs.next()) {
+
+                if (progressBar != null) progressBar.setProgress((double)++iProgress / countRows);
+
                 IVFXGroups group = new IVFXGroups();
                 group.id = rs.getInt("id");
                 group.order = rs.getInt("order_group");
                 group.projectId = rs.getInt("project_id");
-                group.uuid = UUID.fromString(rs.getString("uuid"));
-                group.projectUuid = UUID.fromString(rs.getString("project_uuid"));
                 group.name = rs.getString("name");
                 group.description = rs.getString("description");
                 listGroups.add(group);
@@ -261,8 +225,6 @@ public class IVFXGroups {
                 group.id = rs.getInt("id");
                 group.order = rs.getInt("order_group");
                 group.projectId = rs.getInt("project_id");
-                group.uuid = UUID.fromString(rs.getString("uuid"));
-                group.projectUuid = UUID.fromString(rs.getString("project_uuid"));
                 group.name = rs.getString("name");
                 group.description = rs.getString("description");
                 listGroups.add(group);
@@ -310,22 +272,6 @@ public class IVFXGroups {
     }
 
 // TODO GETTERS SETTERS
-
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    public UUID getProjectUuid() {
-        return projectUuid;
-    }
-
-    public void setProjectUuid(UUID projectUuid) {
-        this.projectUuid = projectUuid;
-    }
 
     public IVFXProjects getIvfxProject() {
         return ivfxProject;

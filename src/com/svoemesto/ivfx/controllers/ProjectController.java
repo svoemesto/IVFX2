@@ -1,21 +1,16 @@
 package com.svoemesto.ivfx.controllers;
 
-import com.svoemesto.ivfx.tables.Database;
+import com.svoemesto.ivfx.tables.*;
+import com.svoemesto.ivfx.utils.CreateVideo;
 import com.svoemesto.ivfx.utils.MediaInfo;
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
+
+import java.io.*;
 import java.net.URL;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import com.sun.javafx.scene.control.skin.TableViewSkin;
 import com.sun.javafx.scene.control.skin.VirtualFlow;
 import com.svoemesto.ivfx.Main;
-import com.svoemesto.ivfx.tables.IVFXFiles;
-import com.svoemesto.ivfx.tables.IVFXProjects;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -176,7 +171,7 @@ public class ProjectController extends Application {
     private Button btnTransitions;
 
     @FXML
-    private Button btnSegments;
+    private Button btnShots;
 
     @FXML
     private TextArea ctlConsole;
@@ -186,6 +181,7 @@ public class ProjectController extends Application {
 
     private ObservableList<IVFXFiles> listFiles = FXCollections.observableArrayList();
     private VirtualFlow flowTblFileToAction;
+
 
 
     public static void main(String[] args) {
@@ -198,7 +194,7 @@ public class ProjectController extends Application {
         Main.mainConnection = Database.getConnection();
         Main.mainWindow = primaryStage;
 
-        IVFXProjects project = IVFXProjects.loadById(1);
+        IVFXProjects project = IVFXProjects.load(1);
         if (project != null) {
             mainProject = project;
             Parent root = FXMLLoader.load(getClass().getResource("../resources/fxml/project.fxml"));
@@ -279,7 +275,7 @@ public class ProjectController extends Application {
         ctlFileTitle.textProperty().addListener((observable, oldValue, newValue) -> {
             currentFile.setTitle(ctlFileTitle.getText());
             for (IVFXFiles file: listFiles) {
-                if (file.getUuid().toString().equals(currentFile.getUuid().toString())) {
+                if (file.getId() == currentFile.getId()) {
                     file.setTitle(ctlFileTitle.getText());
                     break;
                 }
@@ -544,7 +540,6 @@ public class ProjectController extends Application {
                 ivfxFile.setSourceName(fileSourceName);
                 ivfxFile.setIvfxProject(mainProject);
                 ivfxFile.setProjectId(mainProject.getId());
-                ivfxFile.setProjectUuid(mainProject.getUuid());
                 ivfxFile.setShortName(file.getName().substring(0,file.getName().lastIndexOf(".")));
                 ivfxFile.setTitle(ivfxFile.getShortName());
 
@@ -611,7 +606,6 @@ public class ProjectController extends Application {
                     ivfxFile.setSourceName(fileSourceName);
                     ivfxFile.setIvfxProject(mainProject);
                     ivfxFile.setProjectId(mainProject.getId());
-                    ivfxFile.setProjectUuid(mainProject.getUuid());
                     ivfxFile.setShortName(file.getName().substring(0,file.getName().lastIndexOf(".")));
                     ivfxFile.setTitle(ivfxFile.getShortName());
 
@@ -644,11 +638,46 @@ public class ProjectController extends Application {
     @FXML
     void doActions(ActionEvent event) {
 
+        List<IVFXFiles> listSelectedFiles = tblFileToAction.getSelectionModel().getSelectedItems();
+        if (listSelectedFiles != null) {
+            if (listSelectedFiles.size() > 0) {
+                for (IVFXFiles ivfxFile: listSelectedFiles) {
+//                    System.out.println(ivfxFile.getSourceName());
+
+                    if (checkCreatePreviewMP4.isSelected()) {       // Выбран флажок "Создать превью MP4"
+
+                    }
+
+                    if (checkCreateFramesPreview.isSelected()) {       // Выбран флажок "Создать preview frames"
+
+                    }
+
+                    if (checkCreateFramesFull.isSelected()) {       // Выбран флажок "Создать full frames"
+
+                    }
+
+                    if (checkAnalize.isSelected()) {       // Выбран флажок "Проанализировать кадры"
+
+                    }
+
+                    if (checkFindTransitions.isSelected()) {       // Выбран флажок "Найти переходы"
+
+                    }
+
+                }
+
+                if (checkCreateCMD.isSelected()) {       // Выбран флажок "Создать CMD для кодирования"
+                    CreateVideo.createCmdToAllStepsConvertVideofile(listSelectedFiles);
+                }
+            }
+        }
+
+
     }
 
     @FXML
     void doFilters(ActionEvent event) {
-
+        new FiltersController().editFilters(mainProject);
     }
 
     @FXML
@@ -657,8 +686,8 @@ public class ProjectController extends Application {
     }
 
     @FXML
-    void doSegments(ActionEvent event) {
-        new SegmentsController().editSegments(currentFile, 1);
+    void doShots(ActionEvent event) {
+        new ShotsController().editShots(currentFile, 1);
     }
 
     @FXML
@@ -831,6 +860,8 @@ public class ProjectController extends Application {
         currentFile = null;
         initialize();
     }
+
+
 
 
 }
