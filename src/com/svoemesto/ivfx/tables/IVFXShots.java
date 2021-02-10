@@ -744,6 +744,35 @@ public class IVFXShots implements Comparable<IVFXShots>  {
         return id;
     }
 
+    public List<Integer> getTagIdEvents() {
+
+        List<Integer> list = new ArrayList<>();
+        Statement statement = null;
+        ResultSet rs = null;
+        String sql;
+
+        try {
+            statement = Main.mainConnection.createStatement();
+
+            sql = "SELECT tbl_tags_shots.tag_id FROM tbl_tags_shots INNER JOIN tbl_tags ON tbl_tags_shots.tag_id = tbl_tags.id WHERE tbl_tags.tag_type_id = 4 AND tbl_tags_shots.shot_id = " + this.id;
+            rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                list.add(rs.getInt("tag_id"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close(); // close result set
+                if (statement != null) statement.close(); // close statement
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return list;
+    }
+
     // возвращает сцену, в которой находится план
     public IVFXScenes getScene() {
 

@@ -4,7 +4,6 @@ import com.sun.javafx.scene.control.skin.TableViewSkin;
 import com.sun.javafx.scene.control.skin.VirtualFlow;
 import com.svoemesto.ivfx.Main;
 import com.svoemesto.ivfx.tables.*;
-import com.svoemesto.ivfx.utils.ConvertToFxImage;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
@@ -18,7 +17,6 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
@@ -27,10 +25,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -87,6 +83,7 @@ public class TagsGetController extends Application {
     public static IVFXProjects currentProject;                                                                          // Текуший проект
     public static IVFXFiles currentFile;                                                                                // Текущий файл
     public static IVFXTagsTypes currentTagType;                                                                         // Текущий тип тэга
+    public static List<IVFXTagsTypes> currentListTagsTypes;                                                                         // Текущий тип тэга
     public static IVFXTags currentTag;                                                                                  // Текущий тэг
 
     private ObservableList<IVFXProjects> listProjects = FXCollections.observableArrayList();                            // список проектов
@@ -102,11 +99,21 @@ public class TagsGetController extends Application {
     @FXML
     void initialize() {
 
-        listTagsTypes = FXCollections.observableArrayList(IVFXTagsTypes.loadList());
+        if (currentListTagsTypes != null) {
+            listTagsTypes = FXCollections.observableArrayList(currentListTagsTypes);;
+        } else {
+            listTagsTypes = FXCollections.observableArrayList(IVFXTagsTypes.loadList());
+        }
+
+        chUseTagType.setSelected(currentTagType != null);
+        chUseProject.setSelected(currentProject != null);
+        chUseFile.setSelected(currentFile != null);
 
         doChUseTagType(null);
         doChUseProject(null);
         doChUseFile(null);
+
+        initListTags();
 
         // инициализация тэга, если он указан
         if (currentTag != null) {
@@ -300,6 +307,14 @@ public class TagsGetController extends Application {
         if (chUseTagType.isSelected()) {
             cbTagType.setDisable(false);
             cbTagType.setItems(listTagsTypes);
+            if (currentTagType != null) {
+                for (IVFXTagsTypes tmp: listTagsTypes) {
+                    if (tmp.isEqual(currentTagType)) {
+                        currentTagType = tmp;
+                        cbTagType.setValue(currentTagType);
+                    }
+                }
+            }
         } else {
             cbTagType.setDisable(true);
             cbTagType.setItems(null);
@@ -314,6 +329,14 @@ public class TagsGetController extends Application {
             cbFile.setDisable(false);
             listFiles = FXCollections.observableArrayList(IVFXFiles.loadList(currentProject));
             cbFile.setItems(listFiles);
+            if (currentFile != null) {
+                for (IVFXFiles tmp: listFiles) {
+                    if (tmp.isEqual(currentFile)) {
+                        currentFile = tmp;
+                        cbFile.setValue(currentFile);
+                    }
+                }
+            }
         } else {
             cbFile.setDisable(true);
             cbFile.setItems(null);
@@ -328,15 +351,26 @@ public class TagsGetController extends Application {
             cbProject.setDisable(false);
             listProjects = FXCollections.observableArrayList(IVFXProjects.loadList());
             cbProject.setItems(listProjects);
+            if (currentProject != null) {
+                for (IVFXProjects tmp: listProjects) {
+                    if (tmp.getId() == currentProject.getId()) {
+                        currentProject = tmp;
+                        cbProject.setValue(currentProject);
+                    }
+                }
+            }
         } else {
             cbProject.setDisable(true);
             cbProject.setItems(null);
             currentProject = null;
         }
 
-        chUseFile.setDisable(true);
-        chUseFile.setSelected(false);
-        doChUseFile(null);
+        if (currentFile == null) {
+            chUseFile.setDisable(true);
+            chUseFile.setSelected(false);
+            doChUseFile(null);
+        }
+
     }
 
     // Событие переключения флажка "Искать в свойствах"
@@ -389,11 +423,23 @@ public class TagsGetController extends Application {
     }
 
 
-    // Метод вызова класса из других классов
     public static IVFXTags getTag() {
+        return getTag(null, null, null, null);
+    }
+    // Метод вызова класса из других классов
+    public static IVFXTags getTag(IVFXProjects initProject, IVFXTagsTypes initTagType, List<Integer> initListTagsTypesId, IVFXFiles initFile) {
 
         IVFXTags ivfxTag = null;
 
+        currentProject = initProject;
+        currentFile = initFile;
+        currentTagType = initTagType;
+        if (initListTagsTypesId != null) {
+            currentListTagsTypes = new ArrayList<>();
+            for (int id: initListTagsTypesId) {
+                currentListTagsTypes.add(IVFXTagsTypes.load(id));
+            }
+        }
 
         try {
 

@@ -158,8 +158,6 @@ public class TagsShotsController extends Application {
     @FXML
     private Button btnAddNewTagShot;
 
-    @FXML
-    private Button btnDeleteTagShot;
 
     @FXML
     private Button btnCopyFromStep1;
@@ -326,6 +324,12 @@ public class TagsShotsController extends Application {
     private Button btnUnionEvents;
 
     @FXML
+    private Button btnCreateNewEvent;
+
+    @FXML
+    private Button btnDeleteEvent;
+
+    @FXML
     private TableView<IVFXTagsProperties> tblEventProperties;
 
     @FXML
@@ -384,6 +388,19 @@ public class TagsShotsController extends Application {
     private TableColumn<IVFXTags, String> colNameTblTagsEvent;
 
     @FXML
+    private Button btnAddTagToEvent;
+
+    @FXML
+    private TableView<IVFXTags> tblTagsShotsEvent;
+
+    @FXML
+    private TableColumn<IVFXTags, String> colTypeTblTagsShotsEvent;
+
+    @FXML
+    private TableColumn<IVFXTags, String> colNameTblTagsShotsEvent;
+
+
+    @FXML
     private Button btnOK;
 
     private static TagsShotsController tagsShotsController = new TagsShotsController();
@@ -406,6 +423,8 @@ public class TagsShotsController extends Application {
     public static IVFXTagsShots currentTagShotStep3;                                                                                // Текущий план
     public static IVFXTagsShots currentTagShotStep4;                                                                                // Текущий план
     public static IVFXTags currentTagAll;                                                                                // Текущий план
+    public static IVFXTags currentTagEvent;                                                                                // Текущий план
+    public static IVFXTags currentTagShotEvent;                                                                                // Текущий план
     public static IVFXTagsShotsProperties currentTagShotProperty;                                                                                // Текущий план
     public static IVFXTagsProperties currentSceneProperty;                                                                                // Текущий план
     public static IVFXTagsProperties currentEventProperty;                                                                                // Текущий план
@@ -434,6 +453,7 @@ public class TagsShotsController extends Application {
     private ObservableList<IVFXTags> listTagsAll = FXCollections.observableArrayList();
     private ObservableList<IVFXTags> listTagsScene = FXCollections.observableArrayList();
     private ObservableList<IVFXTags> listTagsEvent = FXCollections.observableArrayList();
+    private ObservableList<IVFXTags> listTagsShotsEvent = FXCollections.observableArrayList();
     private ObservableList<IVFXTagsShotsProperties> listTagsShotsProperties = FXCollections.observableArrayList();
     private ObservableList<IVFXTagsProperties> listSceneProperties = FXCollections.observableArrayList();
     private ObservableList<IVFXTagsProperties> listEventProperties = FXCollections.observableArrayList();
@@ -564,6 +584,8 @@ public class TagsShotsController extends Application {
         tblEvents.setDisable(true);
         tblEventShots.setDisable(true);
         tblTagsEvent.setDisable(true);
+        tblTagsShotsEvent.setDisable(true);
+        btnAddTagToEvent.setDisable(true);
         btnUnionEvents.setDisable(true);
         btnEventCutUp.setDisable(true);
         btnEventCutDown.setDisable(true);
@@ -571,6 +593,8 @@ public class TagsShotsController extends Application {
         btnEventExtendDown.setDisable(true);
         btnEventCollapseUp.setDisable(true);
         btnEventCollapseDown.setDisable(true);
+        btnCreateNewEvent.setDisable(true);
+        btnDeleteEvent.setDisable(true);
 
         // Свойства событий
         tblEventProperties.setDisable(true);
@@ -595,6 +619,7 @@ public class TagsShotsController extends Application {
         btnCopyFromStep2.setDisable(true);
         btnCopyFromStep3.setDisable(true);
         btnCopyFromStep4.setDisable(true);
+        btnAddNewTagShot.setDisable(true);
 
         // Свойства персонажей и объектов
         tblTagsShotsProperties.setDisable(true);
@@ -842,7 +867,11 @@ public class TagsShotsController extends Application {
         colTypeTblTagsEvent.setCellValueFactory(new PropertyValueFactory<>("tagTypeLetter"));
         colNameTblTagsEvent.setCellValueFactory(new PropertyValueFactory<>("label1"));
 
-        
+        // столбцы таблицы tblTagsShotsEvent
+        colTypeTblTagsShotsEvent.setCellValueFactory(new PropertyValueFactory<>("tagTypeLetter"));
+        colNameTblTagsShotsEvent.setCellValueFactory(new PropertyValueFactory<>("label1"));
+
+
         // инициализируем поля таблицы tblTagsShotsProperties
         colNameTblTagsShotsProperties.setCellValueFactory(new PropertyValueFactory<>("name"));
         colValueTblTagsShotsProperties.setCellValueFactory(new PropertyValueFactory<>("value"));
@@ -1189,6 +1218,20 @@ public class TagsShotsController extends Application {
             }
         });
 
+        // событие выбора записи в таблице tblTagsEvent
+        tblTagsEvent.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
+            if (newValue != null) {
+                currentTagEvent = newValue;
+            }
+        });
+
+        // событие выбора записи в таблице tblTagsShotsEvent
+        tblTagsShotsEvent.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
+            if (newValue != null) {
+                currentTagShotEvent = newValue;
+            }
+        });
+
         /***********************************************
          * Обработчики событий - События двойного клика
          ************************************************/
@@ -1247,6 +1290,47 @@ public class TagsShotsController extends Application {
             }
         });
 
+        // событие двойного клика в таблице tblTagsEvent - удаление записи из таблицы tblTagsEvent
+        tblTagsEvent.setOnMouseClicked(mouseEvent -> {
+            if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
+                if (currentTagEvent != null && currentEvent != null) {
+                    List<IVFXTagsTags> listTagsTags = IVFXTagsTags.loadList(currentEvent,false);
+                    if (listTagsTags != null) {
+                        for (IVFXTagsTags tagTag: listTagsTags) {
+                            if (tagTag.getIvfxTagChild().isEqual(currentTagEvent)) {
+                                tagTag.delete();
+                                currentTagEvent = null;
+                                doOnSelectRecordInTblEvents();
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // событие двойного клика в таблице tblTagsShotsEvent - добавление записи в таблицу tblTagsEvent
+        tblTagsShotsEvent.setOnMouseClicked(mouseEvent -> {
+            if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
+                if (currentTagShotEvent != null && currentEvent != null) {
+                    List<IVFXTagsTags> listTagsTags = IVFXTagsTags.loadList(currentEvent,false);
+                    if (listTagsTags != null) {
+                        boolean isAlreadyPresent = false;
+                        for (IVFXTagsTags tagTag: listTagsTags) {
+                            if (tagTag.getIvfxTagChild().isEqual(currentTagShotEvent)) {
+                                isAlreadyPresent = true;
+                                currentTagEvent = null;
+
+                            }
+                        }
+                        if (!isAlreadyPresent) {
+                            IVFXTagsTags.getNewDbInstance(currentEvent, currentTagShotEvent,true);
+                            doOnSelectRecordInTblEvents();
+                        }
+                    }
+                }
+            }
+        });
 
 
         /****************************************
@@ -1492,6 +1576,11 @@ public class TagsShotsController extends Application {
         tblTagsEvent.setDisable(true);
         tblTagsEvent.setItems(null);
         btnUnionEvents.setDisable(true);
+        btnCreateNewEvent.setDisable(true);
+        tblTagsShotsEvent.setDisable(true);
+        tblTagsShotsEvent.setItems(null);
+        btnAddTagToEvent.setDisable(true);
+        btnDeleteEvent.setDisable(true);
 
         // Свойства событий
         tblEventProperties.setDisable(true);
@@ -1539,7 +1628,7 @@ public class TagsShotsController extends Application {
 
             int[] arrTagsTypes = {1,2};
             tblTagsScene.setDisable(false);
-            listTagsScene = FXCollections.observableArrayList(IVFXTags.loadListShotsTags(listTags, true, arrTagsTypes));
+            listTagsScene = FXCollections.observableArrayList(IVFXTags.loadListShotsTagsForScenes(listTags, true, arrTagsTypes));
             tblTagsScene.setItems(listTagsScene);
 
         } else {
@@ -1606,23 +1695,39 @@ public class TagsShotsController extends Application {
                 tblTagsEvent.setDisable(false);
                 listTagsEvent = FXCollections.observableArrayList(currentEvent.loadListChildrens(true, arrTagsTypes));
                 tblTagsEvent.setItems(listTagsEvent);
+
+                int[] arrTagsTypes2 = {1,2};
+                tblTagsShotsEvent.setDisable(false);
+                btnAddTagToEvent.setDisable(false);
+                listTagsShotsEvent = FXCollections.observableArrayList(IVFXTags.loadListShotsTagsForEvents(listTags, true, arrTagsTypes2));
+                tblTagsShotsEvent.setItems(listTagsShotsEvent);
+
             } else {
                 tblTagsEvent.setDisable(true);
                 tblTagsEvent.setItems(null);
+                tblTagsShotsEvent.setDisable(true);
+                tblTagsShotsEvent.setItems(null);
+                btnAddTagToEvent.setDisable(true);
             }
 
+            if (listSelected.size() > 1) {
+                btnUnionEvents.setDisable(false);
+                btnAddNewEventProperty.setDisable(true);
+                btnDeleteEvent.setDisable(true);
+            } else {
+                btnUnionEvents.setDisable(true);
+                btnAddNewEventProperty.setDisable(false);
+                btnDeleteEvent.setDisable(false);
+            }
 
         } else {
             tblEventShots.setItems(null);
             tblEventShots.setDisable(true);
             tblTagsEvent.setItems(null);
             tblTagsEvent.setDisable(true);
-        }
-
-        if (listSelected.size() > 1) {
-            btnUnionEvents.setDisable(false);
-        } else {
-            btnUnionEvents.setDisable(true);
+            tblTagsShotsEvent.setDisable(true);
+            tblTagsShotsEvent.setItems(null);
+            btnAddTagToEvent.setDisable(true);
         }
 
         if (currentEvent != null) {
@@ -1639,6 +1744,7 @@ public class TagsShotsController extends Application {
             fldEventPropertyName.setText("");
             fldEventPropertyValue.setText("");
 
+            btnDeleteEvent.setDisable(false);
 
         } else {
 
@@ -1650,6 +1756,8 @@ public class TagsShotsController extends Application {
             fldEventPropertyName.setText("");
             fldEventPropertyValue.setText("");
             btnAddNewEventProperty.setDisable(true);
+            btnDeleteEvent.setDisable(true);
+
         }
 
         btnDeleteEventProperty.setDisable(true);
@@ -1817,11 +1925,15 @@ public class TagsShotsController extends Application {
                     }
                 }
             }
-            
-            
+
+            btnCreateNewEvent.setDisable(false);
+            btnAddNewTagShot.setDisable(false);
+
         } else {
             tblShotsTypesSize.setDisable(true);
             tblShotsTypesPersons.setDisable(true);
+            btnCreateNewEvent.setDisable(true);
+            btnAddNewTagShot.setDisable(true);
         }
 
     }
@@ -1845,6 +1957,7 @@ public class TagsShotsController extends Application {
             fldTagShotPropertyValue.setDisable(true);
             btnDeleteTagsProperties.setDisable(true);
 
+
         } else {
             tblTagsShotsProperties.setItems(null);
 
@@ -1856,6 +1969,7 @@ public class TagsShotsController extends Application {
             fldTagShotPropertyValue.setDisable(true);
             btnAddNewTagsShotsProperties.setDisable(true);
             btnDeleteTagsProperties.setDisable(true);
+
         }
 
     }
@@ -2648,8 +2762,21 @@ public class TagsShotsController extends Application {
                     }
                 }
 
+                for (IVFXTagsShots shot: listEventShots) {
+                    for (IVFXTagsShots tagShot: lst) {
+                        if (shot.getId() == tagShot.getShotId()) {
+                            shot.getIvfxShot().setImageViewFirst(tagShot.getIvfxShot().getImageViewFirst());
+                            shot.getIvfxShot().setImageViewLast(tagShot.getIvfxShot().getImageViewLast());
+                            shot.getIvfxShot().setLabelFirst(tagShot.getIvfxShot().getLabelFirst());
+                            shot.getIvfxShot().setLabelLast(tagShot.getIvfxShot().getLabelLast());
+                        }
+                    }
+                }
+
+
                 currentShot = listShots.get(0);
                 tblShots.refresh();
+                tblEventShots.refresh();
 
                 doOnSelectRecordInTblShots();
                 
@@ -2705,8 +2832,20 @@ public class TagsShotsController extends Application {
                     }
                 }
 
+                for (IVFXTagsShots shot: listSceneShots) {
+                    for (IVFXTagsShots tagShot: lst) {
+                        if (shot.getId() == tagShot.getShotId()) {
+                            shot.getIvfxShot().setImageViewFirst(tagShot.getIvfxShot().getImageViewFirst());
+                            shot.getIvfxShot().setImageViewLast(tagShot.getIvfxShot().getImageViewLast());
+                            shot.getIvfxShot().setLabelFirst(tagShot.getIvfxShot().getLabelFirst());
+                            shot.getIvfxShot().setLabelLast(tagShot.getIvfxShot().getLabelLast());
+                        }
+                    }
+                }
+
                 currentShot = listShots.get(0);
                 tblShots.refresh();
+                tblSceneShots.refresh();
 
                 doOnSelectRecordInTblShots();
 
@@ -2755,11 +2894,24 @@ public class TagsShotsController extends Application {
                 }
             }
 
+            for (IVFXTagsShots shot: listEventShots) {
+                for (IVFXTagsShots tagShot: lstTagsShots) {
+                    if (shot.getId() == tagShot.getShotId()) {
+                        shot.getIvfxShot().setImageViewFirst(tagShot.getIvfxShot().getImageViewFirst());
+                        shot.getIvfxShot().setImageViewLast(tagShot.getIvfxShot().getImageViewLast());
+                        shot.getIvfxShot().setLabelFirst(tagShot.getIvfxShot().getLabelFirst());
+                        shot.getIvfxShot().setLabelLast(tagShot.getIvfxShot().getLabelLast());
+                    }
+                }
+            }
+
             // Обновляем список сцен
             listScenes = FXCollections.observableArrayList(IVFXTagsScenes.loadListScenes(currentFile, true));
             tblScenes.setItems(listScenes);
 
             tblShots.refresh();
+            tblEventShots.refresh();
+
             for (IVFXShots shot: listShots) {
                 if (shot.getId() == currentShot.getId()) {
                     currentShot = shot;
@@ -2896,11 +3048,24 @@ public class TagsShotsController extends Application {
                 }
             }
 
+            for (IVFXTagsShots shot: listSceneShots) {
+                for (IVFXTagsShots tagShot: lstTagsShots) {
+                    if (shot.getId() == tagShot.getShotId()) {
+                        shot.getIvfxShot().setImageViewFirst(tagShot.getIvfxShot().getImageViewFirst());
+                        shot.getIvfxShot().setImageViewLast(tagShot.getIvfxShot().getImageViewLast());
+                        shot.getIvfxShot().setLabelFirst(tagShot.getIvfxShot().getLabelFirst());
+                        shot.getIvfxShot().setLabelLast(tagShot.getIvfxShot().getLabelLast());
+                    }
+                }
+            }
+
             // Обновляем список сцен
             listEvents = FXCollections.observableArrayList(IVFXTagsEvents.loadListEvents(currentFile, true));
             tblEvents.setItems(listEvents);
 
             tblShots.refresh();
+            tblSceneShots.refresh();
+
             for (IVFXShots shot: listShots) {
                 if (shot.getId() == currentShot.getId()) {
                     currentShot = shot;
@@ -2913,26 +3078,204 @@ public class TagsShotsController extends Application {
         }
     }
 
+    // Метод расширения/сужения события
+    private void doAfterExpandCollapseEvent() {
+        if (currentEvent != null && currentEventShot != null) {
+            List<IVFXTagsEvents> listSelected = tblEvents.getSelectionModel().getSelectedItems();
+            List<IVFXTags> listTags = new ArrayList<>();
+            for (IVFXTagsEvents tagEvent: listSelected) {
+                listTags.add(tagEvent);
+            }
+            listEventShots = FXCollections.observableArrayList(IVFXTagsShots.loadList(listTags, true));
+            tblEventShots.setItems(listEventShots);
 
+            List<IVFXTagsShots> lstToUpdateShots = IVFXTagsShots.loadList(listTags, true);
+            List<IVFXTagsShots> lstToUpdateEventsShots = IVFXTagsShots.loadList(listTags, true);
+
+            for (IVFXShots shot: listShots) {
+                for (IVFXTagsShots tagShot: lstToUpdateShots) {
+                    if (shot.getId() == tagShot.getShotId()) {
+                        shot.setImageViewFirst(tagShot.getIvfxShot().getImageViewFirst());
+                        shot.setImageViewLast(tagShot.getIvfxShot().getImageViewLast());
+                        shot.setLabelFirst(tagShot.getIvfxShot().getLabelFirst());
+                        shot.setLabelLast(tagShot.getIvfxShot().getLabelLast());
+                    }
+                }
+            }
+
+            for (IVFXTagsShots shot: listSceneShots) {
+                for (IVFXTagsShots tagShot: lstToUpdateEventsShots) {
+                    if (shot.getId() == tagShot.getShotId()) {
+                        shot.getIvfxShot().setImageViewFirst(tagShot.getIvfxShot().getImageViewFirst());
+                        shot.getIvfxShot().setImageViewLast(tagShot.getIvfxShot().getImageViewLast());
+                        shot.getIvfxShot().setLabelFirst(tagShot.getIvfxShot().getLabelFirst());
+                        shot.getIvfxShot().setLabelLast(tagShot.getIvfxShot().getLabelLast());
+                    }
+                }
+            }
+
+            tblShots.refresh();
+            tblSceneShots.refresh();
+
+            for (IVFXTagsShots tmp: listEventShots) {
+                if (tmp.isEqual(currentEventShot)) {
+                    currentEventShot = tmp;
+                    tblEventShots.getSelectionModel().select(tmp);
+                    doOnSelectRecordInTblEventShots();
+                }
+            }
+        }
+    }
+
+    // Событие нажатия кнопки "Расширить вниз"
     @FXML
     void doBtnEventExtendDown(ActionEvent event) {
-
+        if (currentEvent != null && currentEventShot != null) {
+            currentEventShot = IVFXTagsEvents.eventShotExpandCollapse(currentEvent,currentEventShot,true,false,true);
+            doAfterExpandCollapseEvent();
+        }
     }
 
+    // Событие нажатия кнопки "Расширить вверх"
     @FXML
     void doBtnEventExtendUp(ActionEvent event) {
-
+        if (currentEvent != null && currentEventShot != null) {
+            currentEventShot = IVFXTagsEvents.eventShotExpandCollapse(currentEvent,currentEventShot,true,true,true);
+            doAfterExpandCollapseEvent();
+        }
     }
 
-
+    // Событие нажатия кнопки "Сузить вниз"
     @FXML
     void doBtnEventCollapseDown(ActionEvent event) {
+        if (currentEvent != null && currentEventShot != null) {
+            currentEventShot = IVFXTagsEvents.eventShotExpandCollapse(currentEvent,currentEventShot,false,false,true);
+            doAfterExpandCollapseEvent();
+        }
+    }
+
+    // Событие нажатия кнопки "Сузить вверх"
+    @FXML
+    void doBtnEventCollapseUp(ActionEvent event) {
+        if (currentEvent != null && currentEventShot != null) {
+            currentEventShot = IVFXTagsEvents.eventShotExpandCollapse(currentEvent,currentEventShot,false,true,true);
+            doAfterExpandCollapseEvent();
+        }
+    }
+
+    // Событие нажатия кнопки "Добавить тэг к событию
+    @FXML
+    void doBtnAddTagToEvent(ActionEvent event) {
+        if (currentScene != null) {
+            List<Integer> listTagTypesId = new ArrayList<>();
+            listTagTypesId.add(0);
+            listTagTypesId.add(1);
+            listTagTypesId.add(2);
+            IVFXTags tag = TagsGetController.getTag(currentProject, IVFXTagsTypes.load(0),listTagTypesId,null);
+            boolean isAlreadyPresent = false;
+            for (IVFXTags tmp: listTagsEvent) {
+                if (tmp.isEqual(tag)) {
+                    isAlreadyPresent = true;
+                    break;
+                }
+            }
+            if (!isAlreadyPresent) {
+                IVFXTagsTags.getNewDbInstance(currentEvent, tag, true);
+                doOnSelectRecordInTblEvents();
+            }
+        }
+    }
+
+    // Событие нажатия кнопки doBtnCreateNewEvent - создание новой сцены на основе выбранного плана
+    @FXML
+    void doBtnCreateNewEvent(ActionEvent event) {
+
+        if (currentShot != null && currentProject != null && currentFile != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Создание нового события");
+            alert.setHeaderText("Вы действительно хотите создать новое событие на основе выбранного плана?");
+            alert.setContentText("Вы уверены?");
+            Optional<ButtonType> option = alert.showAndWait();
+            if (option.get() == ButtonType.OK) {
+
+                boolean confirm = true;
+                if (currentShot.isBodyEvent()) {
+
+                    confirm = false;
+                    alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Перекрестное событие");
+                    alert.setHeaderText("План, на основе которого вы хотите создать новое событие, уже присутствует в другом событии.");
+                    alert.setContentText("При создании события на основе этого плана возникнут перекрестные события, в которых планы будут повторятся.\nВы уверены, что хотите допустить перекрестные события?");
+                    Optional<ButtonType> option1 = alert.showAndWait();
+                    if (option1.get() == ButtonType.OK) {
+                        confirm = true;
+                    }
+
+                }
+
+                if (confirm) {
+                    currentEvent = IVFXTags.getNewDbInstance(currentProject, IVFXEnumTagsTypes.EVENT);
+                    currentEventShot = IVFXTagsShots.getNewDbInstance(currentEvent, currentShot);
+
+                    listEvents = FXCollections.observableArrayList(IVFXTagsEvents.loadListEvents(currentFile, true));
+                    tblEvents.setItems(listEvents);
+                    for (IVFXTags tmp : listEvents) {
+                        if (tmp.isEqual(currentEvent)) {
+                            currentEvent = tmp;
+                            doOnSelectRecordInTblEvents();
+                            break;
+                        }
+                    }
+                }
+
+            }
+        }
 
     }
 
-    @FXML
-    void doBtnEventCollapseUp(ActionEvent event) {
 
+    // Событие нажатия кнопки doBtnAddNewTagShot - Добавление тэга к плану
+    @FXML
+    void doBtnAddNewTagShot(ActionEvent event) {
+
+        if (currentShot != null) {
+            List<Integer> listTagTypesId = new ArrayList<>();
+            listTagTypesId.add(0);
+            listTagTypesId.add(1);
+            listTagTypesId.add(2);
+            IVFXTags tag = TagsGetController.getTag(currentProject, IVFXTagsTypes.load(1),listTagTypesId,null);
+            boolean isAlreadyPresent = false;
+            for (IVFXTagsShots tmp: listTagsShots) {
+                if (tmp.getIvfxTag().isEqual(tag)) {
+                    isAlreadyPresent = true;
+                    break;
+                }
+            }
+            if (!isAlreadyPresent) {
+                IVFXTagsShots.getNewDbInstance(tag,currentShot);
+                doOnSelectRecordInTblShots();
+            }
+        }
+
+    }
+
+    // Событие нажатие кнопки doBtnDeleteEvent - удаление события
+    @FXML
+    void doBtnDeleteEvent(ActionEvent event) {
+        if (currentEvent != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Удаление события");
+            alert.setHeaderText("Вы действительно хотите удалить событие с именем «" + currentEvent.getName() + "»?");
+            alert.setContentText("В случае утвердительного ответа событие будет удалено из базы данных и его восстановление будет невозможно.\nВы уверены?");
+            Optional<ButtonType> option = alert.showAndWait();
+            if (option.get() == ButtonType.OK) {
+                currentEvent.delete();
+                listEvents = FXCollections.observableArrayList(IVFXTagsEvents.loadListEvents(currentFile, true));
+                tblEvents.setItems(listEvents);
+                currentEvent = null;
+                doOnSelectRecordInTblEvents();
+            }
+        }
     }
 
 }

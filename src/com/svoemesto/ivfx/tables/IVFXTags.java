@@ -578,15 +578,15 @@ public class IVFXTags {
     }
 
 
-    public static List<IVFXTags> loadListShotsTags(List<IVFXTags> listScenes, boolean withPreview, int[] arrayTagsTypesId) {
+    public static List<IVFXTags> loadListShotsTagsForScenes(List<IVFXTags> listScenes, boolean withPreview, int[] arrayTagsTypesId) {
         int[] arrayScenesId = new int[listScenes.size()];
         for (int i = 0; i < listScenes.size(); i++) {
             arrayScenesId[i] = listScenes.get(i).getId();
         }
-        return loadListShotsTags(arrayScenesId, withPreview, arrayTagsTypesId);
+        return loadListShotsTagsForScenes(arrayScenesId, withPreview, arrayTagsTypesId);
     }
     // Для набора сцен возвращает список тегов планов, входящих в сцены
-    public static List<IVFXTags> loadListShotsTags(int[] arrayScenesId, boolean withPreview, int[] arrayTagsTypesId) {
+    public static List<IVFXTags> loadListShotsTagsForScenes(int[] arrayScenesId, boolean withPreview, int[] arrayTagsTypesId) {
 
         List<IVFXTags> listTags = new ArrayList<>();
         if (arrayScenesId != null && arrayScenesId.length > 0) {
@@ -709,6 +709,136 @@ public class IVFXTags {
 
     }
 
+    public static List<IVFXTags> loadListShotsTagsForEvents(List<IVFXTags> listEvents, boolean withPreview, int[] arrayTagsTypesId) {
+        int[] arrayScenesId = new int[listEvents.size()];
+        for (int i = 0; i < listEvents.size(); i++) {
+            arrayScenesId[i] = listEvents.get(i).getId();
+        }
+        return loadListShotsTagsForEvents(arrayScenesId, withPreview, arrayTagsTypesId);
+    }
+    // Для набора сцен возвращает список тегов планов, входящих в сцены
+    public static List<IVFXTags> loadListShotsTagsForEvents(int[] arrayScenesId, boolean withPreview, int[] arrayTagsTypesId) {
+
+        List<IVFXTags> listTags = new ArrayList<>();
+        if (arrayScenesId != null && arrayScenesId.length > 0) {
+
+            int iProgress = 0;
+            Statement statement = null;
+            ResultSet rs = null;
+            String sql;
+
+            try {
+                statement = Main.mainConnection.createStatement();
+
+                String tmpScenesId = "";
+                for (int i = 0; i < arrayScenesId.length; i++) {
+                    tmpScenesId += "tbl_tags.id = " + arrayScenesId[i];
+                    if (i != arrayScenesId.length - 1) tmpScenesId += " OR ";
+                }
+
+                if (arrayTagsTypesId != null && arrayTagsTypesId.length > 0) {
+
+
+                    String tmpTagTypes = "";
+                    for (int i = 0; i < arrayTagsTypesId.length; i++) {
+                        tmpTagTypes += "tbl_tags_1.tag_type_id = " + arrayTagsTypesId[i];
+                        if (i != arrayTagsTypesId.length - 1) tmpTagTypes += " OR ";
+                    }
+
+                    sql = "SELECT " +
+                            "  tbl_tags.* " +
+                            "FROM tbl_tags " +
+                            "  INNER JOIN (SELECT " +
+                            "      tbl_tags_shots_1.tag_id " +
+                            "    FROM tbl_tags_shots " +
+                            "      INNER JOIN tbl_tags " +
+                            "        ON tbl_tags_shots.tag_id = tbl_tags.id " +
+                            "      INNER JOIN tbl_tags_shots tbl_tags_shots_1 " +
+                            "        ON tbl_tags_shots.shot_id = tbl_tags_shots_1.shot_id " +
+                            "      INNER JOIN tbl_tags tbl_tags_1 " +
+                            "        ON tbl_tags_shots_1.tag_id = tbl_tags_1.id " +
+                            "    WHERE tbl_tags.tag_type_id = 4 " +
+                            "    AND (" + tmpTagTypes + ") " +
+                            "    AND (" + tmpScenesId + ") " +
+                            "    GROUP BY tbl_tags_shots_1.tag_id) SubQuery " +
+                            "    ON tbl_tags.id = SubQuery.tag_id " +
+                            "ORDER BY tbl_tags.tag_type_id";
+
+                } else {
+                    sql = "SELECT " +
+                            "  tbl_tags.* " +
+                            "FROM tbl_tags " +
+                            "  INNER JOIN (SELECT " +
+                            "      tbl_tags_shots_1.tag_id " +
+                            "    FROM tbl_tags_shots " +
+                            "      INNER JOIN tbl_tags " +
+                            "        ON tbl_tags_shots.tag_id = tbl_tags.id " +
+                            "      INNER JOIN tbl_tags_shots tbl_tags_shots_1 " +
+                            "        ON tbl_tags_shots.shot_id = tbl_tags_shots_1.shot_id " +
+                            "      INNER JOIN tbl_tags tbl_tags_1 " +
+                            "        ON tbl_tags_shots_1.tag_id = tbl_tags_1.id " +
+                            "    WHERE tbl_tags.tag_type_id = 4 " +
+                            "    AND (" + tmpScenesId + ") " +
+                            "    GROUP BY tbl_tags_shots_1.tag_id) SubQuery " +
+                            "    ON tbl_tags.id = SubQuery.tag_id " +
+                            "ORDER BY tbl_tags.tag_type_id";
+                }
+
+                rs = statement.executeQuery(sql);
+                while (rs.next()) {
+
+                    IVFXTags ivfxTag = new IVFXTags();
+                    ivfxTag.id = rs.getInt("id");
+                    ivfxTag.ivfxEnumTagsTypes = IVFXTagsTypes.getEnumTagsTypes(rs.getInt("tag_type_id"));
+                    ivfxTag.name = rs.getString("name");
+
+                    if (withPreview) {
+                        String fileName = ivfxTag.getTagPicturePreview();
+                        File file = new File(fileName);
+                        for (int i = 0; i < 8; i++) {
+                            ivfxTag.label[i] = new Label(ivfxTag.name);
+                            ivfxTag.label[i].setPrefWidth(135);
+                            ivfxTag.label[i].setStyle(ivfxTag.fxLabelCaption);
+                            ivfxTag.label[i].setWrapText(true);
+                            ivfxTag.label[i].setMaxWidth(135);
+                        }
+
+                        if (!file.exists()) {
+                            fileName = ivfxTag.getTagPicturePreviewStub();
+                            file = new File(fileName);
+                        }
+                        try {
+                            BufferedImage bufferedImage = ImageIO.read(file);
+                            for (int i = 0; i < 8; i++) {
+                                ivfxTag.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
+//                                ivfxTag.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(OverlayImage.setOverlayUnderlineText(bufferedImage, ivfxTag.name)));
+                                ivfxTag.label[i].setGraphic(ivfxTag.preview[i]);
+                                ivfxTag.label[i].setContentDisplay(ContentDisplay.TOP);
+                            }
+
+                        } catch (IOException e) {
+                        }
+
+                    }
+
+                    listTags.add(ivfxTag);
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (rs != null) rs.close(); // close result set
+                    if (statement != null) statement.close(); // close statement
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return listTags;
+
+    }
     public static List<IVFXTags> loadList(IVFXFiles ivfxFile, boolean withPreview, int[] arrayTagsTypesId) {
         List<IVFXTags> listTags = new ArrayList<>();
         if (ivfxFile != null) {

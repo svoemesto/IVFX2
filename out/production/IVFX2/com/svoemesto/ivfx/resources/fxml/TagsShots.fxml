@@ -153,8 +153,7 @@
                                                 </TableView>
                                                 <HBox prefHeight="100.0" prefWidth="200.0">
                                                    <children>
-                                                      <Button fx:id="btnAddNewTagShot" mnemonicParsing="false" prefWidth="5000.0" text="Добавить тэг" />
-                                                      <Button fx:id="btnDeleteTagShot" mnemonicParsing="false" prefWidth="5000.0" text="Удалить тэг" />
+                                                      <Button fx:id="btnAddNewTagShot" mnemonicParsing="false" onAction="#doBtnAddNewTagShot" prefWidth="5000.0" text="Добавить тэг" />
                                                    </children>
                                                 </HBox>
                                              </children>
@@ -308,8 +307,8 @@
                                                 <TextArea fx:id="fldScenePropertyValue" minHeight="75.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                                 <HBox prefHeight="100.0" prefWidth="200.0">
                                                    <children>
-                                                      <Button fx:id="btnAddNewSceneProperty" mnemonicParsing="false" onAction="#doBtnAddNewSceneProperty" prefWidth="200.0" text="Добавить" />
-                                                      <Button fx:id="btnDeleteSceneProperty" mnemonicParsing="false" onAction="#doBtnDeleteSceneProperty" prefWidth="200.0" text="Удалить" />
+                                                      <Button fx:id="btnAddNewSceneProperty" mnemonicParsing="false" onAction="#doBtnAddNewSceneProperty" prefWidth="250.0" text="Создать новое свойство для сцены" />
+                                                      <Button fx:id="btnDeleteSceneProperty" mnemonicParsing="false" onAction="#doBtnDeleteSceneProperty" prefWidth="200.0" text="Удалить свойство сцены" />
                                                    </children>
                                                 </HBox>
                                              </children>
@@ -361,6 +360,8 @@
                                                    </columns>
                                                 </TableView>
                                                 <Button fx:id="btnUnionEvents" mnemonicParsing="false" onAction="#doBtnUnionEvents" prefWidth="5000.0" text="Объединить события" />
+                                                <Button fx:id="btnCreateNewEvent" mnemonicParsing="false" onAction="#doBtnCreateNewEvent" prefWidth="5000.0" text="Создать событие на основе выбранного плана" />
+                                                <Button fx:id="btnDeleteEvent" mnemonicParsing="false" onAction="#doBtnDeleteEvent" prefWidth="5000.0" text="Удалить событие" />
                                                 <Separator prefWidth="200.0" />
                                                 <Label alignment="CENTER" prefWidth="400.0" text="Свойства события" textAlignment="CENTER" />
                                                 <TableView fx:id="tblEventProperties" minHeight="150.0" prefHeight="500.0" prefWidth="400.0">
@@ -369,12 +370,12 @@
                                                       <TableColumn fx:id="colValueTblEventProperties" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" text="Value" />
                                                    </columns>
                                                 </TableView>
-                                                <TextField fx:id="fldEventPropertyName" onAction="#doFldScenePropertyName" />
+                                                <TextField fx:id="fldEventPropertyName" onAction="#doFldEventPropertyName" />
                                                 <TextArea fx:id="fldEventPropertyValue" minHeight="75.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
                                                 <HBox prefHeight="100.0" prefWidth="200.0">
                                                    <children>
-                                                      <Button fx:id="btnAddNewEventProperty" mnemonicParsing="false" onAction="#doBtnAddNewEventProperty" prefWidth="200.0" text="Добавить" />
-                                                      <Button fx:id="btnDeleteEventProperty" mnemonicParsing="false" onAction="#doBtnDeleteEventProperty" prefWidth="200.0" text="Удалить" />
+                                                      <Button fx:id="btnAddNewEventProperty" mnemonicParsing="false" onAction="#doBtnAddNewEventProperty" prefWidth="250.0" text="Создать новое свойство для события" />
+                                                      <Button fx:id="btnDeleteEventProperty" mnemonicParsing="false" onAction="#doBtnDeleteEventProperty" prefWidth="200.0" text="Удалить свойство события" />
                                                    </children>
                                                 </HBox>
                                              </children>
@@ -417,10 +418,23 @@
                                           <VBox prefHeight="200.0" prefWidth="170.0">
                                              <children>
                                                 <Label alignment="CENTER" prefWidth="5000.0" text="Персонажи-объекты события" />
-                                                <TableView fx:id="tblTagsEvent" prefHeight="5000.0" prefWidth="175.0">
+                                                <TableView fx:id="tblTagsEvent" prefHeight="5000.0" prefWidth="170.0">
                                                    <columns>
                                                       <TableColumn fx:id="colTypeTblTagsEvent" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" text="T" />
                                                       <TableColumn fx:id="colNameTblTagsEvent" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Name" />
+                                                   </columns>
+                                                </TableView>
+                                                <Button fx:id="btnAddTagToEvent" mnemonicParsing="false" onAction="#doBtnAddTagToEvent" prefWidth="5000.0" text="Добавить тэг к событию" />
+                                             </children>
+                                          </VBox>
+                                          <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                          <VBox prefHeight="200.0" prefWidth="170.0">
+                                             <children>
+                                                <Label alignment="CENTER" prefWidth="5000.0" text="Персонажи и объекты планов события" />
+                                                <TableView fx:id="tblTagsShotsEvent" prefHeight="5000.0" prefWidth="200.0">
+                                                   <columns>
+                                                      <TableColumn fx:id="colTypeTblTagsShotsEvent" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" text="T" />
+                                                      <TableColumn fx:id="colNameTblTagsShotsEvent" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Name" />
                                                    </columns>
                                                 </TableView>
                                              </children>

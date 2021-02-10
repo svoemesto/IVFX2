@@ -3,6 +3,9 @@ package com.svoemesto.ivfx.tables;
 import com.svoemesto.ivfx.Main;
 import com.svoemesto.ivfx.utils.ConvertToFxImage;
 import com.svoemesto.ivfx.utils.FFmpeg;
+import javafx.collections.FXCollections;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -17,6 +20,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class IVFXTagsEvents extends IVFXTags{
 
@@ -125,7 +129,7 @@ public class IVFXTagsEvents extends IVFXTags{
                         where1 += " OR ";
                         where2 += " OR ";
                         where3 += " OR ";
-                        where3 += " OR ";
+                        where4 += " OR ";
                     }
                 }
                 where1 += ")";
@@ -199,6 +203,90 @@ public class IVFXTagsEvents extends IVFXTags{
         }
     }
 
+    // Расширение или сужение сцены, возвращает план сцены до которого расширолось или сузилось
+    public static IVFXTagsShots eventShotExpandCollapse(IVFXTags event, IVFXTagsShots eventShot, boolean isExpand, boolean directionUp, boolean askQuestions) {
+
+        IVFXShots currentShot = eventShot.getIvfxShot();
+        IVFXFiles currentFile = currentShot.getIvfxFile();
+        IVFXTagsShots nextTagShot = null;
+
+        boolean confirmAddShotToEvent = true;
+        boolean nextShotIsAlreadyPresentInCurrentEvent = false;
+        boolean nextShotIsPresentInEventsAnotherEvent = false;
+
+        String sql = "";
+        if (directionUp) {
+            sql = "SELECT * FROM tbl_shots WHERE file_id = " + currentFile.getId() + " AND lastFrameNumber = " + (currentShot.getFirstFrameNumber() - 1);
+        } else {
+            sql = "SELECT * FROM tbl_shots WHERE file_id = " + currentFile.getId() + " AND firstFrameNumber = " + (currentShot.getLastFrameNumber() + 1);
+        }
+
+        Statement statement = null;
+        ResultSet rs = null;
+
+        try {
+            statement = Main.mainConnection.createStatement();
+
+            rs = statement.executeQuery(sql);
+            if (rs.next()) {
+                // находим соседний план
+                IVFXShots nextShot = IVFXShots.load(rs.getInt("id"), true);
+
+                // получаем список событий, в которых этот план уже участвует
+                List<Integer> listTagIdEvents = nextShot.getTagIdEvents();
+                nextShotIsAlreadyPresentInCurrentEvent = false;
+                nextShotIsPresentInEventsAnotherEvent = listTagIdEvents.size() > 0;
+                for (int eventId: listTagIdEvents) {
+                    if (eventId == event.getId()) {
+                        nextShotIsAlreadyPresentInCurrentEvent = true;
+                        nextTagShot = IVFXTagsShots.load(event, nextShot, true);
+                        break;
+                    }
+                }
+
+                if (isExpand) { // если расширяемся
+                    if (nextShotIsAlreadyPresentInCurrentEvent) { // если план уже есть в текущем событии - возвращаем его план-тэг
+                        return nextTagShot;
+                    } else {
+                        if (nextShotIsPresentInEventsAnotherEvent && askQuestions) { // если план есть в каком-то другом событии - уточняем про перекрестные события (если надо)
+                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                            alert.setTitle("Перекрестное событие");
+                            alert.setHeaderText("План, который вы ходите добавить к текущему событию, уже присутствует в другом событии.");
+                            alert.setContentText("При добавлении плана к текущему собитию возникнут перекрестные события, в которых планы будут повторятся.\nВы уверены, что хотите допустить перекрестные события?");
+                            Optional<ButtonType> option = alert.showAndWait();
+                            if (option.get() != ButtonType.OK) {
+                                confirmAddShotToEvent = false;
+                            }
+                        }
+
+                        if (confirmAddShotToEvent) { // если принято решение все-таки расширить событие до этого плана - добавляем его к событию и возвращаем его
+                            return IVFXTagsShots.getNewDbInstance(event,nextShot);
+                        }
+
+                    }
+                } else { // если сужаемся
+                    if (nextShotIsAlreadyPresentInCurrentEvent) { // если план уже есть в текущем событии - возвращаем его план-тэг, удалив текущий план-тэг
+                        eventShot.delete();
+                        return nextTagShot;
+                    }
+                }
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close(); // close result set
+                if (statement != null) statement.close(); // close statement
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return eventShot;
+
+    }
 
 
     public String getStart() {
