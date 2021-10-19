@@ -65,7 +65,7 @@ public class IVFXScenes {
         List<IVFXScenesShots> listCuttedSceneShots = new ArrayList<>();
         List<IVFXScenes> listReturnedScenes = new ArrayList<>();
 
-        // для начала надо найти, если ли в списке сцена, начинающаяся с указаного плана - тогда новую сцену создавать не надо
+        // для начала надо найти, если ли в списке сцена, начинающаяся с указанного плана - тогда новую сцену создавать не надо
         for (IVFXScenes scene : listScenes) if (ivfxShot.getId() == scene.getFirstShot().getId()) return scene;
 
         IVFXScenes ivfxScene = ivfxShot.getScene(); // получаем сцену, содержащую план

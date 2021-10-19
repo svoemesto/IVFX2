@@ -35,7 +35,9 @@ import javafx.util.Duration;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -409,8 +411,8 @@ public class ShotsController {
             matrixLabels.frameNumber = frameNumber;
             if (frameNumber != 0) {
                 currentFrameToScroll = frameNumber;
-                String fileName = ivfxFiles.getFramesFolderPreview() + "\\" + ivfxFiles.getShortName() + ivfxFiles.FRAMES_PREFIX + String.format("%06d", frameNumber) + ".jpg";
-                String fileNameFullSize = ivfxFiles.getFramesFolderFullSize() + "\\" + ivfxFiles.getShortName() + ivfxFiles.FRAMES_PREFIX + String.format("%06d", frameNumber) + ".jpg";
+                String fileName = ivfxFiles.getFolderFramesPreview() + "\\" + ivfxFiles.getShortName() + ivfxFiles.FRAMES_PREFIX + String.format("%06d", frameNumber) + ".jpg";
+                String fileNameFullSize = ivfxFiles.getFolderFramesFull() + "\\" + ivfxFiles.getShortName() + ivfxFiles.FRAMES_PREFIX + String.format("%06d", frameNumber) + ".jpg";
                 if (i == 0) {
                     onMouseClickLabel(fileName, fileNameFullSize, mainLabelFullSizePicture);
                 }
@@ -490,8 +492,8 @@ public class ShotsController {
 
         matrixLabels.label.toFront();
         if (updateFullPreviewDuringMoveMouse) {
-            String fileName = currentFile.getFramesFolderPreview() + "\\" + currentFile.getShortName() + currentFile.FRAMES_PREFIX + String.format("%06d", matrixLabels.frameNumber) + ".jpg";
-            String fileNameFullSize = currentFile.getFramesFolderFullSize() + "\\" + currentFile.getShortName() + currentFile.FRAMES_PREFIX + String.format("%06d", matrixLabels.frameNumber) + ".jpg";
+            String fileName = currentFile.getFolderFramesPreview() + "\\" + currentFile.getShortName() + currentFile.FRAMES_PREFIX + String.format("%06d", matrixLabels.frameNumber) + ".jpg";
+            String fileNameFullSize = currentFile.getFolderFramesFull() + "\\" + currentFile.getShortName() + currentFile.FRAMES_PREFIX + String.format("%06d", matrixLabels.frameNumber) + ".jpg";
             onMouseClickLabel(fileName, fileNameFullSize, mainLabelFullSizePicture);
         }
     }
@@ -1584,8 +1586,8 @@ public class ShotsController {
                 prevMatrixLabel = matrixLabels;
             }
 
-            String fileName = currentFile.getFramesFolderPreview() + "\\" + currentFile.getShortName() + currentFile.FRAMES_PREFIX + String.format("%06d", currentFrameToScroll) + ".jpg";
-            String fileNameFullSize = currentFile.getFramesFolderFullSize() + "\\" + currentFile.getShortName() + currentFile.FRAMES_PREFIX + String.format("%06d", currentFrameToScroll) + ".jpg";
+            String fileName = currentFile.getFolderFramesPreview() + "\\" + currentFile.getShortName() + currentFile.FRAMES_PREFIX + String.format("%06d", currentFrameToScroll) + ".jpg";
+            String fileNameFullSize = currentFile.getFolderFramesFull() + "\\" + currentFile.getShortName() + currentFile.FRAMES_PREFIX + String.format("%06d", currentFrameToScroll) + ".jpg";
             onMouseClickLabel(fileName, fileNameFullSize, mainLabelFullSizePicture);
 
         });
@@ -2653,6 +2655,8 @@ public class ShotsController {
             if (e.getCode() == KeyCode.F6) doAddNewEvent(new ActionEvent());
             if (e.getCode() == KeyCode.F7) goToPreviousShot();
             if (e.getCode() == KeyCode.F8) goToNextShot();
+            if (e.getCode() == KeyCode.F9) createShotMXFaudioON();
+            if (e.getCode() == KeyCode.F10) createShotMXFaudioOFF();
         });
 
     }
@@ -2660,6 +2664,190 @@ public class ShotsController {
     @FXML
     void doOK(ActionEvent event) {
         shotsController.controllerStage.close();
+    }
+
+    private void createShotMXFaudioOFF() {
+
+        System.out.println("createShotMXF");
+
+        IVFXShots shot = currentShot;
+        IVFXFiles ivfxFile = shot.getIvfxFile();
+
+        int w = 1920;
+        int h = 1080;
+
+        int fileWidth = ivfxFile.getWidth();
+        int fileHeight = ivfxFile.getHeight();
+        double fileAspect = (double) fileWidth / (double) fileHeight;
+        double frameAspect = (double) w / (double) h;
+
+        String filter = "";
+
+        if (fileAspect > frameAspect) {
+            int frameHeight = (int)((double) w / fileAspect);
+            filter = "\"scale="+w+":"+frameHeight+",pad="+w+":"+h+":0:" + (int)((h-frameHeight)/2.0) + ":black\"";
+        } else {
+            int frameWidth = (int)((double) h * fileAspect);
+            filter = "\"scale="+frameWidth+":"+h+",pad="+w+":"+h+":" + (int)((w-frameWidth)/2.0) + ":0:black\"";
+        }
+
+        String pathToX264Folder = ivfxFile.getIvfxProject().getFolder() + "\\Video\\1920x1080";
+        String fileNameOutMXF = pathToX264Folder + "\\" + shot.getShotVideoFileNameWihoutFolderMXFaudioOFF();
+        int firstFrame = shot.getFirstFrameNumber();
+        int lastFrame = shot.getLastFrameNumber();
+        double frameRate = ivfxFile.getFrameRate();
+        int framesToCode = lastFrame - firstFrame + 1;
+        String start = ((Double)(((double)FFmpeg.getDurationByFrameNumber(firstFrame,frameRate))/1000)).toString();
+        String pathToFFmpeg = FFmpeg.PATH_TO_FFMPEG;
+        String pathToLosslessFolder =  ivfxFile.getIvfxProject().getFolder() + "\\Video\\Lossless";
+        String pathToLosslessFile = pathToLosslessFolder + "\\" + ivfxFile.getShortName() + "_lossless.mkv";
+        String resolution = w + "x" + h;
+
+        String audioCodec = "aac";
+        int audioBitrate = 196608;
+        int audioFreq = 48000;
+
+        // создание плана
+        List<String> param = new ArrayList<String>();
+        param.add(pathToFFmpeg);
+        if (firstFrame != 0) {
+            param.add("-ss");
+            param.add(start);
+        }
+        param.add("-i");
+        param.add(pathToLosslessFile);
+        param.add("-map");
+        param.add("0:v:0");
+        param.add("-vframes");
+        param.add(String.valueOf(framesToCode));
+        param.add("-s");
+        param.add(resolution);
+        param.add("-c:v");
+        param.add("dnxhd");
+        param.add("-b:v");
+        param.add("36M");
+//        param.add("-vf");
+//        param.add(filter);
+        param.add("-y");
+        param.add(fileNameOutMXF);
+
+        String line = "";
+        for (String parameter : param) {
+            line = line + parameter + " ";
+        }
+        line = line.substring(0,line.length()-1)+"\n";
+
+        String textCmdFull = line;
+        File folder = new File(pathToX264Folder);
+        File file = new File(ivfxFile.getSourceName());
+        String fileName = file.getName();
+        String fileNameWOExt = fileName.substring(0,fileName.lastIndexOf("."));
+        String fileCmdName = pathToX264Folder + "\\_" + fileNameWOExt + ".cmd";
+        File fileCMD = new File(fileCmdName);
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileCMD));
+            writer.write(textCmdFull);
+            writer.flush();
+            writer.close();
+            Process process = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + fileCmdName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void createShotMXFaudioON() {
+
+        System.out.println("createShotMXF");
+
+        IVFXShots shot = currentShot;
+        IVFXFiles ivfxFile = shot.getIvfxFile();
+
+        int w = 1920;
+        int h = 1080;
+
+        int fileWidth = ivfxFile.getWidth();
+        int fileHeight = ivfxFile.getHeight();
+        double fileAspect = (double) fileWidth / (double) fileHeight;
+        double frameAspect = (double) w / (double) h;
+
+        String filter = "";
+
+        if (fileAspect > frameAspect) {
+            int frameHeight = (int)((double) w / fileAspect);
+            filter = "\"scale="+w+":"+frameHeight+",pad="+w+":"+h+":0:" + (int)((h-frameHeight)/2.0) + ":black\"";
+        } else {
+            int frameWidth = (int)((double) h * fileAspect);
+            filter = "\"scale="+frameWidth+":"+h+",pad="+w+":"+h+":" + (int)((w-frameWidth)/2.0) + ":0:black\"";
+        }
+
+        String pathToX264Folder = ivfxFile.getIvfxProject().getFolder() + "\\Video\\1920x1080";
+        String fileNameOutMXF = pathToX264Folder + "\\" + shot.getShotVideoFileNameWihoutFolderMXFaudioON();
+        int firstFrame = shot.getFirstFrameNumber();
+        int lastFrame = shot.getLastFrameNumber();
+        double frameRate = ivfxFile.getFrameRate();
+        int framesToCode = lastFrame - firstFrame + 1;
+        String start = ((Double)(((double)FFmpeg.getDurationByFrameNumber(firstFrame,frameRate))/1000)).toString();
+        String pathToFFmpeg = FFmpeg.PATH_TO_FFMPEG;
+        String pathToLosslessFolder =  ivfxFile.getIvfxProject().getFolder() + "\\Video\\Lossless";
+        String pathToLosslessFile = pathToLosslessFolder + "\\" + ivfxFile.getShortName() + "_lossless.mkv";
+        String resolution = w + "x" + h;
+
+        String audioCodec = "aac";
+        int audioBitrate = 196608;
+        int audioFreq = 48000;
+
+        // создание плана
+        List<String> param = new ArrayList<String>();
+        param.add(pathToFFmpeg);
+        if (firstFrame != 0) {
+            param.add("-ss");
+            param.add(start);
+        }
+        param.add("-i");
+        param.add(pathToLosslessFile);
+        param.add("-map");
+        param.add("0:v:0");
+        param.add("-map");
+        param.add("0:a:0");
+        param.add("-vframes");
+        param.add(String.valueOf(framesToCode));
+        param.add("-s");
+        param.add(resolution);
+        param.add("-c:v");
+        param.add("dnxhd");
+        param.add("-b:v");
+        param.add("36M");
+        param.add("-acodec");
+        param.add("pcm_s16le");
+//        param.add("-vf");
+//        param.add(filter);
+        param.add("-y");
+        param.add(fileNameOutMXF);
+
+        String line = "";
+        for (String parameter : param) {
+            line = line + parameter + " ";
+        }
+        line = line.substring(0,line.length()-1)+"\n";
+
+        String textCmdFull = line;
+        File folder = new File(pathToX264Folder);
+        File file = new File(ivfxFile.getSourceName());
+        String fileName = file.getName();
+        String fileNameWOExt = fileName.substring(0,fileName.lastIndexOf("."));
+        String fileCmdName = pathToX264Folder + "\\_" + fileNameWOExt + ".cmd";
+        File fileCMD = new File(fileCmdName);
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileCMD));
+            writer.write(textCmdFull);
+            writer.flush();
+            writer.close();
+            Process process = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + fileCmdName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

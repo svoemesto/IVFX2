@@ -126,7 +126,8 @@ public class PersonController extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Main.mainConnection = Database.getConnection();
-        IVFXProjects project = IVFXProjects.load(1);
+//        IVFXProjects project = IVFXProjects.load(1);
+        IVFXProjects project = IVFXProjects.load(2);
         IVFXPersons person = PersonController.getPerson(project);
         if (person != null) {
             System.out.println(person.getName());

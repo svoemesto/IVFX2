@@ -27,7 +27,8 @@ public class IVFXShotsTypeSize {
     private String name;
     private String nameShort;
     private String description;
-
+    private double hfMin = 0;
+    private double hfMax = 1;
     private ImageView[] preview = new ImageView[8];
     private Label[] label = new Label[8];
 
@@ -41,7 +42,7 @@ public class IVFXShotsTypeSize {
                 this.name.equals(o.name));
     }
 
-    public static IVFXShotsTypeSize load(int id) {
+    public static IVFXShotsTypeSize load(int id, boolean withPreview) {
         Statement statement = null;
         ResultSet rs = null;
         String sql;
@@ -57,26 +58,30 @@ public class IVFXShotsTypeSize {
                 shot_type_size.name = rs.getString("name");
                 shot_type_size.nameShort = rs.getString("name_short");
                 shot_type_size.description = rs.getString("description");
+                shot_type_size.hfMin = rs.getDouble("hf_min");
+                shot_type_size.hfMax = rs.getDouble("hf_max");
 
-                String fileName = shot_type_size.getPicture();
-                File file = new File(fileName);
-                for (int i = 0; i < 8; i++) {
-                    shot_type_size.label[i] = new Label(shot_type_size.name);
-                    shot_type_size.label[i].setPrefWidth(135);
-                    shot_type_size.label[i].setStyle(shot_type_size.fxLabelCaption);
-                }
+                if  (withPreview) {
+                    String fileName = shot_type_size.getPicture();
+                    File file = new File(fileName);
+                    for (int i = 0; i < 8; i++) {
+                        shot_type_size.label[i] = new Label(shot_type_size.name);
+                        shot_type_size.label[i].setPrefWidth(135);
+                        shot_type_size.label[i].setStyle(shot_type_size.fxLabelCaption);
+                    }
 
-                if (file.exists()) {
-                    try {
+                    if (file.exists()) {
+                        try {
 //                        BufferedImage bufferedImage = ImageIO.read(file);
-                        BufferedImage bufferedImage = OverlayImage.resizeImage(ImageIO.read(file), 90,50, null);
-                        for (int i = 0; i < 8; i++) {
-                            shot_type_size.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
-                            shot_type_size.label[i].setGraphic(shot_type_size.preview[i]);
-                            shot_type_size.label[i].setContentDisplay(ContentDisplay.TOP);
-                        }
+                            BufferedImage bufferedImage = OverlayImage.resizeImage(ImageIO.read(file), 90,50, null);
+                            for (int i = 0; i < 8; i++) {
+                                shot_type_size.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
+                                shot_type_size.label[i].setGraphic(shot_type_size.preview[i]);
+                                shot_type_size.label[i].setContentDisplay(ContentDisplay.TOP);
+                            }
 
-                    } catch (IOException e) {
+                        } catch (IOException e) {
+                        }
                     }
                 }
 
@@ -97,7 +102,68 @@ public class IVFXShotsTypeSize {
         return null;
     }
 
-    public static IVFXShotsTypeSize loadByName(String name) {
+    public static IVFXShotsTypeSize load(double hf, boolean withPreview) {
+        Statement statement = null;
+        ResultSet rs = null;
+        String sql;
+
+        try {
+            statement = Main.mainConnection.createStatement();
+
+            sql = "SELECT * FROM tbl_shots_type_size WHERE hf_min <= " + hf + " AND hf_max > " + hf;
+            rs = statement.executeQuery(sql);
+            if (rs.next()) {
+                IVFXShotsTypeSize shot_type_size = new IVFXShotsTypeSize();
+                shot_type_size.id = rs.getInt("id");
+                shot_type_size.name = rs.getString("name");
+                shot_type_size.nameShort = rs.getString("name_short");
+                shot_type_size.description = rs.getString("description");
+                shot_type_size.hfMin = rs.getDouble("hf_min");
+                shot_type_size.hfMax = rs.getDouble("hf_max");
+
+                if  (withPreview) {
+                    String fileName = shot_type_size.getPicture();
+                    File file = new File(fileName);
+                    for (int i = 0; i < 8; i++) {
+                        shot_type_size.label[i] = new Label(shot_type_size.name);
+                        shot_type_size.label[i].setPrefWidth(135);
+                        shot_type_size.label[i].setStyle(shot_type_size.fxLabelCaption);
+                    }
+
+                    if (file.exists()) {
+                        try {
+//                        BufferedImage bufferedImage = ImageIO.read(file);
+                            BufferedImage bufferedImage = OverlayImage.resizeImage(ImageIO.read(file), 90,50, null);
+                            for (int i = 0; i < 8; i++) {
+                                shot_type_size.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
+                                shot_type_size.label[i].setGraphic(shot_type_size.preview[i]);
+                                shot_type_size.label[i].setContentDisplay(ContentDisplay.TOP);
+                            }
+
+                        } catch (IOException e) {
+                        }
+                    }
+                }
+
+                return shot_type_size;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close(); // close result set
+                if (statement != null) statement.close(); // close statement
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+
+
+    public static IVFXShotsTypeSize loadByName(String name, boolean withPreview) {
         Statement statement = null;
         ResultSet rs = null;
         String sql;
@@ -113,28 +179,33 @@ public class IVFXShotsTypeSize {
                 shot_type_size.name = rs.getString("name");
                 shot_type_size.nameShort = rs.getString("name_short");
                 shot_type_size.description = rs.getString("description");
+                shot_type_size.hfMin = rs.getDouble("hf_min");
+                shot_type_size.hfMax = rs.getDouble("hf_max");
 
-                String fileName = shot_type_size.getPicture();
-                File file = new File(fileName);
-                for (int i = 0; i < 8; i++) {
-                    shot_type_size.label[i] = new Label(shot_type_size.name);
-                    shot_type_size.label[i].setPrefWidth(135);
-                    shot_type_size.label[i].setStyle(shot_type_size.fxLabelCaption);
-                }
+                if  (withPreview) {
+                    String fileName = shot_type_size.getPicture();
+                    File file = new File(fileName);
+                    for (int i = 0; i < 8; i++) {
+                        shot_type_size.label[i] = new Label(shot_type_size.name);
+                        shot_type_size.label[i].setPrefWidth(135);
+                        shot_type_size.label[i].setStyle(shot_type_size.fxLabelCaption);
+                    }
 
-                if (file.exists()) {
-                    try {
+                    if (file.exists()) {
+                        try {
 //                        BufferedImage bufferedImage = ImageIO.read(file);
-                        BufferedImage bufferedImage = OverlayImage.resizeImage(ImageIO.read(file), 90,50, null);
-                        for (int i = 0; i < 8; i++) {
-                            shot_type_size.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
-                            shot_type_size.label[i].setGraphic(shot_type_size.preview[i]);
-                            shot_type_size.label[i].setContentDisplay(ContentDisplay.TOP);
-                        }
+                            BufferedImage bufferedImage = OverlayImage.resizeImage(ImageIO.read(file), 90,50, null);
+                            for (int i = 0; i < 8; i++) {
+                                shot_type_size.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
+                                shot_type_size.label[i].setGraphic(shot_type_size.preview[i]);
+                                shot_type_size.label[i].setContentDisplay(ContentDisplay.TOP);
+                            }
 
-                    } catch (IOException e) {
+                        } catch (IOException e) {
+                        }
                     }
                 }
+
 
                 return shot_type_size;
             }
@@ -153,7 +224,7 @@ public class IVFXShotsTypeSize {
         return null;
     }
 
-    public static IVFXShotsTypeSize loadByShortName(String shortName) {
+    public static IVFXShotsTypeSize loadByShortName(String shortName, boolean withPreview) {
         Statement statement = null;
         ResultSet rs = null;
         String sql;
@@ -169,28 +240,34 @@ public class IVFXShotsTypeSize {
                 shot_type_size.name = rs.getString("name");
                 shot_type_size.nameShort = rs.getString("name_short");
                 shot_type_size.description = rs.getString("description");
+                shot_type_size.hfMin = rs.getDouble("hf_min");
+                shot_type_size.hfMax = rs.getDouble("hf_max");
 
-                String fileName = shot_type_size.getPicture();
-                File file = new File(fileName);
-                for (int i = 0; i < 8; i++) {
-                    shot_type_size.label[i] = new Label(shot_type_size.name);
-                    shot_type_size.label[i].setPrefWidth(135);
-                    shot_type_size.label[i].setStyle(shot_type_size.fxLabelCaption);
-                }
+                if  (withPreview) {
 
-                if (file.exists()) {
-                    try {
+                    String fileName = shot_type_size.getPicture();
+                    File file = new File(fileName);
+                    for (int i = 0; i < 8; i++) {
+                        shot_type_size.label[i] = new Label(shot_type_size.name);
+                        shot_type_size.label[i].setPrefWidth(135);
+                        shot_type_size.label[i].setStyle(shot_type_size.fxLabelCaption);
+                    }
+
+                    if (file.exists()) {
+                        try {
 //                        BufferedImage bufferedImage = ImageIO.read(file);
-                        BufferedImage bufferedImage = OverlayImage.resizeImage(ImageIO.read(file), 90,50, null);
-                        for (int i = 0; i < 8; i++) {
-                            shot_type_size.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
-                            shot_type_size.label[i].setGraphic(shot_type_size.preview[i]);
-                            shot_type_size.label[i].setContentDisplay(ContentDisplay.TOP);
-                        }
+                            BufferedImage bufferedImage = OverlayImage.resizeImage(ImageIO.read(file), 90,50, null);
+                            for (int i = 0; i < 8; i++) {
+                                shot_type_size.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
+                                shot_type_size.label[i].setGraphic(shot_type_size.preview[i]);
+                                shot_type_size.label[i].setContentDisplay(ContentDisplay.TOP);
+                            }
 
-                    } catch (IOException e) {
+                        } catch (IOException e) {
+                        }
                     }
                 }
+
 
                 return shot_type_size;
             }
@@ -209,7 +286,7 @@ public class IVFXShotsTypeSize {
         return null;
     }
 
-    public static List<IVFXShotsTypeSize> loadList() {
+    public static List<IVFXShotsTypeSize> loadList(boolean withPreview) {
         List<IVFXShotsTypeSize> listShotsTypeSize = new ArrayList<>();
 
         Statement statement = null;
@@ -229,28 +306,33 @@ public class IVFXShotsTypeSize {
                 shot_type_size.name = rs.getString("name");
                 shot_type_size.nameShort = rs.getString("name_short");
                 shot_type_size.description = rs.getString("description");
+                shot_type_size.hfMin = rs.getDouble("hf_min");
+                shot_type_size.hfMax = rs.getDouble("hf_max");
 
-                String fileName = shot_type_size.getPicture();
-                File file = new File(fileName);
-                for (int i = 0; i < 8; i++) {
-                    shot_type_size.label[i] = new Label(shot_type_size.name);
-                    shot_type_size.label[i].setPrefWidth(135);
-                    shot_type_size.label[i].setStyle(shot_type_size.fxLabelCaption);
-                }
+                if  (withPreview) {
+                    String fileName = shot_type_size.getPicture();
+                    File file = new File(fileName);
+                    for (int i = 0; i < 8; i++) {
+                        shot_type_size.label[i] = new Label(shot_type_size.name);
+                        shot_type_size.label[i].setPrefWidth(135);
+                        shot_type_size.label[i].setStyle(shot_type_size.fxLabelCaption);
+                    }
 
-                if (file.exists()) {
-                    try {
+                    if (file.exists()) {
+                        try {
 //                        BufferedImage bufferedImage = ImageIO.read(file);
-                        BufferedImage bufferedImage = OverlayImage.resizeImage(ImageIO.read(file), 90,50, null);
-                        for (int i = 0; i < 8; i++) {
-                            shot_type_size.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
-                            shot_type_size.label[i].setGraphic(shot_type_size.preview[i]);
-                            shot_type_size.label[i].setContentDisplay(ContentDisplay.TOP);
-                        }
+                            BufferedImage bufferedImage = OverlayImage.resizeImage(ImageIO.read(file), 90,50, null);
+                            for (int i = 0; i < 8; i++) {
+                                shot_type_size.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
+                                shot_type_size.label[i].setGraphic(shot_type_size.preview[i]);
+                                shot_type_size.label[i].setContentDisplay(ContentDisplay.TOP);
+                            }
 
-                    } catch (IOException e) {
+                        } catch (IOException e) {
+                        }
                     }
                 }
+
 
                 listShotsTypeSize.add(shot_type_size);
             }
@@ -275,14 +357,18 @@ public class IVFXShotsTypeSize {
         String sql = "UPDATE tbl_shots_type_size SET " +
                 "name = ?, " +
                 "name_short = ?, " +
-                "description = ? " +
+                "description = ?, " +
+                "hf_min = ?, " +
+                "hf_max = ? " +
                 "WHERE id = ?";
         try {
             PreparedStatement ps = Main.mainConnection.prepareStatement(sql);
             ps.setString(1, this.name);
             ps.setString(2, this.nameShort);
             ps.setString(3, this.description);
-            ps.setInt   (4, this.id);
+            ps.setDouble(4, this.hfMin);
+            ps.setDouble(5, this.hfMax);
+            ps.setInt   (6, this.id);
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
@@ -412,6 +498,22 @@ public class IVFXShotsTypeSize {
     public String getPicture() {
         String fileName = Main.getMainTypesFolder() + "\\" + TYPE_PREFIX + this.getId() + ".png";
         return fileName;
+    }
+
+    public double getHfMin() {
+        return hfMin;
+    }
+
+    public void setHfMin(double hfMin) {
+        this.hfMin = hfMin;
+    }
+
+    public double getHfMax() {
+        return hfMax;
+    }
+
+    public void setHfMax(double hfMax) {
+        this.hfMax = hfMax;
     }
 
 }

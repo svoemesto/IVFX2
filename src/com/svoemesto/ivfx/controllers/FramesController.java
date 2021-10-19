@@ -31,6 +31,7 @@ import javafx.stage.Stage;
 
 import javafx.scene.layout.Pane;
 import javafx.util.StringConverter;
+import org.apache.commons.io.FileUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -355,7 +356,27 @@ public class FramesController {
 
         initContextMenuFrame(); // инициализируем контекстное меню для лейбла фулфрейма
 
+        // ГОРЯЧИЕ КЛАВИШИ
+        ctlCenterPane.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.F5) doFavoriteFrame(currentFrame);
+        });
 
+    }
+
+    private void doFavoriteFrame(MatrixFrames matrixFrame) {
+
+        if (matrixFrame != null) {
+            try {
+                File file = new File(matrixFrame.frame.getFileNameFullSize());
+                if (file.exists()) {
+
+                    FileUtils.copyFile(file, new File(currentFile.getFramesFolderFavorite()+"\\"+currentFile.getShortName()+currentFile.FRAMES_PREFIX+String.format("%06d", matrixFrame.frame.getFrameNumber())+".jpg"));
+
+                }
+            } catch (IOException exception) {
+                exception.printStackTrace();
+            }
+        }
 
     }
 
@@ -377,6 +398,7 @@ public class FramesController {
                     isPressedPlayForward.set(true);
 //                    goToNextFrame();
                 }
+
             }
         });
 
@@ -477,6 +499,15 @@ public class FramesController {
     }
 
     private void loadPictureToFullFrameLabel(MatrixFrames matrixFrame) {
+
+//        if (matrixFrame != null) {
+//            BufferedImage bufferedImage = matrixFrame.frame.getFrameFull();
+//            if (bufferedImage != null) {
+//                ImageView imageView = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
+//                ctlFullFrame.setGraphic(imageView);
+//            }
+//        }
+
 
         if (matrixFrame != null) {
             try {
@@ -639,7 +670,10 @@ public class FramesController {
                 if (currImage == null) {
                     try {
                         currImage = ImageIO.read(new File(matrix.frame.getFileNamePreview()));
-                    } catch (IOException e) {}
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+//                    currImage = matrix.frame.getFramePreview();
                 }
                 resultImage = OverlayImage.setOverlayIFrame(currImage);
                 currImage = resultImage;
@@ -650,7 +684,10 @@ public class FramesController {
                 if (currImage == null) {
                     try {
                         currImage = ImageIO.read(new File(matrix.frame.getFileNamePreview()));
-                    } catch (IOException e) {}
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+//                    currImage = matrix.frame.getFramePreview();
                 }
                 if (!matrix.frame.getIsManualCancel()) { // и не отменен
                     resultImage = OverlayImage.setOverlayFirstFrameFound(currImage);
@@ -667,7 +704,10 @@ public class FramesController {
                     if (currImage == null) {
                         try {
                             currImage = ImageIO.read(new File(matrix.frame.getFileNamePreview()));
-                        } catch (IOException e) {}
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+//                        currImage = matrix.frame.getFramePreview();
                     }
                     if (!(matrix.nextMatrixFrame.frame.getIsManualCancel())) { // и не отменен
                         resultImage = OverlayImage.setOverlayLastFrameFound(currImage);
@@ -684,7 +724,10 @@ public class FramesController {
                 if (currImage == null) {
                     try {
                         currImage = ImageIO.read(new File(matrix.frame.getFileNamePreview()));
-                    } catch (IOException e) {}
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+//                    currImage = matrix.frame.getFramePreview();
                 }
                 resultImage = OverlayImage.setOverlayFirstFrameManual(currImage);
                 currImage = resultImage;
@@ -695,7 +738,10 @@ public class FramesController {
                 if (currImage == null) {
                     try {
                         currImage = ImageIO.read(new File(matrix.frame.getFileNamePreview()));
-                    } catch (IOException e) {}
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+//                    currImage = matrix.frame.getFramePreview();
                 }
                 if (matrix.nextMatrixFrame.frame.getIsManualAdd()) {
                     resultImage = OverlayImage.setOverlayLastFrameManual(currImage);
@@ -1098,14 +1144,18 @@ public class FramesController {
                                             fileName = frame.getFileNamePreviewStub();
                                             file = new File(fileName);
                                         }
+                                        BufferedImage bufferedImage = null;
                                         try {
-                                            BufferedImage bufferedImage = ImageIO.read(file);
-                                            ImageView preview = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
-                                            label.setGraphic(preview);
-                                            label.setContentDisplay(ContentDisplay.TOP);
-                                            frame.setLabel(label);
-                                            frame.setPreview(preview);
-                                        } catch (IOException e) {}
+                                            bufferedImage = ImageIO.read(file);
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+//                                        BufferedImage bufferedImage = frame.getFramePreview();
+                                        ImageView preview = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
+                                        label.setGraphic(preview);
+                                        label.setContentDisplay(ContentDisplay.TOP);
+                                        frame.setLabel(label);
+                                        frame.setPreview(preview);
                                     }
                                 } else {
                                     if (frame.getLabel() != null) {
@@ -1138,14 +1188,18 @@ public class FramesController {
                                             fileName = frame.getFileNamePreviewStub();
                                             file = new File(fileName);
                                         }
+                                        BufferedImage bufferedImage = null;
                                         try {
-                                            BufferedImage bufferedImage = ImageIO.read(file);
-                                            ImageView preview = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
-                                            label.setGraphic(preview);
-                                            label.setContentDisplay(ContentDisplay.TOP);
-                                            frame.setLabel(label);
-                                            frame.setPreview(preview);
-                                        } catch (IOException e) {}
+                                            bufferedImage = ImageIO.read(file);
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+//                                        BufferedImage bufferedImage = frame.getFramePreview();
+                                        ImageView preview = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
+                                        label.setGraphic(preview);
+                                        label.setContentDisplay(ContentDisplay.TOP);
+                                        frame.setLabel(label);
+                                        frame.setPreview(preview);
                                     }
                                 } else {
                                     if (frame.getLabel() != null) {
@@ -1175,8 +1229,12 @@ public class FramesController {
         Platform.runLater(() -> {
             List<IVFXGroups> listGroups = IVFXGroups.loadList(currentFile.getIvfxProject());
 
+            MenuItem menuItem = new MenuItem("FAVORITE");
+            menuItem.setOnAction(e -> {doFavoriteFrame(currentFrame);});
+            contxtMenuFrame.getItems().add(menuItem);
+
             Menu menu = new Menu("(без группы)");
-            MenuItem menuItem = new MenuItem("(Новый персонаж)");
+            menuItem = new MenuItem("(Новый персонаж)");
             menuItem.setOnAction(e -> {addNewPerson(null);});
             menu.getItems().add(menuItem);
 

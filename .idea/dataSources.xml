@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="ivfxdb@localhost" uuid="5eef197d-3dfa-4838-ae11-4112277be7b7">
+    <data-source source="LOCAL" name="smtec" uuid="432dfa95-869f-4f70-b1ea-59e55f14f618">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/ivfxdb?allowPublicKeyRetrieval=true&amp;useUnicode=true&amp;serverTimezone=UTC&amp;useSSL=false</jdbc-url>
-      <driver-properties>
-        <property name="serverTimezone" value="UTC" />
-      </driver-properties>
+      <jdbc-url>jdbc:mysql://rc1a-umdzojywzn5qji6c.mdb.yandexcloud.net:3306/ivfxdb</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="ivfxdb@localhost" uuid="d36e4e5c-adcf-445f-8121-d68d0307aee0">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/ivfxdb</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
 </project>

@@ -41,7 +41,7 @@ public class IVFXShotsTypePersons {
                 this.name.equals(o.name));
     }
 
-    public static IVFXShotsTypePersons load(int id) {
+    public static IVFXShotsTypePersons load(int id, boolean withPreview) {
         Statement statement = null;
         ResultSet rs = null;
         String sql;
@@ -58,27 +58,30 @@ public class IVFXShotsTypePersons {
                 shot_type_person.nameShort = rs.getString("name_short");
                 shot_type_person.description = rs.getString("description");
 
-                String fileName = shot_type_person.getPicture();
-                File file = new File(fileName);
-                for (int i = 0; i < 8; i++) {
-                    shot_type_person.label[i] = new Label(shot_type_person.name);
-                    shot_type_person.label[i].setPrefWidth(135);
-                    shot_type_person.label[i].setStyle(shot_type_person.fxLabelCaption);
-                }
+                if  (withPreview) {
+                    String fileName = shot_type_person.getPicture();
+                    File file = new File(fileName);
+                    for (int i = 0; i < 8; i++) {
+                        shot_type_person.label[i] = new Label(shot_type_person.name);
+                        shot_type_person.label[i].setPrefWidth(135);
+                        shot_type_person.label[i].setStyle(shot_type_person.fxLabelCaption);
+                    }
 
-                if (file.exists()) {
-                    try {
-                        BufferedImage bufferedImage = ImageIO.read(file);
+                    if (file.exists()) {
+                        try {
+                            BufferedImage bufferedImage = ImageIO.read(file);
 //                        BufferedImage bufferedImage = OverlayImage.resizeImage(ImageIO.read(file), 90,50, null);
-                        for (int i = 0; i < 8; i++) {
-                            shot_type_person.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
-                            shot_type_person.label[i].setGraphic(shot_type_person.preview[i]);
-                            shot_type_person.label[i].setContentDisplay(ContentDisplay.TOP);
-                        }
+                            for (int i = 0; i < 8; i++) {
+                                shot_type_person.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
+                                shot_type_person.label[i].setGraphic(shot_type_person.preview[i]);
+                                shot_type_person.label[i].setContentDisplay(ContentDisplay.TOP);
+                            }
 
-                    } catch (IOException e) {
+                        } catch (IOException e) {
+                        }
                     }
                 }
+
 
                 return shot_type_person;
             }
@@ -97,7 +100,7 @@ public class IVFXShotsTypePersons {
         return null;
     }
 
-    public static IVFXShotsTypePersons loadByName(String name) {
+    public static IVFXShotsTypePersons loadByName(String name, boolean withPreview) {
         Statement statement = null;
         ResultSet rs = null;
         String sql;
@@ -114,27 +117,30 @@ public class IVFXShotsTypePersons {
                 shot_type_person.nameShort = rs.getString("name_short");
                 shot_type_person.description = rs.getString("description");
 
-                String fileName = shot_type_person.getPicture();
-                File file = new File(fileName);
-                for (int i = 0; i < 8; i++) {
-                    shot_type_person.label[i] = new Label(shot_type_person.name);
-                    shot_type_person.label[i].setPrefWidth(135);
-                    shot_type_person.label[i].setStyle(shot_type_person.fxLabelCaption);
-                }
+                if  (withPreview) {
+                    String fileName = shot_type_person.getPicture();
+                    File file = new File(fileName);
+                    for (int i = 0; i < 8; i++) {
+                        shot_type_person.label[i] = new Label(shot_type_person.name);
+                        shot_type_person.label[i].setPrefWidth(135);
+                        shot_type_person.label[i].setStyle(shot_type_person.fxLabelCaption);
+                    }
 
-                if (file.exists()) {
-                    try {
+                    if (file.exists()) {
+                        try {
 //                        BufferedImage bufferedImage = ImageIO.read(file);
-                        BufferedImage bufferedImage = OverlayImage.resizeImage(ImageIO.read(file), 90,50, null);
-                        for (int i = 0; i < 8; i++) {
-                            shot_type_person.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
-                            shot_type_person.label[i].setGraphic(shot_type_person.preview[i]);
-                            shot_type_person.label[i].setContentDisplay(ContentDisplay.TOP);
-                        }
+                            BufferedImage bufferedImage = OverlayImage.resizeImage(ImageIO.read(file), 90,50, null);
+                            for (int i = 0; i < 8; i++) {
+                                shot_type_person.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
+                                shot_type_person.label[i].setGraphic(shot_type_person.preview[i]);
+                                shot_type_person.label[i].setContentDisplay(ContentDisplay.TOP);
+                            }
 
-                    } catch (IOException e) {
+                        } catch (IOException e) {
+                        }
                     }
                 }
+
 
                 return shot_type_person;
             }
@@ -153,7 +159,7 @@ public class IVFXShotsTypePersons {
         return null;
     }
 
-    public static IVFXShotsTypePersons loadByShortName(String shortName) {
+    public static IVFXShotsTypePersons loadByShortName(String shortName, boolean withPreview) {
         Statement statement = null;
         ResultSet rs = null;
         String sql;
@@ -170,27 +176,30 @@ public class IVFXShotsTypePersons {
                 shot_type_person.nameShort = rs.getString("name_short");
                 shot_type_person.description = rs.getString("description");
 
-                String fileName = shot_type_person.getPicture();
-                File file = new File(fileName);
-                for (int i = 0; i < 8; i++) {
-                    shot_type_person.label[i] = new Label(shot_type_person.name);
-                    shot_type_person.label[i].setPrefWidth(135);
-                    shot_type_person.label[i].setStyle(shot_type_person.fxLabelCaption);
-                }
+                if  (withPreview) {
+                    String fileName = shot_type_person.getPicture();
+                    File file = new File(fileName);
+                    for (int i = 0; i < 8; i++) {
+                        shot_type_person.label[i] = new Label(shot_type_person.name);
+                        shot_type_person.label[i].setPrefWidth(135);
+                        shot_type_person.label[i].setStyle(shot_type_person.fxLabelCaption);
+                    }
 
-                if (file.exists()) {
-                    try {
+                    if (file.exists()) {
+                        try {
 //                        BufferedImage bufferedImage = ImageIO.read(file);
-                        BufferedImage bufferedImage = OverlayImage.resizeImage(ImageIO.read(file), 90,50, null);
-                        for (int i = 0; i < 8; i++) {
-                            shot_type_person.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
-                            shot_type_person.label[i].setGraphic(shot_type_person.preview[i]);
-                            shot_type_person.label[i].setContentDisplay(ContentDisplay.TOP);
-                        }
+                            BufferedImage bufferedImage = OverlayImage.resizeImage(ImageIO.read(file), 90,50, null);
+                            for (int i = 0; i < 8; i++) {
+                                shot_type_person.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
+                                shot_type_person.label[i].setGraphic(shot_type_person.preview[i]);
+                                shot_type_person.label[i].setContentDisplay(ContentDisplay.TOP);
+                            }
 
-                    } catch (IOException e) {
+                        } catch (IOException e) {
+                        }
                     }
                 }
+
 
                 return shot_type_person;
             }
@@ -209,7 +218,7 @@ public class IVFXShotsTypePersons {
         return null;
     }
 
-    public static List<IVFXShotsTypePersons> loadList() {
+    public static List<IVFXShotsTypePersons> loadList(boolean withPreview) {
         List<IVFXShotsTypePersons> listShotsTypePersons = new ArrayList<>();
 
         Statement statement = null;
@@ -230,27 +239,30 @@ public class IVFXShotsTypePersons {
                 shot_type_person.nameShort = rs.getString("name_short");
                 shot_type_person.description = rs.getString("description");
 
-                String fileName = shot_type_person.getPicture();
-                File file = new File(fileName);
-                for (int i = 0; i < 8; i++) {
-                    shot_type_person.label[i] = new Label(shot_type_person.name);
-                    shot_type_person.label[i].setPrefWidth(135);
-                    shot_type_person.label[i].setStyle(shot_type_person.fxLabelCaption);
-                }
+                if  (withPreview) {
+                    String fileName = shot_type_person.getPicture();
+                    File file = new File(fileName);
+                    for (int i = 0; i < 8; i++) {
+                        shot_type_person.label[i] = new Label(shot_type_person.name);
+                        shot_type_person.label[i].setPrefWidth(135);
+                        shot_type_person.label[i].setStyle(shot_type_person.fxLabelCaption);
+                    }
 
-                if (file.exists()) {
-                    try {
+                    if (file.exists()) {
+                        try {
 //                        BufferedImage bufferedImage = ImageIO.read(file);
-                        BufferedImage bufferedImage = OverlayImage.resizeImage(ImageIO.read(file), 90,50, null);
-                        for (int i = 0; i < 8; i++) {
-                            shot_type_person.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
-                            shot_type_person.label[i].setGraphic(shot_type_person.preview[i]);
-                            shot_type_person.label[i].setContentDisplay(ContentDisplay.TOP);
-                        }
+                            BufferedImage bufferedImage = OverlayImage.resizeImage(ImageIO.read(file), 90,50, null);
+                            for (int i = 0; i < 8; i++) {
+                                shot_type_person.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
+                                shot_type_person.label[i].setGraphic(shot_type_person.preview[i]);
+                                shot_type_person.label[i].setContentDisplay(ContentDisplay.TOP);
+                            }
 
-                    } catch (IOException e) {
+                        } catch (IOException e) {
+                        }
                     }
                 }
+
 
                 listShotsTypePersons.add(shot_type_person);
             }

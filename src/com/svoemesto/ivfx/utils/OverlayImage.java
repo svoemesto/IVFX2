@@ -4,6 +4,7 @@ package com.svoemesto.ivfx.utils;
 import javafx.geometry.Pos;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
@@ -146,6 +147,71 @@ public class OverlayImage {
         return resultImage;
     }
 
+    public static BufferedImage setOverlayTriangle(BufferedImage sourceImage, int corner, double percentOfLowerSize, Color color, float opaque) {
+        // corner: 1 - верх лево, 2 - верх право, 3 - низ право, 4 - низ лево
+        // percentOfLowerSize: 0-1 в частях от наиболее короткой стороны
+        int imageW = sourceImage.getWidth();
+        int imageH = sourceImage.getHeight();
+        int imageType = BufferedImage.TYPE_INT_ARGB;
+
+        int triangleSide = imageW > imageH ? (int)(imageH * percentOfLowerSize) : (int)(imageW * percentOfLowerSize);
+
+        BufferedImage resultImage = new BufferedImage(imageW, imageH, imageType);
+        Graphics2D graphics2D = (Graphics2D) resultImage.getGraphics();
+        graphics2D.drawImage(sourceImage,0,0,null);
+        AlphaComposite alphaChannel = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opaque);
+        graphics2D.setComposite(alphaChannel);
+
+        graphics2D.setColor(color);
+        graphics2D.setPaint(color);
+
+        Path2D myPath = new Path2D.Double();
+        double x1 = 0, y1 = 0, x2 = 0, y2 = 0, x3 = 0, y3 = 0;
+        switch (corner) {
+            case 1:
+                x1 = triangleSide;
+                y1 = 0;
+                x2 = 0;
+                y2 = triangleSide;
+                x3 = 0;
+                y3 = 0;
+                break;
+            case 2:
+                x1 = imageW - triangleSide;
+                y1 = 0;
+                x2 = imageW;
+                y2 = triangleSide;
+                x3 = imageW;
+                y3 = 0;
+                break;
+            case 3:
+                x1 = imageW;
+                y1 = imageH - triangleSide;
+                x2 = imageW - triangleSide;
+                y2 = imageH;
+                x3 = imageW;
+                y3 = imageH;
+                break;
+            case 4:
+                x1 = triangleSide;
+                y1 = imageH;
+                x2 = 0;
+                y2 = imageH - triangleSide;
+                x3 = 0;
+                y3 = imageH;
+                break;
+            default:
+        }
+
+        myPath.moveTo(x1, y1);
+        myPath.lineTo(x2, y2);
+        myPath.lineTo(x3, y3);
+        myPath.closePath();
+
+        graphics2D.fill (myPath);
+        graphics2D.dispose();
+        return resultImage;
+    }
 
     public static BufferedImage setOverlayUnderlineText(BufferedImage sourceImage, String text) {
 
@@ -160,6 +226,7 @@ public class OverlayImage {
     public static BufferedImage setTextOverlay(BufferedImage sourceImage, String textToOverlay, Color textColor, Font textFont, Pos textPosition, float opaque) {
         int imageW = sourceImage.getWidth();
         int imageH = sourceImage.getHeight();
+
         int imageType = BufferedImage.TYPE_INT_ARGB;
         BufferedImage resultImage = new BufferedImage(imageW, imageH, imageType);
         Graphics2D graphics2D = (Graphics2D) resultImage.getGraphics();

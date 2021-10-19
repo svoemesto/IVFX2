@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1370.0" prefWidth="2400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.svoemesto.ivfx.controllers.FacesController">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="120.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="5000.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="520.0">
+                     <children>
+                        <ComboBox fx:id="cbProject" prefWidth="520.0" />
+                        <ComboBox fx:id="cbFile" prefWidth="520.0" visibleRowCount="30" />
+                        <Separator prefWidth="200.0" />
+                        <Button fx:id="btnLoadFacesAndTags" mnemonicParsing="false" onAction="#doBtlLoadFacesAndTags" prefWidth="5000.0" text="Загрузить лица и тэги" />
+                        <Button fx:id="btnClearNonFavoriteFaces" mnemonicParsing="false" onAction="#doBtnClearNonFavoriteFaces" prefWidth="5000.0" text="Нет в избранном - нет в файле" />
+                        <Button fx:id="btnClearNonHTMLFaces" mnemonicParsing="false" onAction="#doBtnClearNonHTMLFaces" prefWidth="5000.0" text="Нет в HTML - нет в файле" />
+                        <CheckBox fx:id="cbLoadOnlyManualFaces" mnemonicParsing="false" text="Включая вручную распознанные лица">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </CheckBox>
+                        <VBox fx:id="vbBoxForSliderFaces" prefHeight="200.0" prefWidth="100.0">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin></VBox>
+                        <TableView fx:id="tblFaces" onDragDetected="#doFacesOnDragDetected" onDragDropped="#doFacesOnDragDropped" onDragOver="#doFacesOnDragOver" prefHeight="5000.0" prefWidth="520.0" style="-fx-selection-bar: red; -fx-selection-bar-non-focused: red;">
+                          <columns>
+                            <TableColumn fx:id="colFaceLabel" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Face" />
+                              <TableColumn fx:id="colFaceLabelPerson" maxWidth="175.0" minWidth="175.0" prefWidth="175.0" text="Tag" />
+                              <TableColumn fx:id="colFacePersonName" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Name" />
+                              <TableColumn fx:id="colFaceProba" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Proba" />
+                          </columns>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </TableView>
+                        <Button fx:id="btnExtractAndTrain" mnemonicParsing="false" onAction="#doBtnExtractAndTrain" prefWidth="5000.0" text="Создать словарь лиц и обучить нейросеть" />
+                        <Button fx:id="btnExportAndRecognize" mnemonicParsing="false" onAction="#doBtnExportAndRecognize" prefWidth="5000.0" text="Экспортировать словарь лиц для распознавания и распознать" />
+                        <Button fx:id="btnReloadFaces" mnemonicParsing="false" onAction="#doBtnReloadFaces" prefWidth="5000.0" text="Импортировать распознанные лица" />
+                        <Button fx:id="btnOK" mnemonicParsing="false" onAction="#doBtnOK" prefWidth="5000.0" text="OK" />
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox prefHeight="200.0" prefWidth="130.0">
+                     <children>
+                        <Label alignment="CENTER" prefWidth="5000.0" text="Избранные персонажи" />
+                        <Separator prefWidth="200.0" />
+                        <Pane fx:id="paneTagFav" minWidth="960.0" prefHeight="5000.0" prefWidth="210.0" style="-fx-background-color: #555555;" />
+                        <Separator prefWidth="200.0" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" />
+                        <Separator prefWidth="200.0" />
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox prefHeight="5000.0" prefWidth="200.0">
+                           <children>
+                              <VBox prefWidth="175.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefWidth="175.0" text="Персонажи" />
+                                    <HBox prefWidth="175.0">
+                                       <children>
+                                          <TextField fx:id="fldFindTagsAll" prefWidth="160.0" />
+                                          <CheckBox fx:id="chFindTagsAllInProperties" mnemonicParsing="false" onAction="#doChFindTagsAllInProperties" />
+                                       </children>
+                                    </HBox>
+                                    <TableView fx:id="tblTagsAll" onDragDetected="#doTagsAllOnDragDetected" onDragDropped="#doTagsAllOnDragDropped" onDragOver="#doTagsAllOnDragOver" prefHeight="5000.0" prefWidth="175.0" style="-fx-selection-bar-non-focused: red; -fx-selection-bar: red;">
+                                      <columns>
+                                        <TableColumn fx:id="colTypeTblTagsAll" maxWidth="20.0" minWidth="20.0" prefWidth="2075.0" text="T" />
+                                        <TableColumn fx:id="colNameTblTagsAll" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Name" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                              <Separator orientation="VERTICAL" prefHeight="200.0" />
+                              <VBox prefHeight="200.0" prefWidth="120.0">
+                                 <children>
+                                    <Button fx:id="btnLoadFacesManual" mnemonicParsing="false" onAction="#doBtnLoadFacesManual" prefWidth="5000.0" text="Load" />
+                                    <Label alignment="CENTER" prefWidth="120.0" text="Лица (вручную)" />
+                                    <Separator prefWidth="200.0" />
+                                    <TableView fx:id="tblFacesTagManual" onDragDetected="#doFacesTagManualOnDragDetected" onDragDropped="#doFacesTagManualOnDragDropped" onDragOver="#doFacesTagManualOnDragOver" prefHeight="5000.0" prefWidth="120.0" style="-fx-selection-bar-non-focused: red; -fx-selection-bar: red;">
+                                       <columns>
+                                          <TableColumn fx:id="colFaceTagManualLabel" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Face" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                              <Separator orientation="VERTICAL" prefHeight="200.0" />
+                              <VBox prefHeight="200.0" prefWidth="250.0">
+                                 <children>
+                                    <Button fx:id="btnLoadFacesRecognized" mnemonicParsing="false" onAction="#doBtnLoadFacesRecognized" prefWidth="5000.0" text="Load" />
+                                    <Label alignment="CENTER" prefWidth="250.0" text="Лица (распознано)" />
+                                    <Separator prefWidth="200.0" />
+                                    <TableView fx:id="tblFacesTagRecognized" onDragDetected="#doFacesTagRecognizedOnDragDetected" prefHeight="5000.0" prefWidth="250.0" style="-fx-selection-bar-non-focused: red; -fx-selection-bar: red;">
+                                       <columns>
+                                          <TableColumn fx:id="colFaceTagRecognizedLabel" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Face" />
+                                          <TableColumn fx:id="colFaceTagRecognizedProba" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Proba" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                              <Separator orientation="VERTICAL" prefHeight="200.0" />
+                              <VBox prefHeight="200.0" prefWidth="120.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefWidth="120.0" text="НЕ ЛИЦА" />
+                                    <Separator prefWidth="200.0" />
+                                    <TableView fx:id="tblNoFaces" onDragDetected="#doNoFacesOnDragDetected" onDragDropped="#doNoFacesOnDragDropped" onDragOver="#doNoFacesOnDragOver" prefHeight="5000.0" prefWidth="120.0" style="-fx-selection-bar-non-focused: red; -fx-selection-bar: red;">
+                                       <columns>
+                                          <TableColumn fx:id="colNoFaceLabel" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Face" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                              <Separator orientation="VERTICAL" prefHeight="200.0" />
+                              <VBox prefHeight="200.0" prefWidth="120.0">
+                                 <children>
+                                    <Label alignment="CENTER" prefWidth="120.0" text="Массовка" />
+                                    <Separator prefWidth="200.0" />
+                                    <TableView fx:id="tblFacesExtras" onDragDetected="#doFacesExtrasOnDragDetected" onDragDropped="#doFacesExtrasOnDragDropped" onDragOver="#doFacesExtrasOnDragOver" prefHeight="5000.0" prefWidth="120.0" style="-fx-selection-bar-non-focused: red; -fx-selection-bar: red;">
+                                       <columns>
+                                          <TableColumn fx:id="colFaceExtrasLabel" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" text="Face" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox minWidth="900.0" prefHeight="100.0" prefWidth="300.0">
+                           <children>
+                              <Pane minHeight="400.0" minWidth="720.0" prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Label fx:id="lblPictureFullFrame" alignment="CENTER" maxHeight="400.0" maxWidth="720.0" minHeight="400.0" minWidth="720.0" prefHeight="400.0" prefWidth="720.0" style="-fx-background-color: black;" />
+                                    <Circle fx:id="shapePictureDrag" centerX="20.0" centerY="20.0" fill="DODGERBLUE" onDragDetected="#onShapePictureDragDetected" radius="15.0" stroke="#d00e0e" strokeType="INSIDE" />
+                                 </children>
+                              </Pane>
+                              <VBox prefHeight="200.0" prefWidth="5000.0">
+                                 <children>
+                                    <Label fx:id="lblDragTagToAddFav" alignment="CENTER" contentDisplay="CENTER" minHeight="40.0" onDragDropped="#onDragDroppedTagToAddFav" onDragOver="#onDragOverTagToAddFav" prefWidth="5000.0" style="-fx-background-color: lightgreen; -fx-border-color: green; -fx-border-width: 2;" text="Drag here to add" textAlignment="CENTER" wrapText="true" />
+                                    <Label fx:id="lblDragTagToDelFav" alignment="CENTER" contentDisplay="CENTER" minHeight="40.0" onDragDropped="#onDragDroppedTagToDelFav" onDragOver="#onDragOverTagToDelFav" prefWidth="5000.0" style="-fx-background-color: #FF9595; -fx-border-color: red; -fx-border-width: 2;" text="Drag here to remove" textAlignment="CENTER" wrapText="true" />
+                                    <CheckBox fx:id="cbPictureLoadAuto" mnemonicParsing="false" selected="true" text="Загружать автоматически">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </CheckBox>
+                                    <CheckBox fx:id="cbPictureShowFaces" mnemonicParsing="false" selected="true" text="Показывать лица">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </CheckBox>
+                                    <Button fx:id="btnPictureCreateNewTag" mnemonicParsing="false" onAction="#doBtnPictureCreateNewTag" prefWidth="5000.0" text="Создать нового персонажа">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

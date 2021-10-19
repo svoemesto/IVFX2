@@ -1,479 +1,526 @@
 
-T
-java:S1444"1Make this "public static currentShot" field final(ª±äêúÿÿÿÿ8æÁÄ–õ.
-Y
-java:S2696ß"6Make the enclosing method "static" or remove this set.(È™úöüÿÿÿÿ8“•·»ø.
-Y
-java:S2696Ä"6Make the enclosing method "static" or remove this set.(íåôŸûÿÿÿÿ8“•·»ø.
-R
-java:S1191"5Use classes from the Java API instead of Sun classes.(íé¾Û8‚å€—õ.
-R
-java:S1444“"4Make this "public static currentTagShot" field final(®ÁÕ€8÷Óâ÷.
-Y
-java:S2696ş"6Make the enclosing method "static" or remove this set.(¹¨…øÿÿÿÿ8“•·»ø.
-M
-java:S3740Á"/Provide the parametrized type for this generic.(¨á¦¸8şå¶»ø.
-p
-java:S3776º"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(ßñ‘Ô8“•·»ø.
-Y	java:S110Å"<This class has 9 parents which is greater than 5 authorized.(ÃáÆá8şå¶»ø.
-^	java:S125î"<This block of commented-out lines of code should be removed.(ùœ©ùÿÿÿÿ8“•·»ø.
-P
-java:S1444‘"2Make this "public static currentScene" field final(Åõ‡8Œ¾Óâ÷.
-M
-java:S1066”"/Merge this if statement with the enclosing one.(¤ÈÇß8şå¶»ø.
-N
-java:S1481î"0Remove this unused "countLabels" local variable.(Œ¢®–8“•·»ø.
-^	java:S125Œ"<This block of commented-out lines of code should be removed.(ùœ©ùÿÿÿÿ8“•·»ø.
-
-java:S1450Ì"dRemove the "mainFrameFullSizeFile" field and declare it as a local variable in the relevant methods.(–ó,8şå¶»ø.
-Ÿ
-java:S1186¿"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(üœŠ8şå¶»ø.
-]
-java:S1854î"?Remove this useless assignment to local variable "countLabels".(Œ¢®–8“•·»ø.
-X
-java:S3655÷"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ8şå¶»ø.
-T
-java:S2696©"6Make the enclosing method "static" or remove this set.(¯‚³ø8“•·»ø.
-Y
-java:S2696¬"6Make the enclosing method "static" or remove this set.(Şôışÿÿÿÿ8“•·»ø.
-Y
-java:S2696¸"6Make the enclosing method "static" or remove this set.(ÀÑÂıÿÿÿÿ8“•·»ø.
-‚
-java:S1104”"_Make currentTagShotStep1 a static final constant or non-public and provide accessors if needed.(øõäøÿÿÿÿ8’Ù¨¾÷.
-T
-java:S2696î"6Make the enclosing method "static" or remove this set.(—İšË8“•·»ø.
-O
-java:S1444‰"1Make this "public static currentFile" field final(ûòªô8Ò˜ı”õ.
-Y
-java:S2696"6Make the enclosing method "static" or remove this set.(ŒØ³éıÿÿÿÿ8“•·»ø.
-¤
-java:S1186Å"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ãİïıùÿÿÿÿ8şå¶»ø.
-Y
-java:S2696›"6Make the enclosing method "static" or remove this set.(‡˜Ï¯şÿÿÿÿ8“•·»ø.
-h
-java:S1124Ã"EReorder the modifiers to comply with the Java Language Specification.(€Ï¼ƒıÿÿÿÿ8“•·»ø.
-O
-java:S1602­",Remove useless curly braces around statement(‚¾×ìÿÿÿÿÿ8“•·»ø.
-‚
-java:S1104–"_Make currentTagShotStep3 a static final constant or non-public and provide accessors if needed.(ÓÅ¬óûÿÿÿÿ8ÒŒ¨¾÷.
-Y
-java:S2696Í"6Make the enclosing method "static" or remove this set.(ÀÑÂıÿÿÿÿ8“•·»ø.
-Y
-java:S2696¦"6Make the enclosing method "static" or remove this set.(»ó®şÿÿÿÿ8“•·»ø.
-V
-java:S1444˜"3Make this "public static currentTagAll" field final(ë¤‰¢úÿÿÿÿ8õ›×¹÷.
-I
-java:S1075"&Remove this hard-coded path-delimiter.(ï“œÅøÿÿÿÿ8“•·»ø.
-T
-java:S1444"6Make this "public static currentEventShot" field final(ò¦Ÿ8˜ø°ø.
-T
-java:S2696¥"6Make the enclosing method "static" or remove this set.(Œ²Åö8“•·»ø.
-S
-java:S1481ñ	"0Remove this unused "countFrames" local variable.(œÆ ›øÿÿÿÿ8“•·»ø.
-v
-java:S1104’"XMake currentEvent a static final constant or non-public and provide accessors if needed.(Ğõëã8…´÷°ø.
-c
-java:S1124Ä"EReorder the modifiers to comply with the Java Language Specification.(‹İÜ‘8“•·»ø.
-Y
-java:S2696Ñ"6Make the enclosing method "static" or remove this set.(ÈÃÎâüÿÿÿÿ8“•·»ø.
-x
-java:S1104“"ZMake currentTagShot a static final constant or non-public and provide accessors if needed.(®ÁÕ€8÷Óâ÷.
-¤
-java:S1186ö"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ú¦‚Õøÿÿÿÿ8³ì¸»ø.
-J
-java:S1602¥",Remove useless curly braces around statement(ÃÉş©8“•·»ø.
-u
-java:S1192™"RDefine a constant instead of duplicating this literal "enumTagTypeLetter" 5 times.(›¾‡áüÿÿÿÿ8şå¶»ø.
-Y
-java:S2696Š"6Make the enclosing method "static" or remove this set.(ÀÑÂıÿÿÿÿ8“•·»ø.
-R
-java:S3740Ñ"/Provide the parametrized type for this generic.(µÓ“³üÿÿÿÿ8şå¶»ø.
-R
-java:S3740È"/Provide the parametrized type for this generic.(µÓ“³üÿÿÿÿ8şå¶»ø.
-S
-java:S1481ï"0Remove this unused "countFrames" local variable.(œÆ ›øÿÿÿÿ8“•·»ø.
-T
-java:S2696ğ"6Make the enclosing method "static" or remove this set.(ÆÅ«Ï8“•·»ø.
-X
-java:S3655ğ"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ8şå¶»ø.
-Y
-java:S2696ï"6Make the enclosing method "static" or remove this set.(£êûÿÿÿÿ8“•·»ø.
-j
-java:S1192Ã"GDefine a constant instead of duplicating this literal "label1" 3 times.(Œ†ªøÿÿÿÿ8şå¶»ø.
-T
-java:S2696ú"6Make the enclosing method "static" or remove this set.(°¡­«8“•·»ø.
-\
-java:S1444–"9Make this "public static currentTagShotStep3" field final(ÓÅ¬óûÿÿÿÿ8ÒŒ¨¾÷.
-u
-java:S3776­"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(½ï¾ùÿÿÿÿ8“•·»ø.
-¤
-java:S1186ñ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Üœİ–ùÿÿÿÿ8³ì¸»ø.
-Y
-java:S2696æ"6Make the enclosing method "static" or remove this set.(Ó£øÆûÿÿÿÿ8“•·»ø.
-I
-java:S1075»"&Remove this hard-coded path-delimiter.(©ÅÓöşÿÿÿÿ8“•·»ø.
-Y
-java:S1444"6Make this "public static currentSceneShot" field final(§Ëéüÿÿÿÿ8şäå÷.
-u
-java:S3776’"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(Ó¦ë›ùÿÿÿÿ8“•·»ø.
-V
-java:S1068Ë"8Remove this unused "mainFramePreviewFile" private field.(†÷Æ8“•·»ø.
-M
-java:S3740¿"/Provide the parametrized type for this generic.(‘ŸŒ—8´Ä®ç÷.
-O
-java:S1602
-",Remove useless curly braces around statement(Ïõê¼üÿÿÿÿ8“•·»ø.
-Y
-java:S2696¤"6Make the enclosing method "static" or remove this set.(ÅâÅ“ıÿÿÿÿ8“•·»ø.
-L
-java:S3740½"/Provide the parametrized type for this generic.(ÓÔ¸H8Â¨¬¹ø.
-O
-java:S1602¤",Remove useless curly braces around statement(Ñãåàÿÿÿÿÿ8“•·»ø.
-Y
-java:S2696Ø"6Make the enclosing method "static" or remove this set.(û³ı–øÿÿÿÿ8“•·»ø.
-[	java:S106ö"9Replace this use of System.out or System.err by a logger.(Æ Õ•üÿÿÿÿ8“•·»ø.
-Y
-java:S2696”"6Make the enclosing method "static" or remove this set.(»ó®şÿÿÿÿ8“•·»ø.
-Y
-java:S2696‡"6Make the enclosing method "static" or remove this set.(£êûÿÿÿÿ8“•·»ø.
-P
-java:S1444’"2Make this "public static currentEvent" field final(Ğõëã8…´÷°ø.
-u
-java:S1104‰"WMake currentFile a static final constant or non-public and provide accessors if needed.(ûòªô8Ò˜ı”õ.
-Y
-java:S2696É"6Make the enclosing method "static" or remove this set.(Ğû—÷üÿÿÿÿ8“•·»ø.
-z
-java:S1104Š"\Make currentShotStep1 a static final constant or non-public and provide accessors if needed.(ı‚Áí8Ñº¬¾÷.
-r
-java:S1192î"ODefine a constant instead of duplicating this literal "TableHeaderRow" 5 times.(›¯âãüÿÿÿÿ8şå¶»ø.
-S
-java:S2696‰"6Make the enclosing method "static" or remove this set.(¼ïÌG8“•·»ø.
-z
-java:S1104"\Make currentShotStep4 a static final constant or non-public and provide accessors if needed.(ƒæøÆ8Ñº¬¾÷.
-^	java:S125ÿ"<This block of commented-out lines of code should be removed.(Õì¬ßùÿÿÿÿ8“•·»ø.
-`
-java:S1126Ö"BReplace this if-then-else statement by a single method invocation.(½ñ³8“•·»ø.
-a
-java:S1155¥">Use isEmpty() to check whether the collection is empty or not.(™½šøÿÿÿÿ8şå¶»ø.
-Y	java:S110¢"<This class has 9 parents which is greater than 5 authorized.(ÃáÆá8şå¶»ø.
-Ÿ
-java:S1186¹"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ãâş«8şå¶»ø.
-J
-java:S1905Ÿ
-",Remove this unnecessary cast to "Predicate".(¥äûÔ8“•·»ø.
-J
-java:S1602§",Remove useless curly braces around statement(¯ğò8“•·»ø.
-Y
-java:S2696ã"6Make the enclosing method "static" or remove this set.(§„½Ôüÿÿÿÿ8“•·»ø.
-T
-java:S2696é"6Make the enclosing method "static" or remove this set.(ÅúÈ8“•·»ø.
-d
-java:S1126¦
-"AReplace this if-then-else statement by a single return statement.(°·œ”ûÿÿÿÿ8“•·»ø.
-R
-java:S1066™	"/Merge this if statement with the enclosing one.(ÌáÎûÿÿÿÿ8şå¶»ø.
-`
-java:S1126"BReplace this if-then-else statement by a single method invocation.(½ñ³8“•·»ø.
-Y
-java:S1444‹"6Make this "public static currentShotStep2" field final(æü·¦ÿÿÿÿÿ8Ñº¬¾÷.
-c
-java:S1124Å"EReorder the modifiers to comply with the Java Language Specification.(ÙÔ¯8“•·»ø.
-z
-java:S1192¬"\Define a constant instead of duplicating this literal "Â» Ğ¸ Ğ·Ğ½Ğ°Ñ‡ĞµĞ½Ğ¸ĞµĞ¼ Â«" 3 times.(Ôœç•8şå¶»ø.
-}
-java:S1104•"_Make currentTagShotStep2 a static final constant or non-public and provide accessors if needed.(û‡ƒÿ8’Ù¨¾÷.
-Y
-java:S2696¢"6Make the enclosing method "static" or remove this set.(ú€é·ùÿÿÿÿ8“•·»ø.
-a
-java:S1155°
-">Use isEmpty() to check whether the collection is empty or not.(ÒÂÈËùÿÿÿÿ8şå¶»ø.
-X
-java:S3655¯"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ8şå¶»ø.
-T
-java:S2696„	"6Make the enclosing method "static" or remove this set.(”ÖÃ–8“•·»ø.
-¤
-java:S1186æ"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(å¨×ûÿÿÿÿ8şå¶»ø.
-M
-java:S3740Æ"/Provide the parametrized type for this generic.(ıÀ»œ8Â¨¬¹ø.
-{
-java:S1450¥"XRemove the "listFiles" field and declare it as a local variable in the relevant methods.(Ë…Şùÿÿÿÿ8şå¶»ø.
-Y
-java:S2696	"6Make the enclosing method "static" or remove this set.(íåôŸûÿÿÿÿ8“•·»ø.
-W
-java:S1444ˆ"4Make this "public static currentProject" field final(¡«ËÄıÿÿÿÿ8ü‹…’÷.
-Y
-java:S2696˜"6Make the enclosing method "static" or remove this set.(å–¥—ùÿÿÿÿ8“•·»ø.
-j
-java:S3252á"LUse static access with "javafx.scene.layout.Region" for "USE_COMPUTED_SIZE".(ªöÁ©8“•·»ø.
-Ò
-java:S1192"®Define a constant instead of duplicating this literal "Ğ˜Ğ¼Ñ Ğ¸ Ğ·Ğ½Ğ°Ñ‡ĞµĞ½Ğ¸Ğµ ÑĞ²Ğ¾Ğ¹ÑÑ‚Ğ²Ğ° Ğ±ÑƒĞ´ÑƒÑ‚ ÑĞ³ĞµĞ½ĞµÑ€Ğ¸Ñ€Ğ¾Ğ²Ğ°Ğ½Ñ‹ Ğ°Ğ²Ñ‚Ğ¾Ğ¼Ğ°Ñ‚Ğ¸Ñ‡ĞµÑĞºĞ¸." 3 times.(àŒ©øÿÿÿÿ8şå¶»ø.
-X
-java:S2209Š
-"5Change this instance-reference to a static reference.(ï“œÅøÿÿÿÿ8“•·»ø.
-p
-java:S3776”"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(Ò¾úÖ8“•·»ø.
-Y
-java:S2696¨"6Make the enclosing method "static" or remove this set.(ˆ„Ïûÿÿÿÿ8“•·»ø.
-Q
-java:S1481ë	".Remove this unused "ivfxFiles" local variable.(¿ò”¬úÿÿÿÿ8“•·»ø.
-M
-java:S1066ê"/Merge this if statement with the enclosing one.(“öÎ8şå¶»ø.
-R
-java:S3740Ó"/Provide the parametrized type for this generic.(Å·ù‰ûÿÿÿÿ8şå¶»ø.
-\
-java:S1444”"9Make this "public static currentTagShotStep1" field final(øõäøÿÿÿÿ8’Ù¨¾÷.
-R
-java:S3740Ï"/Provide the parametrized type for this generic.(Ù±§Üøÿÿÿÿ8Â¨¬¹ø.
-z
-java:S1450´"\Remove the "listTagsEvent" field and declare it as a local variable in the relevant methods.(™Ë–8şå¶»ø.
-S
-java:S2209Œ"5Change this instance-reference to a static reference.(ö®¾½8“•·»ø.
-X
-java:S2209–"5Change this instance-reference to a static reference.(¡Ãäøÿÿÿÿ8“•·»ø.
-M
-java:S3740Ø"/Provide the parametrized type for this generic.(ùÚ¹ó8şå¶»ø.
-]
-java:S1444š":Make this "public static currentSceneProperty" field final(„ë—áşÿÿÿÿ8şå¶»ø.
-Y
-java:S2696ñ"6Make the enclosing method "static" or remove this set.(¶ÂÉåÿÿÿÿÿ8“•·»ø.
-Z
-java:S3972¦
-"7Move this "if" to a new line or add the missing "else".(°·œ”ûÿÿÿÿ8“•·»ø.
-
-java:S1450³"\Remove the "listTagsScene" field and declare it as a local variable in the relevant methods.(¿¬ƒÕıÿÿÿÿ8şå¶»ø.
-u
-java:S3776‚"RRefactor this method to reduce its Cognitive Complexity from 81 to the 15 allowed.(™µ–Œÿÿÿÿÿ8“•·»ø.
-Y
-java:S2696û"6Make the enclosing method "static" or remove this set.(×²ëÈøÿÿÿÿ8“•·»ø.
-}
-java:S1104›"`Make currentEventProperty a static final constant or non-public and provide accessors if needed.(‰«£L8şå¶»ø.
-Q
-java:S1172ü"3Remove this unused method parameter "initFrameNum".(®ÒÔ²8“•·»ø.
-[	java:S106–"9Replace this use of System.out or System.err by a logger.(Æ Õ•üÿÿÿÿ8“•·»ø.
-T
-java:S1444"6Make this "public static currentShotStep4" field final(ƒæøÆ8Ñº¬¾÷.
-S
-java:S2696ˆ"6Make the enclosing method "static" or remove this set.(Á’È[8“•·»ø.
-_
-java:S1444™"<Make this "public static currentTagShotProperty" field final(ªúÈÿÿÿÿÿ8á¹Öß÷.
-T
-java:S2696ç"6Make the enclosing method "static" or remove this set.(Ó‚¡Ş8“•·»ø.
-
-java:S1104Œ"\Make currentShotStep3 a static final constant or non-public and provide accessors if needed.(¶€‘¥úÿÿÿÿ8şå¶»ø.
-~
-java:S1104¢"[Make mainMediaPlayer a static final constant or non-public and provide accessors if needed.(Ÿ¿Íüÿÿÿÿ8şå¶»ø.
-S
-java:S2209‰
-"5Change this instance-reference to a static reference.(ö®¾½8“•·»ø.
-T
-java:S2696Ÿ"6Make the enclosing method "static" or remove this set.(ó¥ùÀ8“•·»ø.
-N
-java:S1481‹"+Remove this unused "finalI" local variable.(»üÇıÿÿÿÿ8“•·»ø.
-|
-java:S1104˜"YMake currentTagAll a static final constant or non-public and provide accessors if needed.(ë¤‰¢úÿÿÿÿ8õ›×¹÷.
-d
-java:S1192Ğ"FDefine a constant instead of duplicating this literal "value" 3 times.(ÊÈİâ8şå¶»ø.
-Y
-java:S1444Œ"6Make this "public static currentShotStep3" field final(¶€‘¥úÿÿÿÿ8şå¶»ø.
-X
-java:S3655Ï"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ8şå¶»ø.
-X
-java:S3655ƒ"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ8şå¶»ø.
-J
-java:S1602¨",Remove useless curly braces around statement(–ûõÁ8“•·»ø.
-U	java:S106ü"9Replace this use of System.out or System.err by a logger.(›±¦8“•·»ø.
-c
-java:S1124Æ"EReorder the modifiers to comply with the Java Language Specification.(³ß š8“•·»ø.
-S
-java:S2209•"5Change this instance-reference to a static reference.(Ú¸Îó8“•·»ø.
-F	java:S108 ")Either remove or fill this block of code.(ï­£Ä8“•·»ø.
+F
+java:S3740Õ"/Provide the parametrized type for this generic.(‘ŸŒ—
+K
+java:S3740Ö"/Provide the parametrized type for this generic.(´˜ÜŠûÿÿÿÿ
+F
+java:S3740×"/Provide the parametrized type for this generic.(¨á¦¸
+K
+java:S3740é"/Provide the parametrized type for this generic.(Å·ù‰ûÿÿÿÿ
+E
+java:S3740Ü"/Provide the parametrized type for this generic.(ÓÔ¸H
+K
+java:S3740Ş"/Provide the parametrized type for this generic.(µÓ“³üÿÿÿÿ
+F
+java:S3740å"/Provide the parametrized type for this generic.(ıÀ»œ
+K
+java:S3740ç"/Provide the parametrized type for this generic.(µÓ“³üÿÿÿÿ
+K
+java:S3740î"/Provide the parametrized type for this generic.(Ù±§Üøÿÿÿÿ
+K
+java:S3740ğ"/Provide the parametrized type for this generic.(µÓ“³üÿÿÿÿ
+F
+java:S3740÷"/Provide the parametrized type for this generic.(ùÚ¹ó
+K
+java:S3740û"/Provide the parametrized type for this generic.(µÓ“³üÿÿÿÿ
+˜
+java:S1186´"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ãâş«
+˜
+java:S1186º"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(üœŠ
+
+java:S1186À"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ãİïıùÿÿÿÿ
 y
-java:S1450¤"[Remove the "listProjects" field and declare it as a local variable in the relevant methods.(¼‡–È8şå¶»ø.
-h
-java:S1192š"JDefine a constant instead of duplicating this literal "tagLabel1" 5 times.(´—ó…8şå¶»ø.
-[	java:S106Æ"9Replace this use of System.out or System.err by a logger.(ƒöÂüÿÿÿÿ8“•·»ø.
-Y
-java:S2696­"6Make the enclosing method "static" or remove this set.(òÕœ®ùÿÿÿÿ8“•·»ø.
-I
-java:S1905ø",Remove this unnecessary cast to "IVFXFiles".(æ	8“•·»ø.
+java:S1450é"]Remove the "flowTblTagsAll" field and declare it as a local variable in the relevant methods.(Å·ù‰ûÿÿÿÿ
+t
+java:S1450º"XRemove the "listFiles" field and declare it as a local variable in the relevant methods.(Ë…Şùÿÿÿÿ
+r
+java:S1450¹"[Remove the "listProjects" field and declare it as a local variable in the relevant methods.(¼‡–È
 p
-java:S3776¯"RRefactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.(õš¸¨8“•·»ø.
-F	java:S108©")Either remove or fill this block of code.(ï­£Ä8“•·»ø.
-V
-java:S1068Ì"9Remove this unused "mainFrameFullSizeFile" private field.(–ó,8“•·»ø.
-Y
-java:S2696²"6Make the enclosing method "static" or remove this set.(»ó®şÿÿÿÿ8“•·»ø.
-u
-java:S3776¬"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(’˜ïÎıÿÿÿÿ8“•·»ø.
-M
-java:S1066ı"/Merge this if statement with the enclosing one.(¤ÈÇß8şå¶»ø.
-T
-java:S2696³"6Make the enclosing method "static" or remove this set.(¥¥óú8“•·»ø.
-W
-java:S1444—"9Make this "public static currentTagShotStep4" field final(Û©ş8âú¨¾÷.
-Y
-java:S2696«"6Make the enclosing method "static" or remove this set.(½¹ó–úÿÿÿÿ8“•·»ø.
-q
-java:S1192Â"NDefine a constant instead of duplicating this literal "tagTypeLetter" 3 times.(ß´ª¯üÿÿÿÿ8şå¶»ø.
-X
-java:S2209»"5Change this instance-reference to a static reference.(©ÅÓöşÿÿÿÿ8“•·»ø.
+java:S1450Ç"ZRemove the "listTagsAll" field and declare it as a local variable in the relevant methods.(Âˆø`
+x
+java:S1450È"\Remove the "listTagsScene" field and declare it as a local variable in the relevant methods.(¿¬ƒÕıÿÿÿÿ
 }
-java:S1104—"_Make currentTagShotStep4 a static final constant or non-public and provide accessors if needed.(Û©ş8âú¨¾÷.
-s
-java:S1104¡"UMake mainMedia a static final constant or non-public and provide accessors if needed.(†Ú¯©8şå¶»ø.
-p
-java:S3776è"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(“–ış8“•·»ø.
-}
-java:S1104ˆ"ZMake currentProject a static final constant or non-public and provide accessors if needed.(¡«ËÄıÿÿÿÿ8ü‹…’÷.
-Y
-java:S2696	"6Make the enclosing method "static" or remove this set.(İ‹«ùúÿÿÿÿ8“•·»ø.
-Y
-java:S2696©"6Make the enclosing method "static" or remove this set.(´öùªúÿÿÿÿ8“•·»ø.
-L
-java:S1905ì"/Remove this unnecessary cast to "IVFXProjects".(Å²äK8“•·»ø.
-€
-java:S1450Ó"]Remove the "flowTblTagsAll" field and declare it as a local variable in the relevant methods.(Å·ù‰ûÿÿÿÿ8şå¶»ø.
-I
-java:S1075º"&Remove this hard-coded path-delimiter.(¼§ÛÆüÿÿÿÿ8“•·»ø.
-Y
-java:S2696ÿ"6Make the enclosing method "static" or remove this set.(€ˆ¦¼üÿÿÿÿ8“•·»ø.
+java:S1450Ê"aRemove the "listTagsShotsEvent" field and declare it as a local variable in the relevant methods.(æÃêşÿÿÿÿ
 z
-java:S1104"WMake currentShot a static final constant or non-public and provide accessors if needed.(ª±äêúÿÿÿÿ8æÁÄ–õ.
-T
-java:S2696§"6Make the enclosing method "static" or remove this set.(Õ×€¡8“•·»ø.
-W
-java:S1444›":Make this "public static currentEventProperty" field final(‰«£L8şå¶»ø.
-R
-java:S3740À"/Provide the parametrized type for this generic.(´˜ÜŠûÿÿÿÿ8şå¶»ø.
-Y
-java:S2696ª"6Make the enclosing method "static" or remove this set.(ó“òúùÿÿÿÿ8“•·»ø.
-
-java:S1104‹"\Make currentShotStep2 a static final constant or non-public and provide accessors if needed.(æü·¦ÿÿÿÿÿ8Ñº¬¾÷.
-D
-java:S1075‰
-"&Remove this hard-coded path-delimiter.(ö®¾½8“•·»ø.
-Y	java:S110ƒ"<This class has 9 parents which is greater than 5 authorized.(ÃáÆá8şå¶»ø.
-R
-java:S3740¿"/Provide the parametrized type for this generic.(µÓ“³üÿÿÿÿ8şå¶»ø.
-[	java:S106"9Replace this use of System.out or System.err by a logger.(øÕ³ûÿÿÿÿ8“•·»ø.
-W
-java:S1444•"9Make this "public static currentTagShotStep2" field final(û‡ƒÿ8’Ù¨¾÷.
-M
-java:S1066Ç	"/Merge this if statement with the enclosing one.(Ğœˆè8şå¶»ø.
-M
-java:S1066"/Merge this if statement with the enclosing one.(“öÎ8şå¶»ø.
-X
-java:S3655â"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ8şå¶»ø.
-w
-java:S1450²"ZRemove the "listTagsAll" field and declare it as a local variable in the relevant methods.(Âˆø`8´Ä®ç÷.
-R
-java:S3740Ü"/Provide the parametrized type for this generic.(µÓ“³üÿÿÿÿ8şå¶»ø.
-
-java:S1450Ë"cRemove the "mainFramePreviewFile" field and declare it as a local variable in the relevant methods.(†÷Æ8şå¶»ø.
-Y
-java:S2696ä"6Make the enclosing method "static" or remove this set.(£êûÿÿÿÿ8“•·»ø.
-S
-java:S2696 "6Make the enclosing method "static" or remove this set.(ë€£{8“•·»ø.
-T
-java:S2696Æ"6Make the enclosing method "static" or remove this set.(§”ÒÃ8“•·»ø.
-Y	java:S110"<This class has 9 parents which is greater than 5 authorized.(ÃáÆá8şå¶»ø.
-\
-java:S1155²">Use isEmpty() to check whether the collection is empty or not.(õ›àÓ8şå¶»ø.
+java:S1450â"dRemove the "mainFrameFullSizeFile" field and declare it as a local variable in the relevant methods.(–ó,
+z
+java:S1450á"cRemove the "mainFramePreviewFile" field and declare it as a local variable in the relevant methods.(†÷Æ
 a
-java:S1155±">Use isEmpty() to check whether the collection is empty or not.(÷ Š£şÿÿÿÿ8şå¶»ø.
-v
-java:S3776˜"SRefactor this method to reduce its Cognitive Complexity from 211 to the 15 allowed.(÷‹¾†ÿÿÿÿÿ8“•·»ø.
-I
-java:S1075–"&Remove this hard-coded path-delimiter.(¡Ãäøÿÿÿÿ8“•·»ø.
-T
-java:S2696ô"6Make the enclosing method "static" or remove this set.(¯‚³ø8“•·»ø.
-X
-java:S2209"5Change this instance-reference to a static reference.(ï“œÅøÿÿÿÿ8“•·»ø.
-[	java:S106ò"9Replace this use of System.out or System.err by a logger.(øÕ³ûÿÿÿÿ8“•·»ø.
+java:S1124Ù"EReorder the modifiers to comply with the Java Language Specification.(€Ï¼ƒıÿÿÿÿ
+\
+java:S1124Ú"EReorder the modifiers to comply with the Java Language Specification.(‹İÜ‘
+\
+java:S1124Û"EReorder the modifiers to comply with the Java Language Specification.(ÙÔ¯
+\
+java:S1124Ü"EReorder the modifiers to comply with the Java Language Specification.(³ß š
+i
+java:S3776ş"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(“–ış
+[
+java:S1854…"?Remove this useless assignment to local variable "countFrames".(œÆ ›øÿÿÿÿ
+V
+java:S1854„"?Remove this useless assignment to local variable "countLabels".(Œ¢®–
+=
+java:S1075¢"&Remove this hard-coded path-delimiter.(ö®¾½
+L
+java:S2209¢"5Change this instance-reference to a static reference.(ö®¾½
+B
+java:S1075£"&Remove this hard-coded path-delimiter.(ï“œÅøÿÿÿÿ
+Q
+java:S2209£"5Change this instance-reference to a static reference.(ï“œÅøÿÿÿÿ
+o
+java:S3776®"SRefactor this method to reduce its Cognitive Complexity from 266 to the 15 allowed.(÷‹¾†ÿÿÿÿÿ
+c
+java:S3252€"LUse static access with "javafx.scene.layout.Region" for "USE_COMPUTED_SIZE".(ªöÁ©
+C
+java:S1602Ç",Remove useless curly braces around statement(–ûõÁ
+H
+java:S1602Ì",Remove useless curly braces around statement(‚¾×ìÿÿÿÿÿ
+H
+java:S1602Ò",Remove useless curly braces around statement(îŞÍşÿÿÿÿ
+W	java:S125ü"<This block of commented-out lines of code should be removed.(ÃÎ‹’ÿÿÿÿÿ
+E
+java:S1905‹"/Remove this unnecessary cast to "IVFXProjects".(Å²äK
+M
+java:S2696"6Make the enclosing method "static" or remove this set.(—İšË
+M
+java:S2696"6Make the enclosing method "static" or remove this set.(İÍÁ‚
+B
+java:S1905—",Remove this unnecessary cast to "IVFXFiles".(æ	
+M
+java:S2696™"6Make the enclosing method "static" or remove this set.(°¡­«
 R
-java:S1066ú"/Merge this if statement with the enclosing one.(¬®Çœÿÿÿÿÿ8şå¶»ø.
-T
-java:S2696š	"6Make the enclosing method "static" or remove this set.(Úš‹ô8“•·»ø.
-T
-java:S1444Š"6Make this "public static currentShotStep1" field final(ı‚Áí8Ñº¬¾÷.
-T
-java:S2696ï"6Make the enclosing method "static" or remove this set.(‹­¤¢8“•·»ø.
+java:S2696š"6Make the enclosing method "static" or remove this set.(×²ëÈøÿÿÿÿ
+N	java:S106›"9Replace this use of System.out or System.err by a logger.(›±¦
+L
+java:S2696§"6Make the enclosing method "static" or remove this set.(Á’È[
+R
+java:S2696Ã"6Make the enclosing method "static" or remove this set.(ÅâÅ“ıÿÿÿÿ
+R
+java:S2696Ì"6Make the enclosing method "static" or remove this set.(òÕœ®ùÿÿÿÿ
+R
+java:S2696è"6Make the enclosing method "static" or remove this set.(Ğû—÷üÿÿÿÿ
+R
+java:S2696ğ"6Make the enclosing method "static" or remove this set.(ÈÃÎâüÿÿÿÿ
+R
+java:S2696÷"6Make the enclosing method "static" or remove this set.(û³ı–øÿÿÿÿ
+R
+java:S2696ş"6Make the enclosing method "static" or remove this set.(È™úöüÿÿÿÿ
+R
+java:S2696…	"6Make the enclosing method "static" or remove this set.(Ó£øÆûÿÿÿÿ
+M
+java:S2696	"6Make the enclosing method "static" or remove this set.(‹­¤¢
+R
+java:S2696	"6Make the enclosing method "static" or remove this set.(¶ÂÉåÿÿÿÿÿ
+M
+java:S2696™	"6Make the enclosing method "static" or remove this set.(¬–¶½
+R
+java:S2696¢	"6Make the enclosing method "static" or remove this set.(Áéÿÿÿÿÿÿ
+M
+java:S2696«	"6Make the enclosing method "static" or remove this set.(”ÖÃ–
+R
+java:S2696µ	"6Make the enclosing method "static" or remove this set.(íåôŸûÿÿÿÿ
+R
+java:S2696·	"6Make the enclosing method "static" or remove this set.(İ‹«ùúÿÿÿÿ
+M
+java:S2696Á	"6Make the enclosing method "static" or remove this set.(Úš‹ô
+M
+java:S2696Ê	"6Make the enclosing method "static" or remove this set.(”ÖÃ–
+R
+java:S2696Ò	"6Make the enclosing method "static" or remove this set.(¹Ûíäøÿÿÿÿ
+R
+java:S2696Ù	"6Make the enclosing method "static" or remove this set.(„–ˆşÿÿÿÿ
+M
+java:S2696 
+"6Make the enclosing method "static" or remove this set.(çä¨Ó
+M
+java:S2696´
+"6Make the enclosing method "static" or remove this set.(çä¨Ó
+=
+java:S1075ç
+"&Remove this hard-coded path-delimiter.(ö®¾½
+L
+java:S2209ç
+"5Change this instance-reference to a static reference.(ö®¾½
+B
+java:S1075è
+"&Remove this hard-coded path-delimiter.(ï“œÅøÿÿÿÿ
+Q
+java:S2209è
+"5Change this instance-reference to a static reference.(ï“œÅøÿÿÿÿ
+H
+java:S1602ü
+",Remove useless curly braces around statement(Ïõê¼üÿÿÿÿ
+S
+java:S3972„"7Move this "if" to a new line or add the missing "else".(°·œ”ûÿÿÿÿ
 ]
-java:S1854‹":Remove this useless assignment to local variable "finalI".(»üÇıÿÿÿÿ8“•·»ø.
-Ÿ
-java:S1186ë"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ïìê®8şå¶»ø.
-^	java:S125İ"<This block of commented-out lines of code should be removed.(ÃÎ‹’ÿÿÿÿÿ8“•·»ø.
-Y
-java:S2696â"6Make the enclosing method "static" or remove this set.(õşñÚşÿÿÿÿ8“•·»ø.
-X
-java:S3655‘"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ8şå¶»ø.
-\
-java:S1155ë">Use isEmpty() to check whether the collection is empty or not.(õ›àÓ8şå¶»ø.
-N
-java:S1481ğ	"0Remove this unused "countLabels" local variable.(Œ¢®–8“•·»ø.
-I
-java:S1075Š
-"&Remove this hard-coded path-delimiter.(ï“œÅøÿÿÿÿ8“•·»ø.
-O
-java:S1602³",Remove useless curly braces around statement(îŞÍşÿÿÿÿ8“•·»ø.
+java:S1126„"AReplace this if-then-else statement by a single return statement.(°·œ”ûÿÿÿÿ
+n
+java:S3776ï"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(Ó¦ë›ùÿÿÿÿ
 R
-java:S1066Û	"/Merge this if statement with the enclosing one.(ä¤á±ıÿÿÿÿ8şå¶»ø.
-T
-java:S2696£	"6Make the enclosing method "static" or remove this set.(”ÖÃ–8“•·»ø.
+java:S2696ƒ"6Make the enclosing method "static" or remove this set.(»ó®şÿÿÿÿ
+R
+java:S2696‰"6Make the enclosing method "static" or remove this set.(ÀÑÂıÿÿÿÿ
+R
+java:S2696"6Make the enclosing method "static" or remove this set.(»ó®şÿÿÿÿ
 Y
-java:S2696ı"6Make the enclosing method "static" or remove this set.(Š™•§ÿÿÿÿÿ8“•·»ø.
-\
-java:S1155º">Use isEmpty() to check whether the collection is empty or not.(õ›àÓ8şå¶»ø.
-D
-java:S1075•"&Remove this hard-coded path-delimiter.(Ú¸Îó8“•·»ø.
-Y
-java:S2696Ú"6Make the enclosing method "static" or remove this set.(ÀÑÂıÿÿÿÿ8“•·»ø.
-T
-java:S2696¯"6Make the enclosing method "static" or remove this set.(¥¥óú8“•·»ø.
-Y
-java:S2696Û"6Make the enclosing method "static" or remove this set.(»ó®şÿÿÿÿ8“•·»ø.
-Y	java:S110ä"<This class has 9 parents which is greater than 5 authorized.(ÃáÆá8şå¶»ø.
-X
-java:S3655¾"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ8şå¶»ø.
-S
-java:S2209‡"5Change this instance-reference to a static reference.(³Ó8“•·»ø.
-b
-java:S1854ï"?Remove this useless assignment to local variable "countFrames".(œÆ ›øÿÿÿÿ8“•·»ø.
-\
-java:S1155û">Use isEmpty() to check whether the collection is empty or not.(õ›àÓ8şå¶»ø.
-…
-java:S1104™"bMake currentTagShotProperty a static final constant or non-public and provide accessors if needed.(ªúÈÿÿÿÿÿ8á¹Öß÷.
-S
-java:S2696™"6Make the enclosing method "static" or remove this set.(ÔËm8“•·»ø.
-Y
-java:S2696û"6Make the enclosing method "static" or remove this set.(Áéÿÿÿÿÿÿ8“•·»ø.
-
-java:S1104"\Make currentSceneShot a static final constant or non-public and provide accessors if needed.(§Ëéüÿÿÿÿ8şäå÷.
+java:S1126ò"BReplace this if-then-else statement by a single method invocation.(½ñ³
+M
+java:S2696€"6Make the enclosing method "static" or remove this set.(¯‚³ø
+M
+java:S2696‹"6Make the enclosing method "static" or remove this set.(¯‚³ø
+R
+java:S2696¦"6Make the enclosing method "static" or remove this set.(íåôŸûÿÿÿÿ
+R
+java:S2696Ö"6Make the enclosing method "static" or remove this set.(£êûÿÿÿÿ
+R
+java:S2696â"6Make the enclosing method "static" or remove this set.(£êûÿÿÿÿ
+n
+java:S3776÷"RRefactor this method to reduce its Cognitive Complexity from 81 to the 15 allowed.(™µ–Œÿÿÿÿÿ
+L
+java:S2696"6Make the enclosing method "static" or remove this set.(ÔËm
+R
+java:S2696"6Make the enclosing method "static" or remove this set.(‡˜Ï¯şÿÿÿÿ
+R
+java:S2696’"6Make the enclosing method "static" or remove this set.(ŒØ³éıÿÿÿÿ
+L
+java:S2696•"6Make the enclosing method "static" or remove this set.(ë€£{
+R
+java:S2696—"6Make the enclosing method "static" or remove this set.(ú€é·ùÿÿÿÿ
+M
+java:S2696š"6Make the enclosing method "static" or remove this set.(Œ²Åö
+M
+java:S2696œ"6Make the enclosing method "static" or remove this set.(Õ×€¡
+R
+java:S2696"6Make the enclosing method "static" or remove this set.(´öùªúÿÿÿÿ
+R
+java:S2696Ÿ"6Make the enclosing method "static" or remove this set.(ó“òúùÿÿÿÿ
+R
+java:S2696 "6Make the enclosing method "static" or remove this set.(½¹ó–úÿÿÿÿ
+R
+java:S2696¡"6Make the enclosing method "static" or remove this set.(Şôışÿÿÿÿ
+M
+java:S2696Ü"6Make the enclosing method "static" or remove this set.(Ó‚¡Ş
+L
+java:S2696ş"6Make the enclosing method "static" or remove this set.(¼ïÌG
+M
+java:S2696¨"6Make the enclosing method "static" or remove this set.(¥¥óú
+n
+java:S3776§"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(’˜ïÎıÿÿÿÿ
+T	java:S106Á"9Replace this use of System.out or System.err by a logger.(ƒöÂüÿÿÿÿ
+n
+java:S3776ö"RRefactor this method to reduce its Cognitive Complexity from 45 to the 15 allowed.(ô•£šıÿÿÿÿ
+V
+java:S1854†":Remove this useless assignment to local variable "finalI".(»üÇıÿÿÿÿ
+=
+java:S1075"&Remove this hard-coded path-delimiter.(Ú¸Îó
+L
+java:S2209"5Change this instance-reference to a static reference.(Ú¸Îó
+B
+java:S1075‘"&Remove this hard-coded path-delimiter.(¡Ãäøÿÿÿÿ
+Q
+java:S2209‘"5Change this instance-reference to a static reference.(¡Ãäøÿÿÿÿ
+?	java:S108›")Either remove or fill this block of code.(ï­£Ä
+H
+java:S1602Ÿ",Remove useless curly braces around statement(Ñãåàÿÿÿÿÿ
+C
+java:S1602¢",Remove useless curly braces around statement(¯ğò
+R
+java:S2696³"6Make the enclosing method "static" or remove this set.(ÀÑÂıÿÿÿÿ
+R
+java:S2696İ"6Make the enclosing method "static" or remove this set.(õşñÚşÿÿÿÿ
+R
+java:S2696Ş"6Make the enclosing method "static" or remove this set.(§„½Ôüÿÿÿÿ
+W	java:S125é"<This block of commented-out lines of code should be removed.(ùœ©ùÿÿÿÿ
+T	java:S106í"9Replace this use of System.out or System.err by a logger.(øÕ³ûÿÿÿÿ
+T	java:S106ñ"9Replace this use of System.out or System.err by a logger.(Æ Õ•üÿÿÿÿ
+J
+java:S1172÷"3Remove this unused method parameter "initFrameNum".(®ÒÔ²
+R
+java:S2696ù"6Make the enclosing method "static" or remove this set.(¹¨…øÿÿÿÿ
+W	java:S125ú"<This block of commented-out lines of code should be removed.(Õì¬ßùÿÿÿÿ
+L
+java:S2209‚"5Change this instance-reference to a static reference.(³Ó
+W	java:S125‡"<This block of commented-out lines of code should be removed.(ùœ©ùÿÿÿÿ
+T	java:S106‹"9Replace this use of System.out or System.err by a logger.(øÕ³ûÿÿÿÿ
+T	java:S106‘"9Replace this use of System.out or System.err by a logger.(Æ Õ•üÿÿÿÿ
+C
+java:S1602 ",Remove useless curly braces around statement(ÃÉş©
+?	java:S108¤")Either remove or fill this block of code.(ï­£Ä
+B
+java:S1075µ"&Remove this hard-coded path-delimiter.(¼§ÛÆüÿÿÿÿ
+Q
+java:S2209µ"5Change this instance-reference to a static reference.(¼§ÛÆüÿÿÿÿ
+B
+java:S1075¶"&Remove this hard-coded path-delimiter.(©ÅÓöşÿÿÿÿ
+Q
+java:S2209¶"5Change this instance-reference to a static reference.(©ÅÓöşÿÿÿÿ
+M
+java:S2696ë"6Make the enclosing method "static" or remove this set.(ÆÅ«Ï
+R
+java:S2696ø"6Make the enclosing method "static" or remove this set.(Š™•§ÿÿÿÿÿ
+R
+java:S2696…"6Make the enclosing method "static" or remove this set.(ÀÑÂıÿÿÿÿ
+i
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(Ò¾úÖ
+M
+java:S2696š"6Make the enclosing method "static" or remove this set.(ó¥ùÀ
+R
+java:S2696“"6Make the enclosing method "static" or remove this set.(å–¥—ùÿÿÿÿ
+M
+java:S2696®"6Make the enclosing method "static" or remove this set.(¥¥óú
+M
+java:S2696Ñ"6Make the enclosing method "static" or remove this set.(Ûªåä
+M
+java:S2696ï"6Make the enclosing method "static" or remove this set.(¯‚³ø
+R
+java:S2696£"6Make the enclosing method "static" or remove this set.(ˆ„Ïûÿÿÿÿ
+i
+java:S3776ª"RRefactor this method to reduce its Cognitive Complexity from 36 to the 15 allowed.(õš¸¨
+M
+java:S2696Á"6Make the enclosing method "static" or remove this set.(§”ÒÃ
+R
+java:S2696â"6Make the enclosing method "static" or remove this set.(»ó®şÿÿÿÿ
+n
+java:S3776ğ"RRefactor this method to reduce its Cognitive Complexity from 36 to the 15 allowed.(ÎÛâûÿÿÿÿ
+R
+java:S2696‡"6Make the enclosing method "static" or remove this set.(€ˆ¦¼üÿÿÿÿ
+R
+java:S2696§"6Make the enclosing method "static" or remove this set.(»ó®şÿÿÿÿ
+n
+java:S3776Á"RRefactor this method to reduce its Cognitive Complexity from 28 to the 15 allowed.(½ï¾ùÿÿÿÿ
+R
+java:S2696î"6Make the enclosing method "static" or remove this set.(ÀÑÂıÿÿÿÿ
+M
+java:S2696Š"6Make the enclosing method "static" or remove this set.(ÅúÈ
+R
+java:S2696¨"6Make the enclosing method "static" or remove this set.(£êûÿÿÿÿ
+i
+java:S3776Û"RRefactor this method to reduce its Cognitive Complexity from 28 to the 15 allowed.(ßñ‘Ô
+R
+java:S2696ˆ"6Make the enclosing method "static" or remove this set.(ÀÑÂıÿÿÿÿ
+n
+java:S3776“"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(ğÃô¾ûÿÿÿÿ
+M
+java:S2696»"6Make the enclosing method "static" or remove this set.(ööú
+M
+java:S2696Ç"6Make the enclosing method "static" or remove this set.(ÇÏµ¶
+R
+java:S2696Ğ"6Make the enclosing method "static" or remove this set.(îá¼Ñûÿÿÿÿ
+M
+java:S2696Ù"6Make the enclosing method "static" or remove this set.(—çé
+R
+java:S2696â"6Make the enclosing method "static" or remove this set.(×êş¿ıÿÿÿÿ
+i
+java:S3776€"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(É¡…¶
+M
+java:S2696š"6Make the enclosing method "static" or remove this set.(ùÜĞ–
+R
+java:S2696›"6Make the enclosing method "static" or remove this set.(¥ÎŒßıÿÿÿÿ
+R
+java:S2696¡"6Make the enclosing method "static" or remove this set.(€ˆ¦¼üÿÿÿÿ
+R
+java:S2696Õ"6Make the enclosing method "static" or remove this set.(İ‹«ùúÿÿÿÿ
+G
+java:S1481„"0Remove this unused "countLabels" local variable.(Œ¢®–
+L
+java:S1481…"0Remove this unused "countFrames" local variable.(œÆ ›øÿÿÿÿ
+J
+java:S1481É
+".Remove this unused "ivfxFiles" local variable.(¿ò”¬úÿÿÿÿ
+G
+java:S1481Î
+"0Remove this unused "countLabels" local variable.(Œ¢®–
+L
+java:S1481Ï
+"0Remove this unused "countFrames" local variable.(œÆ ›øÿÿÿÿ
+G
+java:S1481†"+Remove this unused "finalI" local variable.(»üÇıÿÿÿÿ
+H
+java:S1128("3Remove this unused import 'java.io.BufferedWriter'.(¬õº/
+J
+java:S1128*"/Remove this unused import 'java.io.FileWriter'.(Ã‘ÅÃıÿÿÿÿ
+O
+java:S1068á"8Remove this unused "mainFramePreviewFile" private field.(†÷Æ
+O
+java:S1068â"9Remove this unused "mainFrameFullSizeFile" private field.(–ó,
+N
+java:S1068é"2Remove this unused "flowTblTagsAll" private field.(Å·ù‰ûÿÿÿÿ
+s
+java:S1192§"\Define a constant instead of duplicating this literal "Â» Ğ¸ Ğ·Ğ½Ğ°Ñ‡ĞµĞ½Ğ¸ĞµĞ¼ Â«" 3 times.(Ôœç•
+n
+java:S1192´"RDefine a constant instead of duplicating this literal "enumTagTypeLetter" 5 times.(›¾‡áüÿÿÿÿ
+j
+java:S1192İ"NDefine a constant instead of duplicating this literal "tagTypeLetter" 4 times.(ß´ª¯üÿÿÿÿ
+a
+java:S1192µ"JDefine a constant instead of duplicating this literal "tagLabel1" 5 times.(´—ó…
+]
+java:S1192ï"FDefine a constant instead of duplicating this literal "value" 3 times.(ÊÈİâ
+k
+java:S1192"ODefine a constant instead of duplicating this literal "TableHeaderRow" 5 times.(›¯âãüÿÿÿÿ
+c
+java:S1192Ş"GDefine a constant instead of duplicating this literal "label1" 4 times.(Œ†ªøÿÿÿÿ
+Ë
+java:S1192Š"®Define a constant instead of duplicating this literal "Ğ˜Ğ¼Ñ Ğ¸ Ğ·Ğ½Ğ°Ñ‡ĞµĞ½Ğ¸Ğµ ÑĞ²Ğ¾Ğ¹ÑÑ‚Ğ²Ğ° Ğ±ÑƒĞ´ÑƒÑ‚ ÑĞ³ĞµĞ½ĞµÑ€Ğ¸Ñ€Ğ¾Ğ²Ğ°Ğ½Ñ‹ Ğ°Ğ²Ñ‚Ğ¾Ğ¼Ğ°Ñ‚Ğ¸Ñ‡ĞµÑĞºĞ¸." 3 times.(àŒ©øÿÿÿÿ
+K
+java:S1066¡	"/Merge this if statement with the enclosing one.(¬®Çœÿÿÿÿÿ
+K
+java:S1066À	"/Merge this if statement with the enclosing one.(ÌáÎûÿÿÿÿ
+F
+java:S1066ò	"/Merge this if statement with the enclosing one.(Úû€ú
+F
+java:S1066ü	"/Merge this if statement with the enclosing one.(Ğœˆè
+F
+java:S1066†
+"/Merge this if statement with the enclosing one.(“Œ¶É
+K
+java:S1066
+"/Merge this if statement with the enclosing one.(ä¤á±ıÿÿÿÿ
+K
+java:S1066š
+"/Merge this if statement with the enclosing one.(ÛŠ¦ãıÿÿÿÿ
+F
+java:S1066­
+"/Merge this if statement with the enclosing one.(½º €
+F
+java:S1066å"/Merge this if statement with the enclosing one.(“öÎ
+F
+java:S1066ü"/Merge this if statement with the enclosing one.(“öÎ
+F
+java:S1066"/Merge this if statement with the enclosing one.(¤ÈÇß
+F
+java:S1066µ"/Merge this if statement with the enclosing one.(¤ÈÇß
+R	java:S110¹"<This class has 9 parents which is greater than 5 authorized.(ÃáÆá
+R	java:S110à"<This class has 9 parents which is greater than 5 authorized.(ÃáÆá
+R	java:S110ÿ"<This class has 9 parents which is greater than 5 authorized.(ÃáÆá
+R	java:S110"<This class has 9 parents which is greater than 5 authorized.(ÃáÆá
+R	java:S110½"<This class has 9 parents which is greater than 5 authorized.(ÃáÆá
+Z
+java:S1155">Use isEmpty() to check whether the collection is empty or not.(ÒÂÈËùÿÿÿÿ
+Z
+java:S1155‚">Use isEmpty() to check whether the collection is empty or not.(™½šøÿÿÿÿ
+Z
+java:S1155">Use isEmpty() to check whether the collection is empty or not.(÷ Š£şÿÿÿÿ
 U
-java:S1068Ó"2Remove this unused "flowTblTagsAll" private field.(Å·ù‰ûÿÿÿÿ8“•·»ø.
+java:S1155İ">Use isEmpty() to check whether the collection is empty or not.(õ›àÓ
+U
+java:S1155œ">Use isEmpty() to check whether the collection is empty or not.(õ›àÓ
+U
+java:S1155­">Use isEmpty() to check whether the collection is empty or not.(õ›àÓ
+U
+java:S1155ó">Use isEmpty() to check whether the collection is empty or not.(õ›àÓ
 v
-java:S1104‘"XMake currentScene a static final constant or non-public and provide accessors if needed.(Åõ‡8Œ¾Óâ÷.
-Y
-java:S2696¬"6Make the enclosing method "static" or remove this set.(ÀÑÂıÿÿÿÿ8“•·»ø.
+java:S1104›"ZMake currentProject a static final constant or non-public and provide accessors if needed.(¡«ËÄıÿÿÿÿ
+n
+java:S1104œ"WMake currentFile a static final constant or non-public and provide accessors if needed.(ûòªô
+s
+java:S1104"\Make currentShotStep1 a static final constant or non-public and provide accessors if needed.(ı‚Áí
+x
+java:S1104"\Make currentShotStep2 a static final constant or non-public and provide accessors if needed.(æü·¦ÿÿÿÿÿ
+x
+java:S1104Ÿ"\Make currentShotStep3 a static final constant or non-public and provide accessors if needed.(¶€‘¥úÿÿÿÿ
+s
+java:S1104 "\Make currentShotStep4 a static final constant or non-public and provide accessors if needed.(ƒæøÆ
+s
+java:S1104¡"WMake currentShot a static final constant or non-public and provide accessors if needed.(ª±äêúÿÿÿÿ
+x
+java:S1104¢"\Make currentSceneShot a static final constant or non-public and provide accessors if needed.(§Ëéüÿÿÿÿ
+s
+java:S1104£"\Make currentEventShot a static final constant or non-public and provide accessors if needed.(ò¦Ÿ
+o
+java:S1104¤"XMake currentScene a static final constant or non-public and provide accessors if needed.(Åõ‡
+o
+java:S1104¥"XMake currentEvent a static final constant or non-public and provide accessors if needed.(Ğõëã
+q
+java:S1104¦"ZMake currentTagShot a static final constant or non-public and provide accessors if needed.(®ÁÕ€
+{
+java:S1104§"_Make currentTagShotStep1 a static final constant or non-public and provide accessors if needed.(øõäøÿÿÿÿ
+v
+java:S1104¨"_Make currentTagShotStep2 a static final constant or non-public and provide accessors if needed.(û‡ƒÿ
+{
+java:S1104©"_Make currentTagShotStep3 a static final constant or non-public and provide accessors if needed.(ÓÅ¬óûÿÿÿÿ
+v
+java:S1104ª"_Make currentTagShotStep4 a static final constant or non-public and provide accessors if needed.(Û©ş
 u
-java:S3776û"RRefactor this method to reduce its Cognitive Complexity from 45 to the 15 allowed.(ô•£šıÿÿÿÿ8“•·»ø.
-T
-java:S2696Ö"6Make the enclosing method "static" or remove this set.(Ûªåä8“•·»ø.
-z
-java:S1104"\Make currentEventShot a static final constant or non-public and provide accessors if needed.(ò¦Ÿ8˜ø°ø.
-u
-java:S3776è"RRefactor this method to reduce its Cognitive Complexity from 24 to the 15 allowed.(ÎÛâûÿÿÿÿ8“•·»ø.
-T
-java:S2696"6Make the enclosing method "static" or remove this set.(¯‚³ø8“•·»ø.
-ƒ
-java:S1104š"`Make currentSceneProperty a static final constant or non-public and provide accessors if needed.(„ë—áşÿÿÿÿ8şå¶»ø.
-T
-java:S2696ï"6Make the enclosing method "static" or remove this set.(İÍÁ‚8“•·»ø.
+java:S1104«"YMake currentTagAll a static final constant or non-public and provide accessors if needed.(ë¤‰¢úÿÿÿÿ
+w
+java:S1104¬"[Make currentTagEvent a static final constant or non-public and provide accessors if needed.(³öç²øÿÿÿÿ
+{
+java:S1104­"_Make currentTagShotEvent a static final constant or non-public and provide accessors if needed.(’µ¡¹úÿÿÿÿ
+~
+java:S1104®"bMake currentTagShotProperty a static final constant or non-public and provide accessors if needed.(ªúÈÿÿÿÿÿ
+|
+java:S1104¯"`Make currentSceneProperty a static final constant or non-public and provide accessors if needed.(„ë—áşÿÿÿÿ
+v
+java:S1104°"`Make currentEventProperty a static final constant or non-public and provide accessors if needed.(‰«£L
+l
+java:S1104¶"UMake mainMedia a static final constant or non-public and provide accessors if needed.(†Ú¯©
+w
+java:S1104·"[Make mainMediaPlayer a static final constant or non-public and provide accessors if needed.(Ÿ¿Íüÿÿÿÿ
+P
+java:S1444›"4Make this "public static currentProject" field final(¡«ËÄıÿÿÿÿ
+H
+java:S1444œ"1Make this "public static currentFile" field final(ûòªô
 M
-java:S1066Ñ	"/Merge this if statement with the enclosing one.(“Œ¶É8şå¶»ø.
+java:S1444"6Make this "public static currentShotStep1" field final(ı‚Áí
+R
+java:S1444"6Make this "public static currentShotStep2" field final(æü·¦ÿÿÿÿÿ
+R
+java:S1444Ÿ"6Make this "public static currentShotStep3" field final(¶€‘¥úÿÿÿÿ
+M
+java:S1444 "6Make this "public static currentShotStep4" field final(ƒæøÆ
+M
+java:S1444¡"1Make this "public static currentShot" field final(ª±äêúÿÿÿÿ
+R
+java:S1444¢"6Make this "public static currentSceneShot" field final(§Ëéüÿÿÿÿ
+M
+java:S1444£"6Make this "public static currentEventShot" field final(ò¦Ÿ
+I
+java:S1444¤"2Make this "public static currentScene" field final(Åõ‡
+I
+java:S1444¥"2Make this "public static currentEvent" field final(Ğõëã
+K
+java:S1444¦"4Make this "public static currentTagShot" field final(®ÁÕ€
+U
+java:S1444§"9Make this "public static currentTagShotStep1" field final(øõäøÿÿÿÿ
+P
+java:S1444¨"9Make this "public static currentTagShotStep2" field final(û‡ƒÿ
+U
+java:S1444©"9Make this "public static currentTagShotStep3" field final(ÓÅ¬óûÿÿÿÿ
+P
+java:S1444ª"9Make this "public static currentTagShotStep4" field final(Û©ş
+O
+java:S1444«"3Make this "public static currentTagAll" field final(ë¤‰¢úÿÿÿÿ
+Q
+java:S1444¬"5Make this "public static currentTagEvent" field final(³öç²øÿÿÿÿ
+U
+java:S1444­"9Make this "public static currentTagShotEvent" field final(’µ¡¹úÿÿÿÿ
 X
-java:S2209º"5Change this instance-reference to a static reference.(¼§ÛÆüÿÿÿÿ8“•·»ø.
+java:S1444®"<Make this "public static currentTagShotProperty" field final(ªúÈÿÿÿÿÿ
+V
+java:S1444¯":Make this "public static currentSceneProperty" field final(„ë—áşÿÿÿÿ
+P
+java:S1444°":Make this "public static currentEventProperty" field final(‰«£L
+K
+java:S1191"5Use classes from the Java API instead of Sun classes.(íé¾Û
+Q
+java:S3655ë"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ
+Q
+java:S3655ˆ"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ
+Q
+java:S3655Ñ"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ
+Q
+java:S3655Œ"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ
+Q
+java:S3655¤"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ
 M
-java:S1066½	"/Merge this if statement with the enclosing one.(Úû€ú8şå¶»ø.
-D
-java:S1075Œ"&Remove this hard-coded path-delimiter.(ö®¾½8“•·»ø.
+java:S3655“"6Call "option1.isPresent()" before accessing the value.(‹§å
+Q
+java:S3655Ê"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ
+Q
+java:S3655ÿ"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ
+Q
+java:S3655ª"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ
+Q
+java:S3655¹"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ
+Q
+java:S3655ƒ"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ

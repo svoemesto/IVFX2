@@ -96,6 +96,13 @@
                                           <Button fx:id="btnDeleteTagsProperties" mnemonicParsing="false" onAction="#doBtnDeleteTagsProperties" prefWidth="200.0" text="Удалить" />
                                        </children>
                                     </HBox>
+                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Button fx:id="btnAddNewTagsPropertiesNameEng" mnemonicParsing="false" onAction="#doBtnAddNewTagsPropertiesNameEng" prefWidth="200.0" text="+ «name_eng»" />
+                                          <Button fx:id="btnAddNewTagsPropertiesUrl" mnemonicParsing="false" onAction="#doBtnAddNewTagsPropertiesUrl" prefWidth="200.0" text="+ «url»" />
+                                          <Button fx:id="btnAddNewTagsPropertiesInfo" mnemonicParsing="false" onAction="#doBtnAddNewTagsPropertiesInfo" prefWidth="200.0" text="+ «info»" />
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                               <Separator orientation="VERTICAL" prefHeight="200.0" />

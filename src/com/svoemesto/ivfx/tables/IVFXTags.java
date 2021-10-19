@@ -20,7 +20,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IVFXTags {
+public class IVFXTags implements Comparable<IVFXTags> {
 
     public static final String TAG_SUFFIX = "_Tags";
     public static final String TAG_PREFIX = "tag_";
@@ -28,6 +28,11 @@ public class IVFXTags {
     public static final String TAG_SUFFIX_FULLSIZE = "_fullsize";
     public static final String TAG_FULLSIZE_STUB = "blank_tag_400p.jpg";
     public static final String TAG_PREVIEW_STUB = "blank_tag.jpg";
+    public static final double TRIANGLE_PERCENT_OF_LOWER_SIDE = 0.2;
+    public static final Color COLOR_TRIANGLE_URL = Color.PINK;
+    public static final int CORNER_TRIANGLE_URL = 1;
+    public static final Color COLOR_TRIANGLE_INFO = Color.PINK;
+    public static final int CORNER_TRIANGLE_INFO = 2;
 
     protected int id;
     protected String name;
@@ -41,14 +46,42 @@ public class IVFXTags {
 
         Main.mainConnection = Database.getConnection();
 
-        IVFXProjects currentProject = IVFXProjects.load(1);
+//        IVFXProjects currentProject = IVFXProjects.load(1);
+        IVFXProjects currentProject = IVFXProjects.load(2);
 
-//        IVFXTags tagDialog = IVFXTags.load(4858, false);
-//
-//        List<IVFXTags> listEvents = IVFXTags.loadList(currentProject,false, 4);
-//        for (IVFXTags event: listEvents) {
-//            IVFXTagsTags.getNewDbInstance(event, tagDialog,false);
-//        }
+        List<IVFXFiles> listFiles = IVFXFiles.loadList(currentProject);
+        for (IVFXFiles currentFile: listFiles) {
+            List<IVFXShots> listShots = IVFXShots.loadList(currentFile,false);
+            for (IVFXShots currentShot: listShots) {
+                int[] arrTagTypeId = {1,2};
+                if (currentShot.getShotsTypeSizeId() == 0 && currentShot.getShotsTypePersonId() == 0) {
+                    List<IVFXTagsShots> listTagsShot = IVFXTagsShots.loadList(currentShot,false,arrTagTypeId);
+                    int countPeoples = listTagsShot.size();
+                    System.out.println(currentShot.getIvfxFile().getTitle() + " " + currentShot.getFirstFrameNumber() + "-" + currentShot.getLastFrameNumber() + " -> " + countPeoples + " персонажей.");
+                    switch (countPeoples) {
+                        case 0:
+                            currentShot.setShotsTypePersonId(0);
+                            currentShot.setShotsTypeSizeId(0);
+                            break;
+                        case 1:
+                            currentShot.setShotsTypePersonId(1);
+                            currentShot.setShotsTypeSizeId(4);
+                            break;
+                        case 2:
+                            currentShot.setShotsTypePersonId(3);
+                            currentShot.setShotsTypeSizeId(4);
+                            break;
+                        default:
+                            currentShot.setShotsTypePersonId(4);
+                            currentShot.setShotsTypeSizeId(4);
+                    }
+                    currentShot.save();
+                }
+
+            }
+        }
+
+
 
     }
 
@@ -56,7 +89,8 @@ public class IVFXTags {
 
         Main.mainConnection = Database.getConnection();
 
-        IVFXProjects currentProject = IVFXProjects.load(1);
+//        IVFXProjects currentProject = IVFXProjects.load(1);
+        IVFXProjects currentProject = IVFXProjects.load(2);
 
         List<IVFXFiles> listFiles = IVFXFiles.loadList(currentProject);
         List<IVFXPersons> listPersons = IVFXPersons.loadList(currentProject, false);
@@ -191,6 +225,8 @@ public class IVFXTags {
                 IVFXTagsProperties.getNewDbInstance(ivfxTag,"name", name);
                 ivfxTag.setPicture(frame);
 
+                ivfxTag.save();
+
                 System.out.println("Создана запись для тэга «" + name + "» с идентификатором " + rs.getInt(1));
             }
         } catch (SQLException e) {
@@ -226,11 +262,17 @@ public class IVFXTags {
                     String fileName = ivfxTag.getTagPicturePreview();
                     File file = new File(fileName);
                     for (int i = 0; i < 8; i++) {
-                        ivfxTag.label[i] = new Label(ivfxTag.name);
-                        ivfxTag.label[i].setPrefWidth(135);
-                        ivfxTag.label[i].setStyle(ivfxTag.fxLabelCaption);
-                        ivfxTag.label[i].setWrapText(true);
-                        ivfxTag.label[i].setMaxWidth(135);
+                        if (i == 1) {
+                            ivfxTag.label[i] = new Label();
+                            ivfxTag.label[i].setPrefWidth(135);
+                        } else {
+                            ivfxTag.label[i] = new Label(ivfxTag.name);
+                            ivfxTag.label[i].setWrapText(true);
+                            ivfxTag.label[i].setStyle(ivfxTag.fxLabelCaption);
+                            ivfxTag.label[i].setPrefWidth(135);
+                            ivfxTag.label[i].setMaxWidth(135);
+                        }
+
                     }
 
                     if (!file.exists()) {
@@ -239,9 +281,21 @@ public class IVFXTags {
                     }
                     try {
                         BufferedImage bufferedImage = ImageIO.read(file);
+                        if (ivfxTag.getPropertyValue("url") != null) {
+                            bufferedImage = OverlayImage.setOverlayTriangle(bufferedImage, CORNER_TRIANGLE_URL, TRIANGLE_PERCENT_OF_LOWER_SIDE, COLOR_TRIANGLE_URL,1.0f);
+                        }
+                        if (ivfxTag.getPropertyValue("info") != null) {
+                            bufferedImage = OverlayImage.setOverlayTriangle(bufferedImage, CORNER_TRIANGLE_INFO, TRIANGLE_PERCENT_OF_LOWER_SIDE, COLOR_TRIANGLE_INFO,1.0f);
+                        }
                         for (int i = 0; i < 8; i++) {
-                            ivfxTag.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
-//                            ivfxTag.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(OverlayImage.setOverlayUnderlineText(bufferedImage, ivfxTag.name)));
+
+                            if (i == 1) {
+//                                ivfxTag.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
+                                ivfxTag.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(OverlayImage.setOverlayUnderlineText(bufferedImage, ivfxTag.name)));
+                            } else {
+                                ivfxTag.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
+                            }
+
                             ivfxTag.label[i].setGraphic(ivfxTag.preview[i]);
                             ivfxTag.label[i].setContentDisplay(ContentDisplay.TOP);
                         }
@@ -300,6 +354,12 @@ public class IVFXTags {
                     }
                     try {
                         BufferedImage bufferedImage = ImageIO.read(file);
+                        if (ivfxTag.getPropertyValue("url") != null) {
+                            bufferedImage = OverlayImage.setOverlayTriangle(bufferedImage, CORNER_TRIANGLE_URL, TRIANGLE_PERCENT_OF_LOWER_SIDE, COLOR_TRIANGLE_URL,1.0f);
+                        }
+                        if (ivfxTag.getPropertyValue("info") != null) {
+                            bufferedImage = OverlayImage.setOverlayTriangle(bufferedImage, CORNER_TRIANGLE_INFO, TRIANGLE_PERCENT_OF_LOWER_SIDE, COLOR_TRIANGLE_INFO,1.0f);
+                        }
                         for (int i = 0; i < 8; i++) {
                             ivfxTag.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
 //                            ivfxTag.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(OverlayImage.setOverlayUnderlineText(bufferedImage, ivfxTag.name)));
@@ -361,6 +421,12 @@ public class IVFXTags {
                     }
                     try {
                         BufferedImage bufferedImage = ImageIO.read(file);
+                        if (ivfxTag.getPropertyValue("url") != null) {
+                            bufferedImage = OverlayImage.setOverlayTriangle(bufferedImage, CORNER_TRIANGLE_URL, TRIANGLE_PERCENT_OF_LOWER_SIDE, COLOR_TRIANGLE_URL,1.0f);
+                        }
+                        if (ivfxTag.getPropertyValue("info") != null) {
+                            bufferedImage = OverlayImage.setOverlayTriangle(bufferedImage, CORNER_TRIANGLE_INFO, TRIANGLE_PERCENT_OF_LOWER_SIDE, COLOR_TRIANGLE_INFO,1.0f);
+                        }
                         for (int i = 0; i < 8; i++) {
                             ivfxTag.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
 //                            ivfxTag.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(OverlayImage.setOverlayUnderlineText(bufferedImage, ivfxTag.name)));
@@ -427,6 +493,12 @@ public class IVFXTags {
                     }
                     try {
                         BufferedImage bufferedImage = ImageIO.read(file);
+                        if (ivfxTag.getPropertyValue("url") != null) {
+                            bufferedImage = OverlayImage.setOverlayTriangle(bufferedImage, CORNER_TRIANGLE_URL, TRIANGLE_PERCENT_OF_LOWER_SIDE, COLOR_TRIANGLE_URL,1.0f);
+                        }
+                        if (ivfxTag.getPropertyValue("info") != null) {
+                            bufferedImage = OverlayImage.setOverlayTriangle(bufferedImage, CORNER_TRIANGLE_INFO, TRIANGLE_PERCENT_OF_LOWER_SIDE, COLOR_TRIANGLE_INFO,1.0f);
+                        }
                         for (int i = 0; i < 8; i++) {
                             ivfxTag.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
 //                            ivfxTag.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(OverlayImage.setOverlayUnderlineText(bufferedImage, ivfxTag.name)));
@@ -496,10 +568,10 @@ public class IVFXTags {
                         sql += "tbl_tags.tag_type_id = " + arrayTagsTypesId[i];
                         if (i != arrayTagsTypesId.length - 1) sql += " OR ";
                     }
-                    sql += ") ORDER BY tbl_tags.tag_type_id";
+                    sql += ") ORDER BY tbl_tags.tag_type_id, tbl_tags.name";
                 } else {
                     sql = "SELECT tbl_tags.* FROM tbl_tags_projects INNER JOIN tbl_tags ON tbl_tags_projects.tag_id = tbl_tags.id " +
-                            "WHERE tbl_tags_projects.project_id = " + ivfxProject.getId() + " ORDER BY tbl_tags.tag_type_id";
+                            "WHERE tbl_tags_projects.project_id = " + ivfxProject.getId() + " ORDER BY tbl_tags.tag_type_id, tbl_tags.name";
                 }
             } else {
                 if (arrayTagsTypesId != null && arrayTagsTypesId.length > 0) {
@@ -508,9 +580,9 @@ public class IVFXTags {
                         sql += "tbl_tags.tag_type_id = " + arrayTagsTypesId[i];
                         if (i != arrayTagsTypesId.length - 1) sql += " OR ";
                     }
-                    sql += ") ORDER BY tbl_tags.tag_type_id";
+                    sql += ") ORDER BY tbl_tags.tag_type_id, tbl_tags.name";
                 } else {
-                    sql = "SELECT tbl_tags.* FROM tbl_tags ORDER BY tbl_tags.tag_type_id";
+                    sql = "SELECT tbl_tags.* FROM tbl_tags ORDER BY tbl_tags.tag_type_id, tbl_tags.name";
                 }
             }
 
@@ -539,6 +611,12 @@ public class IVFXTags {
                     }
                     try {
                         BufferedImage bufferedImage = ImageIO.read(file);
+                        if (ivfxTag.getPropertyValue("url") != null) {
+                            bufferedImage = OverlayImage.setOverlayTriangle(bufferedImage, CORNER_TRIANGLE_URL, TRIANGLE_PERCENT_OF_LOWER_SIDE, COLOR_TRIANGLE_URL,1.0f);
+                        }
+                        if (ivfxTag.getPropertyValue("info") != null) {
+                            bufferedImage = OverlayImage.setOverlayTriangle(bufferedImage, CORNER_TRIANGLE_INFO, TRIANGLE_PERCENT_OF_LOWER_SIDE, COLOR_TRIANGLE_INFO,1.0f);
+                        }
                         for (int i = 0; i < 8; i++) {
                             ivfxTag.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
 //                            ivfxTag.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(OverlayImage.setOverlayUnderlineText(bufferedImage, ivfxTag.name)));
@@ -678,6 +756,12 @@ public class IVFXTags {
                         }
                         try {
                             BufferedImage bufferedImage = ImageIO.read(file);
+                            if (ivfxTag.getPropertyValue("url") != null) {
+                                bufferedImage = OverlayImage.setOverlayTriangle(bufferedImage, CORNER_TRIANGLE_URL, TRIANGLE_PERCENT_OF_LOWER_SIDE, COLOR_TRIANGLE_URL,1.0f);
+                            }
+                            if (ivfxTag.getPropertyValue("info") != null) {
+                                bufferedImage = OverlayImage.setOverlayTriangle(bufferedImage, CORNER_TRIANGLE_INFO, TRIANGLE_PERCENT_OF_LOWER_SIDE, COLOR_TRIANGLE_INFO,1.0f);
+                            }
                             for (int i = 0; i < 8; i++) {
                                 ivfxTag.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
 //                                ivfxTag.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(OverlayImage.setOverlayUnderlineText(bufferedImage, ivfxTag.name)));
@@ -809,6 +893,12 @@ public class IVFXTags {
                         }
                         try {
                             BufferedImage bufferedImage = ImageIO.read(file);
+                            if (ivfxTag.getPropertyValue("url") != null) {
+                                bufferedImage = OverlayImage.setOverlayTriangle(bufferedImage, CORNER_TRIANGLE_URL, TRIANGLE_PERCENT_OF_LOWER_SIDE, COLOR_TRIANGLE_URL,1.0f);
+                            }
+                            if (ivfxTag.getPropertyValue("info") != null) {
+                                bufferedImage = OverlayImage.setOverlayTriangle(bufferedImage, CORNER_TRIANGLE_INFO, TRIANGLE_PERCENT_OF_LOWER_SIDE, COLOR_TRIANGLE_INFO,1.0f);
+                            }
                             for (int i = 0; i < 8; i++) {
                                 ivfxTag.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
 //                                ivfxTag.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(OverlayImage.setOverlayUnderlineText(bufferedImage, ivfxTag.name)));
@@ -922,6 +1012,12 @@ public class IVFXTags {
                         }
                         try {
                             BufferedImage bufferedImage = ImageIO.read(file);
+                            if (ivfxTag.getPropertyValue("url") != null) {
+                                bufferedImage = OverlayImage.setOverlayTriangle(bufferedImage, CORNER_TRIANGLE_URL, TRIANGLE_PERCENT_OF_LOWER_SIDE, COLOR_TRIANGLE_URL,1.0f);
+                            }
+                            if (ivfxTag.getPropertyValue("info") != null) {
+                                bufferedImage = OverlayImage.setOverlayTriangle(bufferedImage, CORNER_TRIANGLE_INFO, TRIANGLE_PERCENT_OF_LOWER_SIDE, COLOR_TRIANGLE_INFO,1.0f);
+                            }
                             for (int i = 0; i < 8; i++) {
                                 ivfxTag.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
 //                                ivfxTag.preview[i] = new ImageView(ConvertToFxImage.convertToFxImage(OverlayImage.setOverlayUnderlineText(bufferedImage, ivfxTag.name)));
@@ -1314,4 +1410,12 @@ public class IVFXTags {
         return fileName;
     }
 
+    public void setLabel(Label[] label) {
+        this.label = label;
+    }
+
+    @Override
+    public int compareTo(IVFXTags o) {
+        return this.getName().compareTo(o.getName());
+    }
 }

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.svoemesto.ivfx.controllers.FiltersTagsController">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="2000.0" prefWidth="2000.0">
+               <children>
+                  <TabPane maxWidth="1012.0" prefHeight="600.0" prefWidth="730.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab fx:id="tabFiles" text="Файлы">
+                        <content>
+                          <AnchorPane maxWidth="750.0" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="750.0">
+                                 <children>
+                                    <VBox prefHeight="550.0" prefWidth="730.0">
+                                       <children>
+                                          <TableView fx:id="tblFilesInTabFiles" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="2000.0" prefWidth="2000.0">
+                                             <columns>
+                                                <TableColumn fx:id="colFileOrderTabFiles" maxWidth="40.0" prefWidth="40.0" sortable="false" text="#" />
+                                                <TableColumn fx:id="colFileNameTabFiles" maxWidth="670.0" prefWidth="670.0" sortable="false" text="Файл" />
+                                             </columns>
+                                          </TableView>
+                                          <Button fx:id="btnSelectAllFilesInTabFiles" mnemonicParsing="false" onAction="#doBtnSelectAllFilesInTabFiles" prefWidth="730.0" text="Выделить всё" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                    </tabs>
+                  </TabPane>
+                  <Button fx:id="btnAddToFiltersFrom" maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#doBtnAddToFiltersFrom" text="---&gt;" />
+                  <VBox prefHeight="200.0" prefWidth="1100.0">
+                     <children>
+                        <TableView fx:id="tblFiltersFrom" maxHeight="1.7976931348623157E308" prefHeight="2000.0" prefWidth="200.0">
+                          <columns>
+                            <TableColumn fx:id="colOrderTblFromRecords" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" text="#" />
+                            <TableColumn fx:id="colFileTitleTblFromRecords" maxWidth="190.0" prefWidth="190.0" text="Файл" />
+                              <TableColumn fx:id="colRecordTypeNameTblTabFromFiles" maxWidth="75.0" prefWidth="75.0" text="Тип" />
+                              <TableColumn fx:id="colRecordDurationStringTblTabFromFiles" maxWidth="100.0" prefWidth="100.0" text="Длительность" />
+                              <TableColumn fx:id="colRecordNameTblTabFromFiles" maxWidth="680.0" prefWidth="680.0" text="Название" />
+                          </columns>
+                        </TableView>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="btnSelectAllFiltersFrom" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doBtnSelectAllFiltersFrom" prefWidth="2000.0" text="Выбрать всё" />
+                              <Button fx:id="btnDeleteSelectedFiltersFrom" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doBtnDeleteSelectedFiltersFrom" prefWidth="2000.0" text="Удалить выбранные записи" />
+                              <Button fx:id="btnClearFiltersFrom" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doBtnClearFiltersFrom" prefWidth="2000.0" text="Очистить список" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="50.0">
+                     <children>
+                        <Button fx:id="btnUpFiltersFrom" mnemonicParsing="false" onAction="#doBtnUpFiltersFrom" prefHeight="2000.0" prefWidth="2000.0" text="Вверх" />
+                        <Button fx:id="btnDownFiltersFrom" mnemonicParsing="false" onAction="#doBtnDownFiltersFrom" prefHeight="2000.0" prefWidth="2000.0" text="Вниз" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox minHeight="500.0" prefHeight="200.0" prefWidth="155.0">
+                     <children>
+                        <TabPane maxWidth="155.0" prefHeight="2000.0" prefWidth="155.0" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                            <Tab fx:id="tabPersons" text="Персонажи">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <HBox prefHeight="25.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TextField fx:id="fldFindTagsAll" />
+                                                      <CheckBox fx:id="chFindTagsAllInProperties" mnemonicParsing="false" onAction="#doChFindTagsAllInProperties" />
+                                                   </children>
+                                                </HBox>
+                                                <TableView fx:id="tblTagsAll" prefHeight="5000.0" prefWidth="175.0">
+                                                  <columns>
+                                                    <TableColumn fx:id="colTypeTblTagsAll" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" text="T" />
+                                                    <TableColumn fx:id="colNameTblTagsAll" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Name" />
+                                                  </columns>
+                                                </TableView>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox prefHeight="200.0" prefWidth="120.0">
+                     <children>
+                        <TableView fx:id="tblSelectIncluding" prefHeight="200.0" prefWidth="200.0">
+                          <columns>
+                            <TableColumn fx:id="colIncluding" maxWidth="105.0" prefWidth="105.0" text="Вхождение" />
+                          </columns>
+                        </TableView>
+                        <Separator prefWidth="200.0" />
+                        <TableView fx:id="tblSelectTypes" prefHeight="200.0" prefWidth="200.0">
+                          <columns>
+                            <TableColumn fx:id="colFilterFromType" maxWidth="105.0" prefWidth="105.0" text="Куда" />
+                          </columns>
+                        </TableView>
+                        <Separator prefWidth="200.0" />
+                        <TableView fx:id="tblSelectAndOr" prefHeight="200.0" prefWidth="200.0">
+                          <columns>
+                            <TableColumn fx:id="colAndOr" maxWidth="105.0" prefWidth="105.0" text="Объединение" />
+                          </columns>
+                        </TableView>
+                        <Separator prefWidth="200.0" />
+                        <Button fx:id="btnAddRecordsSelect" mnemonicParsing="false" onAction="#doBtnAddRecordsSelect" prefWidth="2000.0" text="---&gt;" />
+                        <Button fx:id="btnAddRecordsSelectTypeSeparatorAnd" mnemonicParsing="false" onAction="#doBtnAddRecordsSelectTypeSeparatorAnd" prefWidth="2000.0" text="=== AND ===&gt;" />
+                        <Button fx:id="btnAddRecordsSelectTypeSeparatorOr" mnemonicParsing="false" onAction="#doBtnAddRecordsSelectTypeSeparatorOr" prefWidth="2000.0" text="=== OR ===&gt;" />
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox prefHeight="200.0" prefWidth="480.0">
+                     <children>
+                        <TableView fx:id="tblSelectRecords" prefHeight="2000.0" prefWidth="200.0">
+                          <columns>
+                            <TableColumn fx:id="colSelectRecordText" prefWidth="465.0" text="Условия отбора" />
+                          </columns>
+                        </TableView>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="btnSelectAllFiltersSelect" mnemonicParsing="false" onAction="#doBtnSelectAllFiltersSelect" prefWidth="150.0" text="Выбрать всё" />
+                              <Button fx:id="btnDeleteSelectedFiltersSelect" mnemonicParsing="false" onAction="#doBtnDeleteSelectedFiltersSelect" prefWidth="180.0" text="Удалить выбранные записи" />
+                              <Button fx:id="btnClearFiltersSelect" mnemonicParsing="false" onAction="#doBtnClearFiltersSelect" prefWidth="150.0" text="Очистить список" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox prefHeight="200.0" prefWidth="80.0">
+                     <children>
+                        <Button fx:id="btnLoadFilter" mnemonicParsing="false" onAction="#doBtnLoadFilter" prefHeight="2000.0" prefWidth="80.0" text="Загрузить" />
+                        <Button fx:id="btnSaveFilter" mnemonicParsing="false" onAction="#doBtnSaveFilter" prefHeight="2000.0" prefWidth="80.0" text="Сохранить" />
+                     </children>
+                  </VBox>
+                  <Separator orientation="VERTICAL" prefHeight="200.0" />
+                  <VBox prefHeight="200.0" prefWidth="1055.0">
+                     <children>
+                        <HBox prefHeight="25.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Имя файла:" />
+                              <TextField fx:id="fldNameVideo" prefWidth="860.0" text="NewVideo" />
+                              <Button fx:id="btnGenerateFileName" mnemonicParsing="false" onAction="#doBtnGenerateFileName" prefWidth="130.0" text="Сгенерировать имя" />
+                           </children>
+                        </HBox>
+                        <Separator prefWidth="200.0" />
+                        <HBox prefHeight="20.0" prefWidth="200.0">
+                           <children>
+                              <Label prefWidth="75.0" text="Контейнер:" />
+                              <RadioButton fx:id="rbMP4" mnemonicParsing="false" prefWidth="60.0" selected="true" text="MP4">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="grpContainer" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="rbMKV" mnemonicParsing="false" prefWidth="60.0" text="MKV" toggleGroup="$grpContainer" />
+                           </children>
+                        </HBox>
+                        <CheckBox fx:id="checkBoxDontRepeatShots" mnemonicParsing="false" selected="true" text="Без повторов планов" />
+                        <CheckBox fx:id="checkCopyShotsToFolder" mnemonicParsing="false" selected="true" text="Скопировать планы в отдельную папку" />
+                        <CheckBox fx:id="checkBoxSaveShotsList" mnemonicParsing="false" selected="true" text="Сохранить список файлов планов" />
+                        <CheckBox fx:id="checkBoxSaveCmd" mnemonicParsing="false" selected="true" text="Сохранить CMD создания видео" />
+                        <CheckBox fx:id="checkCreateVideo" mnemonicParsing="false" selected="true" text="Создать видео" />
+                        <CheckBox fx:id="checkBoxOpenVideoAfterCreation" mnemonicParsing="false" selected="true" text="Открыть видео после создания" />
+                        <Button fx:id="btnCreate" mnemonicParsing="false" onAction="#doBtnCreate" prefWidth="2000.0" text="СОЗДАТЬ!!!" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

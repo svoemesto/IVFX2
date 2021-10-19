@@ -16,6 +16,15 @@ public class IVFXProjects implements Serializable, Comparable<IVFXProjects> {
     private String name = "Название нового проекта"; // название проекта, например "Интерактивная Игра Престолов"
     private String shortName = "Короткое имя нового проекта"; // имя файла без расширения, например iGOT
     private String folder = "Папка нового проекта";   // папка проекта, например "D:\\Dropbox\\InteractiveVideoFXProjects\\iGOT"
+    private int videoWidth = 1920;
+    private int videoHeight = 1080;
+    private double videoFPS = 29.970;
+    private int videoBitrate = 10_000_000;
+    private String videoCodec = "h264";
+    private String videoContainer = "mp4";
+    private int audioBitrate = 320_000;
+    private int audioFreq = 48_000;
+    private String audioCodec = "aac";
 
     // пустой конструктор
     public IVFXProjects() {
@@ -49,12 +58,30 @@ public class IVFXProjects implements Serializable, Comparable<IVFXProjects> {
                     "order_project, " +
                     "name, " +
                     "short_name, " +
-                    "folder) " +
+                    "folder, " +
+                    "video_width, " +
+                    "video_height, " +
+                    "video_fps, " +
+                    "video_bitrate, " +
+                    "video_codec, " +
+                    "video_container, " +
+                    "audio_bitrate, " +
+                    "audio_freq, " +
+                    "audio_codec) " +
                     "VALUES(" +
                     ivfxProject.order + "," +
                     "'" + ivfxProject.name + "'" + "," +
                     "'" + ivfxProject.shortName + "'" + "," +
                     "'" + ivfxProject.folder + "'" +
+                    ivfxProject.videoWidth +
+                    ivfxProject.videoHeight +
+                    ivfxProject.videoFPS +
+                    ivfxProject.videoBitrate +
+                    "'" + ivfxProject.videoCodec + "'" +
+                    "'" + ivfxProject.videoContainer + "'" +
+                    ivfxProject.audioBitrate +
+                    ivfxProject.audioFreq +
+                    "'" + ivfxProject.audioCodec + "'" +
                     ")";
 
             ps = Main.mainConnection.prepareStatement(sql);
@@ -98,6 +125,15 @@ public class IVFXProjects implements Serializable, Comparable<IVFXProjects> {
                 project.name = rs.getString("name");
                 project.shortName = rs.getString("short_name");
                 project.folder = rs.getString("folder");
+                project.videoWidth = rs.getInt("video_width");
+                project.videoHeight = rs.getInt("video_height");
+                project.videoFPS = rs.getDouble("video_fps");
+                project.videoBitrate = rs.getInt("video_bitrate");
+                project.videoCodec = rs.getString("video_codec");
+                project.videoContainer = rs.getString("video_container");
+                project.audioBitrate = rs.getInt("audio_bitrate");
+                project.audioFreq = rs.getInt("audio_freq");
+                project.audioCodec = rs.getString("audio_codec");
                 return project;
             }
 
@@ -150,6 +186,15 @@ public class IVFXProjects implements Serializable, Comparable<IVFXProjects> {
                 project.name = rs.getString("name");
                 project.shortName = rs.getString("short_name");
                 project.folder = rs.getString("folder");
+                project.videoWidth = rs.getInt("video_width");
+                project.videoHeight = rs.getInt("video_height");
+                project.videoFPS = rs.getDouble("video_fps");
+                project.videoBitrate = rs.getInt("video_bitrate");
+                project.videoCodec = rs.getString("video_codec");
+                project.videoContainer = rs.getString("video_container");
+                project.audioBitrate = rs.getInt("audio_bitrate");
+                project.audioFreq = rs.getInt("audio_freq");
+                project.audioCodec = rs.getString("audio_codec");
                 listProjects.add(project);
             }
 
@@ -172,7 +217,21 @@ public class IVFXProjects implements Serializable, Comparable<IVFXProjects> {
 
     public void save() {
 
-        String sql = "UPDATE tbl_projects SET order_project = ?, name = ?, short_name = ?, folder = ? WHERE id = ?";
+        String sql = "UPDATE tbl_projects SET " +
+                "order_project = ?, " +
+                "name = ?, " +
+                "short_name = ?, " +
+                "folder = ?, " +
+                "video_width = ?, " +
+                "video_height = ?, " +
+                "video_fps = ?, " +
+                "video_bitrate = ?, " +
+                "video_codec = ?, " +
+                "video_container = ?, " +
+                "audio_bitrate = ?, " +
+                "audio_freq = ?, " +
+                "audio_codec = ? " +
+                "WHERE id = ?";
 
         try {
             PreparedStatement ps = Main.mainConnection.prepareStatement(sql);
@@ -180,7 +239,16 @@ public class IVFXProjects implements Serializable, Comparable<IVFXProjects> {
             ps.setString(2, this.name);
             ps.setString(3, this.shortName);
             ps.setString(4, this.folder);
-            ps.setInt   (5, this.id);
+            ps.setInt(5, this.videoWidth);
+            ps.setInt(6, this.videoHeight);
+            ps.setDouble(7, this.videoFPS);
+            ps.setInt(8, this.videoBitrate);
+            ps.setString(9, this.videoCodec);
+            ps.setString(10, this.videoContainer);
+            ps.setInt(11, this.audioBitrate);
+            ps.setInt(12, this.audioFreq);
+            ps.setString(13, this.audioCodec);
+            ps.setInt   (14, this.id);
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
@@ -289,4 +357,75 @@ public class IVFXProjects implements Serializable, Comparable<IVFXProjects> {
         this.id = id;
     }
 
+    public int getVideoWidth() {
+        return videoWidth;
+    }
+
+    public void setVideoWidth(int videoWidth) {
+        this.videoWidth = videoWidth;
+    }
+
+    public int getVideoHeight() {
+        return videoHeight;
+    }
+
+    public void setVideoHeight(int videoHeight) {
+        this.videoHeight = videoHeight;
+    }
+
+    public double getVideoFPS() {
+        return videoFPS;
+    }
+
+    public void setVideoFPS(double videoFPS) {
+        this.videoFPS = videoFPS;
+    }
+
+    public int getVideoBitrate() {
+        return videoBitrate;
+    }
+
+    public void setVideoBitrate(int videoBitrate) {
+        this.videoBitrate = videoBitrate;
+    }
+
+    public String getVideoCodec() {
+        return videoCodec;
+    }
+
+    public void setVideoCodec(String videoCodec) {
+        this.videoCodec = videoCodec;
+    }
+
+    public String getVideoContainer() {
+        return videoContainer;
+    }
+
+    public void setVideoContainer(String videoContainer) {
+        this.videoContainer = videoContainer;
+    }
+
+    public int getAudioBitrate() {
+        return audioBitrate;
+    }
+
+    public void setAudioBitrate(int audioBitrate) {
+        this.audioBitrate = audioBitrate;
+    }
+
+    public int getAudioFreq() {
+        return audioFreq;
+    }
+
+    public void setAudioFreq(int audioFreq) {
+        this.audioFreq = audioFreq;
+    }
+
+    public String getAudioCodec() {
+        return audioCodec;
+    }
+
+    public void setAudioCodec(String audioCodec) {
+        this.audioCodec = audioCodec;
+    }
 }

@@ -307,11 +307,11 @@ public class IVFXEventsShots {
     }
 
     public String getFirstFramePicture() {
-        return this.ivfxEvent.getIvfxFile().getFramesFolderPreview()+"\\"+this.ivfxEvent.getIvfxFile().getShortName()+this.ivfxEvent.getIvfxFile().FRAMES_PREFIX+String.format("%06d", this.ivfxShot.getFirstFrameNumber())+".jpg";
+        return this.ivfxEvent.getIvfxFile().getFolderFramesPreview()+"\\"+this.ivfxEvent.getIvfxFile().getShortName()+this.ivfxEvent.getIvfxFile().FRAMES_PREFIX+String.format("%06d", this.ivfxShot.getFirstFrameNumber())+".jpg";
     }
 
     public String getLastFramePicture() {
-        return this.ivfxEvent.getIvfxFile().getFramesFolderPreview()+"\\"+this.ivfxEvent.getIvfxFile().getShortName()+this.ivfxEvent.getIvfxFile().FRAMES_PREFIX+String.format("%06d", this.ivfxShot.getLastFrameNumber())+".jpg";
+        return this.ivfxEvent.getIvfxFile().getFolderFramesPreview()+"\\"+this.ivfxEvent.getIvfxFile().getShortName()+this.ivfxEvent.getIvfxFile().FRAMES_PREFIX+String.format("%06d", this.ivfxShot.getLastFrameNumber())+".jpg";
     }
 
     public IVFXEvents getIvfxEvent() {

@@ -1,6 +1,7 @@
 package com.svoemesto.ivfx.utils;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -28,9 +29,9 @@ public class FFmpeg {
 
     }
 
-    public static final String PATH_TO_FFMPEG = "D:\\ffmpeg-shared\\bin\\ffmpeg.exe";
-    public static final String PATH_TO_FFPROBE = "D:\\ffmpeg-shared\\bin\\ffprobe.exe";
-    public static final String PATH_TO_MKVMERGE = "D:\\iGOT\\bin\\mkvmerge.exe";
+    public static final String PATH_TO_FFMPEG = (new File("ffmpeg-shared/bin/ffmpeg.exe")).getAbsolutePath();
+    public static final String PATH_TO_FFPROBE = (new File("ffmpeg-shared/bin/ffprobe.exe")).getAbsolutePath();
+    public static final String PATH_TO_MKVMERGE = (new File("mkvmerge/mkvmerge.exe")).getAbsolutePath();
 
     public static int getFrameNumberByDuration(int duration, double fps) {
         double dur1fr = 1000 / fps;
@@ -42,11 +43,12 @@ public class FFmpeg {
 
     public static Integer getDurationByFrameNumber(int frameNumber, double fps) {
         double dur1fr = 1000 / fps;
-        int countFramesBefore = frameNumber - 1;
+        int countFramesBefore = frameNumber - 0;
         double durDouble = countFramesBefore * dur1fr;
         if (durDouble <0 ) durDouble = 0;
 //        int duration = (int)Math.round(durDouble);
-        int duration = (int)Math.ceil(durDouble);
+//        int duration = (int)Math.ceil(durDouble);
+        int duration = (int)Math.floor(durDouble);
 //        System.out.println(durDouble);
         return duration;
     }
@@ -67,7 +69,7 @@ public class FFmpeg {
         int milliseconds = (duration - hours*3_600_000 - minutes*60_000 - seconds*1000);
         String out = String.valueOf(hours) + ":" +
                 String.format("%02d",minutes) + ":" +
-                String.format("%02d",seconds) + "."+
+                String.format("%02d",seconds) + "." +
                 String.format("%03d",milliseconds);
         return out;
     }

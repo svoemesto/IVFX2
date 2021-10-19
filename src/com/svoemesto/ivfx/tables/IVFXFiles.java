@@ -1,20 +1,27 @@
 package com.svoemesto.ivfx.tables;
 
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+import com.google.gson.internal.LinkedTreeMap;
 import com.svoemesto.ivfx.Main;
+import com.svoemesto.ivfx.utils.MediaInfo;
+import com.svoemesto.ivfx.utils.Utils;
 import javafx.scene.control.ProgressBar;
 
 import java.io.File;
 import java.io.Serializable;
+import java.lang.reflect.Type;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
 
-    public static transient final String FRAMES_PREVIEW_FOLDER_SUFFIX = "_Frames";
-    public static transient final String FRAMES_FULLSIZE_FOLDER_SUFFIX = "_FramesFullSize";
+    public static transient final String FRAMES_PREVIEW_FOLDER_SUFFIX = "_Frames_Preview";
+    public static transient final String FRAMES_MEDIUM_FOLDER_SUFFIX = "_Frames_Medium";
+    public static transient final String FRAMES_FAVORITE_FOLDER_SUFFIX = "_Frames_Favorite";
+    public static transient final String FRAMES_FULLSIZE_FOLDER_SUFFIX = "_Frames_FullSize";
     public static transient final String FRAMES_PREFIX = "_frame_";
+    public static transient final String FACES_PREFIX = "_faces_";
     public static transient final String FILE_SUFFIX = "_videofiles";
 
     private int id;
@@ -28,9 +35,28 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
     private double frameRate = 0.0;   // частота кадров, например 23.976
     private int duration = 0;   // длительность видео в миллисекундах
     private int framesCount = 0;    // общее количество кадров в видео
+    private int width = 0;    // ширина в пикселях
+    private int height = 0;    // высота в пикселях
     private int seasonNumber =0;
     private int episodeNumber =0;
     private String description = "Комментарий";
+    private boolean useFolderMp4 = false;
+    private String folderMp4 = null;
+    private boolean useFolderFramesPreview = false;
+    private String folderFramesPreview = null;
+    private boolean useFolderFramesMedium = false;
+    private String folderFramesMedium = null;
+    private boolean useFolderFramesFull = false;
+    private String folderFramesFull = null;
+    private boolean useFolderFavorite = false;
+    private String folderFavorite = null;
+    private boolean useFolderLossless = false;
+    private String folderLossless = null;
+    private boolean useFolderShots = false;
+    private String folderShots = null;
+    private String losslessVideoCodec = "dnxhd";
+    private String losslessContainer = "mxf";
+    private String mediaInfoJson = null;
 
     //TODO ISEQUAL
 
@@ -47,6 +73,8 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
                 this.frameRate == o.frameRate &&
                 this.duration == o.duration &&
                 this.framesCount == o.framesCount &&
+                this.width == o.width &&
+                this.height == o.height &&
                 this.seasonNumber == o.seasonNumber &&
                 this.episodeNumber == o.episodeNumber &&
                 this.description.equals(o.description));
@@ -86,8 +114,27 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
                     "frame_rate, " +
                     "duration, " +
                     "frames_count, " +
+                    "width, " +
+                    "height, " +
                     "season_number, " +
                     "episode_number, " +
+                    "use_folder_mp4, " +
+                    "folder_mp4, " +
+                    "use_folder_frames_preview, " +
+                    "folder_frames_preview, " +
+                    "use_folder_frames_medium, " +
+                    "folder_frames_medium, " +
+                    "use_folder_frames_full, " +
+                    "folder_frames_full, " +
+                    "use_folder_favorite, " +
+                    "folder_favorite, " +
+                    "use_folder_lossless, " +
+                    "folder_lossless, " +
+                    "use_folder_shots, " +
+                    "folder_shots, " +
+                    "lossless_video_codec, " +
+                    "lossless_container, " +
+                    "mediainfo_json, " +
                     "description) " +
                     "VALUES(" +
                     ivfxProject.getId() + "," +
@@ -98,8 +145,27 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
                     ivfxFile.frameRate + "," +
                     ivfxFile.duration + "," +
                     ivfxFile.framesCount + "," +
+                    ivfxFile.width + "," +
+                    ivfxFile.height + "," +
                     ivfxFile.seasonNumber + "," +
                     ivfxFile.episodeNumber + "," +
+                    ivfxFile.useFolderMp4 + "," +
+                    "'" + ivfxFile.folderMp4 + "'" + "," +
+                    ivfxFile.useFolderFramesPreview + "," +
+                    "'" + ivfxFile.folderFramesPreview + "'" + "," +
+                    ivfxFile.useFolderFramesMedium + "," +
+                    "'" + ivfxFile.folderFramesMedium + "'" + "," +
+                    ivfxFile.useFolderFramesFull + "," +
+                    "'" + ivfxFile.folderFramesFull + "'" + "," +
+                    ivfxFile.useFolderFavorite + "," +
+                    "'" + ivfxFile.folderFavorite + "'" + "," +
+                    ivfxFile.useFolderLossless + "," +
+                    "'" + ivfxFile.folderLossless + "'" + "," +
+                    ivfxFile.useFolderShots + "," +
+                    "'" + ivfxFile.folderShots + "'" + "," +
+                    "'" + ivfxFile.losslessVideoCodec + "'" + "," +
+                    "'" + ivfxFile.losslessContainer + "'" + "," +
+                    "'" + ivfxFile.mediaInfoJson + "'" + "," +
                     "'" + ivfxFile.description + "'" + ")";
 
             PreparedStatement ps = Main.mainConnection.prepareStatement(sql);
@@ -156,8 +222,27 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
                 videoFile.frameRate = rs.getDouble("frame_rate");
                 videoFile.duration = rs.getInt("duration");
                 videoFile.framesCount = rs.getInt("frames_count");
+                videoFile.width = rs.getInt("width");
+                videoFile.height = rs.getInt("height");
                 videoFile.seasonNumber = rs.getInt("season_number");
                 videoFile.episodeNumber = rs.getInt("episode_number");
+                videoFile.useFolderMp4 = rs.getBoolean("use_folder_mp4");
+                videoFile.folderMp4 = rs.getString("folder_mp4");
+                videoFile.useFolderFramesPreview = rs.getBoolean("use_folder_frames_preview");
+                videoFile.folderFramesPreview = rs.getString("folder_frames_preview");
+                videoFile.useFolderFramesMedium = rs.getBoolean("use_folder_frames_medium");
+                videoFile.folderFramesMedium = rs.getString("folder_frames_medium");
+                videoFile.useFolderFramesFull = rs.getBoolean("use_folder_frames_full");
+                videoFile.folderFramesFull = rs.getString("folder_frames_full");
+                videoFile.useFolderFavorite = rs.getBoolean("use_folder_favorite");
+                videoFile.folderFavorite = rs.getString("folder_favorite");
+                videoFile.useFolderLossless = rs.getBoolean("use_folder_lossless");
+                videoFile.folderLossless = rs.getString("folder_lossless");
+                videoFile.useFolderShots = rs.getBoolean("use_folder_shots");
+                videoFile.folderShots = rs.getString("folder_shots");
+                videoFile.losslessVideoCodec = rs.getString("lossless_video_codec");
+                videoFile.losslessContainer = rs.getString("lossless_container");
+                videoFile.mediaInfoJson = rs.getString("mediainfo_json");
                 videoFile.description = rs.getString("description");
                 videoFile.ivfxProject = IVFXProjects.load(videoFile.projectId);
                 return videoFile;
@@ -177,6 +262,48 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
         return null;
     }
 
+
+    public void updateTagsByFaces(boolean withPreview) {
+        List<IVFXShots> listShots = IVFXShots.loadList(this, withPreview);
+        List<IVFXTagsShotsFaces> listTagsShotsFaces = IVFXTagsShotsFaces.loadList(this, withPreview);
+
+        int i = 0;
+        for (IVFXShots shot : listShots) {
+            i++;
+            System.out.println("Обновление тэгов планов по лицам: " + i + "/" + listShots.size());
+
+            List<IVFXTagsShotsFaces> listTagsShotsFacesForOneShot = new ArrayList<>();
+            for (IVFXTagsShotsFaces tagShotFace : listTagsShotsFaces) {
+                if (tagShotFace.getShotId() == shot.getId()) {
+                    listTagsShotsFacesForOneShot.add(tagShotFace);
+                }
+            }
+
+            int[] arrTagTypeId = {1,2};
+            List<IVFXTagsShots> listTagsShots = IVFXTagsShots.loadList(shot, withPreview, arrTagTypeId);
+            for (IVFXTagsShotsFaces tagShotFace : listTagsShotsFacesForOneShot) {
+                boolean tagIsFinded = false;
+                for (IVFXTagsShots tagShot : listTagsShots) {
+                    if (tagShot.getTagId() == tagShotFace.getTagId()) {
+                        tagShot.setProba(tagShotFace.getProba());
+                        tagShot.setTypeSizeId(tagShotFace.getTypeSizeId());
+                        tagShot.save();
+                        tagIsFinded = true;
+                        break;
+                    }
+                }
+                if (!tagIsFinded) {
+                    IVFXTagsShots tagShot = IVFXTagsShots.getNewDbInstance(tagShotFace.getIvfxTag(),shot);
+                    if (tagShot != null) {
+                        tagShot.setProba(tagShotFace.getProba());
+                        tagShot.setTypeSizeId(tagShotFace.getTypeSizeId());
+                        tagShot.save();
+                    }
+                }
+            }
+        }
+
+    }
 
     public static List<IVFXFiles> loadList(IVFXProjects ivfxProject) {
         return loadList(ivfxProject, null);
@@ -217,8 +344,27 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
                 file.frameRate = rs.getDouble("frame_rate");
                 file.duration = rs.getInt("duration");
                 file.framesCount = rs.getInt("frames_count");
+                file.width = rs.getInt("width");
+                file.height = rs.getInt("height");
                 file.seasonNumber = rs.getInt("season_number");
                 file.episodeNumber = rs.getInt("episode_number");
+                file.useFolderMp4 = rs.getBoolean("use_folder_mp4");
+                file.folderMp4 = rs.getString("folder_mp4");
+                file.useFolderFramesPreview = rs.getBoolean("use_folder_frames_preview");
+                file.folderFramesPreview = rs.getString("folder_frames_preview");
+                file.useFolderFramesMedium = rs.getBoolean("use_folder_frames_medium");
+                file.folderFramesMedium = rs.getString("folder_frames_medium");
+                file.useFolderFramesFull = rs.getBoolean("use_folder_frames_full");
+                file.folderFramesFull = rs.getString("folder_frames_full");
+                file.useFolderFavorite = rs.getBoolean("use_folder_favorite");
+                file.folderFavorite = rs.getString("folder_favorite");
+                file.useFolderLossless = rs.getBoolean("use_folder_lossless");
+                file.folderLossless = rs.getString("folder_lossless");
+                file.useFolderShots = rs.getBoolean("use_folder_shots");
+                file.folderShots = rs.getString("folder_shots");
+                file.losslessVideoCodec = rs.getString("lossless_video_codec");
+                file.losslessContainer = rs.getString("lossless_container");
+                file.mediaInfoJson = rs.getString("mediainfo_json");
                 file.description = rs.getString("description");
                 file.ivfxProject = ivfxProject;
                 listVideoFiles.add(file);
@@ -250,8 +396,27 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
                 "frame_rate = ?, " +
                 "duration = ?, " +
                 "frames_count = ?, " +
+                "width = ?, " +
+                "height = ?, " +
                 "season_number = ?, " +
                 "episode_number = ?, " +
+                "use_folder_mp4 = ?, " +
+                "folder_mp4 = ?, " +
+                "use_folder_frames_preview = ?, " +
+                "folder_frames_preview = ?, " +
+                "use_folder_frames_medium = ?, " +
+                "folder_frames_medium = ?, " +
+                "use_folder_frames_full = ?, " +
+                "folder_frames_full = ?, " +
+                "use_folder_favorite = ?, " +
+                "folder_favorite = ?, " +
+                "use_folder_lossless = ?, " +
+                "folder_lossless = ?, " +
+                "use_folder_shots = ?, " +
+                "folder_shots = ?, " +
+                "lossless_video_codec = ?, " +
+                "lossless_container = ?, " +
+                "mediainfo_json = ?, " +
                 "description = ? " +
                 "WHERE id = ?";
         try {
@@ -264,10 +429,29 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
             ps.setDouble(6, this.frameRate);
             ps.setInt(7, this.duration);
             ps.setInt(8, this.framesCount);
-            ps.setInt(9, this.seasonNumber);
-            ps.setInt(10, this.episodeNumber);
-            ps.setString(11, this.description);
-            ps.setInt   (12, this.id);
+            ps.setInt(9, this.width);
+            ps.setInt(10, this.height);
+            ps.setInt(11, this.seasonNumber);
+            ps.setInt(12, this.episodeNumber);
+            ps.setBoolean(13, this.useFolderMp4);
+            ps.setString(14, this.folderMp4);
+            ps.setBoolean(15, this.useFolderFramesPreview);
+            ps.setString(16, this.folderFramesPreview);
+            ps.setBoolean(17, this.useFolderFramesMedium);
+            ps.setString(18, this.folderFramesMedium);
+            ps.setBoolean(19, this.useFolderFramesFull);
+            ps.setString(20, this.folderFramesFull);
+            ps.setBoolean(21, this.useFolderFavorite);
+            ps.setString(22, this.folderFavorite);
+            ps.setBoolean(23, this.useFolderLossless);
+            ps.setString(24, this.folderLossless);
+            ps.setBoolean(25, this.useFolderShots);
+            ps.setString(26, this.folderShots);
+            ps.setString(27, this.losslessVideoCodec);
+            ps.setString(28, this.losslessContainer);
+            ps.setString(29, this.mediaInfoJson);
+            ps.setString(30, this.description);
+            ps.setInt   (31, this.id);
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
@@ -293,15 +477,58 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
 
 // TODO FUNCTIONS
 
-    public String getFramesFolderFullSize() {
-        String folder = ivfxProject.getFramesFolder() + "\\" + shortName + FRAMES_FULLSIZE_FOLDER_SUFFIX;
-        File file = new File(folder + "\\");
-        if(!file.exists()) file.mkdir();
-        return folder;
+    public List<IVFXTags> getListTagsFromHTML() {
+        List<IVFXTags> result = new ArrayList<>();
+        String url = getPropertyValue("url");
+        if (!url.equals("")) {
+            String html = getPropertyValue("html");
+            if (html.equals("")) {
+                html = Utils.getHTMLtextFromUrl(url);
+            }
+            if (html != null) {
+                html = Utils.getTextBetween(html, "<span id=\"В_ролях\"></span>", "<span id=\"Навигация_по_сериям\"></span>");
+                if (!html.equals("")) {
+                    List<IVFXTags> listTags = IVFXTags.loadList(this, false);
+                    for (IVFXTags tag : listTags) {
+                        String tagUrl = tag.getPropertyValue("url");
+                        if (tagUrl != null) {
+                            tagUrl = Utils.getTextBetween(tagUrl, "https://gameofthrones.fandom.com", "");
+                            if (!tagUrl.equals("")) {
+                                tagUrl.replace("/", "\\");
+                                if (html.contains(tagUrl)) {
+                                    result.add(IVFXTags.load(tag.getId(),true));
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+        Collections.sort(result);
+        return result;
     }
 
-    public String getFramesFolderPreview() {
-        String folder = ivfxProject.getFramesFolder() + "\\" + shortName + FRAMES_PREVIEW_FOLDER_SUFFIX;
+    public void setPropertyValue(String propertyName, String propertyValue) {
+        IVFXFilesProperties filesProperties = IVFXFilesProperties.loadByName(this.id, propertyName);
+        if (filesProperties != null) {
+            filesProperties.setValue(propertyValue);
+            filesProperties.save();
+        } else {
+            IVFXFilesProperties.getNewDbInstance(this, propertyName, propertyValue);
+        }
+    }
+
+    public String getPropertyValue(String propertyName) {
+        String result = null;
+        IVFXFilesProperties filesProperties = IVFXFilesProperties.loadByName(this.id, propertyName);
+        if (filesProperties != null) result = filesProperties.getValue();
+        return result;
+    }
+
+
+    public String getFramesFolderFavorite() {
+        String folder = useFolderFavorite ? folderFavorite : ivfxProject.getFramesFolder() + "\\" + shortName + FRAMES_FAVORITE_FOLDER_SUFFIX;
         File file = new File(folder + "\\");
         if(!file.exists()) file.mkdir();
         return folder;
@@ -309,11 +536,11 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
 
     public String getFileSourceNamePreview() {
         String fileSourceName = this.sourceName;
-        String folderPreview = this.ivfxProject.getFolder()+"\\Video\\Preview";
+        String folderPreview = useFolderMp4 ? folderMp4 : this.ivfxProject.getFolder()+"\\Video\\Preview";
         File file = new File(fileSourceName);
         String fileNameWithoutPath = file.getName();
         String fileNameWithoutExtention = fileNameWithoutPath.substring(0,fileNameWithoutPath.lastIndexOf("."));
-        return folderPreview + "\\" + fileNameWithoutExtention + ".mp4";
+        return folderPreview + "\\" + fileNameWithoutExtention + "_preview.mp4";
     }
 
 
@@ -359,6 +586,128 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
             }
         }
 
+    }
+
+    public String getFromMediaInfoRef() {
+
+        String json = getMediaInfoJson();
+        if (json != null) {
+
+            Type mapType = new TypeToken<Map<String, Map>>(){}.getType();
+            Map<String, Map> son = new Gson().fromJson(json, mapType);
+
+            Map<String, Object> media = son.get("media");
+
+            String ref = media.get("@ref").toString();
+
+            String result = ref;
+
+            return result;
+
+        }
+
+        return null;
+
+    }
+
+    public ArrayList<Map<String, Object>> getFromMediaInfoTracks() {
+
+        String json = getMediaInfoJson();
+        if (json != null) {
+
+            Type mapType = new TypeToken<Map<String, Map>>(){}.getType();
+            Map<String, Map> son = new Gson().fromJson(json, mapType);
+
+            Map<String, Object> media = son.get("media");
+
+            String ref = media.get("@ref").toString();
+            ArrayList<Map<String, Object>> tracks = (ArrayList<Map<String, Object>>)media.get("track");
+
+            ArrayList<Map<String, Object>> result = tracks;
+
+            return result;
+
+        }
+
+        return null;
+
+    }
+
+    public Map<String, String> getFromMediaInfoTrack(int trackNumber) {
+
+        String json = getMediaInfoJson();
+        if (json != null) {
+
+            Type mapType = new TypeToken<Map<String, Map>>(){}.getType();
+            Map<String, Map> son = new Gson().fromJson(json, mapType);
+
+            Map<String, Object> media = son.get("media");
+
+            String ref = media.get("@ref").toString();
+            ArrayList<Map<String, String>> tracks = (ArrayList<Map<String, String>>)media.get("track");
+
+            Map<String, String> result = tracks.get(trackNumber);
+
+            return result;
+
+        }
+
+        return null;
+
+    }
+
+    public int createTracksFromMediaInfo() {
+        ArrayList<Map<String, Object>> listTracks = getFromMediaInfoTracks();
+        if (listTracks != null) {
+            IVFXFilesTracks.deleteAllTracks(this);
+            for (Map<String, Object> track: listTracks) {
+                String trackType = track.get("@type").toString();
+                String trackName = trackType;
+                IVFXFilesTracks ivfxFileTrack = IVFXFilesTracks.getNewDbInstance(this);
+                ivfxFileTrack.setType(trackType);
+                ivfxFileTrack.setName(trackName);
+                ivfxFileTrack.setUse(true);
+                ivfxFileTrack.setFileId(this.getId());
+                ivfxFileTrack.setIvfxFile(this);
+                ivfxFileTrack.save();
+
+                String trackPropertyKey, trackPropertyValue;
+
+                for (Map.Entry<String, Object> entry : track.entrySet()) {
+
+                    if (entry.getValue() instanceof LinkedTreeMap) {
+                        Map<String, Object> track2 = (Map<String, Object>)entry.getValue();
+                        for (Map.Entry<String, Object> entry2 : track2.entrySet()) {
+                            trackPropertyKey = entry2.getKey();
+                            trackPropertyValue = entry2.getValue().toString();
+
+                            IVFXFilesTracksProperties ivfxFileTrackPropertie = IVFXFilesTracksProperties.getNewDbInstance(ivfxFileTrack);
+                            ivfxFileTrackPropertie.setKey(trackPropertyKey);
+                            ivfxFileTrackPropertie.setValue(trackPropertyValue);
+                            ivfxFileTrackPropertie.setFileTrackId(ivfxFileTrack.getId());
+                            ivfxFileTrackPropertie.setIvfxFileTrack(ivfxFileTrack);
+                            ivfxFileTrackPropertie.save();
+
+                        }
+
+                    } else {
+                        trackPropertyKey = entry.getKey();
+                        trackPropertyValue = entry.getValue().toString();
+
+                        IVFXFilesTracksProperties ivfxFileTrackPropertie = IVFXFilesTracksProperties.getNewDbInstance(ivfxFileTrack);
+                        ivfxFileTrackPropertie.setKey(trackPropertyKey);
+                        ivfxFileTrackPropertie.setValue(trackPropertyValue);
+                        ivfxFileTrackPropertie.setFileTrackId(ivfxFileTrack.getId());
+                        ivfxFileTrackPropertie.setIvfxFileTrack(ivfxFileTrack);
+                        ivfxFileTrackPropertie.save();
+                    }
+
+                }
+            }
+            return listTracks.size();
+        } else {
+            return 0;
+        }
     }
 
 // TODO GETTERS SETTERS
@@ -428,7 +777,21 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
         this.framesCount = framesCount;
     }
 
+    public int getWidth() {
+        return width;
+    }
 
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
 
     public int getSeasonNumber() {
         return seasonNumber;
@@ -478,4 +841,176 @@ public class IVFXFiles implements Serializable, Comparable<IVFXFiles> {
         this.projectId = projectId;
     }
 
+    public boolean isUseFolderMp4() {
+        return useFolderMp4;
+    }
+
+    public void setUseFolderMp4(boolean useFolderMp4) {
+        this.useFolderMp4 = useFolderMp4;
+    }
+
+    public String getFolderMp4() {
+        if (folderMp4 == null || folderMp4.equals("") || !useFolderMp4) {
+            return ivfxProject.getFolder() + "\\Video\\Preview";
+        } else {
+            return folderMp4;
+        }
+    }
+
+    public void setFolderMp4(String folderMp4) {
+        this.folderMp4 = folderMp4;
+    }
+
+    public boolean isUseFolderFramesPreview() {
+        return useFolderFramesPreview;
+    }
+
+    public void setUseFolderFramesPreview(boolean useFolderFramesPreview) {
+        this.useFolderFramesPreview = useFolderFramesPreview;
+    }
+
+    public String getFolderFramesPreview() {
+        if (folderFramesPreview == null || folderFramesPreview.equals("") || !useFolderFramesPreview) {
+            return ivfxProject.getFramesFolder() + "\\" + shortName + FRAMES_PREVIEW_FOLDER_SUFFIX;
+        } else {
+            return folderFramesPreview;
+        }
+    }
+
+    public void setFolderFramesPreview(String folderFramesPreview) {
+        this.folderFramesPreview = folderFramesPreview;
+    }
+
+    public String getFolderFramesMedium() {
+        if (folderFramesMedium == null || folderFramesMedium.equals("") || !useFolderFramesMedium) {
+            return ivfxProject.getFramesFolder() + "\\" + shortName + FRAMES_MEDIUM_FOLDER_SUFFIX;
+        } else {
+            return folderFramesMedium;
+        }
+    }
+
+    public void setFolderFramesMedium(String folderFramesMedium) {
+        this.folderFramesMedium = folderFramesMedium;
+    }
+
+
+    public boolean isUseFolderFramesFull() {
+        return useFolderFramesFull;
+    }
+
+    public void setUseFolderFramesFull(boolean useFolderFramesFull) {
+        this.useFolderFramesFull = useFolderFramesFull;
+    }
+
+    public String getFolderFramesFull() {
+        if (folderFramesFull == null || folderFramesFull.equals("") || !useFolderFramesFull) {
+            return ivfxProject.getFramesFolder() + "\\" + shortName + FRAMES_FULLSIZE_FOLDER_SUFFIX;
+        } else {
+            return folderFramesFull;
+        }
+    }
+
+    public String getFolderFaces() {
+        return getFolderFramesFull() + ".faces";
+    }
+
+    public void setFolderFramesFull(String folderFramesFull) {
+        this.folderFramesFull = folderFramesFull;
+    }
+
+    public boolean isUseFolderFavorite() {
+        return useFolderFavorite;
+    }
+
+    public void setUseFolderFavorite(boolean useFolderFavorite) {
+        this.useFolderFavorite = useFolderFavorite;
+    }
+
+    public String getFolderFavorite() {
+        if (folderFavorite == null || folderFavorite.equals("") || !useFolderFavorite) {
+            return ivfxProject.getFramesFolder() + "\\" + shortName + FRAMES_FAVORITE_FOLDER_SUFFIX;
+        } else {
+            return folderFavorite;
+        }
+    }
+
+    public void setFolderFavorite(String folderFavorite) {
+        this.folderFavorite = folderFavorite;
+    }
+
+    public String getMediaInfoJson() {
+        return mediaInfoJson;
+    }
+
+    public boolean isUseFolderLossless() {
+        return useFolderLossless;
+    }
+
+    public void setUseFolderLossless(boolean useFolderLossless) {
+        this.useFolderLossless = useFolderLossless;
+    }
+
+    public String getFolderLossless() {
+        if (folderLossless == null || folderLossless.equals("") || !useFolderLossless) {
+            return ivfxProject.getFolder() + "\\Video\\Lossless";
+        } else {
+            return folderLossless;
+        }
+    }
+
+    public String getPathToFileLossless() {
+        return getFolderLossless() + "\\" + shortName + "_lossless." + losslessContainer;
+    }
+
+    public void setFolderLossless(String folderLossless) {
+        this.folderLossless = folderLossless;
+    }
+
+    public void setMediaInfoJson(String mediaInfoJson) {
+        this.mediaInfoJson = mediaInfoJson;
+    }
+
+    public boolean isUseFolderShots() {
+        return useFolderShots;
+    }
+
+    public void setUseFolderShots(boolean useFolderShots) {
+        this.useFolderShots = useFolderShots;
+    }
+
+    public String getFolderShots() {
+        if (folderShots == null || folderShots.equals("") || !useFolderShots) {
+            return ivfxProject.getFolder() + "\\Video\\1920x1080";
+        } else {
+            return folderShots;
+        }
+    }
+
+    public void setFolderShots(String folderShots) {
+        this.folderShots = folderShots;
+    }
+
+    public String getLosslessVideoCodec() {
+        return losslessVideoCodec;
+    }
+
+    public void setLosslessVideoCodec(String losslessVideoCodec) {
+        this.losslessVideoCodec = losslessVideoCodec;
+    }
+
+    public String getLosslessContainer() {
+        return losslessContainer;
+    }
+
+    public void setLosslessContainer(String losslessContainer) {
+        this.losslessContainer = losslessContainer;
+    }
+
+    public boolean isUseFolderFramesMedium() {
+        return useFolderFramesMedium;
+    }
+
+    public void setUseFolderFramesMedium(boolean useFolderFramesMedium) {
+        this.useFolderFramesMedium = useFolderFramesMedium;
+    }
 }

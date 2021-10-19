@@ -20,8 +20,11 @@ public class IVFXTagsShots {
     private boolean isMain = true;
     private int parentTagsShotsId = 0;
     private int order = 0;
+    private int typeSizeId =0;
+    private double proba = 0.0;
     private IVFXTags ivfxTag;
     private IVFXShots ivfxShot;
+    private IVFXShotsTypeSize ivfxShotTypeSize;
     private IVFXTagsShots parentIvfxTagsShots = null;
     private BooleanProperty propIsMain;
 
@@ -43,6 +46,10 @@ public class IVFXTagsShots {
         shotsTags.isMain = true;
         shotsTags.ivfxTag = ivfxTag;
         shotsTags.ivfxShot = ivfxShot;
+        shotsTags.typeSizeId = 0;
+        shotsTags.proba = 0.0;
+        shotsTags.ivfxShotTypeSize = IVFXShotsTypeSize.load(shotsTags.typeSizeId,true);
+
         if (parentIvfxTagsShots != null) {
             shotsTags.parentTagsShotsId = parentIvfxTagsShots.getId();
             shotsTags.parentIvfxTagsShots = parentIvfxTagsShots;
@@ -66,13 +73,15 @@ public class IVFXTagsShots {
             }
 
             sql = "INSERT INTO tbl_tags_shots (" +
-                    "shot_id, tag_id, tag_is_main, parent_tag_shot_id, tag_shot_order) " +
+                    "shot_id, tag_id, tag_is_main, parent_tag_shot_id, tag_shot_order, tag_shot_type_size_id, tag_shot_proba) " +
                     "VALUES(" +
                     shotsTags.shotId + ", "+
                     shotsTags.tagId + ", "+
                     (shotsTags.isMain ? 1 : 0) + ", "+
+                    shotsTags.parentTagsShotsId + ", " +
                     shotsTags.order + ", " +
-                    shotsTags.parentTagsShotsId + ")";
+                    shotsTags.typeSizeId + ", " +
+                    shotsTags.proba + ")";
 
             PreparedStatement ps = Main.mainConnection.prepareStatement(sql);
             ps.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
@@ -113,8 +122,11 @@ public class IVFXTagsShots {
                 shotsTags.isMain = rs.getBoolean("tag_is_main");
                 shotsTags.parentTagsShotsId = rs.getInt("parent_tag_shot_id");
                 shotsTags.order = rs.getInt("tag_shot_order");
+                shotsTags.typeSizeId = rs.getInt("tag_shot_type_size_id");
+                shotsTags.proba = rs.getDouble("tag_shot_proba");
                 shotsTags.ivfxShot = IVFXShots.load(shotsTags.shotId, withPreview);
                 shotsTags.ivfxTag = IVFXTags.load(shotsTags.tagId, withPreview);
+                shotsTags.ivfxShotTypeSize = IVFXShotsTypeSize.load(shotsTags.typeSizeId,withPreview);
                 if (shotsTags.parentTagsShotsId == 0) {
                     shotsTags.parentIvfxTagsShots = null;
                 } else {
@@ -156,8 +168,11 @@ public class IVFXTagsShots {
                 shotsTags.isMain = rs.getBoolean("tag_is_main");
                 shotsTags.parentTagsShotsId = rs.getInt("parent_tag_shot_id");
                 shotsTags.order = rs.getInt("tag_shot_order");
+                shotsTags.typeSizeId = rs.getInt("tag_shot_type_size_id");
+                shotsTags.proba = rs.getDouble("tag_shot_proba");
                 shotsTags.ivfxShot = IVFXShots.load(shotsTags.shotId, withPreview);
                 shotsTags.ivfxTag = IVFXTags.load(shotsTags.tagId, withPreview);
+                shotsTags.ivfxShotTypeSize = IVFXShotsTypeSize.load(shotsTags.typeSizeId,withPreview);
                 if (shotsTags.parentTagsShotsId == 0) {
                     shotsTags.parentIvfxTagsShots = null;
                 } else {
@@ -215,8 +230,11 @@ public class IVFXTagsShots {
                 shotsTags.isMain = rs.getBoolean("tag_is_main");
                 shotsTags.parentTagsShotsId = rs.getInt("parent_tag_shot_id");
                 shotsTags.order = rs.getInt("tag_shot_order");
+                shotsTags.typeSizeId = rs.getInt("tag_shot_type_size_id");
+                shotsTags.proba = rs.getDouble("tag_shot_proba");
                 shotsTags.ivfxShot = IVFXShots.load(shotsTags.shotId, withPreview);
                 shotsTags.ivfxTag = IVFXTags.load(shotsTags.tagId, withPreview);
+                shotsTags.ivfxShotTypeSize = IVFXShotsTypeSize.load(shotsTags.typeSizeId,withPreview);
                 if (shotsTags.parentTagsShotsId == 0) {
                     shotsTags.parentIvfxTagsShots = null;
                 } else {
@@ -266,6 +284,8 @@ public class IVFXTagsShots {
                     "  tbl_tags_shots.tag_is_main, " +
                     "  tbl_tags_shots.parent_tag_shot_id, " +
                     "  tbl_tags_shots.tag_shot_order, " +
+                    "  tbl_tags_shots.tag_shot_type_size_id, " +
+                    "  tbl_tags_shots.tag_shot_proba, " +
                     "  tbl_tags_shots.create_time, " +
                     "  tbl_tags_shots.update_time, " +
                     "  tbl_shots.firstFrameNumber " +
@@ -281,6 +301,8 @@ public class IVFXTagsShots {
                     "         tbl_tags_shots.tag_is_main, " +
                     "         tbl_tags_shots.parent_tag_shot_id, " +
                     "         tbl_tags_shots.tag_shot_order, " +
+                    "         tbl_tags_shots.tag_shot_type_size_id, " +
+                    "         tbl_tags_shots.tag_shot_proba, " +
                     "         tbl_tags_shots.create_time, " +
                     "         tbl_tags_shots.update_time, " +
                     "         tbl_shots.firstFrameNumber " +
@@ -297,8 +319,11 @@ public class IVFXTagsShots {
                 shotsTags.isMain = rs.getBoolean("tag_is_main");
                 shotsTags.parentTagsShotsId = rs.getInt("parent_tag_shot_id");
                 shotsTags.order = rs.getInt("tag_shot_order");
+                shotsTags.typeSizeId = rs.getInt("tag_shot_type_size_id");
+                shotsTags.proba = rs.getDouble("tag_shot_proba");
                 shotsTags.ivfxShot = IVFXShots.load(shotsTags.shotId, withPreview);
                 shotsTags.ivfxTag = IVFXTags.load(shotsTags.tagId, withPreview);
+                shotsTags.ivfxShotTypeSize = IVFXShotsTypeSize.load(shotsTags.typeSizeId,withPreview);
                 if (shotsTags.parentTagsShotsId == 0) {
                     shotsTags.parentIvfxTagsShots = null;
                 } else {
@@ -334,7 +359,7 @@ public class IVFXTagsShots {
 
     public void save() {
         String sql = "UPDATE tbl_tags_shots SET " +
-                "shot_id = ?, tag_id = ?, tag_is_main = ?, parent_tag_shot_id = ?, tag_shot_order = ? " +
+                "shot_id = ?, tag_id = ?, tag_is_main = ?, parent_tag_shot_id = ?, tag_shot_order = ?, tag_shot_type_size_id = ?, tag_shot_proba = ? " +
                 "WHERE id = ?";
         try {
             PreparedStatement ps = Main.mainConnection.prepareStatement(sql);
@@ -343,7 +368,9 @@ public class IVFXTagsShots {
             ps.setBoolean(3, this.isMain);
             ps.setInt    (4, this.parentTagsShotsId);
             ps.setInt    (5, this.order);
-            ps.setInt    (6, this.id);
+            ps.setInt    (6, this.typeSizeId);
+            ps.setDouble    (7, this.proba);
+            ps.setInt    (8, this.id);
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
@@ -516,5 +543,41 @@ public class IVFXTagsShots {
     public void setIsMain(boolean value) {
         this.propIsMain.set(value);
         this.isMain = value;
+    }
+
+    public int getTypeSizeId() {
+        return typeSizeId;
+    }
+
+    public String getTypeSizeNameShort() {
+        return ivfxShotTypeSize.getNameShort();
+    }
+
+    public Label getTypeSizeLabel1() {
+        return ivfxShotTypeSize.getLabel1();
+    }
+
+    public void setTypeSizeId(int typeSizeId) {
+        this.typeSizeId = typeSizeId;
+    }
+
+    public double getProba() {
+        return proba;
+    }
+
+    public String getProbaText() {
+        return String.format("%.02f", proba*100) + "%";
+    }
+
+    public void setProba(double proba) {
+        this.proba = proba;
+    }
+
+    public IVFXShotsTypeSize getIvfxShotTypeSize() {
+        return ivfxShotTypeSize;
+    }
+
+    public void setIvfxShotTypeSize(IVFXShotsTypeSize ivfxShotTypeSize) {
+        this.ivfxShotTypeSize = ivfxShotTypeSize;
     }
 }

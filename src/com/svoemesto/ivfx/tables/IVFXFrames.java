@@ -2,11 +2,16 @@ package com.svoemesto.ivfx.tables;
 
 import com.svoemesto.ivfx.Main;
 import com.svoemesto.ivfx.utils.ConvertToFxImage;
+import com.svoemesto.ivfx.utils.CreateVideo;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import org.apache.commons.io.FileUtils;
+import org.opencv.core.*;
+import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.imgproc.Imgproc;
+import org.opencv.objdetect.CascadeClassifier;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -161,6 +166,72 @@ public class IVFXFrames {
             statement = Main.mainConnection.createStatement();
 
             sql = "SELECT * FROM tbl_frames WHERE id = " + id;
+            rs = statement.executeQuery(sql);
+            if (rs.next()) {
+                IVFXFrames frame = new IVFXFrames();
+                frame.id = rs.getInt("id");
+                frame.fileId = rs.getInt("file_id");
+                frame.frameNumber = rs.getInt("frameNumber");
+                frame.isIFrame = rs.getBoolean("isIFrame");
+                frame.isFind = rs.getBoolean("isFind");
+                frame.isManualAdd = rs.getBoolean("isManualAdd");
+                frame.isManualCancel = rs.getBoolean("isManualCancel");
+                frame.isFinalFind = rs.getBoolean("isFinalFind");
+                frame.simScoreNext1 = rs.getDouble("simScoreNext1");
+                frame.simScoreNext2 = rs.getDouble("simScoreNext2");
+                frame.simScoreNext3 = rs.getDouble("simScoreNext3");
+                frame.simScorePrev1 = rs.getDouble("simScorePrev1");
+                frame.simScorePrev2 = rs.getDouble("simScorePrev2");
+                frame.simScorePrev3 = rs.getDouble("simScorePrev3");
+                frame.diffNext1 = rs.getDouble("diffNext1");
+                frame.diffNext2 = rs.getDouble("diffNext2");
+                frame.diffPrev1 = rs.getDouble("diffPrev1");
+                frame.diffPrev2 = rs.getDouble("diffPrev2");
+                frame.ivfxFile = IVFXFiles.load(frame.fileId);
+
+                if (withPreview) {
+                    String fileName = frame.getFileNamePreview();
+                    File file = new File(fileName);
+                    frame.label = new Label(String.valueOf(frame.frameNumber));
+                    frame.label.setPrefWidth(135);
+                    if (!file.exists()) {
+                        fileName = frame.getFileNamePreviewStub();
+                        file = new File(fileName);
+                    }
+                    try {
+                        BufferedImage bufferedImage = ImageIO.read(file);
+                        frame.preview = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
+                        frame.label.setGraphic(frame.preview);
+                        frame.label.setContentDisplay(ContentDisplay.TOP);
+                    } catch (IOException e) {}
+                }
+
+                return frame;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close(); // close result set
+                if (statement != null) statement.close(); // close statement
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+
+    public static IVFXFrames load(IVFXFiles ivfxFile, int frameNumber, boolean withPreview) {
+        Statement statement = null;
+        ResultSet rs = null;
+        String sql;
+
+        try {
+            statement = Main.mainConnection.createStatement();
+
+            sql = "SELECT * FROM tbl_frames WHERE file_id = " + ivfxFile.getId() + " AND frameNumber = " + frameNumber;
             rs = statement.executeQuery(sql);
             if (rs.next()) {
                 IVFXFrames frame = new IVFXFrames();
@@ -392,8 +463,56 @@ public class IVFXFrames {
     }
 
     public String getFileNameFullSize() {
-        return this.ivfxFile.getFramesFolderFullSize()+"\\"+this.ivfxFile.getShortName()+this.ivfxFile.FRAMES_PREFIX+String.format("%06d", this.frameNumber)+".jpg";
+        return this.ivfxFile.getFolderFramesFull()+"\\"+this.ivfxFile.getShortName()+this.ivfxFile.FRAMES_PREFIX+String.format("%06d", this.frameNumber)+".jpg";
     }
+
+    public String getFacesName() {
+        return this.ivfxFile.getFolderFaces()+"\\"+this.ivfxFile.getShortName()+this.ivfxFile.FACES_PREFIX+String.format("%06d", this.frameNumber)+".jpg";
+    }
+
+    public String getFileNameFullSizeWithoutFolder() {
+        return this.ivfxFile.getShortName()+this.ivfxFile.FRAMES_PREFIX+String.format("%06d", this.frameNumber)+".jpg";
+    }
+
+    public String getFileNameFacesWithoutFolder() {
+        return this.ivfxFile.getShortName()+this.ivfxFile.FACES_PREFIX+String.format("%06d", this.frameNumber)+".jpg";
+    }
+
+//    public BufferedImage getFramePreview() {
+//        String pathToFile = this.ivfxFile.getSourceName();
+//        int frameNumber = this.frameNumber;
+//        double fps = this.ivfxFile.getFrameRate();
+//        int w = 135;
+//        int h = 75;
+//        String pathToTempFolder = this.ivfxFile.getFramesFolderPreview();
+//        try {
+//            BufferedImage bufferedImage = CreateVideo.getFrame(pathToFile, frameNumber, fps, w, h, pathToTempFolder);
+//            return bufferedImage;
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
+//
+//    public BufferedImage getFrameFull() {
+//        String pathToFile = this.ivfxFile.getSourceName();
+//        int frameNumber = this.frameNumber;
+//        double fps = this.ivfxFile.getFrameRate();
+//        int w = 720;
+//        int h = 400;
+//        String pathToTempFolder = this.ivfxFile.getFramesFolderPreview();
+//        try {
+//            BufferedImage bufferedImage = CreateVideo.getFrame(pathToFile, frameNumber, fps, w, h, pathToTempFolder);
+//            return bufferedImage;
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
     public int getFrameNumber() {
         return frameNumber;
@@ -412,7 +531,7 @@ public class IVFXFrames {
     }
 
     public String getFileNamePreview() {
-        return this.ivfxFile.getFramesFolderPreview()+"\\"+this.ivfxFile.getShortName()+this.ivfxFile.FRAMES_PREFIX+String.format("%06d", this.frameNumber)+".jpg";
+        return this.ivfxFile.getFolderFramesPreview()+"\\"+this.ivfxFile.getShortName()+this.ivfxFile.FRAMES_PREFIX+String.format("%06d", this.frameNumber)+".jpg";
     }
 
     public String getFileNamePreviewStub() {
@@ -562,5 +681,58 @@ public class IVFXFrames {
 
     public void setLabel(Label label) {
         this.label = label;
+    }
+
+    public int createFaces() {
+        String pathToFrameFile = getFileNameFullSize();
+        String pathToFacesFile = getFacesName();
+
+        Mat img = Imgcodecs.imread(pathToFrameFile);
+        if (img.empty()) {
+            System.out.println("Не удалось загрузить изображение");
+            return -1;
+        }
+
+        CascadeClassifier face_detector = new CascadeClassifier();
+        String path = Main.PATH_TO_CASCADE_CLASSIFIER;
+        String name = "haarcascade_frontalface_alt.xml";
+
+        if (!face_detector.load(path + name)) {
+            System.out.println("Не удалось загрузить классификатор " + name);
+            return -1;
+        }
+
+        MatOfRect facesInPic = new MatOfRect();
+        face_detector.detectMultiScale(img, facesInPic);
+
+        List<Rect> listRects = facesInPic.toList();
+        List<Mat> listFaces = new ArrayList<>();
+
+        if (listRects.size() > 0) {
+            for (Rect r : listRects) {
+
+                Mat faceMat = new Mat(img, r);
+                Imgproc.resize(faceMat, faceMat, new Size(128, 128));
+                listFaces.add(faceMat);
+                faceMat.release();
+            }
+
+            Mat conc = new Mat();
+            Core.hconcat(listFaces, conc);
+            Imgcodecs.imwrite(pathToFacesFile, conc);
+
+            conc.release();
+            img.release();
+            facesInPic.release();
+
+            return listRects.size();
+
+        }
+
+        img.release();
+        facesInPic.release();
+
+        return 0;
+
     }
 }

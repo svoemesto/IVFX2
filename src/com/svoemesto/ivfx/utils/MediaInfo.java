@@ -1,13 +1,22 @@
 package com.svoemesto.ivfx.utils;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import com.google.gson.Gson;
+import com.google.common.reflect.TypeToken;
+import com.svoemesto.ivfx.Main;
+import com.svoemesto.ivfx.tables.Database;
+import com.svoemesto.ivfx.tables.IVFXFiles;
 
 public class MediaInfo {
-    private static String MEDIA_INFO_CLI_PATH = "D:\\MediaInfo_CLI\\MediaInfo.exe";
+    private static String MEDIA_INFO_CLI_PATH = (new File("MediaInfo_CLI/MediaInfo.exe")).getAbsolutePath();
 
     public static String getInfo(String media) throws IOException, InterruptedException {
         return executeMediaInfo(media);
@@ -66,14 +75,27 @@ public class MediaInfo {
     }
 
     public static void main(String[] args) {
-        try {
-            String res = executeMediaInfo("E:\\GOT\\GOT.S01\\GOT.S01E01.BDRip.1080p.mkv", "--Output=XML");
-//            String res = getInfoBySectionAndParameter("E:\\GOT\\GOT.S01\\GOT.S01E01.BDRip.1080p.mkv", "Audio", "Format");
-            System.out.println(res);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            String res = executeMediaInfo("D:\\NewIVFXpoject\\Scrubs1x01.avi", "--Output=JSON");
+//            Type mapType = new TypeToken<Map<String, Map>>(){}.getType();
+//            Map<String, String[]> son = new Gson().fromJson(res, mapType);
+//            System.out.println(son);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+//        Main.mainConnection = Database.getConnection();
+//        IVFXFiles ivfxFile = IVFXFiles.load(170);
+//
+//            Type mapType = new TypeToken<Map<String, Map>>(){}.getType();
+//            Map<String, String[]> son = new Gson().fromJson(ivfxFile.getMediaInfoJson(), mapType);
+//            System.out.println(son);
+
+//        System.out.println(ivfxFile.getFromMediaInfoTrack(1));
+//
+//        ivfxFile.createTracksFromMediaInfo();
+        System.out.println(MEDIA_INFO_CLI_PATH);
     }
 }

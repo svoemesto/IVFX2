@@ -1,55 +1,56 @@
 
-K
-java:S1191"5Use classes from the Java API instead of Sun classes.(íé¾Û
-d	java:S100¶"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æü
-n
-java:S3776£"RRefactor this method to reduce its Cognitive Complexity from 75 to the 15 allowed.(÷‹¾†ÿÿÿÿÿ
-u
-java:S1450q"ZRemove the "listPersons" field and declare it as a local variable in the relevant methods.(òæ–±ıÿÿÿÿ
-H
-java:S1602",Remove useless curly braces around statement(Ÿİï«üÿÿÿÿ
-Q
-java:S3655ô"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ
-M
-java:S2696¥"6Make the enclosing method "static" or remove this set.(ÚÙşÇ
-R
-java:S2696º"6Make the enclosing method "static" or remove this set.(Ò˜Ü™ıÿÿÿÿ
->	java:S108ò")Either remove or fill this block of code.(Éò§+
-R
-java:S2696Ë"6Make the enclosing method "static" or remove this set.(ş´±Âüÿÿÿÿ
-K
-java:S3740¹"/Provide the parametrized type for this generic.(éò©«ÿÿÿÿÿ
-
-java:S1186Ù"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÛÍ›‡şÿÿÿÿ
-T	java:S106„"9Replace this use of System.out or System.err by a logger.(¹Âà·ıÿÿÿÿ
-H
-java:S1905",Remove this unnecessary cast to "Predicate".(Õ¸®ûÿÿÿÿ
-M
-java:S2696Ç"6Make the enclosing method "static" or remove this set.(ÚÙşÇ
-x
-java:S1450t"]Remove the "flowTblPersons" field and declare it as a local variable in the relevant methods.(çƒ¢¨øÿÿÿÿ
 J
 java:S3740t"/Provide the parametrized type for this generic.(çƒ¢¨øÿÿÿÿ
-U
-java:S1155¡">Use isEmpty() to check whether the collection is empty or not.(÷ƒ€Ó
-S
-java:S3972—"7Move this "if" to a new line or add the missing "else".(Âî²ÿÿÿÿÿ
 K
-java:S3740¾"/Provide the parametrized type for this generic.(µÓ“³üÿÿÿÿ
-]
-java:S1126—"AReplace this if-then-else statement by a single return statement.(Âî²ÿÿÿÿÿ
+java:S3740º"/Provide the parametrized type for this generic.(éò©«ÿÿÿÿÿ
+K
+java:S3740¿"/Provide the parametrized type for this generic.(µÓ“³üÿÿÿÿ
+K
+java:S1191"5Use classes from the Java API instead of Sun classes.(íé¾Û
 U
-java:S1155§">Use isEmpty() to check whether the collection is empty or not.(¶»É
-M
-java:S2696¸"6Make the enclosing method "static" or remove this set.(œã ï
-a
-java:S1155¯">Use isEmpty() to check whether the collection is empty or not.(±Šˆ×şÿÿÿÿ8¿Åñèõ.
-M
-java:S1068t"2Remove this unused "flowTblPersons" private field.(çƒ¢¨øÿÿÿÿ
-W	java:S125¿"<This block of commented-out lines of code should be removed.(ÃÎ‹’ÿÿÿÿÿ
+java:S1155¢">Use isEmpty() to check whether the collection is empty or not.(÷ƒ€Ó
+U
+java:S1155¨">Use isEmpty() to check whether the collection is empty or not.(¶»É
+Z
+java:S1155°">Use isEmpty() to check whether the collection is empty or not.(±Šˆ×şÿÿÿÿ
 Q
-java:S3655Ä"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ
+java:S3655õ"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ
+Q
+java:S3655Å"5Call "option.isPresent()" before accessing the value.(Ï¬ÚÃúÿÿÿÿ
+x
+java:S1450t"]Remove the "flowTblPersons" field and declare it as a local variable in the relevant methods.(çƒ¢¨øÿÿÿÿ
+u
+java:S1450q"ZRemove the "listPersons" field and declare it as a local variable in the relevant methods.(òæ–±ıÿÿÿÿ
+
+java:S1186Ú"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÛÍ›‡şÿÿÿÿ
 R
 java:S2696€"6Make the enclosing method "static" or remove this set.(õşñÚşÿÿÿÿ
+R	java:S125"<This block of commented-out lines of code should be removed.(òâ†À
+T	java:S106…"9Replace this use of System.out or System.err by a logger.(¹Âà·ıÿÿÿÿ
+n
+java:S3776¤"RRefactor this method to reduce its Cognitive Complexity from 75 to the 15 allowed.(÷‹¾†ÿÿÿÿÿ
+R
+java:S2696»"6Make the enclosing method "static" or remove this set.(Ò˜Ü™ıÿÿÿÿ
+>	java:S108ó")Either remove or fill this block of code.(Éò§+
+H
+java:S1602",Remove useless curly braces around statement(Ÿİï«üÿÿÿÿ
+H
+java:S1905‘",Remove this unnecessary cast to "Predicate".(Õ¸®ûÿÿÿÿ
+S
+java:S3972˜"7Move this "if" to a new line or add the missing "else".(Âî²ÿÿÿÿÿ
+]
+java:S1126˜"AReplace this if-then-else statement by a single return statement.(Âî²ÿÿÿÿÿ
 M
-java:S2696©"6Make the enclosing method "static" or remove this set.(ÚÙşÇ
+java:S2696¦"6Make the enclosing method "static" or remove this set.(ÚÙşÇ
+W	java:S125À"<This block of commented-out lines of code should be removed.(ÃÎ‹’ÿÿÿÿÿ
+R
+java:S2696Ì"6Make the enclosing method "static" or remove this set.(ş´±Âüÿÿÿÿ
+M
+java:S2696ª"6Make the enclosing method "static" or remove this set.(ÚÙşÇ
+M
+java:S2696¹"6Make the enclosing method "static" or remove this set.(œã ï
+M
+java:S2696È"6Make the enclosing method "static" or remove this set.(ÚÙşÇ
+d	java:S100·"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(æü
+M
+java:S1068t"2Remove this unused "flowTblPersons" private field.(çƒ¢¨øÿÿÿÿ

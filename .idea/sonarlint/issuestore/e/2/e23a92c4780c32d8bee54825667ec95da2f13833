@@ -1,46 +1,46 @@
 
-U
-java:S1135«"2Complete the task associated to this TODO comment.(ç ƒĞÿÿÿÿÿ8†êïÃô.
-I
-java:S1075æ"&Remove this hard-coded path-delimiter.(Í×°çøÿÿÿÿ8†êïÃô.
-U	java:S106A"9Replace this use of System.out or System.err by a logger.(ƒòŸÍ8†êïÃô.
-U
-java:S1135Ö"2Complete the task associated to this TODO comment.(Ì°¸ãşÿÿÿÿ8†êïÃô.
-I
-java:S1075ô"&Remove this hard-coded path-delimiter.(Í×°çøÿÿÿÿ8†êïÃô.
-]
-java:S1117ß":Rename "folder" which hides the field declared at line 18.(ŞÏÆÏûÿÿÿÿ8†êïÃô.
-X
-java:S1117ì":Rename "folder" which hides the field declared at line 18.(ŞâÚç8†êïÃô.
-|
-java:S1210Ğ"YOverride "equals(Object obj)" to comply with the contract of the "compareTo(T o)" method.(ëÌšÊùÿÿÿÿ8†êïÃô.
-U
-java:S1135¿"2Complete the task associated to this TODO comment.(ÕïÓÂÿÿÿÿÿ8†êïÃô.
-I
-java:S1075í"&Remove this hard-coded path-delimiter.(Í×°çøÿÿÿÿ8†êïÃô.
-I
-java:S1075Ú"&Remove this hard-coded path-delimiter.(Í×°çøÿÿÿÿ8†êïÃô.
-M
-java:S1128"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿ8²ÉªÄô.
-—
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×öÔ 
-X
-java:S1117ó":Rename "folder" which hides the field declared at line 18.(§õ×8†êïÃô.
-]
-java:S2095("GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ
-q
-java:S2095<"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Õ§±ûÿÿÿÿ8†êïÃô.
-d
-java:S2095Z"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8†êïÃô.
 m
 java:S2095²"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8†êïÃô.
-X
-java:S1117Ù":Rename "folder" which hides the field declared at line 18.(¶İÊ„8†êïÃô.
+d
+java:S2095Z"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8†êïÃô.
 e
 java:S2095ƒ"GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ8†êïÃô.
+m
+java:S2095Å"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8†êïÃô.
+q
+java:S2095<"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Õ§±ûÿÿÿÿ8†êïÃô.
+]
+java:S2095("GUse try-with-resources or close this "Statement" in a "finally" clause.(³ÅÿÄ
+M
+java:S1128"+Remove this unused import 'java.util.UUID'.(ÀãÄ£úÿÿÿÿ8²ÉªÄô.
+|
+java:S1210Ğ"YOverride "equals(Object obj)" to comply with the contract of the "compareTo(T o)" method.(ëÌšÊùÿÿÿÿ8†êïÃô.
+—
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(×öÔ 
+U	java:S106A"9Replace this use of System.out or System.err by a logger.(ƒòŸÍ8†êïÃô.
+U
+java:S1135«"2Complete the task associated to this TODO comment.(ç ƒĞÿÿÿÿÿ8†êïÃô.
+U
+java:S1135¿"2Complete the task associated to this TODO comment.(ÕïÓÂÿÿÿÿÿ8†êïÃô.
+U
+java:S1135Ö"2Complete the task associated to this TODO comment.(Ì°¸ãşÿÿÿÿ8†êïÃô.
+X
+java:S1117Ù":Rename "folder" which hides the field declared at line 18.(¶İÊ„8†êïÃô.
+I
+java:S1075Ú"&Remove this hard-coded path-delimiter.(Í×°çøÿÿÿÿ8†êïÃô.
+]
+java:S1117ß":Rename "folder" which hides the field declared at line 18.(ŞÏÆÏûÿÿÿÿ8†êïÃô.
 I
 java:S1075à"&Remove this hard-coded path-delimiter.(Í×°çøÿÿÿÿ8†êïÃô.
 ]
 java:S1117å":Rename "folder" which hides the field declared at line 18.(±İÂİüÿÿÿÿ8†êïÃô.
-m
-java:S2095Å"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ú÷ùë8†êïÃô.
+I
+java:S1075æ"&Remove this hard-coded path-delimiter.(Í×°çøÿÿÿÿ8†êïÃô.
+X
+java:S1117ì":Rename "folder" which hides the field declared at line 18.(ŞâÚç8†êïÃô.
+I
+java:S1075í"&Remove this hard-coded path-delimiter.(Í×°çøÿÿÿÿ8†êïÃô.
+X
+java:S1117ó":Rename "folder" which hides the field declared at line 18.(§õ×8†êïÃô.
+I
+java:S1075ô"&Remove this hard-coded path-delimiter.(Í×°çøÿÿÿÿ8†êïÃô.

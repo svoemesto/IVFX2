@@ -122,6 +122,14 @@ public class TagsController extends Application {
     @FXML
     private Button btnDeleteTagsProperties;
 
+    @FXML
+    private Button btnAddNewTagsPropertiesNameEng;
+
+    @FXML
+    private Button btnAddNewTagsPropertiesUrl;
+
+    @FXML
+    private Button btnAddNewTagsPropertiesInfo;
 
     @FXML
     private TableView<IVFXTagsTags> tblTagsTagsParent;
@@ -995,6 +1003,64 @@ public class TagsController extends Application {
         }
     }
 
+
+    @FXML
+    void doBtnAddNewTagsPropertiesNameEng(ActionEvent event) {
+
+        IVFXTagsProperties tagProperty = IVFXTagsProperties.getNewDbInstance(currentTag, "name_eng", "");
+        listTagsProperties = FXCollections.observableArrayList(IVFXTagsProperties.loadList(currentTag, true));
+        tblTagsProperties.setItems(listTagsProperties);
+        for (IVFXTagsProperties tmp: listTagsProperties) {
+            if (tmp.isEqual(tagProperty)) {
+                currentTagProperty = tmp;
+                break;
+            }
+        }
+        if (currentTagProperty != null) {
+            tblTagsProperties.getSelectionModel().select(currentTagProperty);
+            doOnSelectRecordInTblTagsProperties();
+        }
+
+    }
+
+    @FXML
+    void doBtnAddNewTagsPropertiesUrl(ActionEvent event) {
+
+        IVFXTagsProperties tagProperty = IVFXTagsProperties.getNewDbInstance(currentTag, "url", "");
+        listTagsProperties = FXCollections.observableArrayList(IVFXTagsProperties.loadList(currentTag, true));
+        tblTagsProperties.setItems(listTagsProperties);
+        for (IVFXTagsProperties tmp: listTagsProperties) {
+            if (tmp.isEqual(tagProperty)) {
+                currentTagProperty = tmp;
+                break;
+            }
+        }
+        if (currentTagProperty != null) {
+            tblTagsProperties.getSelectionModel().select(currentTagProperty);
+            doOnSelectRecordInTblTagsProperties();
+        }
+
+    }
+
+    @FXML
+    void doBtnAddNewTagsPropertiesInfo(ActionEvent event) {
+
+        IVFXTagsProperties tagProperty = IVFXTagsProperties.getNewDbInstance(currentTag, "info", "");
+        listTagsProperties = FXCollections.observableArrayList(IVFXTagsProperties.loadList(currentTag, true));
+        tblTagsProperties.setItems(listTagsProperties);
+        for (IVFXTagsProperties tmp: listTagsProperties) {
+            if (tmp.isEqual(tagProperty)) {
+                currentTagProperty = tmp;
+                break;
+            }
+        }
+        if (currentTagProperty != null) {
+            tblTagsProperties.getSelectionModel().select(currentTagProperty);
+            doOnSelectRecordInTblTagsProperties();
+        }
+
+    }
+
     // Событие нажатие кнопки "Добавить новое свойство для связки с дочерним тэгом"
     @FXML
     void doBtnAddNewPropertyTagsTagsChildren(ActionEvent event) {
@@ -1264,6 +1330,7 @@ public class TagsController extends Application {
     public void start(Stage primaryStage) throws Exception {
         Main.mainConnection = Database.getConnection();
         Main.mainWindow = primaryStage;
+        currentTag = null;
 
         AnchorPane root = FXMLLoader.load(tagsController.getClass().getResource("../resources/fxml/Tags.fxml")); // в этот момент вызывается initialize()
 
@@ -1282,11 +1349,10 @@ public class TagsController extends Application {
     }
 
 
-    // Метод вызова класса из других классов
-    public void editTags() {
-
+    public void editTags(IVFXTags tag) {
         try {
 
+            currentTag = tag;
             AnchorPane root = FXMLLoader.load(tagsController.getClass().getResource("../resources/fxml/Tags.fxml")); // в этот момент вызывается initialize()
 
             tagsController.controllerScene = new Scene(root);
@@ -1307,6 +1373,10 @@ public class TagsController extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    // Метод вызова класса из других классов
+    public void editTags() {
+        editTags(null);
     }
 
     // Инициализация списка тэгов

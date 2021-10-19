@@ -3,28 +3,28 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.svoemesto.ivfx.controllers.ProjectController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.svoemesto.ivfx.controllers.ProjectController">
    <children>
-      <MenuBar layoutX="-109.0" layoutY="-182.0" AnchorPane.leftAnchor="-109.0" AnchorPane.rightAnchor="109.0" AnchorPane.topAnchor="-182.0">
+      <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0">
         <menus>
           <Menu mnemonicParsing="false" text="Проект">
             <items>
@@ -42,352 +42,628 @@
               <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <VBox layoutX="144.0" layoutY="49.0" prefHeight="528.0" prefWidth="340.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <Label maxWidth="1.7976931348623157E308" text="Название проекта:">
-                                 <VBox.margin>
-                                    <Insets top="5.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <TextField fx:id="prjName" maxWidth="1.7976931348623157E308">
-                                 <VBox.margin>
-                                    <Insets top="5.0" />
-                                 </VBox.margin>
-                              </TextField>
-                              <Label maxWidth="1.7976931348623157E308" text="Короткое название проекта:">
-                                 <VBox.margin>
-                                    <Insets top="5.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <TextField fx:id="prjShortName" maxWidth="1.7976931348623157E308">
-                                 <VBox.margin>
-                                    <Insets top="5.0" />
-                                 </VBox.margin>
-                              </TextField>
-                              <Label maxWidth="1.7976931348623157E308" text="Папка проекта:">
-                                 <VBox.margin>
-                                    <Insets top="5.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <HBox prefHeight="27.0" prefWidth="330.0">
-                                 <children>
-                                    <TextField fx:id="prjFolder" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="1000.0" />
-                                    <Button fx:id="btnBrowsePrjFolder" mnemonicParsing="false" onAction="#doBrowsePrjFolder" text="...">
-                                       <tooltip>
-                                          <Tooltip text="Выбрать папку проекта" />
-                                       </tooltip>
-                                    </Button>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets top="5.0" />
-                                 </VBox.margin>
-                              </HBox>
-                              <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="330.0" text="Файлы проекта">
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <HBox prefHeight="2000.0" prefWidth="2000.0">
-                                 <children>
-                                    <TableView fx:id="tblFiles" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="2000.0" prefWidth="2000.0">
-                                      <columns>
-                                        <TableColumn fx:id="colOrder" maxWidth="40.0" prefWidth="40.0" sortable="false" text="#" />
-                                        <TableColumn fx:id="colName" maxWidth="190.0" prefWidth="190.0" sortable="false" text="Файл" />
-                                      </columns>
-                                    </TableView>
-                                    <VBox alignment="CENTER" prefHeight="347.0" prefWidth="76.0">
+                        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <tabs>
+                            <Tab text="Свойства проекта">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
-                                          <Button fx:id="btnTop" mnemonicParsing="false" onAction="#doMoveCurrentFileTop" prefHeight="46.0" prefWidth="46.0" text="⟰">
-                                             <font>
-                                                <Font name="Arial" size="18.0" />
-                                             </font>
-                                             <tooltip>
-                                                <Tooltip text="В начало списка" />
-                                             </tooltip>
-                                          </Button>
-                                          <Button fx:id="btnUp" mnemonicParsing="false" onAction="#doMoveCurrentFileUp" prefHeight="46.0" prefWidth="46.0" text="⇧">
-                                             <font>
-                                                <Font name="Arial" size="24.0" />
-                                             </font>
-                                             <tooltip>
-                                                <Tooltip text="На один уровень вверх">
-                                                   <font>
-                                                      <Font size="14.0" />
-                                                   </font>
-                                                </Tooltip>
-                                             </tooltip>
-                                          </Button>
-                                          <Button fx:id="btnDown" mnemonicParsing="false" onAction="#doMoveCurrentFileDown" prefHeight="46.0" prefWidth="46.0" text="⇩">
-                                             <font>
-                                                <Font name="Arial" size="24.0" />
-                                             </font>
-                                             <tooltip>
-                                                <Tooltip text="На один уровень вниз" />
-                                             </tooltip>
-                                          </Button>
-                                          <Button fx:id="btnBottom" mnemonicParsing="false" onAction="#doMoveCurrentFileBottom" prefHeight="46.0" prefWidth="46.0" text="⟱">
-                                             <font>
-                                                <Font name="Arial" size="18.0" />
-                                             </font>
-                                             <tooltip>
-                                                <Tooltip text="В конец списка" />
-                                             </tooltip>
-                                          </Button>
-                                          <Separator prefWidth="200.0">
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" top="5.0" />
-                                             </VBox.margin>
-                                          </Separator>
-                                          <Button fx:id="btnAddFile" mnemonicParsing="false" onAction="#doAddFile" prefHeight="46.0" prefWidth="46.0" text="➕">
-                                             <font>
-                                                <Font name="Arial" size="18.0" />
-                                             </font>
-                                             <tooltip>
-                                                <Tooltip text="Добавить файл" />
-                                             </tooltip>
-                                          </Button>
-                                          <Button fx:id="btnAddFilesInFolder" mnemonicParsing="false" onAction="#doAddFilesInFolder" prefHeight="46.0" prefWidth="46.0" text="📂">
-                                             <font>
-                                                <Font name="Arial" size="18.0" />
-                                             </font>
-                                             <tooltip>
-                                                <Tooltip text="Добавить файлы из папки" />
-                                             </tooltip>
-                                          </Button>
-                                          <Separator prefWidth="200.0">
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" top="5.0" />
-                                             </VBox.margin>
-                                          </Separator>
-                                          <Button fx:id="btnDelFile" mnemonicParsing="false" onAction="#doDeleteFile" prefHeight="46.0" prefWidth="46.0" text="✖">
-                                             <font>
-                                                <Font name="Arial" size="18.0" />
-                                             </font>
-                                             <tooltip>
-                                                <Tooltip text="Удалить файл из проекта" />
-                                             </tooltip>
-                                          </Button>
+                                          <VBox prefHeight="528.0" prefWidth="340.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <Label maxWidth="1.7976931348623157E308" text="Название проекта:">
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <TextField fx:id="prjName" maxWidth="1.7976931348623157E308">
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                </TextField>
+                                                <Label maxWidth="1.7976931348623157E308" text="Короткое название проекта:">
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <TextField fx:id="prjShortName" maxWidth="1.7976931348623157E308">
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                </TextField>
+                                                <Label maxWidth="1.7976931348623157E308" text="Папка проекта:">
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <HBox prefHeight="27.0" prefWidth="330.0">
+                                                   <children>
+                                                      <TextField fx:id="prjFolder" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="1000.0" />
+                                                      <Button fx:id="btnBrowsePrjFolder" mnemonicParsing="false" onAction="#doBrowsePrjFolder" text="...">
+                                                         <tooltip>
+                                                            <Tooltip text="Выбрать папку проекта" />
+                                                         </tooltip>
+                                                      </Button>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <Separator prefWidth="200.0">
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                </Separator>
+                                                <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="330.0" text="Видео">
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <HBox prefHeight="25.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label alignment="CENTER_RIGHT" prefWidth="150.0" text="Ширина (px):" />
+                                                      <TextField fx:id="fldPrjVideoWidth" prefWidth="180.0" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="25.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label alignment="CENTER_RIGHT" prefWidth="150.0" text="Высота (px):" />
+                                                      <TextField fx:id="fldPrjVideoHeight" prefWidth="180.0" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="25.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label alignment="CENTER_RIGHT" prefWidth="150.0" text="FPS:" />
+                                                      <TextField fx:id="fldPrjVideoFPS" prefWidth="180.0" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="25.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label alignment="CENTER_RIGHT" prefWidth="150.0" text="Bitrate:" />
+                                                      <TextField fx:id="fldPrjVideoBitrate" prefWidth="180.0" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="25.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label alignment="CENTER_RIGHT" prefWidth="150.0" text="Codec:" />
+                                                      <ComboBox fx:id="cbPrjVideoCodec" prefWidth="180.0" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="25.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label alignment="CENTER_RIGHT" prefWidth="150.0" text="Контейнер:" />
+                                                      <ComboBox fx:id="cbPrjVideoContainer" prefWidth="180.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Separator prefWidth="200.0" />
+                                                <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="0.0" prefWidth="330.0" text="Аудио" />
+                                                <HBox prefHeight="25.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label alignment="CENTER_RIGHT" prefWidth="150.0" text="Bitrate:" />
+                                                      <TextField fx:id="fldPrjAudioBitrate" prefWidth="180.0" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="25.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label alignment="CENTER_RIGHT" prefWidth="150.0" text="Частота:" />
+                                                      <TextField fx:id="fldPrjAudioFreq" prefWidth="180.0" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="25.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label alignment="CENTER_RIGHT" prefWidth="150.0" text="Codec:" />
+                                                      <ComboBox fx:id="cbPrjAudioCodec" prefWidth="180.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Separator prefWidth="200.0" />
+                                                <Button fx:id="btnPersons" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doPersons" text="Персонажи проекта (устарело)">
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                </Button>
+                                                <Button fx:id="btnFilters" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doFilters" text="Фильтры (устарело)">
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                </Button>
+                                                <Button fx:id="btnTagsShots" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doBtnTagsShots" text="Редактор планов и тэгов">
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                </Button>
+                                                <Button fx:id="btnTags" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doBtnTags" text="Редактор тэгов">
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                </Button>
+                                                <Button fx:id="btnFiltersTags" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doBtnFiltersTags" text="Фильтры тэгов">
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                </Button>
+                                                <Button fx:id="btnFaceDetect" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doBtnFaceDetect" text="Распознавание лиц">
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                </Button>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                          </VBox>
                                        </children>
-                                    </VBox>
-                                 </children>
-                              </HBox>
-                              <Separator prefWidth="200.0">
-                                 <VBox.margin>
-                                    <Insets top="5.0" />
-                                 </VBox.margin>
-                              </Separator>
-                              <Button fx:id="btnPersons" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doPersons" text="Персонажи проекта">
-                                 <VBox.margin>
-                                    <Insets top="5.0" />
-                                 </VBox.margin>
-                              </Button>
-                              <Button fx:id="btnFilters" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doFilters" text="Фильтры">
-                                 <VBox.margin>
-                                    <Insets top="5.0" />
-                                 </VBox.margin>
-                              </Button>
-                           </children>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </VBox>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab text="Файлы проекта">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <HBox prefHeight="2000.0" prefWidth="2000.0">
+                                                   <children>
+                                                      <TableView fx:id="tblFiles" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="2000.0" prefWidth="2000.0">
+                                                        <columns>
+                                                          <TableColumn fx:id="colOrder" maxWidth="40.0" prefWidth="40.0" sortable="false" text="#" />
+                                                          <TableColumn fx:id="colName" maxWidth="190.0" prefWidth="190.0" sortable="false" text="Файл" />
+                                                        </columns>
+                                                      </TableView>
+                                                      <VBox alignment="CENTER" prefHeight="347.0" prefWidth="76.0">
+                                                         <children>
+                                                            <Button fx:id="btnTop" mnemonicParsing="false" onAction="#doMoveCurrentFileTop" prefHeight="46.0" prefWidth="46.0" text="⟰">
+                                                               <font>
+                                                                  <Font name="Arial" size="18.0" />
+                                                               </font>
+                                                               <tooltip>
+                                                                  <Tooltip text="В начало списка" />
+                                                               </tooltip>
+                                                            </Button>
+                                                            <Button fx:id="btnUp" mnemonicParsing="false" onAction="#doMoveCurrentFileUp" prefHeight="46.0" prefWidth="46.0" text="⇧">
+                                                               <font>
+                                                                  <Font name="Arial" size="24.0" />
+                                                               </font>
+                                                               <tooltip>
+                                                                  <Tooltip text="На один уровень вверх">
+                                                                     <font>
+                                                                        <Font size="14.0" />
+                                                                     </font>
+                                                                  </Tooltip>
+                                                               </tooltip>
+                                                            </Button>
+                                                            <Button fx:id="btnDown" mnemonicParsing="false" onAction="#doMoveCurrentFileDown" prefHeight="46.0" prefWidth="46.0" text="⇩">
+                                                               <font>
+                                                                  <Font name="Arial" size="24.0" />
+                                                               </font>
+                                                               <tooltip>
+                                                                  <Tooltip text="На один уровень вниз" />
+                                                               </tooltip>
+                                                            </Button>
+                                                            <Button fx:id="btnBottom" mnemonicParsing="false" onAction="#doMoveCurrentFileBottom" prefHeight="46.0" prefWidth="46.0" text="⟱">
+                                                               <font>
+                                                                  <Font name="Arial" size="18.0" />
+                                                               </font>
+                                                               <tooltip>
+                                                                  <Tooltip text="В конец списка" />
+                                                               </tooltip>
+                                                            </Button>
+                                                            <Separator prefWidth="200.0">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </VBox.margin>
+                                                            </Separator>
+                                                            <Button fx:id="btnAddFile" mnemonicParsing="false" onAction="#doAddFile" prefHeight="46.0" prefWidth="46.0" text="➕">
+                                                               <font>
+                                                                  <Font name="Arial" size="18.0" />
+                                                               </font>
+                                                               <tooltip>
+                                                                  <Tooltip text="Добавить файл" />
+                                                               </tooltip>
+                                                            </Button>
+                                                            <Button fx:id="btnAddFilesInFolder" mnemonicParsing="false" onAction="#doAddFilesInFolder" prefHeight="46.0" prefWidth="46.0" text="📂">
+                                                               <font>
+                                                                  <Font name="Arial" size="18.0" />
+                                                               </font>
+                                                               <tooltip>
+                                                                  <Tooltip text="Добавить файлы из папки" />
+                                                               </tooltip>
+                                                            </Button>
+                                                            <Separator prefWidth="200.0">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="5.0" top="5.0" />
+                                                               </VBox.margin>
+                                                            </Separator>
+                                                            <Button fx:id="btnDelFile" mnemonicParsing="false" onAction="#doDeleteFile" prefHeight="46.0" prefWidth="46.0" text="✖">
+                                                               <font>
+                                                                  <Font name="Arial" size="18.0" />
+                                                               </font>
+                                                               <tooltip>
+                                                                  <Tooltip text="Удалить файл из проекта" />
+                                                               </tooltip>
+                                                            </Button>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                          </tabs>
+                        </TabPane>
                      </children>
                   </AnchorPane>
                 <AnchorPane fx:id="filePane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <VBox layoutX="94.0" layoutY="188.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <GridPane>
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="10.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="90.0" prefHeight="90.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                                 <children>
-                                    <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" text="Видео файл:">
-                                       <GridPane.margin>
-                                          <Insets right="5.0" />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <tabs>
+                            <Tab text="Настройки">
+                              <content>
+                                <AnchorPane>
                                        <children>
-                                          <TextField fx:id="ctlFileSourceName" prefWidth="2000.0">
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </TextField>
-                                          <Button fx:id="btnBrowseFile" mnemonicParsing="false" onAction="#doBrowseFile" text="..." />
-                                       </children>
-                                       <GridPane.margin>
-                                          <Insets top="3.0" />
-                                       </GridPane.margin>
-                                    </HBox>
-                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Короткое имя:" GridPane.rowIndex="1">
-                                       <GridPane.margin>
-                                          <Insets right="5.0" />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <TextField fx:id="ctlFileShortName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Название:" GridPane.rowIndex="2">
-                                       <GridPane.margin>
-                                          <Insets right="5.0" />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <TextField fx:id="ctlFileTitle" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Сезон №:" GridPane.rowIndex="3">
-                                       <GridPane.margin>
-                                          <Insets right="5.0" />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Эпизод №:" GridPane.rowIndex="4">
-                                       <GridPane.margin>
-                                          <Insets right="5.0" />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <TextField fx:id="ctlFileSeasonNum" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField fx:id="ctlFileEpisodeNum" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="5">
-                                       <children>
-                                          <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="FPS:">
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" right="5.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                          <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Длительность (мс):">
-                                             <VBox.margin>
-                                                <Insets bottom="5.0" right="5.0" top="5.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                          <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Кол-во кадров:">
-                                             <VBox.margin>
-                                                <Insets right="5.0" top="10.0" />
-                                             </VBox.margin>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                    <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                                       <children>
-                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="2000.0">
+                                          <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <TextField fx:id="ctlFileFrameRate" maxWidth="1.7976931348623157E308" prefWidth="2000.0">
+                                                <HBox prefHeight="100.0" prefWidth="400.0">
+                                                   <children>
+                                                      <VBox prefHeight="200.0" prefWidth="450.0">
+                                                         <children>
+                                                            <HBox prefHeight="25.0" prefWidth="250.0">
+                                                               <children>
+                                                                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxWidth="1.7976931348623157E308" prefWidth="110.0" text="Видео файл:" />
+                                                                  <TextField fx:id="ctlFileSourceName" prefWidth="310.0" />
+                                                                  <Button fx:id="btnBrowseFile" mnemonicParsing="false" onAction="#doBrowseFile" text="..." />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox prefHeight="25.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefWidth="110.0" text="Короткое имя:" />
+                                                                  <TextField fx:id="ctlFileShortName" prefWidth="310.0" />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox prefHeight="25.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefWidth="110.0" text="Название:" />
+                                                                  <TextField fx:id="ctlFileTitle" prefWidth="310.0" />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox prefHeight="25.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefWidth="110.0" text="Комментарий:" />
+                                                                  <TextField fx:id="ctlFileDescription" prefWidth="310.0" />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox prefHeight="25.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefWidth="110.0" text="Сезон №:" />
+                                                                  <TextField fx:id="ctlFileSeasonNum" prefWidth="70.0" />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox prefHeight="25.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefWidth="110.0" text="Эпизод №:" />
+                                                                  <TextField fx:id="ctlFileEpisodeNum" prefWidth="70.0" />
+                                                               </children>
+                                                            </HBox>
+                                                            <HBox prefHeight="100.0" prefWidth="260.0">
+                                                               <children>
+                                                                  <VBox prefHeight="200.0" prefWidth="180.0">
+                                                                     <children>
+                                                                        <HBox prefHeight="25.0" prefWidth="200.0">
+                                                                           <children>
+                                                                              <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefWidth="110.0" text="FPS:" />
+                                                                              <TextField fx:id="ctlFileFrameRate" maxWidth="1.7976931348623157E308" prefWidth="70.0" />
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <HBox prefHeight="25.0" prefWidth="200.0">
+                                                                           <children>
+                                                                              <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefWidth="110.0" text="Ширина (px):" />
+                                                                              <TextField fx:id="ctlFileWidth" maxWidth="1.7976931348623157E308" prefWidth="70.0" />
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <HBox prefHeight="25.0" prefWidth="200.0">
+                                                                           <children>
+                                                                              <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefWidth="110.0" text="Высота (px):" />
+                                                                              <TextField fx:id="ctlFileHeight" maxWidth="1.7976931348623157E308" prefWidth="70.0" />
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <HBox prefHeight="25.0" prefWidth="200.0">
+                                                                           <children>
+                                                                              <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefWidth="110.0" text="Кол-во кадров:" />
+                                                                              <TextField fx:id="ctlFileFramesCount" maxWidth="1.7976931348623157E308" prefWidth="70.0" />
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <HBox prefHeight="25.0" prefWidth="200.0">
+                                                                           <children>
+                                                                              <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" prefWidth="110.0" text="Длительность (мс):" />
+                                                                              <TextField fx:id="ctlFileDuration" maxWidth="1.7976931348623157E308" prefWidth="70.0" />
+                                                                           </children>
+                                                                        </HBox>
+                                                                     </children>
+                                                                  </VBox>
+                                                                  <Button fx:id="btnGetMediaInfo" alignment="CENTER" contentDisplay="CENTER" minWidth="70.0" mnemonicParsing="false" onAction="#doGetMediaInfo" prefHeight="125.0" prefWidth="80.0" text="Get by MedaInfo" textAlignment="CENTER" wrapText="true" />
+                                                               </children>
+                                                            </HBox>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                                <Separator prefWidth="200.0">
                                                    <VBox.margin>
-                                                      <Insets bottom="5.0" />
+                                                      <Insets bottom="5.0" top="5.0" />
                                                    </VBox.margin>
-                                                </TextField>
-                                                <TextField fx:id="ctlFileFramesCount" maxWidth="1.7976931348623157E308" prefWidth="2000.0">
+                                                </Separator>
+                                                <HBox prefWidth="100.0">
+                                                   <children>
+                                                      <TableView fx:id="tblFileToAction" maxHeight="1.7976931348623157E308" prefHeight="2000.0" prefWidth="2000.0">
+                                                        <columns>
+                                                          <TableColumn fx:id="colOrderAction" maxWidth="40.0" prefWidth="40.0" sortable="false" text="#" />
+                                                          <TableColumn fx:id="colNameAction" maxWidth="190.0" prefWidth="190.0" sortable="false" text="Файл" />
+                                                        </columns>
+                                                      </TableView>
+                                                      <VBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" minWidth="200.0">
+                                                         <children>
+                                                            <CheckBox fx:id="checkAnalize" mnemonicParsing="false" text="Проанализировать кадры">
+                                                               <VBox.margin>
+                                                                  <Insets top="5.0" />
+                                                               </VBox.margin>
+                                                            </CheckBox>
+                                                            <CheckBox fx:id="checkFindTransitions" mnemonicParsing="false" text="Найти переходы">
+                                                               <VBox.margin>
+                                                                  <Insets top="5.0" />
+                                                               </VBox.margin>
+                                                            </CheckBox>
+                                                            <CheckBox fx:id="checkClearShots" mnemonicParsing="false" text="Очистить планы и сцены">
+                                                               <VBox.margin>
+                                                                  <Insets top="5.0" />
+                                                               </VBox.margin>
+                                                            </CheckBox>
+                                                            <CheckBox fx:id="checkAddFacesToDatabase" mnemonicParsing="false" text="Добавить faces в базу из json">
+                                                               <VBox.margin>
+                                                                  <Insets top="5.0" />
+                                                               </VBox.margin>
+                                                            </CheckBox>
+                                                            <Separator prefWidth="200.0">
+                                                               <VBox.margin>
+                                                                  <Insets top="5.0" />
+                                                               </VBox.margin>
+                                                            </Separator>
+                                                            <CheckBox fx:id="checkCreatePreviewMP4" mnemonicParsing="false" text="Создать preview MP4">
+                                                               <VBox.margin>
+                                                                  <Insets top="5.0" />
+                                                               </VBox.margin>
+                                                            </CheckBox>
+                                                            <CheckBox fx:id="checkCreateFramesPreview" mnemonicParsing="false" text="Создать preview frames">
+                                                               <VBox.margin>
+                                                                  <Insets top="5.0" />
+                                                               </VBox.margin>
+                                                            </CheckBox>
+                                                            <CheckBox fx:id="checkCreateFramesMedium" mnemonicParsing="false" text="Создать medium frames">
+                                                               <VBox.margin>
+                                                                  <Insets top="5.0" />
+                                                               </VBox.margin>
+                                                            </CheckBox>
+                                                            <CheckBox fx:id="checkCreateFramesFull" mnemonicParsing="false" text="Создать full frames">
+                                                               <VBox.margin>
+                                                                  <Insets top="5.0" />
+                                                               </VBox.margin>
+                                                            </CheckBox>
+                                                            <CheckBox fx:id="checkCreateFaces" mnemonicParsing="false" text="Создать faces">
+                                                               <VBox.margin>
+                                                                  <Insets top="5.0" />
+                                                               </VBox.margin>
+                                                            </CheckBox>
+                                                            <Separator prefWidth="200.0">
+                                                               <VBox.margin>
+                                                                  <Insets top="5.0" />
+                                                               </VBox.margin>
+                                                            </Separator>
+                                                            <CheckBox fx:id="checkCreateLossless" mnemonicParsing="false" text="Создать Lossless">
+                                                               <VBox.margin>
+                                                                  <Insets top="5.0" />
+                                                               </VBox.margin>
+                                                            </CheckBox>
+                                                            <CheckBox fx:id="checkCreateShots" mnemonicParsing="false" text="Создать файлы планов">
+                                                               <VBox.margin>
+                                                                  <Insets top="5.0" />
+                                                               </VBox.margin>
+                                                            </CheckBox>
+                                                            <CheckBox fx:id="checkCreateShotsMXFaudioYES" mnemonicParsing="false" text="Shots lossless MXF audio YES">
+                                                               <VBox.margin>
+                                                                  <Insets top="5.0" />
+                                                               </VBox.margin>
+                                                            </CheckBox>
+                                                            <CheckBox fx:id="checkCreateShotsMXFaudioNO" mnemonicParsing="false" text="Shots lossless MXF audio NO">
+                                                               <VBox.margin>
+                                                                  <Insets top="5.0" />
+                                                               </VBox.margin>
+                                                            </CheckBox>
+                                                            <CheckBox fx:id="checkDeleteLossless" mnemonicParsing="false" text="Удалить Lossless">
+                                                               <VBox.margin>
+                                                                  <Insets top="5.0" />
+                                                               </VBox.margin>
+                                                            </CheckBox>
+                                                            <Separator prefWidth="200.0">
+                                                               <VBox.margin>
+                                                                  <Insets top="5.0" />
+                                                               </VBox.margin>
+                                                            </Separator>
+                                                            <CheckBox fx:id="checkRunCmd" mnemonicParsing="false" text="Запустить CMD">
+                                                               <VBox.margin>
+                                                                  <Insets top="5.0" />
+                                                               </VBox.margin>
+                                                            </CheckBox>
+                                                            <Button fx:id="btnDoActions" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doActions" text="Поехали!">
+                                                               <VBox.margin>
+                                                                  <Insets top="5.0" />
+                                                               </VBox.margin>
+                                                            </Button>
+                                                         </children>
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </VBox>
+                                                   </children>
+                                                </HBox>
+                                                <Separator prefWidth="200.0">
                                                    <VBox.margin>
-                                                      <Insets bottom="5.0" />
+                                                      <Insets top="5.0" />
                                                    </VBox.margin>
-                                                </TextField>
-                                                <TextField fx:id="ctlFileDuration" maxWidth="1.7976931348623157E308" prefWidth="2000.0" />
+                                                </Separator>
+                                                <Button fx:id="btnTransitions" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doTransitions" text="Редактор планов">
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                </Button>
+                                                <Button fx:id="btnShots" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doShots" text="Редактор сцен (устарело)">
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                </Button>
+                                                <TextArea fx:id="ctlConsole" minHeight="50.0" prefHeight="200.0" prefWidth="200.0" />
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab text="Папки">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox>
+                                             <children>
+                                                <HBox prefHeight="25.0">
+                                                   <children>
+                                                      <Label alignment="CENTER_RIGHT" prefWidth="120.0" text="Папка lossless:" />
+                                                      <CheckBox fx:id="checkFolderLossless" mnemonicParsing="false" onAction="#doCheckFolderLossless" />
+                                                      <TextField fx:id="fldFolderLossless" maxWidth="1.7976931348623157E308" prefWidth="285.0" />
+                                                      <Button fx:id="btnFolderLossless" mnemonicParsing="false" onAction="#doBtnFolderLossless" text="..." />
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="25.0">
+                                                   <children>
+                                                      <Label alignment="CENTER_RIGHT" prefWidth="120.0" text="Папка preview MP4:" />
+                                                      <CheckBox fx:id="checkFolderPreviewMP4" mnemonicParsing="false" onAction="#doCheckFolderPreviewMP4" />
+                                                      <TextField fx:id="fldFolderPreviewMP4" maxWidth="1.7976931348623157E308" prefWidth="285.0" />
+                                                      <Button fx:id="btnFolderPreviewMP4" mnemonicParsing="false" onAction="#doBtnFolderPreviewMP4" text="..." />
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="25.0">
+                                                   <children>
+                                                      <Label alignment="CENTER_RIGHT" prefWidth="120.0" text="Папка preview frames:" />
+                                                      <CheckBox fx:id="checkFolderPreviewFrames" mnemonicParsing="false" onAction="#doCheckFolderPreviewFrames" />
+                                                      <TextField fx:id="fldFolderPreviewFrames" maxWidth="1.7976931348623157E308" prefWidth="285.0" />
+                                                      <Button fx:id="btnFolderPreviewFrames" mnemonicParsing="false" onAction="#doBtnFolderPreviewFrames" text="..." />
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="25.0">
+                                                   <children>
+                                                      <Label alignment="CENTER_RIGHT" prefWidth="120.0" text="Папка medium frames:" />
+                                                      <CheckBox fx:id="checkFolderMediumFrames" mnemonicParsing="false" onAction="#doCheckFolderMediumFrames" />
+                                                      <TextField fx:id="fldFolderMediumFrames" maxWidth="1.7976931348623157E308" prefWidth="285.0" />
+                                                      <Button fx:id="btnFolderMediumFrames" mnemonicParsing="false" onAction="#doBtnFolderMediumFrames" text="..." />
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="25.0">
+                                                   <children>
+                                                      <Label alignment="CENTER_RIGHT" prefWidth="120.0" text="Папка full frames:" />
+                                                      <CheckBox fx:id="checkFolderFullFrames" mnemonicParsing="false" onAction="#doCheckFolderFullFrames" />
+                                                      <TextField fx:id="fldFolderFullFrames" maxWidth="1.7976931348623157E308" prefWidth="285.0" />
+                                                      <Button fx:id="btnFolderFullFrames" mnemonicParsing="false" onAction="#doBtnFolderFullFrames" text="..." />
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="25.0">
+                                                   <children>
+                                                      <Label alignment="CENTER_RIGHT" prefWidth="120.0" text="Папка favorite:" />
+                                                      <CheckBox fx:id="checkFolderFavorite" mnemonicParsing="false" onAction="#doCheckFolderFavorite" />
+                                                      <TextField fx:id="fldFolderFavorite" maxWidth="1.7976931348623157E308" prefWidth="285.0" />
+                                                      <Button fx:id="btnFolderFavorite" mnemonicParsing="false" onAction="#doBtnFolderFavorite" text="..." />
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="25.0">
+                                                   <children>
+                                                      <Label alignment="CENTER_RIGHT" prefWidth="120.0" text="Папка shots:" />
+                                                      <CheckBox fx:id="checkFolderShots" mnemonicParsing="false" onAction="#doCheckFolderShots" />
+                                                      <TextField fx:id="fldFolderShots" maxWidth="1.7976931348623157E308" prefWidth="285.0" />
+                                                      <Button fx:id="btnFolderShots" mnemonicParsing="false" onAction="#doBtnFolderShots" text="..." />
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="25.0">
+                                                   <children>
+                                                      <Label alignment="CENTER_RIGHT" prefWidth="145.0" text="Lossless video codec:" />
+                                                      <ComboBox fx:id="cbLosslessVideoCodec" prefWidth="305.0" />
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="25.0">
+                                                   <children>
+                                                      <Label alignment="CENTER_RIGHT" prefWidth="145.0" text="Lossless container:" />
+                                                      <ComboBox fx:id="cbLosslessContainer" prefWidth="305.0" />
+                                                   </children>
+                                                </HBox>
                                              </children>
                                           </VBox>
-                                          <Button fx:id="btnGetMediaInfo" alignment="CENTER" contentDisplay="CENTER" minWidth="70.0" mnemonicParsing="false" onAction="#doGetMediaInfo" prefHeight="150.0" prefWidth="70.0" text="Get by MedaInfo" textAlignment="CENTER" wrapText="true">
-                                             <HBox.margin>
-                                                <Insets left="5.0" />
-                                             </HBox.margin>
-                                          </Button>
                                        </children>
-                                    </HBox>
-                                    <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Комментарий:" GridPane.rowIndex="6">
-                                       <GridPane.margin>
-                                          <Insets right="5.0" />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <TextField fx:id="ctlFileDescription" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                 </children>
-                              </GridPane>
-                              <Separator prefWidth="200.0">
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" top="5.0" />
-                                 </VBox.margin>
-                              </Separator>
-                              <HBox maxHeight="1.7976931348623157E308" prefWidth="100.0">
-                                 <children>
-                                    <TableView fx:id="tblFileToAction" maxHeight="1.7976931348623157E308" prefHeight="2000.0" prefWidth="2000.0">
-                                      <columns>
-                                        <TableColumn fx:id="colOrderAction" maxWidth="40.0" prefWidth="40.0" sortable="false" text="#" />
-                                        <TableColumn fx:id="colNameAction" maxWidth="190.0" prefWidth="190.0" sortable="false" text="Файл" />
-                                      </columns>
-                                    </TableView>
-                                    <VBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" minWidth="200.0">
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                              <Tab text="MediaInfo">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
-                                          <CheckBox fx:id="checkCreatePreviewMP4" mnemonicParsing="false" text="Создать preview MP4">
-                                             <VBox.margin>
-                                                <Insets top="5.0" />
-                                             </VBox.margin>
-                                          </CheckBox>
-                                          <CheckBox fx:id="checkCreateFramesPreview" mnemonicParsing="false" text="Создать preview frames">
-                                             <VBox.margin>
-                                                <Insets top="5.0" />
-                                             </VBox.margin>
-                                          </CheckBox>
-                                          <CheckBox fx:id="checkCreateFramesFull" mnemonicParsing="false" text="Создать full frames">
-                                             <VBox.margin>
-                                                <Insets top="5.0" />
-                                             </VBox.margin>
-                                          </CheckBox>
-                                          <CheckBox fx:id="checkAnalize" mnemonicParsing="false" text="Проанализировать кадры">
-                                             <VBox.margin>
-                                                <Insets top="5.0" />
-                                             </VBox.margin>
-                                          </CheckBox>
-                                          <CheckBox fx:id="checkFindTransitions" mnemonicParsing="false" text="Найти переходы">
-                                             <VBox.margin>
-                                                <Insets top="5.0" />
-                                             </VBox.margin>
-                                          </CheckBox>
-                                          <CheckBox fx:id="checkCreateCMD" mnemonicParsing="false" text="Создать CMD для кодирования">
-                                             <VBox.margin>
-                                                <Insets top="5.0" />
-                                             </VBox.margin>
-                                          </CheckBox>
-                                          <Separator prefWidth="200.0">
-                                             <VBox.margin>
-                                                <Insets top="5.0" />
-                                             </VBox.margin>
-                                          </Separator>
-                                          <Button fx:id="btnDoActions" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doActions" text="Поехали!">
-                                             <VBox.margin>
-                                                <Insets top="5.0" />
-                                             </VBox.margin>
-                                          </Button>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <TableView fx:id="tblFilesTracks" prefHeight="200.0" prefWidth="200.0">
+                                                  <columns>
+                                                    <TableColumn fx:id="colFileTrackUse" prefWidth="75.0" text="Use" />
+                                                    <TableColumn fx:id="colFileTrackType" prefWidth="357.0" text="Type" />
+                                                  </columns>
+                                                </TableView>
+                                                <TableView fx:id="tblFilesTracksProperties" prefHeight="600.0" prefWidth="200.0">
+                                                   <columns>
+                                                      <TableColumn fx:id="colFileTrackPropertyKey" prefWidth="145.0" text="Key" />
+                                                      <TableColumn fx:id="colFileTrackPropertyValue" prefWidth="287.0" text="Value" />
+                                                   </columns>
+                                                </TableView>
+                                             </children>
+                                          </VBox>
                                        </children>
-                                       <HBox.margin>
-                                          <Insets bottom="5.0" left="5.0" top="5.0" />
-                                       </HBox.margin>
-                                    </VBox>
-                                 </children>
-                              </HBox>
-                              <Separator prefWidth="200.0">
-                                 <VBox.margin>
-                                    <Insets top="5.0" />
-                                 </VBox.margin>
-                              </Separator>
-                              <Button fx:id="btnTransitions" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doTransitions" text="Редактор планов">
-                                 <VBox.margin>
-                                    <Insets top="5.0" />
-                                 </VBox.margin>
-                              </Button>
-                              <Button fx:id="btnShots" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#doShots" text="Редактор сцен">
-                                 <VBox.margin>
-                                    <Insets top="5.0" />
-                                 </VBox.margin>
-                              </Button>
-                              <TextArea fx:id="ctlConsole" minHeight="50.0" prefHeight="200.0" prefWidth="200.0" />
-                           </children>
-                           <padding>
-                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                           </padding>
-                        </VBox>
+                                    </AnchorPane>
+                                </content>
+                              </Tab>
+                              <Tab text="Свойства файла">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <TableView fx:id="tblFilesProperties" prefHeight="5000.0" prefWidth="200.0">
+                                                  <columns>
+                                                    <TableColumn fx:id="colNameTblFilesProperties" maxWidth="135.0" minWidth="135.0" prefWidth="135.0" text="Name" />
+                                                    <TableColumn fx:id="colValueTblFilesProperties" maxWidth="300.0" minWidth="300.0" prefWidth="300.0" text="Value" />
+                                                  </columns>
+                                                </TableView>
+                                                <TextField fx:id="fldFilePropertyName" onAction="#doFldFilePropertyName" />
+                                                <TextArea fx:id="fldFilePropertyValue" minHeight="150.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Button fx:id="btnAddNewFilesProperties" mnemonicParsing="false" onAction="#doBtnAddNewFilesProperties" prefWidth="5000.0" text="Добавить" />
+                                                      <Button fx:id="btnDeleteFilesProperties" mnemonicParsing="false" onAction="#doBtnDeleteFilesProperties" prefWidth="5000.0" text="Удалить" />
+                                                   </children>
+                                                </HBox>
+                                                <Button fx:id="btnAddNewFilesPropertiesUrl" mnemonicParsing="false" onAction="#doBtnAddNewFilesPropertiesUrl" prefWidth="5000.0" text="+ «url»" />
+                                                <Button fx:id="btnAddNewFilesPropertiesHtml" mnemonicParsing="false" onAction="#doBtnAddNewFilesPropertiesHtml" prefWidth="5000.0" text="+ «html» and get it" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                          </tabs>
+                        </TabPane>
                      </children>
                   </AnchorPane>
               </items>

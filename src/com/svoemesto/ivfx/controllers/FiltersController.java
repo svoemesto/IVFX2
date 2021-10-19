@@ -327,7 +327,8 @@ public class FiltersController extends Application {
     public void start(Stage primaryStage) throws Exception {
         Main.mainConnection = Database.getConnection();
 //        currentProject = ProjectController.mainProject;
-        currentProject = IVFXProjects.load(1);
+//        currentProject = IVFXProjects.load(1);
+        currentProject = IVFXProjects.load(2);
     }
 
     public void editFilters(IVFXProjects ivfxProject) {

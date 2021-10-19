@@ -37,13 +37,15 @@ public class IVFXTagsScenes extends IVFXTags{
                 statement = Main.mainConnection.createStatement();
 
 
-                sql = "SELECT tbl_tags.id, tbl_tags.name, tbl_tags.tag_type_id, tbl_shots.file_id, tbl_files.order_file, tbl_shots.firstFrameNumber " +
+                sql = "SELECT tbl_tags.id, tbl_tags.name, tbl_tags.tag_type_id, tbl_shots.file_id, tbl_files.order_file, MIN(tbl_shots.firstFrameNumber) AS firstFrameNumber " +
                         "FROM tbl_tags_shots " +
                         "INNER JOIN tbl_tags ON tbl_tags_shots.tag_id = tbl_tags.id INNER JOIN tbl_shots ON tbl_tags_shots.shot_id = tbl_shots.id INNER JOIN tbl_files ON tbl_shots.file_id = tbl_files.id " +
                         "WHERE tbl_tags.tag_type_id = 3 " +
                         "AND tbl_shots.file_id = " + ivfxFile.getId() + " " +
                         "GROUP BY tbl_tags.id, tbl_tags.name,  tbl_tags.tag_type_id, tbl_shots.file_id, tbl_files.order_file " +
                         "ORDER BY tbl_files.order_file, MIN(tbl_shots.firstFrameNumber)";
+
+                System.out.println(sql);
 
                 rs = statement.executeQuery(sql);
                 while (rs.next()) {

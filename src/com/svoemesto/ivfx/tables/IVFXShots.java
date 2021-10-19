@@ -80,8 +80,8 @@ public class IVFXShots implements Comparable<IVFXShots>  {
         ivfxShot.fileId = file.getId();
         ivfxShot.shotsTypeSizeId = 0;
         ivfxShot.shotsTypePersonId = 0;
-        ivfxShot.ivfxShotsTypeSize = IVFXShotsTypeSize.load(ivfxShot.shotsTypeSizeId);
-        ivfxShot.ivfxShotsTypePersons = IVFXShotsTypePersons.load(ivfxShot.shotsTypePersonId);
+        ivfxShot.ivfxShotsTypeSize = IVFXShotsTypeSize.load(ivfxShot.shotsTypeSizeId, false);
+        ivfxShot.ivfxShotsTypePersons = IVFXShotsTypePersons.load(ivfxShot.shotsTypePersonId, false);
         ivfxShot.fileId = file.getId();
         ivfxShot.ivfxFile = file;
 
@@ -170,8 +170,8 @@ public class IVFXShots implements Comparable<IVFXShots>  {
                 shot.lastFrameNumber = rs.getInt("lastFrameNumber");
                 shot.nearestIFrame = rs.getInt("nearestIFrame");
                 shot.ivfxFile = IVFXFiles.load(shot.fileId);
-                shot.ivfxShotsTypeSize = IVFXShotsTypeSize.load(shot.shotsTypeSizeId);
-                shot.ivfxShotsTypePersons = IVFXShotsTypePersons.load(shot.shotsTypePersonId);
+                shot.ivfxShotsTypeSize = IVFXShotsTypeSize.load(shot.shotsTypeSizeId, withPreview);
+                shot.ivfxShotsTypePersons = IVFXShotsTypePersons.load(shot.shotsTypePersonId, withPreview);
                 shot.isBodyScene = rs.getBoolean("isBodyScene");
                 shot.isStartScene = rs.getBoolean("isStartScene");
                 shot.isEndScene = rs.getBoolean("isEndScene");
@@ -293,8 +293,8 @@ public class IVFXShots implements Comparable<IVFXShots>  {
                 shot.lastFrameNumber = rs.getInt("lastFrameNumber");
                 shot.nearestIFrame = rs.getInt("nearestIFrame");
                 shot.ivfxFile = IVFXFiles.load(shot.fileId);
-                shot.ivfxShotsTypeSize = IVFXShotsTypeSize.load(shot.shotsTypeSizeId);
-                shot.ivfxShotsTypePersons = IVFXShotsTypePersons.load(shot.shotsTypePersonId);
+                shot.ivfxShotsTypeSize = IVFXShotsTypeSize.load(shot.shotsTypeSizeId, withPreview);
+                shot.ivfxShotsTypePersons = IVFXShotsTypePersons.load(shot.shotsTypePersonId, withPreview);
 
                 if (withPreview) {
 
@@ -388,14 +388,11 @@ public class IVFXShots implements Comparable<IVFXShots>  {
 
     }
 
+
     public static List<IVFXShots> loadList(IVFXFiles ivfxFiles, boolean withPreview) {
-        return loadList(ivfxFiles, withPreview, null);
-    }
-    public static List<IVFXShots> loadList(IVFXFiles ivfxFiles, boolean withPreview, ProgressBar progressBar) {
 
         List<IVFXShots> listShots = new ArrayList<>();
 
-        int iProgress = 0;
         Statement statement = null;
         ResultSet rs = null;
         String sql;
@@ -427,20 +424,12 @@ public class IVFXShots implements Comparable<IVFXShots>  {
                     "qry_shots_in_scenes_and_events.shot_type_person_id, " +
                     "qry_shots_in_scenes_and_events.firstFrameNumber, " +
                     "qry_shots_in_scenes_and_events.lastFrameNumber, " +
-                    "qry_shots_in_scenes_and_events.nearestIFrame";
-
-            String sqlCnt = "SELECT COUNT(*) AS CNT FROM (" + sql + ") AS tmp";
-            ResultSet rsCnt = null;
-            rsCnt = statement.executeQuery(sqlCnt);
-            rsCnt.next();
-            int countRows = rsCnt.getInt("CNT");
-            rsCnt.close();
+                    "qry_shots_in_scenes_and_events.nearestIFrame " +
+                    "ORDER BY qry_shots_in_scenes_and_events.firstFrameNumber";
 
             rs = statement.executeQuery(sql);
 
             while (rs.next()) {
-
-                if (progressBar != null) progressBar.setProgress((double)++iProgress / countRows);
 
                 IVFXShots shot = new IVFXShots();
                 shot.id = rs.getInt("id");
@@ -451,8 +440,8 @@ public class IVFXShots implements Comparable<IVFXShots>  {
                 shot.lastFrameNumber = rs.getInt("lastFrameNumber");
                 shot.nearestIFrame = rs.getInt("nearestIFrame");
                 shot.ivfxFile = ivfxFiles;
-                shot.ivfxShotsTypeSize = IVFXShotsTypeSize.load(shot.shotsTypeSizeId);
-                shot.ivfxShotsTypePersons = IVFXShotsTypePersons.load(shot.shotsTypePersonId);
+                shot.ivfxShotsTypeSize = IVFXShotsTypeSize.load(shot.shotsTypeSizeId, withPreview);
+                shot.ivfxShotsTypePersons = IVFXShotsTypePersons.load(shot.shotsTypePersonId, withPreview);
                 shot.isBodyScene = rs.getBoolean("isBodyScene");
                 shot.isStartScene = rs.getBoolean("isStartScene");
                 shot.isEndScene = rs.getBoolean("isEndScene");
@@ -476,10 +465,8 @@ public class IVFXShots implements Comparable<IVFXShots>  {
         }
 
         if (withPreview) {
-            iProgress = 0;
-            for (IVFXShots ivfxShots : listShots) {
 
-                if (progressBar != null) progressBar.setProgress((double)++iProgress / listShots.size());
+            for (IVFXShots ivfxShots : listShots) {
 
                 BufferedImage bufferedImage;
                 String fileName;
@@ -668,14 +655,18 @@ public class IVFXShots implements Comparable<IVFXShots>  {
                     if (ivfxShot.firstFrameNumber == ivfxShotTemp.firstFrameNumber && ivfxShot.lastFrameNumber == ivfxShotTemp.lastFrameNumber) {
                         if (ivfxShot.nearestIFrame != ivfxShotTemp.nearestIFrame) {
                             ivfxShotTemp.nearestIFrame = ivfxShot.nearestIFrame;
+                            ivfxShotTemp.save();
                         }
                         isFinded = true;
-                        listShotsFinal.add(ivfxShotTemp); // добаляем в финальный список план из временного списка
+                        listShotsFinal.add(ivfxShotTemp); // добавляем в финальный список план из временного списка
                         break;
                     }
                 }
                 if (!isFinded) {
-                    listShotsFinal.add(ivfxShot); // добаляем в финальный список план из списка
+                    IVFXShots ivfxShotNew = IVFXShots.getNewDbInstance(ivfxFile);
+                    ivfxShot.setId(ivfxShotNew.getId());
+                    ivfxShot.save();
+                    listShotsFinal.add(ivfxShot); // добавляем в финальный список план из списка
                 }
             }
 
@@ -684,6 +675,36 @@ public class IVFXShots implements Comparable<IVFXShots>  {
         return listShotsFinal;
     }
 
+
+    public void updateTagsByFaces(boolean withPreview) {
+
+        List<IVFXTagsShotsFaces> listTagsShotsFaces = IVFXTagsShotsFaces.loadList(this, withPreview);
+        if (listTagsShotsFaces.size() > 0) {
+            int[] arrTagTypeId = {1,2};
+            List<IVFXTagsShots> listTagsShots = IVFXTagsShots.loadList(this, withPreview, arrTagTypeId);
+            for (IVFXTagsShotsFaces tagShotFace : listTagsShotsFaces) {
+                boolean tagIsFinded = false;
+                for (IVFXTagsShots tagShot : listTagsShots) {
+                    if (tagShot.getTagId() == tagShotFace.getTagId()) {
+                        tagShot.setProba(tagShotFace.getProba());
+                        tagShot.setTypeSizeId(tagShotFace.getTypeSizeId());
+                        tagShot.save();
+                        tagIsFinded = true;
+                        break;
+                    }
+                }
+                if (!tagIsFinded) {
+                    IVFXTagsShots tagShot = IVFXTagsShots.getNewDbInstance(tagShotFace.getIvfxTag(),this);
+                    if (tagShot != null) {
+                        tagShot.setProba(tagShotFace.getProba());
+                        tagShot.setTypeSizeId(tagShotFace.getTypeSizeId());
+                        tagShot.save();
+                    }
+                }
+            }
+        }
+
+    }
 
 
     public int getTagIdScene() {
@@ -870,17 +891,34 @@ public class IVFXShots implements Comparable<IVFXShots>  {
                 FFmpeg.convertDurationToString(FFmpeg.getDurationByFrameNumber(this.getFirstFrameNumber()-1,this.ivfxFile.getFrameRate())).replace(":",".") + "-" +
                 FFmpeg.convertDurationToString(FFmpeg.getDurationByFrameNumber(this.getLastFrameNumber(),this.ivfxFile.getFrameRate())).replace(":",".") + "](" +
                 this.getFirstFrameNumber() + "-" +
-                this.getLastFrameNumber() + ")" +
-                ".mp4";
+                this.getLastFrameNumber() + ")." +
+                this.ivfxFile.getIvfxProject().getVideoContainer();
     }
 
-    public String getShotVideoFileNameX264() {
-        return this.ivfxFile.getIvfxProject().getFolder() + "\\Video\\1920x1080\\" + this.ivfxFile.getShortName() + "_[" +
+    public String getShotVideoFileNameWihoutFolderMXFaudioOFF() {
+        return this.ivfxFile.getShortName() + "_[" +
                 FFmpeg.convertDurationToString(FFmpeg.getDurationByFrameNumber(this.getFirstFrameNumber()-1,this.ivfxFile.getFrameRate())).replace(":",".") + "-" +
                 FFmpeg.convertDurationToString(FFmpeg.getDurationByFrameNumber(this.getLastFrameNumber(),this.ivfxFile.getFrameRate())).replace(":",".") + "](" +
                 this.getFirstFrameNumber() + "-" +
-                this.getLastFrameNumber() + ")" +
-                ".mp4";
+                this.getLastFrameNumber() + ")_audioOFF" +
+                ".mxf";
+    }
+
+    public String getShotVideoFileNameWihoutFolderMXFaudioON() {
+        return this.ivfxFile.getShortName() + "_[" +
+                FFmpeg.convertDurationToString(FFmpeg.getDurationByFrameNumber(this.getFirstFrameNumber()-1,this.ivfxFile.getFrameRate())).replace(":",".") + "-" +
+                FFmpeg.convertDurationToString(FFmpeg.getDurationByFrameNumber(this.getLastFrameNumber(),this.ivfxFile.getFrameRate())).replace(":",".") + "](" +
+                this.getFirstFrameNumber() + "-" +
+                this.getLastFrameNumber() + ")_audioON" +
+                ".mxf";
+    }
+
+    public String getShotVideoFileNameX264() {
+        return this.ivfxFile.getFolderShots() + "\\" + this.ivfxFile.getShortName() + "_[" +
+                FFmpeg.convertDurationToString(FFmpeg.getDurationByFrameNumber(this.getFirstFrameNumber()-1,this.ivfxFile.getFrameRate())).replace(":",".") + "-" +
+                FFmpeg.convertDurationToString(FFmpeg.getDurationByFrameNumber(this.getLastFrameNumber(),this.ivfxFile.getFrameRate())).replace(":",".") + "](" +
+                this.getFirstFrameNumber() + "-" +
+                this.getLastFrameNumber() + ")." + this.ivfxFile.getIvfxProject().getVideoContainer();
     }
 
     public List<IVFXPersons> getListPersons() {
@@ -942,11 +980,11 @@ public class IVFXShots implements Comparable<IVFXShots>  {
     }
 
     public String getFirstFramePicture() {
-        return this.ivfxFile.getFramesFolderPreview()+"\\"+this.ivfxFile.getShortName()+this.ivfxFile.FRAMES_PREFIX+String.format("%06d", this.firstFrameNumber)+".jpg";
+        return this.ivfxFile.getFolderFramesPreview()+"\\"+this.ivfxFile.getShortName()+this.ivfxFile.FRAMES_PREFIX+String.format("%06d", this.firstFrameNumber)+".jpg";
     }
 
     public String getLastFramePicture() {
-        return this.ivfxFile.getFramesFolderPreview()+"\\"+this.ivfxFile.getShortName()+this.ivfxFile.FRAMES_PREFIX+String.format("%06d", this.lastFrameNumber)+".jpg";
+        return this.ivfxFile.getFolderFramesPreview()+"\\"+this.ivfxFile.getShortName()+this.ivfxFile.FRAMES_PREFIX+String.format("%06d", this.lastFrameNumber)+".jpg";
     }
 
     public ImageView[] getImageViewFirst() {

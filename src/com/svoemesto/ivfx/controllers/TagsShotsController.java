@@ -6,6 +6,7 @@ import com.svoemesto.ivfx.Main;
 import com.svoemesto.ivfx.tables.*;
 import com.svoemesto.ivfx.utils.ConvertToFxImage;
 import com.svoemesto.ivfx.utils.FFmpeg;
+import com.svoemesto.ivfx.utils.OverlayImage;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -20,6 +21,11 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -34,13 +40,21 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.apache.commons.io.FileUtils;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
+import java.util.List;
 import java.util.function.Predicate;
 
 public class TagsShotsController extends Application {
@@ -56,8 +70,13 @@ public class TagsShotsController extends Application {
     private ComboBox<IVFXFiles> cbFiles;
 
     @FXML
+    private Button btnUpdateShotTagsByFaces;
+
+    @FXML
     private TableView<IVFXShots> tblShots;
 
+    @FXML
+    private Button btnKeepShotsWithZeroTagSize;
 
     @FXML
     private TableColumn<IVFXShots, String> colShotFrom;
@@ -72,8 +91,19 @@ public class TagsShotsController extends Application {
     private Label lblFullSizePicture;
 
     @FXML
+    private ContextMenu contxtMenuFrame;
+
+    @FXML
+    private ContextMenu contxtMenuTagShotTypeSize;
+
+    @FXML
+    private ContextMenu contxtMenuTagShotTypeSizeForAll;
+
+    @FXML
     private AnchorPane apPlayer;
 
+    @FXML
+    private Button btnCreateNewTag;
 
     @FXML
     private MediaView mainMediaView;
@@ -135,6 +165,9 @@ public class TagsShotsController extends Application {
     private CheckBox chFindTagsAllInProperties;
 
     @FXML
+    private CheckBox cbTagsAllOnlyFromHtml;
+
+    @FXML
     private TableView<IVFXTags> tblTagsAll;
 
     @FXML
@@ -154,6 +187,12 @@ public class TagsShotsController extends Application {
 
     @FXML
     private TableColumn<IVFXTagsShots, Boolean> colIsMainTblTagsShots;
+
+    @FXML
+    private TableColumn<IVFXTagsShots, String> colTblTagsShotsSize;
+
+    @FXML
+    private TableColumn<IVFXTagsShots, String> colTblTagsShotsProba;
 
     @FXML
     private Button btnAddNewTagShot;
@@ -541,9 +580,9 @@ public class TagsShotsController extends Application {
                     prevMatrixLabel = matrixLabels;
                 }
 
-                String fileName = currentFile.getFramesFolderPreview() + "\\" + currentFile.getShortName() + currentFile.FRAMES_PREFIX + String.format("%06d", currentFrameToScroll) + ".jpg";
-                String fileNameFullSize = currentFile.getFramesFolderFullSize() + "\\" + currentFile.getShortName() + currentFile.FRAMES_PREFIX + String.format("%06d", currentFrameToScroll) + ".jpg";
-                onMouseClickLabel(fileName, fileNameFullSize, lblFullSizePicture);
+                String fileName = currentFile.getFolderFramesPreview() + "\\" + currentFile.getShortName() + currentFile.FRAMES_PREFIX + String.format("%06d", currentFrameToScroll) + ".jpg";
+                String fileNameMediumSize = currentFile.getFolderFramesMedium() + "\\" + currentFile.getShortName() + currentFile.FRAMES_PREFIX + String.format("%06d", currentFrameToScroll) + ".jpg";
+                onMouseClickLabel(fileName, fileNameMediumSize, lblFullSizePicture);
 
             }
 
@@ -564,6 +603,7 @@ public class TagsShotsController extends Application {
 
         // Планы
         tblShots.setDisable(true);
+//        btnUpdateShotTagsByFaces.setDisable(true);
 
         // Сцены, планы сцен, персонажи сцен
         tblScenes.setDisable(true);
@@ -634,7 +674,11 @@ public class TagsShotsController extends Application {
          *********************/
 
         Timer timer = new Timer(true);
-        timer.scheduleAtFixedRate(playFullPreviewThread, 0, 1);
+        try {
+            timer.scheduleAtFixedRate(playFullPreviewThread, 0, 1);
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
 
 
         listProjects = FXCollections.observableArrayList(IVFXProjects.loadList());
@@ -643,10 +687,10 @@ public class TagsShotsController extends Application {
             cbProject.getSelectionModel().select(currentProject);
         }
 
-        listShotsTypeSize = FXCollections.observableArrayList(IVFXShotsTypeSize.loadList());
+        listShotsTypeSize = FXCollections.observableArrayList(IVFXShotsTypeSize.loadList(true));
         tblShotsTypesSize.setItems(listShotsTypeSize);
 
-        listShotsTypePersons = FXCollections.observableArrayList(IVFXShotsTypePersons.loadList());
+        listShotsTypePersons = FXCollections.observableArrayList(IVFXShotsTypePersons.loadList(true));
         tblShotsTypesPersons.setItems(listShotsTypePersons);
 
         // Инициализация превью-лейблов
@@ -689,6 +733,8 @@ public class TagsShotsController extends Application {
         // столбцы таблицы tblTagsShots
         colTypeTblTagsShots.setCellValueFactory(new PropertyValueFactory<>("enumTagTypeLetter"));
         colNameTblTagsShots.setCellValueFactory(new PropertyValueFactory<>("tagLabel1"));
+        colTblTagsShotsSize.setCellValueFactory(new PropertyValueFactory<>("typeSizeLabel1"));
+        colTblTagsShotsProba.setCellValueFactory(new PropertyValueFactory<>("probaText"));
         colIsMainTblTagsShots.setCellValueFactory(param -> param.getValue().isMainProperty());
         colIsMainTblTagsShots.setCellFactory(p -> {
             CheckBox checkBox = new CheckBox();
@@ -1045,8 +1091,15 @@ public class TagsShotsController extends Application {
                 IVFXFiles selectedFile = (IVFXFiles) newValue;
                 if (currentFile == null || !currentFile.isEqual(selectedFile)) {
                     currentFile = selectedFile;
+                    btnUpdateShotTagsByFaces.setDisable(false);
                     currentShot = null;
                     System.out.println("Выбран файл: " + currentFile.getTitle());
+                    int[] arr = {1,2};
+                    if (cbTagsAllOnlyFromHtml.isSelected() && currentFile != null) {
+                        listTagsAll = FXCollections.observableArrayList(currentFile.getListTagsFromHTML());
+                        tblTagsAll.setItems(listTagsAll);
+                    }
+
                     doOnSelectRecordInCbFiles();
 
 
@@ -1166,6 +1219,14 @@ public class TagsShotsController extends Application {
                     currentScene = null;
                 }
                 doOnSelectRecordInTblScenes();
+            }
+        });
+
+        // событие выбора записи в таблице tblSceneProperties
+        tblSceneProperties.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
+            if (newValue != null) {
+                currentSceneProperty = newValue;
+                doOnSelectRecordInTblSceneProperties();
             }
         });
 
@@ -1370,9 +1431,9 @@ public class TagsShotsController extends Application {
                 prevMatrixLabel = matrixLabels;
             }
 
-            String fileName = currentFile.getFramesFolderPreview() + "\\" + currentFile.getShortName() + currentFile.FRAMES_PREFIX + String.format("%06d", currentFrameToScroll) + ".jpg";
-            String fileNameFullSize = currentFile.getFramesFolderFullSize() + "\\" + currentFile.getShortName() + currentFile.FRAMES_PREFIX + String.format("%06d", currentFrameToScroll) + ".jpg";
-            onMouseClickLabel(fileName, fileNameFullSize, lblFullSizePicture);
+            String fileName = currentFile.getFolderFramesPreview() + "\\" + currentFile.getShortName() + currentFile.FRAMES_PREFIX + String.format("%06d", currentFrameToScroll) + ".jpg";
+            String fileNameMediumSize = currentFile.getFolderFramesMedium() + "\\" + currentFile.getShortName() + currentFile.FRAMES_PREFIX + String.format("%06d", currentFrameToScroll) + ".jpg";
+            onMouseClickLabel(fileName, fileNameMediumSize, lblFullSizePicture);
 
         });
 
@@ -1437,8 +1498,51 @@ public class TagsShotsController extends Application {
             }
         });
 
-    }
+        initContextMenuFrame();
+        initContextMenuTagShotTypeSize();
+        initContextMenuTagShotTypeSizeForAll();
 
+        tblTagsAll.setRowFactory(tableView -> {
+            final TableRow<IVFXTags> row = new TableRow<>();
+            row.hoverProperty().addListener((observable) -> {
+                final IVFXTags tag = row.getItem();
+                if (row.isHover() && tag != null) {
+
+                    ContextMenu contextMenu = new ContextMenu();
+
+                    MenuItem menuItem = new MenuItem("Редактировать тэг «" + tag.getName() +"»");
+                    menuItem.setOnAction(e -> {new TagsController().editTags(tag);});
+                    contextMenu.getItems().add(menuItem);
+
+                    String url = tag.getPropertyValue("url");
+                    if (url != null) {
+                        menuItem = new MenuItem("Go to URL «" + tag.getName() +"»");
+                        menuItem.setOnAction(e -> {
+                            getHostServices().showDocument(url);
+                        });
+                        contextMenu.getItems().add(menuItem);
+                    }
+
+                    menuItem = new MenuItem("Перезагрузить картинку для тэга «" + tag.getName() +"»");
+                    menuItem.setOnAction(e -> {
+                        IVFXTags tmp = IVFXTags.load(tag.getId(), true);
+                        assert tmp != null;
+                        tag.setPreview(tmp.getPreview());
+                        tag.setLabel(tmp.getLabel());
+                        tblTagsAll.refresh();
+                    });
+                    contextMenu.getItems().add(menuItem);
+
+                    row.setContextMenu(contextMenu);
+
+                }
+            });
+
+            return row;
+        });
+
+
+    }
 
 
 /*****************************************
@@ -1455,7 +1559,12 @@ public class TagsShotsController extends Application {
             }
 
             int[] arr = {1,2};
-            listTagsAll = FXCollections.observableArrayList(IVFXTags.loadList(currentProject,true, arr));
+            if (!(cbTagsAllOnlyFromHtml.isSelected() && currentFile != null)) {
+                listTagsAll = FXCollections.observableArrayList(IVFXTags.loadList(currentProject,true, arr));
+            } else {
+                listTagsAll = FXCollections.observableArrayList(currentFile.getListTagsFromHTML());
+            }
+
             tblTagsAll.setItems(listTagsAll);
             filteredTagsAll = new FilteredList<>(listTagsAll, e -> true);
 
@@ -2180,10 +2289,10 @@ public class TagsShotsController extends Application {
             matrixLabels.frameNumber = frameNumber;
             if (frameNumber != 0) {
                 currentFrameToScroll = frameNumber;
-                String fileName = ivfxFiles.getFramesFolderPreview() + "\\" + ivfxFiles.getShortName() + ivfxFiles.FRAMES_PREFIX + String.format("%06d", frameNumber) + ".jpg";
-                String fileNameFullSize = ivfxFiles.getFramesFolderFullSize() + "\\" + ivfxFiles.getShortName() + ivfxFiles.FRAMES_PREFIX + String.format("%06d", frameNumber) + ".jpg";
+                String fileName = ivfxFiles.getFolderFramesPreview() + "\\" + ivfxFiles.getShortName() + ivfxFiles.FRAMES_PREFIX + String.format("%06d", frameNumber) + ".jpg";
+                String fileNameMediumSize = ivfxFiles.getFolderFramesMedium() + "\\" + ivfxFiles.getShortName() + ivfxFiles.FRAMES_PREFIX + String.format("%06d", frameNumber) + ".jpg";
                 if (i == 0) {
-                    onMouseClickLabel(fileName, fileNameFullSize, lblFullSizePicture);
+                    onMouseClickLabel(fileName, fileNameMediumSize, lblFullSizePicture);
                 }
                 File file = new File(fileName);
                 if (file.exists()) {
@@ -2206,7 +2315,7 @@ public class TagsShotsController extends Application {
                     currentFrameToScroll = frameNumber;
                     matrixLabels.label.setOnMouseClicked(mouseEvent -> {
                         if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 1) {
-                            onMouseClickLabel(fileName, fileNameFullSize, lblFullSizePicture);
+                            onMouseClickLabel(fileName, fileNameMediumSize, lblFullSizePicture);
                         } else if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
                             updateFullPreviewDuringMoveMouse = !updateFullPreviewDuringMoveMouse;
                         } else if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 3) {
@@ -2283,10 +2392,7 @@ public class TagsShotsController extends Application {
     }
 
     // editShotsTags
-    public void editShotsTags(IVFXFiles ivfxFile, int initFrameNum) {
-
-        currentFile = ivfxFile;
-//        initFrameNumber = initFrameNum;
+    public void editShotsTags() {
 
         try {
 
@@ -2294,7 +2400,7 @@ public class TagsShotsController extends Application {
 
             tagsShotsController.controllerScene = new Scene(root);
             tagsShotsController.controllerStage = new Stage();
-            tagsShotsController.controllerStage.setTitle("Редактор планов и тэгов. Файл " + tagsShotsController.currentFile.getTitle());
+            tagsShotsController.controllerStage.setTitle("Редактор планов и тэгов.");
             tagsShotsController.controllerStage.setScene(tagsShotsController.controllerScene);
             tagsShotsController.controllerStage.initModality(Modality.APPLICATION_MODAL);
 
@@ -2317,12 +2423,13 @@ public class TagsShotsController extends Application {
     }
 
     // обработчик события клика на лейбле
-    private void onMouseClickLabel(String fileNamePreview, String fileNameFullSize, Label label) {
+    private void onMouseClickLabel(String fileNamePreview, String fileNameMediumSize, Label label) {
 
-        File file = new File(fileNameFullSize);
+        File file = new File(fileNameMediumSize);
         if (file.exists()) {
             try {
                 BufferedImage bufferedImage = ImageIO.read(file);
+//                bufferedImage = OverlayImage.resizeImage(bufferedImage,720,400, Color.BLACK);
                 ImageView imageView = new ImageView(ConvertToFxImage.convertToFxImage(bufferedImage));
                 Platform.runLater(() -> {
                     label.setGraphic(imageView);
@@ -2331,7 +2438,7 @@ public class TagsShotsController extends Application {
             } catch (IOException e) {
             }
             mainFramePreviewFile = fileNamePreview;
-            mainFrameFullSizeFile = fileNameFullSize;
+            mainFrameFullSizeFile = fileNameMediumSize;
         }
     }
 
@@ -2345,9 +2452,9 @@ public class TagsShotsController extends Application {
 
         matrixLabels.label.toFront();
         if (updateFullPreviewDuringMoveMouse) {
-            String fileName = currentFile.getFramesFolderPreview() + "\\" + currentFile.getShortName() + currentFile.FRAMES_PREFIX + String.format("%06d", matrixLabels.frameNumber) + ".jpg";
-            String fileNameFullSize = currentFile.getFramesFolderFullSize() + "\\" + currentFile.getShortName() + currentFile.FRAMES_PREFIX + String.format("%06d", matrixLabels.frameNumber) + ".jpg";
-            onMouseClickLabel(fileName, fileNameFullSize, lblFullSizePicture);
+            String fileName = currentFile.getFolderFramesPreview() + "\\" + currentFile.getShortName() + currentFile.FRAMES_PREFIX + String.format("%06d", matrixLabels.frameNumber) + ".jpg";
+            String fileNameMediumSize = currentFile.getFolderFramesMedium() + "\\" + currentFile.getShortName() + currentFile.FRAMES_PREFIX + String.format("%06d", matrixLabels.frameNumber) + ".jpg";
+            onMouseClickLabel(fileName, fileNameMediumSize, lblFullSizePicture);
         }
     }
 
@@ -3222,6 +3329,7 @@ public class TagsShotsController extends Application {
                     for (IVFXTags tmp : listEvents) {
                         if (tmp.isEqual(currentEvent)) {
                             currentEvent = tmp;
+                            tblEvents.getSelectionModel().select((IVFXTagsEvents)currentEvent);
                             doOnSelectRecordInTblEvents();
                             break;
                         }
@@ -3276,6 +3384,192 @@ public class TagsShotsController extends Application {
                 doOnSelectRecordInTblEvents();
             }
         }
+    }
+
+
+    // Событие нажатие кнопки doBtnCreateNewTag - создание нового тэга персонажа или объекта и добавление его в текущий план
+    @FXML
+    void doBtnCreateNewTag(ActionEvent event) {
+
+        IVFXEnumTagsTypes enumTagType = IVFXEnumTagsTypes.PERSON;
+//        if (currentTagType != null) enumTagType = IVFXTagsTypes.getEnumTagsTypes(currentTagType.getId());
+        String name = "New " + enumTagType;
+        IVFXFrames ivfxFrame = IVFXFrames.load(currentFile, currentFrameToScroll, true);
+        IVFXTags createdTag = CreateNewTagController.getNewTag(currentProject, enumTagType, name, ivfxFrame, false);
+
+        if (createdTag != null) {
+            int[] arr = {1,2};
+            if (!(cbTagsAllOnlyFromHtml.isSelected() && currentFile != null)) {
+                listTagsAll = FXCollections.observableArrayList(IVFXTags.loadList(currentProject,true, arr));
+            } else {
+                listTagsAll = FXCollections.observableArrayList(currentFile.getListTagsFromHTML());
+            }
+            tblTagsAll.setItems(listTagsAll);
+            filteredTagsAll = new FilteredList<>(listTagsAll, e -> true);
+            for (IVFXTags tag: listTagsAll) {
+                if (tag.isEqual(createdTag)) {
+                    currentTagAll = tag;
+                    addTagToTagsShots(currentTagAll, currentShot);
+                }
+            }
+
+        }
+    }
+
+    private void initContextMenuFrame() {
+
+        MenuItem menuItem = new MenuItem("Add To Favorite");
+        menuItem.setOnAction(e -> {addToFavorite();});
+
+        contxtMenuFrame.getItems().clear();
+        contxtMenuFrame.getItems().add(menuItem);
+
+    }
+
+    private void initContextMenuTagShotTypeSize() {
+
+        contxtMenuTagShotTypeSize.getItems().clear();
+        List<IVFXShotsTypeSize> list = IVFXShotsTypeSize.loadList(true);
+        for (IVFXShotsTypeSize shotsTypeSize : list) {
+            MenuItem menuItem = new MenuItem(shotsTypeSize.getName());
+            menuItem.setOnAction(e -> {
+                if (currentTagShot != null) {
+                    currentTagShot.setTypeSizeId(shotsTypeSize.getId());
+                    currentTagShot.save();
+                    for (IVFXTagsShots tagShot : listTagsShots) {
+                        if (tagShot.getId() == currentTagShot.getId()) {
+                            tagShot.setTypeSizeId(shotsTypeSize.getId());
+                            IVFXShotsTypeSize cloneTypeSize =  IVFXShotsTypeSize.load(shotsTypeSize.getId(), true);
+                            tagShot.setIvfxShotTypeSize(cloneTypeSize);
+                            tblTagsShots.refresh();
+                            break;
+                        }
+                    }
+                }
+            });
+            contxtMenuTagShotTypeSize.getItems().add(menuItem);
+        }
+
+    }
+
+    private void initContextMenuTagShotTypeSizeForAll() {
+
+        contxtMenuTagShotTypeSizeForAll.getItems().clear();
+        List<IVFXShotsTypeSize> list = IVFXShotsTypeSize.loadList(true);
+        for (IVFXShotsTypeSize shotsTypeSize : list) {
+            MenuItem menuItem = new MenuItem(shotsTypeSize.getName() + " for All N/A");
+            menuItem.setOnAction(e -> {
+                if (currentShot != null) {
+                    for (IVFXTagsShots tagShot : listTagsShots) {
+                        if (tagShot.getTypeSizeId() == 0) {
+                            tagShot.setTypeSizeId(shotsTypeSize.getId());
+                            IVFXShotsTypeSize cloneTypeSize =  IVFXShotsTypeSize.load(shotsTypeSize.getId(), true);
+                            tagShot.setIvfxShotTypeSize(cloneTypeSize);
+                            tagShot.save();
+                        }
+                    }
+                    tblTagsShots.refresh();
+                }
+            });
+            contxtMenuTagShotTypeSizeForAll.getItems().add(menuItem);
+        }
+
+    }
+
+
+    private void addToFavorite() {
+
+        IVFXFrames ivfxFrame = IVFXFrames.load(currentFile, currentFrameToScroll, true);
+        String pathToFavoriteFolder = currentFile.getFolderFavorite();
+        String pathToFavoriteFile = pathToFavoriteFolder + "\\" + ivfxFrame.getFileNameFullSizeWithoutFolder();
+        try {
+            FileUtils.copyFile(new File(ivfxFrame.getFileNameFullSize()), new File(pathToFavoriteFile));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    void doBtnUpdateShotTagsByFaces(ActionEvent event) {
+        if (currentFile != null) {
+            currentFile.updateTagsByFaces(true);
+        } else {
+            if (currentProject != null) {
+                for (IVFXFiles ivfxFile : IVFXFiles.loadList(currentProject)) {
+                    ivfxFile.updateTagsByFaces(false);
+                }
+            }
+        }
+    }
+
+    @FXML
+    void doBtnKeepShotsWithZeroTagSize(ActionEvent event) {
+
+        Statement statement = null;
+        ResultSet rs = null;
+        String sql;
+
+        try {
+            statement = Main.mainConnection.createStatement();
+
+            sql = "SELECT tbl_tags_shots.shot_id FROM tbl_shots INNER JOIN tbl_tags_shots ON tbl_shots.id = tbl_tags_shots.shot_id INNER JOIN tbl_tags ON tbl_tags_shots.tag_id = tbl_tags.id" +
+                    " WHERE tbl_tags_shots.tag_shot_type_size_id = 0" +
+                    " AND tbl_shots.file_id = " + currentFile.getId() +
+                    " AND tbl_tags.tag_type_id = 1" +
+                    " GROUP BY tbl_tags_shots.shot_id";
+
+            rs = statement.executeQuery(sql);
+
+            List<Integer> list = new ArrayList<>();
+
+            while (rs.next()) {
+                list.add(rs.getInt("shot_id"));
+            }
+
+            ObservableList<IVFXShots> listShotsTmp = FXCollections.observableArrayList();
+
+            for (IVFXShots shot : listShots) {
+                boolean isFound = false;
+                for (Integer i : list) {
+                    if (shot.getId() == i) {
+                        isFound = true;
+                        break;
+                    }
+                }
+                if (isFound) {
+                    listShotsTmp.add(shot);
+                }
+            }
+            listShots = listShotsTmp;
+            tblShots.setItems(listShots);
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close(); // close result set
+                if (statement != null) statement.close(); // close statement
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+    }
+
+
+    @FXML
+    void doTagsAllOnlyFromHtml(ActionEvent event) {
+
+        int[] arr = {1,2};
+        if (!(cbTagsAllOnlyFromHtml.isSelected() && currentFile != null)) {
+            listTagsAll = FXCollections.observableArrayList(IVFXTags.loadList(currentProject,true, arr));
+        } else {
+            listTagsAll = FXCollections.observableArrayList(currentFile.getListTagsFromHTML());
+        }
+        tblTagsAll.setItems(listTagsAll);
     }
 
 }

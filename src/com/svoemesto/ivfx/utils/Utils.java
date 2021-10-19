@@ -1,5 +1,11 @@
 package com.svoemesto.ivfx.utils;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class Utils {
 
     public static String convertCyrilic(String message){
@@ -14,6 +20,61 @@ public class Utils {
             }
         }
         return builder.toString();
+    }
+
+    public static String getHTMLtextFromUrl(String url) {
+
+        try {
+            URL url1 = new URL(url);
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(url1.openStream()))) {
+                String line;
+                StringBuilder sb = new StringBuilder();
+                while ((line = br.readLine()) != null) {
+
+                    sb.append(line);
+                    sb.append(System.lineSeparator());
+                }
+                return sb.toString();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String getTextBetween(String text, String startText, String endText) {
+        String result = "";
+        if (text != null) {
+            String firstPart = text;
+            if (startText != null && !startText.equals("")) {
+                if (text.contains(startText)) {
+                    int start = text.indexOf(startText);
+                    firstPart = text.substring(start + startText.length());
+                } else {
+                    return "";
+                }
+            }
+            if (endText != null && !endText.equals("")) {
+                if (firstPart.contains(endText)) {
+                    int end = firstPart.indexOf(endText);
+                    result = firstPart.substring(0,end);
+                } else {
+                    return "";
+                }
+            } else {
+                return firstPart;
+            }
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        String txt = getHTMLtextFromUrl("https://gameofthrones.fandom.com/ru/wiki/%D0%92%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%BB%D0%BB_(%D1%81%D0%B5%D1%80%D0%B8%D1%8F)");
+
+        System.out.println(getTextBetween(txt, "<span id=\"В_ролях\"></span>", "<span id=\"Навигация_по_сериям\"></span>"));
+
     }
 
 }

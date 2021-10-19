@@ -303,8 +303,8 @@ public class IVFXFiltersSelect {
         switch (this.filterSelectObjectType) {
             case PERSON:
 
-                IVFXPersons ivfxPersons = IVFXPersons.load(this.objectId, false);
-                text = (this.isAnd == true ? "" : "[ИЛИ] ") + "Персонаж «"+ ivfxPersons.getName() + "» " + (this.isIncluded == true ? "содержится " : "не содержится ");
+                IVFXTags ivfxTag = IVFXTags.load(this.objectId, false);
+                text = (this.isAnd == true ? "" : "[ИЛИ] ") + ivfxTag.getTagTypeName() + " «"+ ivfxTag.getName() + "» " + (this.isIncluded == true ? "содержится " : "не содержится ");
                 switch (this.recordType) {
                     case FILE:
                         text = text + "в файле";
